@@ -45,25 +45,54 @@
     const statsStrip = document.querySelector('.stats-strip');
     if (statsStrip) statsObserver.observe(statsStrip);
 
-    // Circle bubble info panel
-    const circleInfo = document.getElementById('circle-info');
-    if (circleInfo) {
-      const titleEl = circleInfo.querySelector('.circle-info-title');
-      const descEl = circleInfo.querySelector('.circle-info-desc');
-      const defaultTitle = titleEl.textContent;
-      const updateInfo = (btn) => {
-        titleEl.textContent = btn.dataset.title;
-        descEl.textContent = btn.dataset.desc;
+    // Circle bubble force-push interaction
+    const cluster = document.getElementById('circles-cluster');
+    if (cluster) {
+      const bubbles = Array.from(cluster.querySelectorAll('.circle-bubble'));
+
+      const resetAll = () => {
+        bubbles.forEach(b => {
+          b.style.setProperty('--tx', '0px');
+          b.style.setProperty('--ty', '0px');
+        });
       };
-      const resetInfo = () => {
-        titleEl.textContent = defaultTitle;
-        descEl.textContent = '';
+
+      const pushFrom = (hovered) => {
+        if (window.matchMedia('(max-width: 640px)').matches) return;
+        const hr = hovered.getBoundingClientRect();
+        const hcx = hr.left + hr.width / 2;
+        const hcy = hr.top + hr.height / 2;
+        const hoveredRadius = hr.width / 2;
+        // The scaled radius (hover scale factor matches CSS --scale on hover)
+        const scaledRadius = hoveredRadius * 1.45;
+
+        bubbles.forEach(other => {
+          if (other === hovered) return;
+          const or = other.getBoundingClientRect();
+          const ocx = or.left + or.width / 2;
+          const ocy = or.top + or.height / 2;
+          const otherRadius = or.width / 2;
+
+          const dx = ocx - hcx;
+          const dy = ocy - hcy;
+          const dist = Math.hypot(dx, dy) || 0.01;
+
+          // How much overlap would there be with scaled hovered circle?
+          const wanted = scaledRadius + otherRadius + 6; // 6px breathing room
+          const push = Math.max(0, wanted - dist);
+
+          const tx = (dx / dist) * push;
+          const ty = (dy / dist) * push;
+          other.style.setProperty('--tx', tx.toFixed(1) + 'px');
+          other.style.setProperty('--ty', ty.toFixed(1) + 'px');
+        });
       };
-      document.querySelectorAll('.circle-bubble').forEach(btn => {
-        btn.addEventListener('mouseenter', () => updateInfo(btn));
-        btn.addEventListener('focus', () => updateInfo(btn));
-        btn.addEventListener('mouseleave', resetInfo);
-        btn.addEventListener('blur', resetInfo);
+
+      bubbles.forEach(b => {
+        b.addEventListener('mouseenter', () => pushFrom(b));
+        b.addEventListener('focus', () => pushFrom(b));
+        b.addEventListener('mouseleave', resetAll);
+        b.addEventListener('blur', resetAll);
       });
     }
   </script>
