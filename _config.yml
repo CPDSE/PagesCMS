@@ -1,8 +1,8 @@
 title: CPDSE
 description: Center for Pharmaceutical Data Science Education
 tagline: Pharma is full of data, but not data science. We are here to change that.
-baseurl: ""   # ← if your repo is "username.github.io" leave blank; if it's "my-site" put "/my-site" here
-url: ""       # ← set to your full GitHub Pages URL e.g. "https://username.github.io"
+baseurl: "/PagesCMS"
+url: "https://cpdse.github.io"
 
 markdown: kramdown
 permalink: /:categories/:title/
