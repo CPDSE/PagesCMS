@@ -213,11 +213,12 @@ a { color: inherit; }
 }
 .hero-video {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  right: 0;
+  width: 55%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
+  object-position: right center;
   opacity: 0.22;
   pointer-events: none;
   z-index: 0;

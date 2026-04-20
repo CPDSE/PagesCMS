@@ -112,6 +112,14 @@
         b.addEventListener('blur', resetAll);
       });
     }
+
+    // Freeze hero video on last frame
+    const heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+      heroVideo.addEventListener('ended', () => {
+        heroVideo.pause();
+      });
+    }
   </script>
 </body>
 </html>
