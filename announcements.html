@@ -1,0 +1,30 @@
+---
+layout: default
+title: Announcements & Events
+permalink: /announcements/
+---
+
+<header class="page-hero">
+  <div class="container">
+    <span class="hero-label">Latest from CPDSE</span>
+    <h1>Announcements &amp; Events</h1>
+  </div>
+</header>
+
+<main class="section section-alt">
+  <div class="container">
+    {% if site.posts.size > 0 %}
+    <div class="announcements-list">
+      {% for post in site.posts %}
+      <a class="announcement-row" href="{{ post.url | relative_url }}">
+        <span class="card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <h3>{{ post.title }}</h3>
+        {% if post.category %}<span class="card-tag">{{ post.category }}</span>{% endif %}
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p style="color:var(--muted); padding:var(--space-lg) 0;">No announcements yet. Check back soon.</p>
+    {% endif %}
+  </div>
+</main>

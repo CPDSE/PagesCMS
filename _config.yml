@@ -1,0 +1,58 @@
+title: CPDSE
+description: Center for Pharmaceutical Data Science Education
+tagline: Pharma is full of data, but not data science. We are here to change that.
+baseurl: ""
+url: "https://your-username.github.io"
+
+markdown: kramdown
+permalink: /:categories/:title/
+
+plugins:
+  - jekyll-feed
+
+collections:
+  announcements:
+    output: true
+    permalink: /announcements/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "announcements"
+    values:
+      layout: "post"
+
+nav:
+  - title: Home
+    url: /
+  - title: Announcements
+    url: /announcements/
+  - title: About
+    children:
+      - title: CPDSE
+        url: /about/
+      - title: Who Are We
+        url: /who-are-we/
+      - title: Funding
+        url: /funding/
+  - title: Education
+    children:
+      - title: Educational Git
+        url: https://github.com/CPDSE-EDUX
+        external: true
+      - title: Student Code Club
+        url: /codeclub/
+  - title: Research
+    children:
+      - title: Research Units
+        url: /research-units/
+      - title: Research Git
+        url: https://github.com/CPDSE
+        external: true
+  - title: Contact
+    url: /contact/
+
+socials:
+  linkedin: https://www.linkedin.com/company/centre-for-pharmaceutical-data-science-education
+  instagram: https://www.instagram.com/peopledatadrugs/
+  github: https://github.com/CPDSE-EDUX

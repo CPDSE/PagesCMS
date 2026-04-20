@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<header class="post-header">
+  <div class="container">
+    {% if page.category %}<span class="card-tag">{{ page.category }}</span>{% endif %}
+    <h1>{{ page.title }}</h1>
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+  </div>
+</header>
+
+<article class="post-content">
+  {{ content }}
+  <div class="post-back">
+    <a href="{{ '/announcements/' | relative_url }}">← Back to announcements</a>
+  </div>
+</article>

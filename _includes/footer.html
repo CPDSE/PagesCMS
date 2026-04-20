@@ -1,0 +1,36 @@
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="{{ '/' | relative_url }}" class="nav-logo">CPDSE</a>
+      <p>A collaboration between SDU and UCPH, cultivating research-based education for the next generation of drug experts.</p>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="{{ '/about/' | relative_url }}">CPDSE</a></li>
+        <li><a href="{{ '/who-are-we/' | relative_url }}">Who Are We</a></li>
+        <li><a href="{{ '/funding/' | relative_url }}">Funding</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Work</h4>
+      <ul>
+        <li><a href="{{ '/codeclub/' | relative_url }}">Student Code Club</a></li>
+        <li><a href="{{ '/research-units/' | relative_url }}">Research Units</a></li>
+        <li><a href="https://github.com/CPDSE-EDUX" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+        <li><a href="{{ site.socials.linkedin }}" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="{{ site.socials.instagram }}" target="_blank" rel="noopener">Instagram ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© {{ site.time | date: "%Y" }} CPDSE — Center for Pharmaceutical Data Science Education</span>
+    <a href="{{ '/privacy/' | relative_url }}">Privacy</a>
+  </div>
+</footer>

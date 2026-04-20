@@ -1,0 +1,43 @@
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="nav-logo">CPDSE <span>PharmaDataHub</span></a>
+
+    <ul class="nav-links" id="nav-links">
+      {% for item in site.nav %}
+        {% if item.children %}
+          <li>
+            <button aria-haspopup="true" aria-expanded="false">{{ item.title }}</button>
+            <div class="dropdown" role="menu">
+              {% for child in item.children %}
+                <a href="{{ child.url }}" {% if child.external %}target="_blank" rel="noopener"{% endif %} role="menuitem">{{ child.title }}</a>
+              {% endfor %}
+            </div>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <div class="nav-socials">
+      <a href="{{ site.socials.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn">Li</a>
+      <a href="{{ site.socials.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">Ig</a>
+      <a href="{{ site.socials.github }}" target="_blank" rel="noopener" aria-label="GitHub">Gh</a>
+    </div>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+</script>
