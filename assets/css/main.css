@@ -498,8 +498,8 @@ a { color: inherit; }
 .circles-cluster {
   position: relative;
   width: 100%;
-  max-width: 620px;
-  aspect-ratio: 5 / 3;
+  max-width: 560px;
+  aspect-ratio: 1 / 1;
   margin: var(--space-lg) auto var(--space-md);
 }
 .circle-bubble {
@@ -533,13 +533,13 @@ a { color: inherit; }
   outline: none;
 }
 
-/* Equal-sized bubbles arranged on an angled bottom-left to top-right trajectory */
-.circle-bubble--1 { left: 1%;  top: 54%; width: 28%; background: #3C5E3E; color: white; }
-.circle-bubble--2 { left: 14%; top: 44%; width: 28%; background: #D6C17C; color: #0f1a14; }
-.circle-bubble--3 { left: 28%; top: 33%; width: 28%; background: #5F7D61; color: white; }
-.circle-bubble--4 { left: 43%; top: 22%; width: 28%; background: #A9BBAA; color: #0f1a14; }
-.circle-bubble--5 { left: 58%; top: 11%; width: 28%; background: #E4D7A1; color: #0f1a14; }
-.circle-bubble--6 { left: 72%; top: 1%;  width: 28%; background: #F6F1DC; color: #0f1a14; }
+/* Equal-sized bubbles arranged in a rough diamond without overlap */
+.circle-bubble--1 { left: 39%; top: 4%;  width: 22%; background: #3C5E3E; color: white; }
+.circle-bubble--2 { left: 18%; top: 24%; width: 22%; background: #D6C17C; color: #0f1a14; }
+.circle-bubble--3 { left: 60%; top: 24%; width: 22%; background: #5F7D61; color: white; }
+.circle-bubble--4 { left: 18%; top: 56%; width: 22%; background: #A9BBAA; color: #0f1a14; }
+.circle-bubble--5 { left: 60%; top: 56%; width: 22%; background: #E4D7A1; color: #0f1a14; }
+.circle-bubble--6 { left: 39%; top: 76%; width: 22%; background: #F6F1DC; color: #0f1a14; }
 
 .circle-title {
   font-family: var(--font-display);
