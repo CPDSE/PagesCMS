@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 
 /* ─── TOKENS ─────────────────────────────────────────────── */
 :root {
@@ -12,7 +12,7 @@
   --border:     #d4cfc4;
 
   --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-body:    Verdana, system-ui, sans-serif;
 
   --space-xs: 0.5rem;
   --space-sm: 1rem;
