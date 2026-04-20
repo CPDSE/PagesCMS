@@ -440,7 +440,7 @@ a { color: inherit; }
   color: var(--offwhite);
 }
 .section-circles {
-  background: #F9F9F9;
+  background: linear-gradient(110deg, #5F7D61 0%, #F9F9F9 100%);
   color: var(--ink);
 }
 .section-green {
