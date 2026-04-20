@@ -398,6 +398,10 @@ a { color: inherit; }
   background: var(--ink);
   color: white;
 }
+.section-circles {
+  background: var(--green-pale);
+  color: var(--ink);
+}
 .section-green {
   background: var(--green);
   color: white;
@@ -515,6 +519,7 @@ a { color: inherit; }
   position: absolute;
   aspect-ratio: 1;
   border-radius: 50%;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -549,6 +554,31 @@ a { color: inherit; }
 .circle-bubble--4 { left: 16%; top: 40%; width: 26%; background: #A9BBAA; color: #0f1a14; }
 .circle-bubble--5 { left: 43%; top: 51%; width: 26%; background: #E4D7A1; color: #0f1a14; }
 .circle-bubble--6 { left: 23%; top: 72%; width: 26%; background: #F6F1DC; color: #0f1a14; }
+
+.circle-ghosts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.circle-ghost {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(45,122,82,0.38);
+  background: transparent;
+}
+.circle-ghost--1  { left: 12%; top: 34%; width: 6%;  aspect-ratio: 1; }
+.circle-ghost--2  { left: 26%; top: 22%; width: 4.5%; aspect-ratio: 1; border-color: rgba(214,193,124,0.55); }
+.circle-ghost--3  { left: 48%; top: 14%; width: 5%;  aspect-ratio: 1; }
+.circle-ghost--4  { left: 62%; top: 14%; width: 4%;  aspect-ratio: 1; border-color: rgba(169,187,170,0.8); }
+.circle-ghost--5  { left: 78%; top: 30%; width: 5.5%; aspect-ratio: 1; border-color: rgba(60,94,62,0.42); }
+.circle-ghost--6  { left: 74%; top: 48%; width: 4.8%; aspect-ratio: 1; }
+.circle-ghost--7  { left: 58%; top: 63%; width: 6%;  aspect-ratio: 1; border-color: rgba(214,193,124,0.5); }
+.circle-ghost--8  { left: 40%; top: 77%; width: 4.2%; aspect-ratio: 1; }
+.circle-ghost--9  { left: 22%; top: 67%; width: 5.3%; aspect-ratio: 1; border-color: rgba(60,94,62,0.42); }
+.circle-ghost--10 { left: 8%;  top: 54%; width: 4.6%; aspect-ratio: 1; }
+.circle-ghost--11 { left: 34%; top: 42%; width: 3.8%; aspect-ratio: 1; border-color: rgba(214,193,124,0.48); }
+.circle-ghost--12 { left: 52%; top: 34%; width: 4.3%; aspect-ratio: 1; border-color: rgba(169,187,170,0.85); }
 
 .circle-title {
   font-family: var(--font-display);
@@ -594,6 +624,7 @@ a { color: inherit; }
     --tx: 0 !important;
     --ty: 0 !important;
   }
+  .circle-ghosts { display: none; }
   .circle-desc { font-size: 0.65rem; }
 }
 
