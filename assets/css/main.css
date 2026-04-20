@@ -204,6 +204,8 @@ a { color: inherit; }
   background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
   color: white;
   padding: calc(var(--space-xl) + 40px) 0 var(--space-md);
+  min-height: 100vh;
+  min-height: 100svh;
   margin-top: -60px;
   position: relative;
   overflow: hidden;
