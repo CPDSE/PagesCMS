@@ -499,7 +499,7 @@ a { color: inherit; }
   position: relative;
   width: 100%;
   max-width: 620px;
-  aspect-ratio: 31 / 20;
+  aspect-ratio: 5 / 3;
   margin: var(--space-lg) auto var(--space-md);
 }
 .circle-bubble {
@@ -533,23 +533,14 @@ a { color: inherit; }
   outline: none;
 }
 
-/* Packed chart — varied sizes, tight overlap */
-.circle-bubble--1 { left: 3%;  top: 5%;  width: 31%; background: #3C5E3E; color: white; }
-.circle-bubble--2 { left: 31%; top: 0;   width: 35%; background: #D6C17C; color: #0f1a14; }
-.circle-bubble--3 { left: 65%; top: 10%; width: 28%; background: #5F7D61; color: white; }
-.circle-bubble--4 { left: 14%; top: 48%; width: 29%; background: #A9BBAA; color: #0f1a14; }
-.circle-bubble--5 { left: 41%; top: 50%; width: 31%; background: #E4D7A1; color: #0f1a14; }
-.circle-bubble--6 { left: 71%; top: 49%; width: 24%; background: #F6F1DC; color: #0f1a14; }
+/* Equal-sized bubbles arranged on an angled bottom-left to top-right trajectory */
+.circle-bubble--1 { left: 1%;  top: 54%; width: 28%; background: #3C5E3E; color: white; }
+.circle-bubble--2 { left: 14%; top: 44%; width: 28%; background: #D6C17C; color: #0f1a14; }
+.circle-bubble--3 { left: 28%; top: 33%; width: 28%; background: #5F7D61; color: white; }
+.circle-bubble--4 { left: 43%; top: 22%; width: 28%; background: #A9BBAA; color: #0f1a14; }
+.circle-bubble--5 { left: 58%; top: 11%; width: 28%; background: #E4D7A1; color: #0f1a14; }
+.circle-bubble--6 { left: 72%; top: 1%;  width: 28%; background: #F6F1DC; color: #0f1a14; }
 
-.circle-num {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  opacity: 0.55;
-  margin-bottom: 0.25rem;
-  transition: opacity 0.25s, font-size 0.3s;
-}
 .circle-title {
   font-family: var(--font-display);
   font-size: clamp(0.9rem, 1.6vw, 1.2rem);
@@ -574,10 +565,6 @@ a { color: inherit; }
 .circle-bubble:focus-visible .circle-desc {
   opacity: 0.92;
   max-height: 90px;
-}
-.circle-bubble:hover .circle-num,
-.circle-bubble:focus-visible .circle-num {
-  opacity: 0.75;
 }
 
 @media (max-width: 640px) {
