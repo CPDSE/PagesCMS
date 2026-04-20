@@ -376,7 +376,7 @@ a { color: inherit; }
 }
 .announcement-card {
   background: transparent;
-  padding: var(--space-md);
+  padding: var(--space-sm) 0;
   text-decoration: none;
   color: var(--ink);
   display: flex;
