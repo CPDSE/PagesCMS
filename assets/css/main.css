@@ -312,7 +312,7 @@ a { color: inherit; }
   z-index: 2;
 }
 .stats-panel {
-  background: var(--paper);
+  background: #D6C17C;
   border-radius: 20px;
   box-shadow: 0 18px 50px rgba(15,26,20,0.22);
   padding: var(--space-md) var(--space-sm);
