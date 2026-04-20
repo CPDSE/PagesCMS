@@ -243,8 +243,7 @@ a { color: inherit; }
   max-height: 55vh;
   object-fit: contain;
   object-position: center;
-  opacity: 0.75;
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
   pointer-events: none;
 }
 .hero::before {
