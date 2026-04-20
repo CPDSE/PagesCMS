@@ -506,17 +506,21 @@ a { color: inherit; }
   .announcements-grid { grid-template-columns: 1fr; }
 }
 .announcement-card {
-  background: transparent;
-  padding: var(--space-sm) 0;
+  background: #F9F9F9;
+  border: 1px solid rgba(15,26,20,0.12);
+  border-radius: 14px;
+  padding: var(--space-md);
   text-decoration: none;
   color: var(--ink);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: background 0.12s;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.12s;
 }
 .announcement-card:hover {
-  background: transparent;
+  background: #F9F9F9;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15,26,20,0.12);
 }
 .card-meta {
   display: flex;
