@@ -316,6 +316,39 @@ a { color: inherit; }
   display: block;
 }
 
+/* ─── ABOUT STRIP ─────────────────────────────────────────── */
+.about-strip {
+  background: #3C5E3E;
+  color: white;
+  padding: var(--space-xl) 0;
+  overflow: hidden;
+}
+.about-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+.about-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: white;
+  line-height: 1.2;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.about-text p { color: rgba(255,255,255,0.75); margin-top: 0.75rem; line-height: 1.7; }
+.about-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: var(--space-md); }
+.about-visual { display: flex; justify-content: center; align-items: center; }
+.about-svg { width: 100%; max-width: 440px; }
+@media (max-width: 768px) {
+  .about-inner { grid-template-columns: 1fr; }
+  .about-visual { display: none; }
+}
+
 /* ─── SECTIONS ────────────────────────────────────────────── */
 .section {
   padding: var(--space-lg) 0;

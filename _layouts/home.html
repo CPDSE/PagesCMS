@@ -38,19 +38,57 @@ layout: default
 </section>
 
 <!-- ABOUT INTRO -->
-<section class="section">
-  <div class="container fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); align-items:center;">
-    <div>
-      <span class="section-label">About</span>
-      <h2>What we do</h2>
-      <p style="margin-top:1rem; color:var(--muted);">CPDSE is dedicated to developing research-based education for the future workforce of drug experts — spanning bachelor, master, PhD and life-long learning levels. Pharmaceutical scientists will become bilinguals speaking both "data and drugs".</p>
-      <a href="{{ '/about/' | relative_url }}" class="btn btn-primary" style="margin-top:1.5rem;">Learn more</a>
+<section class="about-strip">
+  <div class="about-inner fade-in">
+    <div class="about-text">
+      <span class="section-label" style="color:var(--accent)">About CPDSE</span>
+      <h2>Pharmaceutical sciences,<br>boosted by data science</h2>
+      <p>CPDSE is dedicated to developing research-based education for the future workforce of drug experts — spanning bachelor, master, PhD and life-long learning levels. Pharmaceutical scientists will become bilinguals speaking both "data and drugs".</p>
+      <p>We are 60+ people across seven university departments at two universities, with distinct strengths in pharmaceutical sciences, data science, and science education.</p>
+      <div class="about-ctas">
+        <a href="{{ '/about/' | relative_url }}" class="btn btn-primary">Learn more</a>
+        <a href="{{ '/who-are-we/' | relative_url }}" class="btn btn-ghost">Meet the team</a>
+      </div>
     </div>
-    <div>
-      <span class="section-label">Community</span>
-      <h2>Who are we</h2>
-      <p style="margin-top:1rem; color:var(--muted);">Students, professors, pharmacists, educators, geeks and fellows. 60+ people, seven university departments, 2 universities. Distinct strengths in pharmaceutical sciences, data science, and science education.</p>
-      <a href="{{ '/who-are-we/' | relative_url }}" class="btn btn-ghost" style="margin-top:1.5rem; border-color:var(--border); color:var(--ink);">Meet the team</a>
+    <div class="about-visual" aria-hidden="true">
+      <svg viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg" class="about-svg">
+        <!-- Outer rings -->
+        <circle cx="210" cy="150" r="130" fill="none" stroke="rgba(214,193,124,0.12)" stroke-width="1"/>
+        <circle cx="210" cy="150" r="100" fill="none" stroke="rgba(169,187,170,0.18)" stroke-width="1"/>
+        <circle cx="210" cy="150" r="68" fill="none" stroke="rgba(214,193,124,0.28)" stroke-width="1.5"/>
+        <!-- Center -->
+        <circle cx="210" cy="150" r="10" fill="rgba(214,193,124,0.55)"/>
+        <circle cx="210" cy="150" r="5" fill="rgba(214,193,124,0.9)"/>
+        <!-- Orbital nodes -->
+        <circle cx="210" cy="50"  r="6" fill="rgba(214,193,124,0.55)"/>
+        <circle cx="297" cy="100" r="5" fill="rgba(169,187,170,0.65)"/>
+        <circle cx="310" cy="200" r="7" fill="rgba(214,193,124,0.45)"/>
+        <circle cx="210" cy="250" r="5" fill="rgba(169,187,170,0.55)"/>
+        <circle cx="113" cy="200" r="6" fill="rgba(214,193,124,0.5)"/>
+        <circle cx="110" cy="100" r="4" fill="rgba(169,187,170,0.65)"/>
+        <!-- Spokes -->
+        <line x1="210" y1="140" x2="210" y2="56"  stroke="rgba(214,193,124,0.22)" stroke-width="1"/>
+        <line x1="210" y1="140" x2="291" y2="105" stroke="rgba(169,187,170,0.22)" stroke-width="1"/>
+        <line x1="210" y1="160" x2="303" y2="195" stroke="rgba(214,193,124,0.22)" stroke-width="1"/>
+        <line x1="210" y1="160" x2="210" y2="244" stroke="rgba(169,187,170,0.22)" stroke-width="1"/>
+        <line x1="210" y1="160" x2="119" y2="195" stroke="rgba(214,193,124,0.22)" stroke-width="1"/>
+        <line x1="210" y1="140" x2="116" y2="105" stroke="rgba(169,187,170,0.22)" stroke-width="1"/>
+        <!-- Secondary nodes on outer ring -->
+        <circle cx="252" cy="40"  r="3" fill="rgba(169,187,170,0.4)"/>
+        <circle cx="340" cy="150" r="3" fill="rgba(214,193,124,0.35)"/>
+        <circle cx="80"  cy="150" r="3" fill="rgba(169,187,170,0.4)"/>
+        <!-- Data bars -->
+        <rect x="55"  y="285" width="28" height="42" rx="2" fill="rgba(169,187,170,0.3)"/>
+        <rect x="93"  y="268" width="28" height="59" rx="2" fill="rgba(214,193,124,0.45)"/>
+        <rect x="131" y="278" width="28" height="49" rx="2" fill="rgba(169,187,170,0.3)"/>
+        <rect x="169" y="255" width="28" height="72" rx="2" fill="rgba(214,193,124,0.55)"/>
+        <rect x="207" y="270" width="28" height="57" rx="2" fill="rgba(169,187,170,0.3)"/>
+        <rect x="245" y="260" width="28" height="67" rx="2" fill="rgba(214,193,124,0.5)"/>
+        <rect x="283" y="274" width="28" height="53" rx="2" fill="rgba(169,187,170,0.3)"/>
+        <rect x="321" y="262" width="28" height="65" rx="2" fill="rgba(214,193,124,0.4)"/>
+        <!-- Baseline -->
+        <line x1="45" y1="328" x2="375" y2="328" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+      </svg>
     </div>
   </div>
 </section>
