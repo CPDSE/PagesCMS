@@ -1,0 +1,90 @@
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+
+  # --- ANNOUNCEMENTS (collection of posts) ---
+  - name: announcements
+    label: Announcements
+    type: collection
+    path: _posts/announcements
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, category]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: date, label: Date, type: date, required: true }
+      - name: category
+        label: Category
+        type: select
+        options:
+          values:
+            - Announcement
+            - Event
+            - Call for Application
+            - Update
+      - { name: body, label: Body, type: rich-text }
+
+  # --- STATIC PAGES ---
+  - name: home
+    label: Home Page
+    type: file
+    path: index.md
+    fields:
+      - { name: title, label: Page Title, type: string }
+      - { name: tagline, label: Tagline, type: string }
+      - { name: body, label: Body Content, type: rich-text }
+
+  - name: about
+    label: About CPDSE
+    type: file
+    path: about.md
+    fields:
+      - { name: title, label: Page Title, type: string }
+      - { name: body, label: Body Content, type: rich-text }
+
+  - name: who-are-we
+    label: Who Are We
+    type: file
+    path: who-are-we.md
+    fields:
+      - { name: title, label: Page Title, type: string }
+      - { name: body, label: Body Content, type: rich-text }
+
+  - name: research-units
+    label: Research Units
+    type: file
+    path: research-units.md
+    fields:
+      - { name: title, label: Page Title, type: string }
+      - { name: body, label: Body Content, type: rich-text }
+
+  - name: codeclub
+    label: Student Code Club
+    type: file
+    path: codeclub.md
+    fields:
+      - { name: title, label: Page Title, type: string }
+      - { name: body, label: Body Content, type: rich-text }
+
+  - name: funding
+    label: Funding
+    type: file
+    path: funding.md
+    fields:
+      - { name: title, label: Page Title, type: string }
+      - { name: body, label: Body Content, type: rich-text }
+
+  - name: contact
+    label: Contact
+    type: file
+    path: contact.md
+    fields:
+      - { name: title, label: Page Title, type: string }
+      - { name: body, label: Body Content, type: rich-text }
