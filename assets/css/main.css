@@ -400,7 +400,7 @@ a { color: inherit; }
   color: var(--offwhite);
 }
 .section-circles {
-  background: var(--green-pale);
+  background: #E4D7A1;
   color: var(--ink);
 }
 .section-green {
