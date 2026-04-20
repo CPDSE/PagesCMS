@@ -20,6 +20,30 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.fade-in, .fade-in-stagger').forEach(el => observer.observe(el));
+
+    // Count-up animation for stats
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.stat-number[data-count]').forEach(el => {
+          const target = parseInt(el.dataset.count, 10);
+          const suffix = el.dataset.suffix || '';
+          const duration = 1500;
+          const start = performance.now();
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+        statsObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    const statsStrip = document.querySelector('.stats-strip');
+    if (statsStrip) statsObserver.observe(statsStrip);
   </script>
 </body>
 </html>
