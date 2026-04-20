@@ -498,7 +498,7 @@ a { color: inherit; }
 .circles-cluster {
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 620px;
   aspect-ratio: 1 / 1;
   margin: var(--space-lg) auto var(--space-md);
 }
@@ -533,13 +533,13 @@ a { color: inherit; }
   outline: none;
 }
 
-/* Equal-sized bubbles arranged in a rough diamond without overlap */
-.circle-bubble--1 { left: 39%; top: 4%;  width: 22%; background: #3C5E3E; color: white; }
-.circle-bubble--2 { left: 18%; top: 24%; width: 22%; background: #D6C17C; color: #0f1a14; }
-.circle-bubble--3 { left: 60%; top: 24%; width: 22%; background: #5F7D61; color: white; }
-.circle-bubble--4 { left: 18%; top: 56%; width: 22%; background: #A9BBAA; color: #0f1a14; }
-.circle-bubble--5 { left: 60%; top: 56%; width: 22%; background: #E4D7A1; color: #0f1a14; }
-.circle-bubble--6 { left: 39%; top: 76%; width: 22%; background: #F6F1DC; color: #0f1a14; }
+/* Equal-sized bubbles in an organic, slightly right-tilted diamond with touching neighbors */
+.circle-bubble--1 { left: 50%; top: 1%;  width: 27%; background: #3C5E3E; color: white; }
+.circle-bubble--2 { left: 31%; top: 20%; width: 27%; background: #D6C17C; color: #0f1a14; }
+.circle-bubble--3 { left: 63%; top: 23%; width: 27%; background: #5F7D61; color: white; }
+.circle-bubble--4 { left: 20%; top: 44%; width: 27%; background: #A9BBAA; color: #0f1a14; }
+.circle-bubble--5 { left: 52%; top: 47%; width: 27%; background: #E4D7A1; color: #0f1a14; }
+.circle-bubble--6 { left: 34%; top: 66%; width: 27%; background: #F6F1DC; color: #0f1a14; }
 
 .circle-title {
   font-family: var(--font-display);
