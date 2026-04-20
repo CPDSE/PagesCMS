@@ -673,3 +673,27 @@ a { color: inherit; }
   .announcement-row { grid-template-columns: 1fr; }
   .announcement-row .card-tag { display: none; }
 }
+
+/* ─── SCROLL FADE-IN ──────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* staggered children */
+.fade-in-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-in-stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+.fade-in-stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.08s; }
+.fade-in-stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.16s; }
+.fade-in-stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.24s; }
+.fade-in-stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.32s; }
+.fade-in-stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.40s; }

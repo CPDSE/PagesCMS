@@ -17,7 +17,7 @@ layout: default
 
 <!-- STATS -->
 <section class="stats-strip" aria-label="Key numbers">
-  <div class="stats-inner">
+  <div class="stats-inner fade-in-stagger">
     <div class="stat-item">
       <span class="stat-number">60+</span>
       <span class="stat-label">People</span>
@@ -40,7 +40,7 @@ layout: default
 <!-- ANNOUNCEMENTS -->
 <section class="section section-alt">
   <div class="container">
-    <div class="section-header" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+    <div class="section-header fade-in" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
       <div>
         <span class="section-label">Latest</span>
         <h2>Announcements &amp; Events</h2>
@@ -48,7 +48,7 @@ layout: default
       <a href="{{ '/announcements/' | relative_url }}" class="btn btn-ghost" style="border-color:var(--border); color:var(--ink);">View all →</a>
     </div>
 
-    <div class="announcements-grid">
+    <div class="announcements-grid fade-in-stagger">
       {% assign posts = site.posts | slice: 0, 4 %}
       {% for post in posts %}
       <a class="announcement-card" href="{{ post.url | relative_url }}">
@@ -67,7 +67,7 @@ layout: default
 
 <!-- ABOUT INTRO -->
 <section class="section">
-  <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); align-items:center;">
+  <div class="container fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); align-items:center;">
     <div>
       <span class="section-label">About</span>
       <h2>Education in pharmaceutical sciences, boosted by data science</h2>
@@ -86,12 +86,12 @@ layout: default
 <!-- CIRCLES -->
 <section class="section section-dark">
   <div class="container">
-    <div class="section-header" style="margin-bottom:var(--space-md);">
+    <div class="section-header fade-in" style="margin-bottom:var(--space-md);">
       <span class="section-label">How we work</span>
       <h2>Organised into six circles</h2>
       <p>Focused working groups that guide and advance the center's mission from initial concepts to real-world outcomes.</p>
     </div>
-    <div class="circles-grid">
+    <div class="circles-grid fade-in-stagger">
       <div class="circle-item">
         <div class="circle-number">01</div>
         <h3>Communication</h3>
@@ -129,12 +129,12 @@ layout: default
 <!-- AUDIENCE -->
 <section class="section section-alt">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header fade-in">
       <span class="section-label">Who we serve</span>
       <h2>Educate data &amp; drug bilinguals</h2>
       <p>We aim to upskill and educate people that understand and can apply the right data science across the breadth of the pharmaceutical value chain.</p>
     </div>
-    <div class="audience-grid" style="margin-top:var(--space-md);">
+    <div class="audience-grid fade-in-stagger" style="margin-top:var(--space-md);">
       <div class="audience-card">
         <h3>Students</h3>
         <p>We provide consultations to help you enter data science, overcome project challenges, and build data literacy. We run workshops and coding events, creating a safe and collaborative space.</p>
