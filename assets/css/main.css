@@ -227,15 +227,18 @@ a { color: inherit; }
   justify-content: center;
   align-items: flex-start;
   padding-top: clamp(1.2rem, 3vw, 2.8rem);
+  width: 100%;
 }
 .hero-video {
-  width: min(520px, 100%);
+  width: 100%;
   height: auto;
   max-height: 58vh;
   object-fit: contain;
   object-position: center;
-  opacity: 0.55;
-  mix-blend-mode: multiply;
+  opacity: 0.6;
+  mix-blend-mode: darken;
+  background: transparent;
+  filter: brightness(0.85) contrast(1.15);
   pointer-events: none;
 }
 .hero::before {
@@ -963,7 +966,7 @@ a { color: inherit; }
   }
   .hero-video {
     max-height: 260px;
-    width: min(360px, 70vw);
+    width: min(460px, 78vw);
   }
   .circles-grid { grid-template-columns: repeat(2, 1fr); }
   .circles-layout {
