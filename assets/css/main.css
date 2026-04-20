@@ -54,7 +54,7 @@ a { color: inherit; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--ink);
+  background: #3C5E3E;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .nav-inner {
@@ -279,7 +279,7 @@ a { color: inherit; }
 
 /* ─── STATS STRIP ─────────────────────────────────────────── */
 .stats-strip {
-  background: var(--ink);
+  background: #3C5E3E;
   color: white;
   padding: var(--space-md) 0;
 }
