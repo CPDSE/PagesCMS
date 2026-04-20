@@ -4,16 +4,20 @@ layout: default
 
 <!-- HERO with STATS PANEL -->
 <section class="hero">
-  <video class="hero-video" autoplay muted playsinline aria-hidden="true" id="hero-video">
-    <source src="{{ '/assets/Copy of CPDSE Logo Animation Website Header.mp4' | relative_url }}" type="video/mp4">
-  </video>
-  <div class="hero-inner">
-    <span class="hero-label">Center for Pharmaceutical Data Science Education</span>
-    <h1>Pharma is full of data,<br>but not <em>data science.</em></h1>
-    <p class="hero-sub">We are here to change that — educating the next generation of drug experts who speak both data and drugs.</p>
-    <div class="hero-ctas">
-      <a href="{{ '/about/' | relative_url }}" class="btn btn-primary">Learn more</a>
-      <a href="{{ '/announcements/' | relative_url }}" class="btn btn-ghost">View announcements</a>
+  <div class="hero-main">
+    <div class="hero-inner">
+      <span class="hero-label">Center for Pharmaceutical Data Science Education</span>
+      <h1>Pharma is full of data,<br>but not <em>data science.</em></h1>
+      <p class="hero-sub">We are here to change that — educating the next generation of drug experts who speak both data and drugs.</p>
+      <div class="hero-ctas">
+        <a href="{{ '/about/' | relative_url }}" class="btn btn-primary">Learn more</a>
+        <a href="{{ '/announcements/' | relative_url }}" class="btn btn-ghost">View announcements</a>
+      </div>
+    </div>
+    <div class="hero-logo-wrap" aria-hidden="true">
+      <video class="hero-video" autoplay muted playsinline id="hero-video">
+        <source src="{{ '/assets/Copy of CPDSE Logo Animation Website Header.mp4' | relative_url }}" type="video/mp4">
+      </video>
     </div>
   </div>
 
