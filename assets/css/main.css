@@ -202,7 +202,7 @@ a { color: inherit; }
 
 /* ─── HERO ────────────────────────────────────────────────── */
 .hero {
-  background: #3C5E3E;
+  background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
   color: var(--offwhite);
   padding: calc(var(--space-xl) + 40px) 0 var(--space-md);
   min-height: 100vh;
