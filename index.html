@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CPDSE</title>
+    <meta
+      name="description"
+      content="CPDSE — practical digital solutions, web development and support."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <p class="tag">CPDSE</p>
+        <h1>Building practical digital solutions</h1>
+        <p class="lead">
+          We help organizations plan, build and maintain modern web solutions
+          with a focus on reliability and usability.
+        </p>
+        <a class="button" href="#contact">Get in touch</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <h2>What we do</h2>
+          <div class="grid">
+            <article class="card">
+              <h3>Web development</h3>
+              <p>Fast, maintainable and accessible websites and applications.</p>
+            </article>
+            <article class="card">
+              <h3>Digital consulting</h3>
+              <p>
+                Practical guidance for architecture, workflows and deployment.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Support & improvements</h3>
+              <p>Continuous optimization, fixes and feature development.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section section-alt">
+        <div class="container">
+          <h2>Contact</h2>
+          <p>
+            For collaboration inquiries, please reach out via your preferred
+            channel and we will get back to you.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© <span id="year"></span> CPDSE</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
