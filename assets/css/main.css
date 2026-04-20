@@ -72,7 +72,10 @@ a { color: inherit; }
   color: var(--accent);
   text-decoration: none;
   letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
 }
+.nav-logo img { display: block; height: 36px; width: auto; }
 .nav-logo span { color: rgba(255,255,255,0.5); font-style: italic; font-size: 0.85rem; margin-left: 0.4rem; }
 
 .nav-links {
@@ -365,13 +368,14 @@ a { color: inherit; }
 /* ─── ANNOUNCEMENTS ───────────────────────────────────────── */
 .announcements-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+@media (max-width: 700px) {
+  .announcements-grid { grid-template-columns: 1fr; }
 }
 .announcement-card {
-  background: white;
+  background: transparent;
   padding: var(--space-md);
   text-decoration: none;
   color: var(--ink);
@@ -381,7 +385,7 @@ a { color: inherit; }
   transition: background 0.12s;
 }
 .announcement-card:hover {
-  background: var(--green-pale);
+  background: transparent;
 }
 .card-meta {
   display: flex;

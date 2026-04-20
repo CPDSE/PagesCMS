@@ -49,7 +49,7 @@ layout: default
     </div>
 
     <div class="announcements-grid fade-in-stagger">
-      {% assign posts = site.posts | slice: 0, 4 %}
+      {% assign posts = site.posts | slice: 0, 3 %}
       {% for post in posts %}
       <a class="announcement-card" href="{{ post.url | relative_url }}">
         <div class="card-meta">
