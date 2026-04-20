@@ -556,12 +556,22 @@ a { color: inherit; }
 }
 
 /* ─── CIRCLES / PACKED BUBBLE CHART ───────────────────────── */
+.circles-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(380px, 1.15fr);
+  gap: clamp(1rem, 4vw, 3.2rem);
+  align-items: center;
+}
+.circles-layout .section-header {
+  margin-bottom: 0 !important;
+}
 .circles-cluster {
   position: relative;
   width: 100%;
   max-width: 620px;
   aspect-ratio: 1 / 1;
-  margin: var(--space-lg) auto var(--space-md);
+  margin: 0;
+  justify-self: end;
 }
 .circle-bubble {
   position: absolute;
@@ -956,6 +966,17 @@ a { color: inherit; }
     width: min(360px, 70vw);
   }
   .circles-grid { grid-template-columns: repeat(2, 1fr); }
+  .circles-layout {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .circles-layout .section-header {
+    margin-bottom: var(--space-md) !important;
+  }
+  .circles-cluster {
+    margin: 0 auto;
+    justify-self: center;
+  }
   .audience-grid { grid-template-columns: 1fr 1fr; }
   .audience-card:nth-child(2),
   .audience-card:nth-child(3) { transform: none; }
