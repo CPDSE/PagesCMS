@@ -215,26 +215,22 @@ a { color: inherit; }
   grid-template-rows: auto auto;
 }
 .hero-main {
-  grid-row: 1;
-  grid-column: 1;
   max-width: var(--max-w);
   width: 100%;
   margin: 0 auto;
   padding: 0 var(--space-md);
   position: relative;
   z-index: 3;
-  align-self: start;
 }
 .hero-video-wrap {
-  grid-row: 1;
-  grid-column: 1;
-  max-width: var(--max-w);
+  position: absolute;
+  top: calc(var(--space-xl) + 40px);
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  margin: 0 auto;
+  max-width: var(--max-w);
   padding: 0 var(--space-md);
-  position: relative;
   z-index: 2;
-  align-self: start;
   pointer-events: none;
 }
 .hero-video {
@@ -243,7 +239,8 @@ a { color: inherit; }
   max-height: 55vh;
   object-fit: contain;
   object-position: center;
-  mix-blend-mode: multiply;
+  mix-blend-mode: darken;
+  filter: contrast(1.5) brightness(1.05);
   pointer-events: none;
 }
 .hero::before {
@@ -339,14 +336,12 @@ a { color: inherit; }
 
 /* ─── STATS PANEL (inside hero) ───────────────────────────── */
 .stats-panel-wrap {
-  grid-row: 2;
-  grid-column: 1;
   max-width: var(--max-w);
   width: 100%;
   margin: var(--space-md) auto 0;
   padding: 0 var(--space-md);
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 .stats-panel {
   background: #D6C17C;
