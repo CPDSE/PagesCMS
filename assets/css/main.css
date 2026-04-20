@@ -444,6 +444,10 @@ a { color: inherit; }
   background: var(--green);
   color: var(--offwhite);
 }
+.section-audience {
+  background: #5F7D61;
+  color: var(--offwhite);
+}
 
 .section-header {
   margin-bottom: var(--space-md);
@@ -481,6 +485,12 @@ a { color: inherit; }
 .section-dark .section-header p,
 .section-green .section-header p {
   color: rgba(249,249,249,0.65);
+}
+.section-audience .section-label {
+  color: var(--accent);
+}
+.section-audience .section-header p {
+  color: rgba(249,249,249,0.78);
 }
 
 /* ─── ANNOUNCEMENTS ───────────────────────────────────────── */
@@ -677,19 +687,51 @@ a { color: inherit; }
   gap: var(--space-sm);
 }
 .audience-card {
-  border: 1px solid var(--border);
+  position: relative;
+  border: 1px solid rgba(249,249,249,0.28);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(214,193,124,0.22) 0%, rgba(214,193,124,0) 35%),
+    linear-gradient(160deg, rgba(249,249,249,0.14) 0%, rgba(249,249,249,0.05) 100%);
+  box-shadow: 0 14px 28px rgba(15,26,20,0.2);
+  backdrop-filter: blur(1px);
   padding: var(--space-md);
-  border-top: 3px solid var(--green);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.audience-card::before {
+  content: '';
+  position: absolute;
+  top: -42px;
+  right: -34px;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(214,193,124,0.42) 0%, rgba(214,193,124,0) 70%);
+  pointer-events: none;
+}
+.audience-card:nth-child(2) {
+  transform: translateY(10px);
+}
+.audience-card:nth-child(3) {
+  transform: translateY(4px);
+}
+.audience-card:hover,
+.audience-card:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(214,193,124,0.68);
+  box-shadow: 0 20px 34px rgba(15,26,20,0.3);
 }
 .audience-card h3 {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
   letter-spacing: 0.02em;
+  color: var(--offwhite);
 }
 .audience-card p {
   font-size: 0.88rem;
-  color: var(--muted);
+  color: rgba(249,249,249,0.8);
   line-height: 1.6;
 }
 
@@ -915,6 +957,8 @@ a { color: inherit; }
   }
   .circles-grid { grid-template-columns: repeat(2, 1fr); }
   .audience-grid { grid-template-columns: 1fr 1fr; }
+  .audience-card:nth-child(2),
+  .audience-card:nth-child(3) { transform: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-maps-row { grid-template-columns: 1fr; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
