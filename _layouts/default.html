@@ -64,11 +64,13 @@
     const cluster = document.getElementById('circles-cluster');
     if (cluster) {
       const bubbles = Array.from(cluster.querySelectorAll('.circle-bubble'));
+      const ghosts = Array.from(cluster.querySelectorAll('.circle-ghost'));
+      const forceNodes = [...bubbles, ...ghosts];
 
       const resetAll = () => {
-        bubbles.forEach(b => {
-          b.style.setProperty('--tx', '0px');
-          b.style.setProperty('--ty', '0px');
+        forceNodes.forEach(node => {
+          node.style.setProperty('--tx', '0px');
+          node.style.setProperty('--ty', '0px');
         });
       };
 
@@ -81,7 +83,7 @@
         // The scaled radius (hover scale factor matches CSS --scale on hover)
         const scaledRadius = hoveredRadius * 1.45;
 
-        bubbles.forEach(other => {
+        forceNodes.forEach(other => {
           if (other === hovered) return;
           const or = other.getBoundingClientRect();
           const ocx = or.left + or.width / 2;
