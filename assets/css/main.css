@@ -522,27 +522,18 @@ a { color: inherit; }
 
 .section-journey {
   background: #3C5E3E;
-  position: relative;
-  overflow: hidden;
-}
-.section-journey::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-image:
-    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(214,193,124,0.10) 0%, transparent 70%),
-    radial-gradient(circle, rgba(249,249,249,0.07) 1px, transparent 1px);
-  background-size: auto, 28px 28px;
-  background-position: 0 0, 0 0;
-  pointer-events: none;
-}
-.section-journey > * {
-  position: relative;
-  z-index: 2;
 }
 .section-journey .timeline-section {
   margin: 0 auto;
+}
+.section-journey .section-label {
+  color: var(--accent);
+}
+.section-journey h2 {
+  color: var(--offwhite);
+}
+.section-journey .section-header p {
+  color: rgba(249,249,249,0.72);
 }
 
 /* ─── TIMELINE ─────────────────────────────────────────────── */
