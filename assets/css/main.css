@@ -267,6 +267,52 @@ a { color: inherit; }
   background-position: 0 0, 0 0;
   pointer-events: none;
 }
+.section-announcements {
+  position: relative;
+  overflow: hidden;
+  color: var(--offwhite);
+}
+.section-announcements .section-label {
+  color: var(--accent);
+}
+.section-announcements h2 {
+  color: var(--offwhite);
+}
+.section-announcements .announcement-card {
+  background: rgba(255,255,255,0.1);
+  color: var(--offwhite);
+}
+.section-announcements .announcement-card:hover {
+  background: rgba(255,255,255,0.15);
+}
+.section-announcements .card-meta {
+  color: rgba(255,255,255,0.6);
+}
+.section-announcements .announcement-card h3 {
+  color: var(--offwhite);
+}
+.section-announcements .announcement-card p {
+  color: rgba(255,255,255,0.65) !important;
+}
+.section-announcements .card-arrow {
+  color: var(--accent);
+}
+.section-announcements::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(214,193,124,0.10) 0%, transparent 70%),
+    radial-gradient(circle, rgba(249,249,249,0.07) 1px, transparent 1px);
+  background-size: auto, 28px 28px;
+  background-position: 0 0, 0 0;
+  pointer-events: none;
+}
+.section-announcements > * {
+  position: relative;
+  z-index: 2;
+}
 .hero-inner {
   min-width: 0;
   max-width: clamp(300px, 48%, 560px);
@@ -456,8 +502,41 @@ a { color: inherit; }
   color: var(--offwhite);
 }
 .section-circles {
-  background: linear-gradient(110deg, #5F7D61 0%, #F9F9F9 100%);
-  color: var(--ink);
+  background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
+  color: var(--offwhite);
+  position: relative;
+  overflow: hidden;
+}
+.section-circles::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(214,193,124,0.10) 0%, transparent 70%),
+    radial-gradient(circle, rgba(249,249,249,0.07) 1px, transparent 1px);
+  background-size: auto, 28px 28px;
+  background-position: 0 0, 0 0;
+  pointer-events: none;
+}
+.section-circles > * {
+  position: relative;
+  z-index: 2;
+}
+.section-circles .section-label {
+  color: var(--accent);
+}
+.section-circles h2 {
+  color: var(--offwhite);
+}
+.section-circles p {
+  color: rgba(255,255,255,0.65);
+}
+.section-circles .circle-title {
+  color: var(--offwhite);
+}
+.section-circles .circle-desc {
+  color: rgba(255,255,255,0.7);
 }
 .section-green {
   background: var(--green);
