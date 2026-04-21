@@ -50,7 +50,6 @@ layout: default
     <div class="about-visual">
       <div class="about-images">
         <img src="{{ '/assets/pharma.png' | relative_url }}" alt="Pharmaceutical data science" class="about-img">
-        <img src="{{ '/assets/team.jpg' | relative_url }}" alt="CPDSE team" class="about-img">
       </div>
     </div>
     <div class="about-text">
@@ -60,36 +59,31 @@ layout: default
       <p>We are 60+ people across seven university departments at two universities, with distinct strengths in pharmaceutical sciences, data science, and science education.</p>
       <div class="about-ctas">
         <a href="{{ '/about/' | relative_url }}" class="btn btn-primary">Learn more</a>
-        <a href="{{ '/who-are-we/' | relative_url }}" class="btn btn-ghost">Meet the team</a>
+        <a href="{{ '/contact/' | relative_url }}" class="btn btn-ghost">Get in touch</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GET INVOLVED -->
-<section class="section section-circles section-connect">
+<!-- COMMUNITY -->
+<section class="section section-circles section-community">
   <div class="container">
-    <div class="section-header fade-in" style="margin-bottom:var(--space-md);">
-      <span class="section-label">Get involved</span>
-      <h2>Connect, follow and participate</h2>
-      <p>Want to collaborate with CPDSE, follow our activities, or join events and workshops? Here are the best places to find us and get in touch.</p>
-    </div>
-    <div class="connect-grid fade-in-stagger">
-      <a class="connect-card" href="{{ '/announcements/' | relative_url }}">
-        <h3>Follow Updates</h3>
-        <p>See the latest announcements, events, and center news.</p>
-        <span class="connect-link">Open announcements →</span>
-      </a>
-      <a class="connect-card" href="{{ '/codeclub/' | relative_url }}">
-        <h3>Join Activities</h3>
-        <p>Explore workshops, coding sessions, and community learning opportunities.</p>
-        <span class="connect-link">Visit Code Club →</span>
-      </a>
-      <a class="connect-card" href="{{ '/contact/' | relative_url }}">
-        <h3>Contact &amp; Find Us</h3>
-        <p>Reach out for collaboration, educational partnerships, or general questions.</p>
-        <span class="connect-link">Go to contact page →</span>
-      </a>
+    <div class="community-layout fade-in">
+      <div class="community-text">
+        <div class="section-header" style="margin-bottom:var(--space-md);">
+          <span class="section-label">Community</span>
+          <h2>A center built by people, not just programs</h2>
+          <p>CPDSE is a cross-institutional community of students, researchers, educators, data scientists, pharmacists and collaborators working together to strengthen pharmaceutical data science education.</p>
+        </div>
+        <p class="community-copy">We grow through shared projects, workshops, retreats, teaching development and everyday collaboration across UCPH and SDU. What makes the center valuable is not only the formal structure, but the people in it: a community that exchanges ideas, builds capacity and helps each other move from plans to practice.</p>
+        <div class="community-ctas">
+          <a href="{{ '/who-are-we/' | relative_url }}" class="btn btn-primary">Meet the team</a>
+          <a href="{{ site.socials.linkedin }}" target="_blank" rel="noopener" class="btn btn-ghost">Follow us</a>
+        </div>
+      </div>
+      <div class="community-visual">
+        <img src="{{ '/assets/team.jpg' | relative_url }}" alt="CPDSE community group photo" class="community-img">
+      </div>
     </div>
   </div>
 </section>
