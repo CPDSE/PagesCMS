@@ -221,6 +221,10 @@ a { color: inherit; }
   padding: 0 var(--space-md);
   position: relative;
   z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.95fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
 }
 .hero-video-wrap {
   position: absolute;
@@ -293,7 +297,7 @@ a { color: inherit; }
   color: rgba(249,249,249,0.74);
 }
 .section-announcements .announcement-card h3 {
-  color: var(--offwhite);
+  color: #3C5E3E;
 }
 .section-announcements .announcement-card p {
   color: rgba(249,249,249,0.82) !important;
@@ -330,7 +334,19 @@ a { color: inherit; }
 }
 .hero-inner {
   min-width: 0;
-  max-width: clamp(300px, 48%, 560px);
+  max-width: 560px;
+}
+.hero-logo-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 0;
+}
+.hero-logo-mark {
+  width: min(100%, 560px);
+  height: auto;
+  opacity: 0.98;
+  filter: drop-shadow(0 16px 26px rgba(15,26,20,0.18));
 }
 .hero-label {
   display: inline-block;
@@ -492,13 +508,13 @@ a { color: inherit; }
   background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
 }
 .community-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.95fr);
-  gap: var(--space-lg);
+  display: flex;
   align-items: center;
+  gap: var(--space-lg);
 }
 .community-text {
   min-width: 0;
+  flex: 1 1 0;
 }
 .community-copy {
   color: rgba(249,249,249,0.75);
@@ -513,7 +529,10 @@ a { color: inherit; }
 }
 .community-visual {
   display: flex;
+  flex: 0 0 46%;
   justify-content: flex-end;
+  margin-left: auto;
+  min-width: 320px;
 }
 .community-img {
   width: 100%;
@@ -694,7 +713,16 @@ a { color: inherit; }
 }
 
 @media (max-width: 768px) {
-  .connect-grid { grid-template-columns: 1fr; }
+  .hero-main {
+    grid-template-columns: 1fr;
+  }
+  .hero-logo-wrap {
+    justify-content: flex-start;
+    margin-top: var(--space-sm);
+  }
+  .hero-logo-mark {
+    width: min(100%, 380px);
+  }
   .timeline-tabs {
     padding: 0;
     gap: 0;
@@ -855,11 +883,12 @@ a { color: inherit; }
 }
 @media (max-width: 700px) {
   .community-layout {
-    grid-template-columns: 1fr;
+    display: block;
   }
   .community-visual {
     justify-content: stretch;
-    order: 2;
+    min-width: 0;
+    margin-top: var(--space-md);
   }
   .community-img {
     max-width: none;
