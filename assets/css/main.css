@@ -475,6 +475,76 @@ a { color: inherit; }
 .about-text p { color: rgba(249,249,249,0.75); margin-top: 0.75rem; line-height: 1.7; }
 .about-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: var(--space-md); }
 
+/* ─── CONNECT / JOURNEY ───────────────────────────────────── */
+.section-connect {
+  background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
+}
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+.connect-card {
+  display: block;
+  text-decoration: none;
+  color: var(--offwhite);
+  background: rgba(249,249,249,0.08);
+  border: 1px solid rgba(249,249,249,0.18);
+  border-radius: 12px;
+  padding: var(--space-md);
+  transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+.connect-card:hover {
+  transform: translateY(-2px);
+  background: rgba(249,249,249,0.12);
+  border-color: rgba(246,241,220,0.45);
+}
+.connect-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--offwhite);
+  margin-bottom: 0.65rem;
+}
+.connect-card p {
+  color: rgba(249,249,249,0.78);
+  line-height: 1.65;
+}
+.connect-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.section-journey {
+  background: #3C5E3E;
+  position: relative;
+  overflow: hidden;
+}
+.section-journey::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(214,193,124,0.10) 0%, transparent 70%),
+    radial-gradient(circle, rgba(249,249,249,0.07) 1px, transparent 1px);
+  background-size: auto, 28px 28px;
+  background-position: 0 0, 0 0;
+  pointer-events: none;
+}
+.section-journey > * {
+  position: relative;
+  z-index: 2;
+}
+.section-journey .timeline-section {
+  margin: 0 auto;
+}
+
 /* ─── TIMELINE ─────────────────────────────────────────────── */
 .timeline-section {
   max-width: 1200px;
@@ -610,6 +680,7 @@ a { color: inherit; }
 }
 
 @media (max-width: 768px) {
+  .connect-grid { grid-template-columns: 1fr; }
   .timeline-tabs {
     padding: 0;
     gap: 0;
