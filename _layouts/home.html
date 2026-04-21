@@ -2,43 +2,72 @@
 layout: default
 ---
 
-<!-- HERO -->
+<!-- HERO with STATS PANEL -->
 <section class="hero">
-  <div class="hero-inner">
-    <span class="hero-label">Center for Pharmaceutical Data Science Education</span>
-    <h1>Pharma is full of data,<br>but not <em>data science.</em></h1>
-    <p class="hero-sub">We are here to change that — educating the next generation of drug experts who speak both data and drugs.</p>
-    <div class="hero-ctas">
-      <a href="{{ '/about/' | relative_url }}" class="btn btn-primary">Learn more</a>
-      <a href="{{ '/announcements/' | relative_url }}" class="btn btn-ghost">View announcements</a>
+  <div class="hero-main">
+    <div class="hero-inner">
+      <span class="hero-label">Center for Pharmaceutical Data Science Education</span>
+      <h1>Pharma is full of data,<br>but not <em>data science.</em></h1>
+      <p class="hero-sub">We are here to change that — educating the next generation of drug experts who speak both data and drugs.</p>
+      <div class="hero-ctas">
+        <a href="{{ '/about/' | relative_url }}" class="btn btn-primary">Learn more</a>
+        <a href="{{ '/announcements/' | relative_url }}" class="btn btn-ghost">View announcements</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-video-wrap" aria-hidden="true">
+    <video class="hero-video" autoplay muted playsinline id="hero-video">
+      <source src="{{ '/assets/Copy of CPDSE Logo Animation Website Header.mp4' | relative_url }}" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="stats-panel-wrap" aria-label="Key numbers">
+    <div class="stats-panel">
+      <div class="stat-item">
+        <span class="stat-number" data-count="60" data-suffix="+">0+</span>
+        <span class="stat-label">People</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="7">0</span>
+        <span class="stat-label">Departments</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="2">0</span>
+        <span class="stat-label">Universities</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="1">0</span>
+        <span class="stat-label">Mission</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="stats-strip" aria-label="Key numbers">
-  <div class="stats-inner fade-in-stagger">
-    <div class="stat-item">
-      <span class="stat-number">60+</span>
-      <span class="stat-label">People</span>
+<!-- ABOUT INTRO -->
+<section class="about-strip">
+  <div class="about-inner fade-in">
+    <div class="about-visual">
+      <div class="about-images">
+        <img src="{{ '/assets/pharma.png' | relative_url }}" alt="Pharmaceutical data science" class="about-img">
+        <img src="{{ '/assets/team.jpg' | relative_url }}" alt="CPDSE team" class="about-img">
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-number">7</span>
-      <span class="stat-label">Departments</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">2</span>
-      <span class="stat-label">Universities</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">1</span>
-      <span class="stat-label">Mission</span>
+    <div class="about-text">
+      <span class="section-label" style="color:var(--accent)">About CPDSE</span>
+      <h2>Pharmaceutical sciences,<br>boosted by data science</h2>
+      <p>CPDSE is dedicated to developing research-based education for the future workforce of drug experts — spanning bachelor, master, PhD and life-long learning levels. Pharmaceutical scientists will become bilinguals speaking both "data and drugs".</p>
+      <p>We are 60+ people across seven university departments at two universities, with distinct strengths in pharmaceutical sciences, data science, and science education.</p>
+      <div class="about-ctas">
+        <a href="{{ '/about/' | relative_url }}" class="btn btn-primary">Learn more</a>
+        <a href="{{ '/who-are-we/' | relative_url }}" class="btn btn-ghost">Meet the team</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ANNOUNCEMENTS -->
-<section class="section section-alt">
+<section class="section section-alt" style="background:#A9BBAA;">
   <div class="container">
     <div class="section-header fade-in" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
       <div>
@@ -49,7 +78,7 @@ layout: default
     </div>
 
     <div class="announcements-grid fade-in-stagger">
-      {% assign posts = site.posts | slice: 0, 4 %}
+      {% assign posts = site.posts | slice: 0, 3 %}
       {% for post in posts %}
       <a class="announcement-card" href="{{ post.url | relative_url }}">
         <div class="card-meta">
@@ -65,69 +94,8 @@ layout: default
   </div>
 </section>
 
-<!-- ABOUT INTRO -->
-<section class="section">
-  <div class="container fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); align-items:center;">
-    <div>
-      <span class="section-label">About</span>
-      <h2>Education in pharmaceutical sciences, boosted by data science</h2>
-      <p style="margin-top:1rem; color:var(--muted);">CPDSE is dedicated to developing research-based education for the future workforce of drug experts — spanning bachelor, master, PhD and life-long learning levels. Pharmaceutical scientists will become bilinguals speaking both "data and drugs".</p>
-      <a href="{{ '/about/' | relative_url }}" class="btn btn-primary" style="margin-top:1.5rem;">Learn more</a>
-    </div>
-    <div>
-      <span class="section-label">Community</span>
-      <h2>Who are we</h2>
-      <p style="margin-top:1rem; color:var(--muted);">Students, professors, pharmacists, educators, geeks and fellows. 60+ people, seven university departments, 2 universities. Distinct strengths in pharmaceutical sciences, data science, and science education.</p>
-      <a href="{{ '/who-are-we/' | relative_url }}" class="btn btn-ghost" style="margin-top:1.5rem; border-color:var(--border); color:var(--ink);">Meet the team</a>
-    </div>
-  </div>
-</section>
-
-<!-- CIRCLES -->
-<section class="section section-dark">
-  <div class="container">
-    <div class="section-header fade-in" style="margin-bottom:var(--space-md);">
-      <span class="section-label">How we work</span>
-      <h2>Organised into six circles</h2>
-      <p>Focused working groups that guide and advance the center's mission from initial concepts to real-world outcomes.</p>
-    </div>
-    <div class="circles-grid fade-in-stagger">
-      <div class="circle-item">
-        <div class="circle-number">01</div>
-        <h3>Communication</h3>
-        <p>Develop and promote a strong external center identity to relevant stakeholders.</p>
-      </div>
-      <div class="circle-item">
-        <div class="circle-number">02</div>
-        <h3>Data Science Facility</h3>
-        <p>Build, maintain, and evolve the center's data science infrastructure and practices.</p>
-      </div>
-      <div class="circle-item">
-        <div class="circle-number">03</div>
-        <h3>Community &amp; Organization</h3>
-        <p>Create and evolve organizational principles so that center members feel belonging and are jointly productive.</p>
-      </div>
-      <div class="circle-item">
-        <div class="circle-number">04</div>
-        <h3>Education</h3>
-        <p>Create overview and lead the strategy for the center's educational deliverables.</p>
-      </div>
-      <div class="circle-item">
-        <div class="circle-number">05</div>
-        <h3>Mission</h3>
-        <p>Ensure the overall cohesion and development of all center components.</p>
-      </div>
-      <div class="circle-item">
-        <div class="circle-number">06</div>
-        <h3>Research</h3>
-        <p>Facilitate transparency, cross-fertilization, and methodology sharing so members can do research together.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- AUDIENCE -->
-<section class="section section-alt">
+<section class="section section-audience">
   <div class="container">
     <div class="section-header fade-in">
       <span class="section-label">Who we serve</span>
@@ -150,27 +118,80 @@ layout: default
     </div>
     <div style="display:flex; gap:1rem; margin-top:var(--space-md);">
       <a href="https://github.com/CPDSE-EDUX" target="_blank" rel="noopener" class="btn btn-primary">Teaching Materials on GitHub</a>
-      <a href="https://github.com/CPDSE" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color:var(--border); color:var(--ink);">Research Materials on GitHub</a>
+      <a href="https://github.com/CPDSE" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color:rgba(249,249,249,0.45); color:var(--offwhite);">Research Materials on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- CIRCLES -->
+<section class="section section-circles">
+  <div class="container">
+    <div class="circles-layout">
+      <div class="section-header fade-in" style="margin-bottom:var(--space-md);">
+        <span class="section-label">How we work</span>
+        <h2>Organised into six circles</h2>
+        <p>Focused working groups that guide and advance the center's mission from initial concepts to real-world outcomes.</p>
+      </div>
+      <div class="circles-cluster fade-in" id="circles-cluster">
+        <div class="circle-ghosts" aria-hidden="true">
+          <span class="circle-ghost circle-ghost--1"></span>
+          <span class="circle-ghost circle-ghost--2"></span>
+          <span class="circle-ghost circle-ghost--3"></span>
+          <span class="circle-ghost circle-ghost--4"></span>
+          <span class="circle-ghost circle-ghost--5"></span>
+          <span class="circle-ghost circle-ghost--6"></span>
+          <span class="circle-ghost circle-ghost--7"></span>
+          <span class="circle-ghost circle-ghost--8"></span>
+          <span class="circle-ghost circle-ghost--9"></span>
+          <span class="circle-ghost circle-ghost--10"></span>
+          <span class="circle-ghost circle-ghost--11"></span>
+          <span class="circle-ghost circle-ghost--12"></span>
+        </div>
+        <button type="button" class="circle-bubble circle-bubble--1">
+          <span class="circle-title">Mission</span>
+          <span class="circle-desc">Ensure the overall cohesion and development of all center components.</span>
+        </button>
+        <button type="button" class="circle-bubble circle-bubble--2">
+          <span class="circle-title">Data Science<br>Facility</span>
+          <span class="circle-desc">Build, maintain, and evolve the center's data science infrastructure and practices.</span>
+        </button>
+        <button type="button" class="circle-bubble circle-bubble--3">
+          <span class="circle-title">Community</span>
+          <span class="circle-desc">Create and evolve organizational principles so members feel belonging and are jointly productive.</span>
+        </button>
+        <button type="button" class="circle-bubble circle-bubble--4">
+          <span class="circle-title">Education</span>
+          <span class="circle-desc">Create overview and lead the strategy for the center's educational deliverables.</span>
+        </button>
+        <button type="button" class="circle-bubble circle-bubble--5">
+          <span class="circle-title">Communication</span>
+          <span class="circle-desc">Develop and promote a strong external center identity to relevant stakeholders.</span>
+        </button>
+        <button type="button" class="circle-bubble circle-bubble--6">
+          <span class="circle-title">Research</span>
+          <span class="circle-desc">Facilitate transparency, cross-fertilization and methodology sharing across the center.</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FUNDERS -->
-<section class="section">
+<section class="section" style="background: #A9BBAA; background-image: none;">
   <div class="container">
     <div class="logo-strip">
       <p class="logo-strip-label">Cooperators</p>
       <div class="logos-row">
-        <span style="font-size:0.85rem; color:var(--muted); font-style:italic;">University of Copenhagen &nbsp;·&nbsp; University of Southern Denmark</span>
+        <span style="font-size:0.85rem; color:#3C5E3E; font-style:italic;">University of Copenhagen &nbsp;·&nbsp; University of Southern Denmark</span>
       </div>
     </div>
     <div class="logo-strip" style="margin-top:var(--space-md);">
       <p class="logo-strip-label">Funders</p>
       <div class="logos-row">
-        <span style="font-size:0.85rem; color:var(--muted); font-style:italic;">Novo Nordisk Foundation &nbsp;·&nbsp; LEO Foundation &nbsp;·&nbsp; Lundbeck Foundation</span>
+        <span style="font-size:0.85rem; color:#3C5E3E; font-style:italic;">Novo Nordisk Foundation &nbsp;·&nbsp; LEO Foundation &nbsp;·&nbsp; Lundbeck Foundation</span>
       </div>
     </div>
-    <p style="margin-top:var(--space-md); font-size:0.8rem; color:var(--muted); max-width:70ch; line-height:1.6;">
+    <p style="margin-top:var(--space-md); font-size:0.8rem; color:#3C5E3E; max-width:70ch; line-height:1.6;">
       This work was supported by the Novo Nordisk Foundation (NNF24SA0092613), the LEO Foundation (LF-ST-24-500013), and the Lundbeck Foundation (R469-2024-629) through funding to the Center for Pharmaceutical Data Science Education.
     </p>
   </div>

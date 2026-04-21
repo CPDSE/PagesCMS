@@ -1,6 +1,8 @@
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="{{ '/' | relative_url }}" class="nav-logo">CPDSE <span>PharmaDataHub</span></a>
+    <a href="{{ '/' | relative_url }}" class="nav-logo" aria-label="CPDSE Home">
+      <img src="{{ '/assets/logo_wide_gold.svg' | relative_url }}" alt="Center for Pharmaceutical Data Science Education" height="36">
+    </a>
 
     <ul class="nav-links" id="nav-links">
       {% for item in site.nav %}

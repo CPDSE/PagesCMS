@@ -3,7 +3,7 @@
 <head>
   {% include head.html %}
 </head>
-<body>
+<body class="{% if page.url == '/' %}page-home{% endif %}">
   {% include nav.html %}
   {{ content }}
   {% include footer.html %}
@@ -20,6 +20,106 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.fade-in, .fade-in-stagger').forEach(el => observer.observe(el));
+
+    // Count-up animation for stats
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.stat-number[data-count]').forEach(el => {
+          const target = parseInt(el.dataset.count, 10);
+          const suffix = el.dataset.suffix || '';
+          const duration = 1500;
+          const start = performance.now();
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+        statsObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    const statsStrip = document.querySelector('.stats-panel-wrap, .stats-strip');
+    if (statsStrip) statsObserver.observe(statsStrip);
+
+    // Home nav fades from transparent to solid after hero
+    const siteNav = document.querySelector('.site-nav');
+    const hero = document.querySelector('.hero');
+    if (siteNav && hero && document.body.classList.contains('page-home')) {
+      const syncNavState = () => {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        const switchPoint = siteNav.offsetHeight + 2;
+        siteNav.classList.toggle('nav-solid', heroBottom <= switchPoint);
+      };
+
+      syncNavState();
+      window.addEventListener('scroll', syncNavState, { passive: true });
+      window.addEventListener('resize', syncNavState);
+    }
+
+    // Circle bubble force-push interaction
+    const cluster = document.getElementById('circles-cluster');
+    if (cluster) {
+      const bubbles = Array.from(cluster.querySelectorAll('.circle-bubble'));
+      const ghosts = Array.from(cluster.querySelectorAll('.circle-ghost'));
+      const forceNodes = [...bubbles, ...ghosts];
+
+      const resetAll = () => {
+        forceNodes.forEach(node => {
+          node.style.setProperty('--tx', '0px');
+          node.style.setProperty('--ty', '0px');
+        });
+      };
+
+      const pushFrom = (hovered) => {
+        if (window.matchMedia('(max-width: 640px)').matches) return;
+        const hr = hovered.getBoundingClientRect();
+        const hcx = hr.left + hr.width / 2;
+        const hcy = hr.top + hr.height / 2;
+        const hoveredRadius = hr.width / 2;
+        // The scaled radius (hover scale factor matches CSS --scale on hover)
+        const scaledRadius = hoveredRadius * 1.45;
+
+        forceNodes.forEach(other => {
+          if (other === hovered) return;
+          const or = other.getBoundingClientRect();
+          const ocx = or.left + or.width / 2;
+          const ocy = or.top + or.height / 2;
+          const otherRadius = or.width / 2;
+
+          const dx = ocx - hcx;
+          const dy = ocy - hcy;
+          const dist = Math.hypot(dx, dy) || 0.01;
+
+          // How much overlap would there be with scaled hovered circle?
+          const wanted = scaledRadius + otherRadius + 6; // 6px breathing room
+          const push = Math.max(0, wanted - dist);
+
+          const tx = (dx / dist) * push;
+          const ty = (dy / dist) * push;
+          other.style.setProperty('--tx', tx.toFixed(1) + 'px');
+          other.style.setProperty('--ty', ty.toFixed(1) + 'px');
+        });
+      };
+
+      bubbles.forEach(b => {
+        b.addEventListener('mouseenter', () => pushFrom(b));
+        b.addEventListener('focus', () => pushFrom(b));
+        b.addEventListener('mouseleave', resetAll);
+        b.addEventListener('blur', resetAll);
+      });
+    }
+
+    // Freeze hero video on last frame
+    const heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+      heroVideo.addEventListener('ended', () => {
+        heroVideo.pause();
+      });
+    }
   </script>
 </body>
 </html>
