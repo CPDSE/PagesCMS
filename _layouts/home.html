@@ -54,7 +54,7 @@ layout: default
       <div class="about-viz" id="pharma-live-viz">
         <p class="about-viz-kicker">Live Pharma Snapshot</p>
         <h3>Clinical trials by therapeutic area</h3>
-        <p class="about-viz-source">Data source: ClinicalTrials.gov API (live query)</p>
+        <p class="about-viz-source">Data source: <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (live query)</p>
         <div class="about-viz-bars" role="list" aria-live="polite"></div>
         <div class="about-viz-meta">
           <button type="button" class="about-viz-refresh">Refresh data</button>
@@ -395,11 +395,11 @@ layout: default
     const updatedEl = pharmaViz.querySelector('.about-viz-updated');
 
     const areas = [
-      { label: 'Oncology', expr: 'AREA[Condition] cancer' },
-      { label: 'Cardiovascular', expr: 'AREA[Condition] heart' },
-      { label: 'Diabetes', expr: 'AREA[Condition] diabetes' },
-      { label: 'Rare Diseases', expr: 'AREA[Condition] rare disease' },
-      { label: 'Neurology', expr: 'AREA[Condition] neurological' }
+      { label: 'Oncology', term: 'cancer' },
+      { label: 'Cardiovascular', term: 'heart disease' },
+      { label: 'Diabetes', term: 'diabetes' },
+      { label: 'Rare Diseases', term: 'rare disease' },
+      { label: 'Neurology', term: 'neurological disorder' }
     ];
 
     const fallbackCounts = {
@@ -410,15 +410,15 @@ layout: default
       Neurology: 9400
     };
 
-    const fetchCount = async (expr) => {
+    const fetchCount = async (term) => {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 8000);
       try {
-        const url = `https://clinicaltrials.gov/api/query/study_fields?expr=${encodeURIComponent(expr)}&fields=NCTId&min_rnk=1&max_rnk=1&fmt=json`;
+        const url = `https://clinicaltrials.gov/api/v2/studies?query.term=${encodeURIComponent(term)}&pageSize=1&countTotal=true`;
         const response = await fetch(url, { signal: controller.signal });
         if (!response.ok) throw new Error('Request failed');
         const data = await response.json();
-        const n = data?.StudyFieldsResponse?.NStudiesFound;
+        const n = data?.totalCount;
         return Number.isFinite(Number(n)) ? Number(n) : 0;
       } finally {
         clearTimeout(timeout);
@@ -455,7 +455,7 @@ layout: default
         refreshBtn.textContent = 'Loading...';
       }
       try {
-        const counts = await Promise.all(areas.map(area => fetchCount(area.expr)));
+        const counts = await Promise.all(areas.map(area => fetchCount(area.term)));
         const items = areas.map((area, idx) => ({ label: area.label, count: counts[idx] }));
         renderBars(items);
         if (updatedEl) updatedEl.textContent = `Updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
