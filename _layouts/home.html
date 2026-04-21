@@ -283,8 +283,14 @@ layout: default
 <script>
   // Timeline tab functionality
   const timelineTrack = document.querySelector('.timeline-tabs');
+  const timelineWrapper = timelineTrack ? timelineTrack.closest('.timeline-tabs-wrapper') : null;
+  const timelineContent = document.querySelector('.timeline-content');
+  const timelineSection = document.querySelector('.section-journey');
   const timelineTabs = Array.from(document.querySelectorAll('.timeline-tab'));
   const timelineItems = Array.from(document.querySelectorAll('.timeline-item'));
+  let currentTimelineIndex = Math.max(0, timelineTabs.findIndex(tab => tab.classList.contains('active')));
+  let autoTimelineTimer = null;
+  const AUTO_TIMELINE_MS = 6500;
 
   const syncTimelineRail = () => {
     if (!timelineTrack || timelineTabs.length < 2) return;
@@ -302,23 +308,72 @@ layout: default
     timelineTrack.style.setProperty('--track-start', `${start}px`);
     timelineTrack.style.setProperty('--track-width', `${width}px`);
     timelineTrack.style.setProperty('--timeline-progress', `${progress}px`);
+    if (timelineWrapper) {
+      timelineWrapper.style.setProperty('--track-start', `${start}px`);
+      timelineWrapper.style.setProperty('--track-width', `${width}px`);
+      timelineWrapper.style.setProperty('--timeline-progress', `${progress}px`);
+    }
   };
 
-  timelineTabs.forEach(tab => {
+  const applyTimelineDirection = (direction) => {
+    if (!timelineContent) return;
+    timelineContent.classList.remove('slide-next', 'slide-prev');
+    // Restart CSS animation for the newly activated panel.
+    void timelineContent.offsetWidth;
+    timelineContent.classList.add(direction === 'prev' ? 'slide-prev' : 'slide-next');
+  };
+
+  const selectTimelineIndex = (nextIndex, forcedDirection) => {
+    if (!timelineTabs.length || nextIndex < 0 || nextIndex >= timelineTabs.length) return;
+
+    const direction = forcedDirection || (nextIndex < currentTimelineIndex ? 'prev' : 'next');
+    const selectedTab = timelineTabs[nextIndex];
+    const year = selectedTab.dataset.year;
+    const selectedItem = document.querySelector(`.timeline-item[data-year="${year}"]`);
+    if (!selectedItem) return;
+
+    applyTimelineDirection(direction);
+
+    timelineTabs.forEach(tab => tab.classList.remove('active'));
+    timelineItems.forEach(item => item.classList.remove('active'));
+
+    selectedTab.classList.add('active');
+    selectedItem.classList.add('active');
+    currentTimelineIndex = nextIndex;
+    syncTimelineRail();
+  };
+
+  const stopAutoTimeline = () => {
+    if (autoTimelineTimer) {
+      clearInterval(autoTimelineTimer);
+      autoTimelineTimer = null;
+    }
+  };
+
+  const startAutoTimeline = () => {
+    if (!timelineTabs.length) return;
+    stopAutoTimeline();
+    autoTimelineTimer = setInterval(() => {
+      const next = (currentTimelineIndex + 1) % timelineTabs.length;
+      selectTimelineIndex(next, 'next');
+    }, AUTO_TIMELINE_MS);
+  };
+
+  timelineTabs.forEach((tab, tabIndex) => {
     tab.addEventListener('click', function() {
-      const year = this.dataset.year;
-
-      timelineTabs.forEach(t => t.classList.remove('active'));
-      timelineItems.forEach(item => item.classList.remove('active'));
-
-      this.classList.add('active');
-      const selectedItem = document.querySelector(`.timeline-item[data-year="${year}"]`);
-      if (selectedItem) selectedItem.classList.add('active');
-
-      syncTimelineRail();
+      selectTimelineIndex(tabIndex);
+      startAutoTimeline();
     });
   });
 
+  if (timelineSection) {
+    timelineSection.addEventListener('mouseenter', stopAutoTimeline);
+    timelineSection.addEventListener('mouseleave', startAutoTimeline);
+    timelineSection.addEventListener('focusin', stopAutoTimeline);
+    timelineSection.addEventListener('focusout', startAutoTimeline);
+  }
+
   syncTimelineRail();
   window.addEventListener('resize', syncTimelineRail);
+  startAutoTimeline();
 </script>

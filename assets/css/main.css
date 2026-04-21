@@ -628,7 +628,7 @@ a { color: inherit; }
   content: '';
   width: 18px;
   height: 18px;
-  margin-top: 9px;
+  margin-top: 15px;
   border-radius: 50%;
   background: rgba(246,241,220,0.16);
   border: 2px solid rgba(246,241,220,0.65);
@@ -643,7 +643,7 @@ a { color: inherit; }
   border-color: #D6C17C;
   width: 24px;
   height: 24px;
-  margin-top: 6px;
+  margin-top: 12px;
   box-shadow: 0 0 0 4px rgba(214, 193, 124, 0.28);
 }
 .timeline-tab.active {
@@ -652,8 +652,10 @@ a { color: inherit; }
 }
 .timeline-content {
   position: relative;
-  margin-top: 2rem;
-  width: 100%;
+  margin-top: 0.85rem;
+  width: var(--track-width, 100%);
+  max-width: 100%;
+  margin-left: var(--track-start, 0px);
 }
 .timeline-item {
   display: none;
@@ -661,13 +663,18 @@ a { color: inherit; }
   background: linear-gradient(145deg, rgba(246,241,220,0.26) 0%, rgba(169,187,170,0.14) 100%);
   border: 1px solid rgba(246,241,220,0.5);
   border-radius: 12px;
-  animation: fadeIn 0.3s ease;
   box-shadow: 0 18px 42px rgba(15,26,20,0.24), inset 0 1px 0 rgba(249,249,249,0.18);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
   backdrop-filter: blur(10px) saturate(140%);
 }
 .timeline-item.active {
   display: block;
+}
+.timeline-content.slide-next .timeline-item.active {
+  animation: timelineSlideFromRight 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.timeline-content.slide-prev .timeline-item.active {
+  animation: timelineSlideFromLeft 0.34s cubic-bezier(0.22, 1, 0.36, 1);
 }
 @keyframes fadeIn {
   from {
@@ -677,6 +684,26 @@ a { color: inherit; }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes timelineSlideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(34px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes timelineSlideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-34px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 .timeline-item h4 {
@@ -730,6 +757,9 @@ a { color: inherit; }
   .timeline-tabs::before {
     display: none;
   }
+  .timeline-tabs::after {
+    display: none;
+  }
   .timeline-tab {
     flex-direction: row;
     gap: 1rem;
@@ -742,6 +772,11 @@ a { color: inherit; }
     width: 16px;
     height: 16px;
     border-width: 2px;
+  }
+  .timeline-content {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.6rem;
   }
   .timeline-item {
     padding: 1.5rem;
