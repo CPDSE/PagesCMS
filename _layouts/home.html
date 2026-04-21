@@ -53,9 +53,13 @@ layout: default
     <div class="about-visual">
       <div class="about-viz" id="pharma-live-viz">
         <p class="about-viz-kicker">Live Pharma Snapshot</p>
-        <h3>Clinical trials in Denmark by therapeutic area</h3>
+        <h3>Denmark vs Global clinical trials by therapeutic area</h3>
         <p class="about-viz-source">Data source: <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (live query)</p>
-        <p class="about-viz-note">Click a therapeutic area to inspect Danish trial status distribution.</p>
+        <p class="about-viz-note">Click a therapeutic area to inspect status split comparison (Denmark vs Global).</p>
+        <div class="about-viz-legend" aria-hidden="true">
+          <span class="viz-legend-item"><span class="viz-dot viz-dot-dk"></span>Denmark</span>
+          <span class="viz-legend-item"><span class="viz-dot viz-dot-global"></span>Global</span>
+        </div>
         <div class="about-viz-bars" role="list" aria-live="polite"></div>
         <div class="about-viz-detail">
           <p class="about-viz-detail-title"></p>
@@ -402,11 +406,11 @@ layout: default
     const updatedEl = pharmaViz.querySelector('.about-viz-updated');
 
     const areas = [
-      { key: 'oncology', label: 'Oncology', term: 'denmark cancer clinical trial' },
-      { key: 'cardio', label: 'Cardiovascular', term: 'denmark cardiovascular clinical trial' },
-      { key: 'diabetes', label: 'Diabetes', term: 'denmark diabetes clinical trial' },
-      { key: 'rare', label: 'Rare Diseases', term: 'denmark rare disease clinical trial' },
-      { key: 'neuro', label: 'Neurology', term: 'denmark neurology clinical trial' }
+      { key: 'oncology', label: 'Oncology', dkTerm: 'denmark cancer clinical trial', globalTerm: 'cancer clinical trial' },
+      { key: 'cardio', label: 'Cardiovascular', dkTerm: 'denmark cardiovascular clinical trial', globalTerm: 'cardiovascular clinical trial' },
+      { key: 'diabetes', label: 'Diabetes', dkTerm: 'denmark diabetes clinical trial', globalTerm: 'diabetes clinical trial' },
+      { key: 'rare', label: 'Rare Diseases', dkTerm: 'denmark rare disease clinical trial', globalTerm: 'rare disease clinical trial' },
+      { key: 'neuro', label: 'Neurology', dkTerm: 'denmark neurology clinical trial', globalTerm: 'neurology clinical trial' }
     ];
 
     const statuses = [
@@ -416,19 +420,39 @@ layout: default
     ];
 
     const fallbackCounts = {
-      Oncology: 680,
-      Cardiovascular: 360,
-      Diabetes: 320,
-      'Rare Diseases': 210,
-      Neurology: 390
+      Oncology: { dk: 680, global: 182000 },
+      Cardiovascular: { dk: 360, global: 108000 },
+      Diabetes: { dk: 320, global: 96000 },
+      'Rare Diseases': { dk: 210, global: 74000 },
+      Neurology: { dk: 390, global: 124000 }
     };
 
     const fallbackStatus = {
-      oncology: { recruiting: 210, active: 130, completed: 340 },
-      cardio: { recruiting: 95, active: 72, completed: 193 },
-      diabetes: { recruiting: 85, active: 64, completed: 171 },
-      rare: { recruiting: 58, active: 38, completed: 114 },
-      neuro: { recruiting: 110, active: 78, completed: 202 }
+      oncology: {
+        recruiting: { dk: 210, global: 36000 },
+        active: { dk: 130, global: 22000 },
+        completed: { dk: 340, global: 124000 }
+      },
+      cardio: {
+        recruiting: { dk: 95, global: 18000 },
+        active: { dk: 72, global: 14000 },
+        completed: { dk: 193, global: 76000 }
+      },
+      diabetes: {
+        recruiting: { dk: 85, global: 16000 },
+        active: { dk: 64, global: 12000 },
+        completed: { dk: 171, global: 68000 }
+      },
+      rare: {
+        recruiting: { dk: 58, global: 13000 },
+        active: { dk: 38, global: 9000 },
+        completed: { dk: 114, global: 52000 }
+      },
+      neuro: {
+        recruiting: { dk: 110, global: 21000 },
+        active: { dk: 78, global: 16000 },
+        completed: { dk: 202, global: 87000 }
+      }
     };
 
     const statusCache = new Map();
@@ -454,15 +478,18 @@ layout: default
     const renderStatus = (areaKey, statusItems) => {
       if (!statusEl || !detailTitleEl) return;
       const area = findAreaByKey(areaKey);
-      detailTitleEl.textContent = `Status split in Denmark: ${area.label}`;
-      const max = Math.max(...statusItems.map(item => item.count), 1);
+      detailTitleEl.textContent = `Status comparison: ${area.label}`;
+      const max = Math.max(...statusItems.flatMap(item => [item.dk, item.global]), 1);
       statusEl.innerHTML = statusItems.map((item) => {
-        const pct = (item.count / max) * 100;
+        const pctDk = (item.dk / max) * 100;
+        const pctGlobal = (item.global / max) * 100;
         return `
-          <div class="viz-status-row" role="listitem" aria-label="${item.label}: ${item.count.toLocaleString()} trials">
+          <div class="viz-status-row" role="listitem" aria-label="${item.label}: Denmark ${item.dk.toLocaleString()}, Global ${item.global.toLocaleString()} trials">
             <span class="viz-status-label">${item.label}</span>
-            <span class="viz-status-track"><span class="viz-status-fill" style="width:${pct.toFixed(2)}%"></span></span>
-            <span class="viz-status-value">${item.count.toLocaleString()}</span>
+            <div class="viz-status-compare">
+              <span class="viz-status-line"><span class="viz-mini-label">DK</span><span class="viz-status-track"><span class="viz-status-fill viz-status-fill-dk" style="width:${pctDk.toFixed(2)}%"></span></span><span class="viz-status-value">${item.dk.toLocaleString()}</span></span>
+              <span class="viz-status-line"><span class="viz-mini-label">Global</span><span class="viz-status-track"><span class="viz-status-fill viz-status-fill-global" style="width:${pctGlobal.toFixed(2)}%"></span></span><span class="viz-status-value">${item.global.toLocaleString()}</span></span>
+            </div>
           </div>
         `;
       }).join('');
@@ -475,15 +502,22 @@ layout: default
         return;
       }
       try {
-        const counts = await Promise.all(
-          statuses.map(status => fetchCount(`${area.term} ${status.term}`))
-        );
-        const items = statuses.map((status, idx) => ({ label: status.label, count: counts[idx] }));
+        const items = await Promise.all(statuses.map(async (status) => {
+          const [dk, global] = await Promise.all([
+            fetchCount(`${area.dkTerm} ${status.term}`),
+            fetchCount(`${area.globalTerm} ${status.term}`)
+          ]);
+          return { label: status.label, dk, global };
+        }));
         statusCache.set(area.key, items);
         renderStatus(area.key, items);
       } catch (error) {
         const fallback = fallbackStatus[area.key] || fallbackStatus.oncology;
-        const items = statuses.map((status) => ({ label: status.label, count: fallback[status.key] || 0 }));
+        const items = statuses.map((status) => ({
+          label: status.label,
+          dk: fallback[status.key]?.dk || 0,
+          global: fallback[status.key]?.global || 0
+        }));
         statusCache.set(area.key, items);
         renderStatus(area.key, items);
       }
@@ -491,14 +525,17 @@ layout: default
 
     const renderBars = (items) => {
       if (!barsEl) return;
-      const max = Math.max(...items.map(item => item.count), 1);
+      const max = Math.max(...items.flatMap(item => [item.dk, item.global]), 1);
       barsEl.innerHTML = items.map((item) => {
-        const pct = (item.count / max) * 100;
+        const pctDk = (item.dk / max) * 100;
+        const pctGlobal = (item.global / max) * 100;
         return `
-          <button type="button" class="viz-bar" data-area-key="${item.key}" role="listitem" aria-label="${item.label}: ${item.count.toLocaleString()} trials">
+          <button type="button" class="viz-bar" data-area-key="${item.key}" role="listitem" aria-label="${item.label}: Denmark ${item.dk.toLocaleString()}, Global ${item.global.toLocaleString()} trials">
             <span class="viz-label">${item.label}</span>
-            <span class="viz-track"><span class="viz-fill" style="width:${pct.toFixed(2)}%"></span></span>
-            <span class="viz-value">${item.count.toLocaleString()}</span>
+            <div class="viz-compare">
+              <span class="viz-compare-line"><span class="viz-mini-label">DK</span><span class="viz-track"><span class="viz-fill viz-fill-dk" style="width:${pctDk.toFixed(2)}%"></span></span><span class="viz-value">${item.dk.toLocaleString()}</span></span>
+              <span class="viz-compare-line"><span class="viz-mini-label">Global</span><span class="viz-track"><span class="viz-fill viz-fill-global" style="width:${pctGlobal.toFixed(2)}%"></span></span><span class="viz-value">${item.global.toLocaleString()}</span></span>
+            </div>
           </button>
         `;
       }).join('');
@@ -526,14 +563,24 @@ layout: default
         refreshBtn.textContent = 'Loading...';
       }
       try {
-        const counts = await Promise.all(areas.map(area => fetchCount(area.term)));
-        const items = areas.map((area, idx) => ({ key: area.key, label: area.label, count: counts[idx] }));
+        const items = await Promise.all(areas.map(async (area) => {
+          const [dk, global] = await Promise.all([
+            fetchCount(area.dkTerm),
+            fetchCount(area.globalTerm)
+          ]);
+          return { key: area.key, label: area.label, dk, global };
+        }));
         renderBars(items);
         statusCache.clear();
         await loadStatusForArea(activeAreaKey, true);
         if (updatedEl) updatedEl.textContent = `Updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
       } catch (error) {
-        const items = areas.map(area => ({ key: area.key, label: area.label, count: fallbackCounts[area.label] || 0 }));
+        const items = areas.map(area => ({
+          key: area.key,
+          label: area.label,
+          dk: fallbackCounts[area.label]?.dk || 0,
+          global: fallbackCounts[area.label]?.global || 0
+        }));
         renderBars(items);
         statusCache.clear();
         await loadStatusForArea(activeAreaKey, true);
