@@ -243,6 +243,12 @@ a { color: inherit; }
   filter: contrast(1.5) brightness(1.05);
   pointer-events: none;
 }
+/* Temporarily hide the hero video while keeping positioning styles unchanged. */
+.hero-video-wrap,
+.hero-video,
+.hero video {
+  display: none !important;
+}
 .hero video,
 .page-hero video,
 .hero .hero-video,
