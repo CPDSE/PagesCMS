@@ -297,7 +297,7 @@ a { color: inherit; }
   color: rgba(249,249,249,0.74);
 }
 .section-announcements .announcement-card h3 {
-  color: #3C5E3E;
+  color: var(--offwhite);
 }
 .section-announcements .announcement-card p {
   color: rgba(249,249,249,0.82) !important;
