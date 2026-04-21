@@ -558,6 +558,8 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  max-width: 1120px;
+  margin: 0 auto;
 }
 /* Visual timeline line with year markers */
 .timeline-tabs {
@@ -639,6 +641,7 @@ a { color: inherit; }
 .timeline-content {
   position: relative;
   margin-top: 2rem;
+  width: 100%;
 }
 .timeline-item {
   display: none;
