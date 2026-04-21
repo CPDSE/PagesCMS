@@ -53,9 +53,14 @@ layout: default
     <div class="about-visual">
       <div class="about-viz" id="pharma-live-viz">
         <p class="about-viz-kicker">Live Pharma Snapshot</p>
-        <h3>Clinical trials by therapeutic area</h3>
+        <h3>Clinical trials in Denmark by therapeutic area</h3>
         <p class="about-viz-source">Data source: <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (live query)</p>
+        <p class="about-viz-note">Click a therapeutic area to inspect Danish trial status distribution.</p>
         <div class="about-viz-bars" role="list" aria-live="polite"></div>
+        <div class="about-viz-detail">
+          <p class="about-viz-detail-title"></p>
+          <div class="about-viz-status" role="list" aria-live="polite"></div>
+        </div>
         <div class="about-viz-meta">
           <button type="button" class="about-viz-refresh">Refresh data</button>
           <span class="about-viz-updated"></span>
@@ -391,24 +396,43 @@ layout: default
   const pharmaViz = document.getElementById('pharma-live-viz');
   if (pharmaViz) {
     const barsEl = pharmaViz.querySelector('.about-viz-bars');
+    const statusEl = pharmaViz.querySelector('.about-viz-status');
+    const detailTitleEl = pharmaViz.querySelector('.about-viz-detail-title');
     const refreshBtn = pharmaViz.querySelector('.about-viz-refresh');
     const updatedEl = pharmaViz.querySelector('.about-viz-updated');
 
     const areas = [
-      { label: 'Oncology', term: 'cancer' },
-      { label: 'Cardiovascular', term: 'heart disease' },
-      { label: 'Diabetes', term: 'diabetes' },
-      { label: 'Rare Diseases', term: 'rare disease' },
-      { label: 'Neurology', term: 'neurological disorder' }
+      { key: 'oncology', label: 'Oncology', term: 'denmark cancer clinical trial' },
+      { key: 'cardio', label: 'Cardiovascular', term: 'denmark cardiovascular clinical trial' },
+      { key: 'diabetes', label: 'Diabetes', term: 'denmark diabetes clinical trial' },
+      { key: 'rare', label: 'Rare Diseases', term: 'denmark rare disease clinical trial' },
+      { key: 'neuro', label: 'Neurology', term: 'denmark neurology clinical trial' }
+    ];
+
+    const statuses = [
+      { key: 'recruiting', label: 'Recruiting', term: 'recruiting' },
+      { key: 'active', label: 'Active, not recruiting', term: 'active not recruiting' },
+      { key: 'completed', label: 'Completed', term: 'completed' }
     ];
 
     const fallbackCounts = {
-      Oncology: 18000,
-      Cardiovascular: 8600,
-      Diabetes: 7200,
-      'Rare Diseases': 6100,
-      Neurology: 9400
+      Oncology: 680,
+      Cardiovascular: 360,
+      Diabetes: 320,
+      'Rare Diseases': 210,
+      Neurology: 390
     };
+
+    const fallbackStatus = {
+      oncology: { recruiting: 210, active: 130, completed: 340 },
+      cardio: { recruiting: 95, active: 72, completed: 193 },
+      diabetes: { recruiting: 85, active: 64, completed: 171 },
+      rare: { recruiting: 58, active: 38, completed: 114 },
+      neuro: { recruiting: 110, active: 78, completed: 202 }
+    };
+
+    const statusCache = new Map();
+    let activeAreaKey = areas[0].key;
 
     const fetchCount = async (term) => {
       const controller = new AbortController();
@@ -425,13 +449,53 @@ layout: default
       }
     };
 
+    const findAreaByKey = (key) => areas.find(area => area.key === key) || areas[0];
+
+    const renderStatus = (areaKey, statusItems) => {
+      if (!statusEl || !detailTitleEl) return;
+      const area = findAreaByKey(areaKey);
+      detailTitleEl.textContent = `Status split in Denmark: ${area.label}`;
+      const max = Math.max(...statusItems.map(item => item.count), 1);
+      statusEl.innerHTML = statusItems.map((item) => {
+        const pct = (item.count / max) * 100;
+        return `
+          <div class="viz-status-row" role="listitem" aria-label="${item.label}: ${item.count.toLocaleString()} trials">
+            <span class="viz-status-label">${item.label}</span>
+            <span class="viz-status-track"><span class="viz-status-fill" style="width:${pct.toFixed(2)}%"></span></span>
+            <span class="viz-status-value">${item.count.toLocaleString()}</span>
+          </div>
+        `;
+      }).join('');
+    };
+
+    const loadStatusForArea = async (areaKey, forceRefresh = false) => {
+      const area = findAreaByKey(areaKey);
+      if (!forceRefresh && statusCache.has(area.key)) {
+        renderStatus(area.key, statusCache.get(area.key));
+        return;
+      }
+      try {
+        const counts = await Promise.all(
+          statuses.map(status => fetchCount(`${area.term} ${status.term}`))
+        );
+        const items = statuses.map((status, idx) => ({ label: status.label, count: counts[idx] }));
+        statusCache.set(area.key, items);
+        renderStatus(area.key, items);
+      } catch (error) {
+        const fallback = fallbackStatus[area.key] || fallbackStatus.oncology;
+        const items = statuses.map((status) => ({ label: status.label, count: fallback[status.key] || 0 }));
+        statusCache.set(area.key, items);
+        renderStatus(area.key, items);
+      }
+    };
+
     const renderBars = (items) => {
       if (!barsEl) return;
       const max = Math.max(...items.map(item => item.count), 1);
       barsEl.innerHTML = items.map((item) => {
         const pct = (item.count / max) * 100;
         return `
-          <button type="button" class="viz-bar" role="listitem" aria-label="${item.label}: ${item.count.toLocaleString()} trials">
+          <button type="button" class="viz-bar" data-area-key="${item.key}" role="listitem" aria-label="${item.label}: ${item.count.toLocaleString()} trials">
             <span class="viz-label">${item.label}</span>
             <span class="viz-track"><span class="viz-fill" style="width:${pct.toFixed(2)}%"></span></span>
             <span class="viz-value">${item.count.toLocaleString()}</span>
@@ -442,11 +506,18 @@ layout: default
       const rows = barsEl.querySelectorAll('.viz-bar');
       rows.forEach((row) => {
         row.addEventListener('click', () => {
+          const nextKey = row.dataset.areaKey || areas[0].key;
+          activeAreaKey = nextKey;
           rows.forEach(r => r.classList.remove('is-active'));
           row.classList.add('is-active');
+          loadStatusForArea(nextKey);
         });
       });
-      if (rows[0]) rows[0].classList.add('is-active');
+      const activeRow = barsEl.querySelector(`.viz-bar[data-area-key="${activeAreaKey}"]`) || rows[0];
+      if (activeRow) {
+        activeRow.classList.add('is-active');
+        activeAreaKey = activeRow.dataset.areaKey || activeAreaKey;
+      }
     };
 
     const updateLiveData = async () => {
@@ -456,13 +527,17 @@ layout: default
       }
       try {
         const counts = await Promise.all(areas.map(area => fetchCount(area.term)));
-        const items = areas.map((area, idx) => ({ label: area.label, count: counts[idx] }));
+        const items = areas.map((area, idx) => ({ key: area.key, label: area.label, count: counts[idx] }));
         renderBars(items);
+        statusCache.clear();
+        await loadStatusForArea(activeAreaKey, true);
         if (updatedEl) updatedEl.textContent = `Updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
       } catch (error) {
-        const items = areas.map(area => ({ label: area.label, count: fallbackCounts[area.label] || 0 }));
+        const items = areas.map(area => ({ key: area.key, label: area.label, count: fallbackCounts[area.label] || 0 }));
         renderBars(items);
-        if (updatedEl) updatedEl.textContent = 'Live source unavailable, showing fallback snapshot';
+        statusCache.clear();
+        await loadStatusForArea(activeAreaKey, true);
+        if (updatedEl) updatedEl.textContent = 'Live source unavailable, showing Denmark-focused fallback snapshot';
       } finally {
         if (refreshBtn) {
           refreshBtn.disabled = false;
