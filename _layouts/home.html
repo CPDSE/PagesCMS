@@ -288,17 +288,43 @@ layout: default
 
 <script>
   // Timeline tab functionality
-  document.querySelectorAll('.timeline-tab').forEach(tab => {
+  const timelineTrack = document.querySelector('.timeline-tabs');
+  const timelineTabs = Array.from(document.querySelectorAll('.timeline-tab'));
+  const timelineItems = Array.from(document.querySelectorAll('.timeline-item'));
+
+  const syncTimelineRail = () => {
+    if (!timelineTrack || timelineTabs.length < 2) return;
+
+    const trackRect = timelineTrack.getBoundingClientRect();
+    const firstRect = timelineTabs[0].getBoundingClientRect();
+    const lastRect = timelineTabs[timelineTabs.length - 1].getBoundingClientRect();
+
+    const start = firstRect.left + (firstRect.width / 2) - trackRect.left;
+    const width = lastRect.left + (lastRect.width / 2) - trackRect.left - start;
+
+    const activeIndex = Math.max(0, timelineTabs.findIndex(tab => tab.classList.contains('active')));
+    const progress = timelineTabs.length > 1 ? (activeIndex / (timelineTabs.length - 1)) * width : 0;
+
+    timelineTrack.style.setProperty('--track-start', `${start}px`);
+    timelineTrack.style.setProperty('--track-width', `${width}px`);
+    timelineTrack.style.setProperty('--timeline-progress', `${progress}px`);
+  };
+
+  timelineTabs.forEach(tab => {
     tab.addEventListener('click', function() {
       const year = this.dataset.year;
-      
-      // Remove active class from all tabs and items
-      document.querySelectorAll('.timeline-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.timeline-item').forEach(item => item.classList.remove('active'));
-      
-      // Add active class to clicked tab and corresponding item
+
+      timelineTabs.forEach(t => t.classList.remove('active'));
+      timelineItems.forEach(item => item.classList.remove('active'));
+
       this.classList.add('active');
-      document.querySelector(`.timeline-item[data-year="${year}"]`).classList.add('active');
+      const selectedItem = document.querySelector(`.timeline-item[data-year="${year}"]`);
+      if (selectedItem) selectedItem.classList.add('active');
+
+      syncTimelineRail();
     });
   });
+
+  syncTimelineRail();
+  window.addEventListener('resize', syncTimelineRail);
 </script>
