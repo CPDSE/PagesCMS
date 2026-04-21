@@ -60,7 +60,10 @@ layout: default
           <span class="viz-legend-item"><span class="viz-dot viz-dot-dk"></span>Denmark</span>
           <span class="viz-legend-item"><span class="viz-dot viz-dot-global"></span>Global</span>
         </div>
-        <div class="about-viz-bars" role="list" aria-live="polite"></div>
+        <div class="about-viz-sunburst-wrap" aria-live="polite">
+          <svg class="about-viz-sunburst" viewBox="0 0 420 420" role="img" aria-label="Sunburst diagram comparing Denmark and Global clinical trial distribution"></svg>
+        </div>
+        <p class="about-viz-selection"></p>
         <div class="about-viz-detail">
           <p class="about-viz-detail-title"></p>
           <div class="about-viz-status" role="list" aria-live="polite"></div>
@@ -399,7 +402,8 @@ layout: default
   // About section: interactive live pharma data snapshot
   const pharmaViz = document.getElementById('pharma-live-viz');
   if (pharmaViz) {
-    const barsEl = pharmaViz.querySelector('.about-viz-bars');
+    const sunburstEl = pharmaViz.querySelector('.about-viz-sunburst');
+    const selectionEl = pharmaViz.querySelector('.about-viz-selection');
     const statusEl = pharmaViz.querySelector('.about-viz-status');
     const detailTitleEl = pharmaViz.querySelector('.about-viz-detail-title');
     const refreshBtn = pharmaViz.querySelector('.about-viz-refresh');
@@ -456,6 +460,7 @@ layout: default
     };
 
     const statusCache = new Map();
+  let latestAreaItems = [];
     let activeAreaKey = areas[0].key;
 
     const fetchCount = async (term) => {
@@ -475,10 +480,126 @@ layout: default
 
     const findAreaByKey = (key) => areas.find(area => area.key === key) || areas[0];
 
+    const polarToCartesian = (cx, cy, r, angle) => ({
+      x: cx + r * Math.cos(angle),
+      y: cy + r * Math.sin(angle)
+    });
+
+    const ringSlicePath = (cx, cy, innerR, outerR, start, end) => {
+      const startOuter = polarToCartesian(cx, cy, outerR, start);
+      const endOuter = polarToCartesian(cx, cy, outerR, end);
+      const endInner = polarToCartesian(cx, cy, innerR, end);
+      const startInner = polarToCartesian(cx, cy, innerR, start);
+      const largeArc = end - start > Math.PI ? 1 : 0;
+      return [
+        `M ${startOuter.x.toFixed(3)} ${startOuter.y.toFixed(3)}`,
+        `A ${outerR} ${outerR} 0 ${largeArc} 1 ${endOuter.x.toFixed(3)} ${endOuter.y.toFixed(3)}`,
+        `L ${endInner.x.toFixed(3)} ${endInner.y.toFixed(3)}`,
+        `A ${innerR} ${innerR} 0 ${largeArc} 0 ${startInner.x.toFixed(3)} ${startInner.y.toFixed(3)}`,
+        'Z'
+      ].join(' ');
+    };
+
+    const renderSunburst = (items) => {
+      if (!sunburstEl) return;
+
+      latestAreaItems = items;
+      const cx = 210;
+      const cy = 210;
+      const rootR = 42;
+      const innerR0 = 56;
+      const innerR1 = 124;
+      const outerR0 = 132;
+      const outerR1 = 196;
+
+      const dkTotal = items.reduce((acc, item) => acc + item.dk, 0);
+      const globalTotal = items.reduce((acc, item) => acc + item.global, 0);
+      const total = Math.max(dkTotal + globalTotal, 1);
+
+      const ns = 'http://www.w3.org/2000/svg';
+      sunburstEl.innerHTML = '';
+
+      const root = document.createElementNS(ns, 'circle');
+      root.setAttribute('cx', String(cx));
+      root.setAttribute('cy', String(cy));
+      root.setAttribute('r', String(rootR));
+      root.setAttribute('class', 'sunburst-root');
+      sunburstEl.appendChild(root);
+
+      const centerText = document.createElementNS(ns, 'text');
+      centerText.setAttribute('x', String(cx));
+      centerText.setAttribute('y', String(cy - 4));
+      centerText.setAttribute('text-anchor', 'middle');
+      centerText.setAttribute('class', 'sunburst-center-label');
+      centerText.textContent = 'Trials';
+      sunburstEl.appendChild(centerText);
+
+      const centerSub = document.createElementNS(ns, 'text');
+      centerSub.setAttribute('x', String(cx));
+      centerSub.setAttribute('y', String(cy + 14));
+      centerSub.setAttribute('text-anchor', 'middle');
+      centerSub.setAttribute('class', 'sunburst-center-value');
+      centerSub.textContent = total.toLocaleString();
+      sunburstEl.appendChild(centerSub);
+
+      const countries = [
+        { key: 'dk', label: 'Denmark', value: dkTotal },
+        { key: 'global', label: 'Global', value: globalTotal }
+      ];
+
+      let countryStart = -Math.PI / 2;
+      countries.forEach((country) => {
+        const span = (country.value / total) * Math.PI * 2;
+        const countryEnd = countryStart + span;
+
+        const countryPath = document.createElementNS(ns, 'path');
+        countryPath.setAttribute('d', ringSlicePath(cx, cy, innerR0, innerR1, countryStart, countryEnd));
+        countryPath.setAttribute('class', `sunburst-country sunburst-country-${country.key}`);
+        countryPath.setAttribute('aria-hidden', 'true');
+        sunburstEl.appendChild(countryPath);
+
+        const mid = countryStart + span / 2;
+        const labelPoint = polarToCartesian(cx, cy, (innerR0 + innerR1) / 2, mid);
+        const countryLabel = document.createElementNS(ns, 'text');
+        countryLabel.setAttribute('x', labelPoint.x.toFixed(2));
+        countryLabel.setAttribute('y', labelPoint.y.toFixed(2));
+        countryLabel.setAttribute('text-anchor', 'middle');
+        countryLabel.setAttribute('class', 'sunburst-country-label');
+        countryLabel.textContent = country.label;
+        sunburstEl.appendChild(countryLabel);
+
+        let areaStart = countryStart;
+        const areaTotal = Math.max(country.value, 1);
+        items.forEach((item) => {
+          const value = country.key === 'dk' ? item.dk : item.global;
+          const areaSpan = (value / areaTotal) * span;
+          const areaEnd = areaStart + areaSpan;
+          const areaPath = document.createElementNS(ns, 'path');
+          areaPath.setAttribute('d', ringSlicePath(cx, cy, outerR0, outerR1, areaStart, areaEnd));
+          areaPath.setAttribute('class', `sunburst-area sunburst-area-${country.key}${item.key === activeAreaKey ? ' is-active' : ''}`);
+          areaPath.setAttribute('data-area-key', item.key);
+          areaPath.setAttribute('data-country', country.key);
+          areaPath.setAttribute('tabindex', '0');
+          areaPath.setAttribute('role', 'button');
+          areaPath.setAttribute('aria-label', `${item.label} in ${country.label}: ${value.toLocaleString()} trials`);
+
+          const title = document.createElementNS(ns, 'title');
+          title.textContent = `${item.label} (${country.label}): ${value.toLocaleString()} trials`;
+          areaPath.appendChild(title);
+
+          sunburstEl.appendChild(areaPath);
+          areaStart = areaEnd;
+        });
+
+        countryStart = countryEnd;
+      });
+    };
+
     const renderStatus = (areaKey, statusItems) => {
       if (!statusEl || !detailTitleEl) return;
       const area = findAreaByKey(areaKey);
       detailTitleEl.textContent = `Status comparison: ${area.label}`;
+      if (selectionEl) selectionEl.textContent = `Selected area: ${area.label}`;
       const max = Math.max(...statusItems.flatMap(item => [item.dk, item.global]), 1);
       statusEl.innerHTML = statusItems.map((item) => {
         const pctDk = (item.dk / max) * 100;
@@ -523,39 +644,31 @@ layout: default
       }
     };
 
-    const renderBars = (items) => {
-      if (!barsEl) return;
-      const max = Math.max(...items.flatMap(item => [item.dk, item.global]), 1);
-      barsEl.innerHTML = items.map((item) => {
-        const pctDk = (item.dk / max) * 100;
-        const pctGlobal = (item.global / max) * 100;
-        return `
-          <button type="button" class="viz-bar" data-area-key="${item.key}" role="listitem" aria-label="${item.label}: Denmark ${item.dk.toLocaleString()}, Global ${item.global.toLocaleString()} trials">
-            <span class="viz-label">${item.label}</span>
-            <div class="viz-compare">
-              <span class="viz-compare-line"><span class="viz-mini-label">DK</span><span class="viz-track"><span class="viz-fill viz-fill-dk" style="width:${pctDk.toFixed(2)}%"></span></span><span class="viz-value">${item.dk.toLocaleString()}</span></span>
-              <span class="viz-compare-line"><span class="viz-mini-label">Global</span><span class="viz-track"><span class="viz-fill viz-fill-global" style="width:${pctGlobal.toFixed(2)}%"></span></span><span class="viz-value">${item.global.toLocaleString()}</span></span>
-            </div>
-          </button>
-        `;
-      }).join('');
-
-      const rows = barsEl.querySelectorAll('.viz-bar');
-      rows.forEach((row) => {
-        row.addEventListener('click', () => {
-          const nextKey = row.dataset.areaKey || areas[0].key;
-          activeAreaKey = nextKey;
-          rows.forEach(r => r.classList.remove('is-active'));
-          row.classList.add('is-active');
-          loadStatusForArea(nextKey);
-        });
-      });
-      const activeRow = barsEl.querySelector(`.viz-bar[data-area-key="${activeAreaKey}"]`) || rows[0];
-      if (activeRow) {
-        activeRow.classList.add('is-active');
-        activeAreaKey = activeRow.dataset.areaKey || activeAreaKey;
-      }
+    const handleSunburstSelect = (target) => {
+      const nextKey = target?.dataset?.areaKey;
+      if (!nextKey) return;
+      activeAreaKey = nextKey;
+      if (latestAreaItems.length) renderSunburst(latestAreaItems);
+      loadStatusForArea(nextKey);
     };
+
+    if (sunburstEl) {
+      sunburstEl.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (!target.classList.contains('sunburst-area')) return;
+        handleSunburstSelect(target);
+      });
+
+      sunburstEl.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (!target.classList.contains('sunburst-area')) return;
+        event.preventDefault();
+        handleSunburstSelect(target);
+      });
+    }
 
     const updateLiveData = async () => {
       if (refreshBtn) {
@@ -570,7 +683,7 @@ layout: default
           ]);
           return { key: area.key, label: area.label, dk, global };
         }));
-        renderBars(items);
+        renderSunburst(items);
         statusCache.clear();
         await loadStatusForArea(activeAreaKey, true);
         if (updatedEl) updatedEl.textContent = `Updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
@@ -581,7 +694,7 @@ layout: default
           dk: fallbackCounts[area.label]?.dk || 0,
           global: fallbackCounts[area.label]?.global || 0
         }));
-        renderBars(items);
+        renderSunburst(items);
         statusCache.clear();
         await loadStatusForArea(activeAreaKey, true);
         if (updatedEl) updatedEl.textContent = 'Live source unavailable, showing Denmark-focused fallback snapshot';
