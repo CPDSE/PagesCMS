@@ -101,12 +101,12 @@ layout: default
     </div>
     <div class="timeline-tabs-wrapper">
       <div class="timeline-tabs">
-        <button class="timeline-tab active" data-year="vision">2023-4</button>
-        <button class="timeline-tab" data-year="grant">2024</button>
-        <button class="timeline-tab" data-year="season1">2025</button>
-        <button class="timeline-tab" data-year="retreat">2025</button>
-        <button class="timeline-tab" data-year="season2">2025</button>
-        <button class="timeline-tab" data-year="today">Today</button>
+        <button class="timeline-tab active" data-year="vision"><span class="timeline-year">2023</span><span class="timeline-subtitle">Vision</span></button>
+        <button class="timeline-tab" data-year="grant"><span class="timeline-year">2024</span><span class="timeline-subtitle">Grant</span></button>
+        <button class="timeline-tab" data-year="season1"><span class="timeline-year">2025</span><span class="timeline-subtitle">Season 1</span></button>
+        <button class="timeline-tab" data-year="retreat"><span class="timeline-year">2025</span><span class="timeline-subtitle">Retreat</span></button>
+        <button class="timeline-tab" data-year="season2"><span class="timeline-year">2025</span><span class="timeline-subtitle">Season 2</span></button>
+        <button class="timeline-tab" data-year="today"><span class="timeline-year">Today</span></button>
       </div>
       
       <div class="timeline-content">
@@ -263,15 +263,18 @@ layout: default
 <section class="section" style="background: #A9BBAA; background-image: none;">
   <div class="container">
     <div class="logo-strip">
-      <p class="logo-strip-label">Cooperators</p>
-      <div class="logos-row">
-        <span style="font-size:0.85rem; color:#3C5E3E; font-style:italic;">University of Copenhagen &nbsp;·&nbsp; University of Southern Denmark</span>
+      <p class="logo-strip-label" style="color:#3C5E3E;">Cooperators</p>
+      <div class="logos-row logos-row-brand">
+        <img src="{{ '/assets/logos/KU.png' | relative_url }}" alt="University of Copenhagen logo">
+        <img src="{{ '/assets/logos/SDU.png' | relative_url }}" alt="University of Southern Denmark logo">
       </div>
     </div>
     <div class="logo-strip" style="margin-top:var(--space-md);">
-      <p class="logo-strip-label">Funders</p>
-      <div class="logos-row">
-        <span style="font-size:0.85rem; color:#3C5E3E; font-style:italic;">Novo Nordisk Foundation &nbsp;·&nbsp; LEO Foundation &nbsp;·&nbsp; Lundbeck Foundation</span>
+      <p class="logo-strip-label" style="color:#3C5E3E;">Funders</p>
+      <div class="logos-row logos-row-brand">
+        <img src="{{ '/assets/logos/novo_nordisk_foundation.png' | relative_url }}" alt="Novo Nordisk Foundation logo">
+        <img src="{{ '/assets/logos/leo-foundation.png' | relative_url }}" alt="LEO Foundation logo">
+        <img src="{{ '/assets/logos/lundbeck-foundation.png' | relative_url }}" alt="Lundbeck Foundation logo">
       </div>
     </div>
     <p style="margin-top:var(--space-md); font-size:0.8rem; color:#3C5E3E; max-width:70ch; line-height:1.6;">

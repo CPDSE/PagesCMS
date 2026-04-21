@@ -45,14 +45,13 @@
     const statsStrip = document.querySelector('.stats-panel-wrap, .stats-strip');
     if (statsStrip) statsObserver.observe(statsStrip);
 
-    // Home nav fades from transparent to solid after hero
+    // Home nav becomes solid shortly after scrolling starts
     const siteNav = document.querySelector('.site-nav');
     const hero = document.querySelector('.hero');
     if (siteNav && hero && document.body.classList.contains('page-home')) {
       const syncNavState = () => {
-        const heroBottom = hero.getBoundingClientRect().bottom;
-        const switchPoint = siteNav.offsetHeight + 2;
-        siteNav.classList.toggle('nav-solid', heroBottom <= switchPoint);
+        const scrolled = window.scrollY || window.pageYOffset || 0;
+        siteNav.classList.toggle('nav-solid', scrolled > 8);
       };
 
       syncNavState();
