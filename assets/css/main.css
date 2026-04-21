@@ -345,7 +345,7 @@ a { color: inherit; }
 .hero-logo-mark {
   width: min(100%, 560px);
   height: auto;
-  opacity: 0.42;
+  opacity: 0.2;
   filter: drop-shadow(0 16px 26px rgba(15,26,20,0.18));
 }
 .hero-label {
@@ -502,6 +502,112 @@ a { color: inherit; }
 }
 .about-text p { color: rgba(249,249,249,0.75); margin-top: 0.75rem; line-height: 1.7; }
 .about-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: var(--space-md); }
+.about-visual { display: flex; justify-content: center; align-items: flex-start; }
+.about-viz {
+  width: 100%;
+  border: 1px solid rgba(249,249,249,0.2);
+  background: linear-gradient(155deg, rgba(169,187,170,0.2) 0%, rgba(60,94,62,0.22) 100%);
+  border-radius: 14px;
+  padding: 1.2rem;
+  box-shadow: 0 14px 30px rgba(15,26,20,0.2), inset 0 1px 0 rgba(249,249,249,0.12);
+}
+.about-viz-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.45rem;
+}
+.about-viz h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--offwhite);
+  line-height: 1.25;
+  margin-bottom: 0.45rem;
+}
+.about-viz-source {
+  color: rgba(249,249,249,0.7);
+  font-size: 0.82rem;
+  margin-bottom: 1rem;
+}
+.about-viz-bars {
+  display: grid;
+  gap: 0.5rem;
+}
+.viz-bar {
+  width: 100%;
+  background: rgba(249,249,249,0.06);
+  border: 1px solid rgba(249,249,249,0.14);
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+  text-align: left;
+  color: var(--offwhite);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.viz-bar:hover,
+.viz-bar.is-active {
+  background: rgba(249,249,249,0.1);
+  border-color: rgba(214,193,124,0.6);
+}
+.viz-label {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(249,249,249,0.88);
+}
+.viz-track {
+  width: 100%;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(249,249,249,0.15);
+  overflow: hidden;
+}
+.viz-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #D6C17C 0%, #E4D7A1 100%);
+  transition: width 0.45s ease;
+}
+.viz-value {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: rgba(249,249,249,0.8);
+}
+.about-viz-meta {
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.about-viz-refresh {
+  border: 1px solid rgba(249,249,249,0.3);
+  background: transparent;
+  color: var(--offwhite);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  cursor: pointer;
+}
+.about-viz-refresh:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+.about-viz-updated {
+  font-size: 0.72rem;
+  color: rgba(249,249,249,0.72);
+}
 
 /* ─── COMMUNITY / JOURNEY ─────────────────────────────────── */
 .section-community {
@@ -802,23 +908,9 @@ a { color: inherit; }
     font-size: 1.4rem;
   }
 }
-.about-visual { display: flex; justify-content: center; align-items: flex-start; }
-.about-images {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-}
-.about-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 6px;
-  display: block;
-}
 @media (max-width: 768px) {
   .about-inner { grid-template-columns: 1fr; }
-  .about-visual { display: none; }
+  .about-visual { display: block; margin-top: var(--space-sm); }
 }
 
 /* ─── SECTIONS ────────────────────────────────────────────── */
@@ -1218,6 +1310,22 @@ a { color: inherit; }
   height: 48px;
   opacity: 1;
   filter: none;
+}
+.section-partners .logo-strip {
+  border-top: none;
+  text-align: center;
+}
+.section-partners .logo-strip-label {
+  color: #3C5E3E;
+  text-align: center;
+}
+.section-partners .logos-row {
+  justify-content: center;
+}
+.section-partners > .container > p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 /* ─── FOOTER ──────────────────────────────────────────────── */

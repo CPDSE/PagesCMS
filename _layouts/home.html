@@ -51,8 +51,15 @@ layout: default
 <section class="about-strip">
   <div class="about-inner fade-in">
     <div class="about-visual">
-      <div class="about-images">
-        <img src="{{ '/assets/pharma.png' | relative_url }}" alt="Pharmaceutical data science" class="about-img">
+      <div class="about-viz" id="pharma-live-viz">
+        <p class="about-viz-kicker">Live Pharma Snapshot</p>
+        <h3>Clinical trials by therapeutic area</h3>
+        <p class="about-viz-source">Data source: ClinicalTrials.gov API (live query)</p>
+        <div class="about-viz-bars" role="list" aria-live="polite"></div>
+        <div class="about-viz-meta">
+          <button type="button" class="about-viz-refresh">Refresh data</button>
+          <span class="about-viz-updated"></span>
+        </div>
       </div>
     </div>
     <div class="about-text">
@@ -260,7 +267,7 @@ layout: default
 </section>
 
 <!-- FUNDERS -->
-<section class="section" style="background: #A9BBAA; background-image: none;">
+<section class="section section-partners" style="background: #A9BBAA; background-image: none;">
   <div class="container">
     <div class="logo-strip">
       <p class="logo-strip-label" style="color:#3C5E3E;">Cooperators</p>
@@ -379,4 +386,92 @@ layout: default
   syncTimelineRail();
   window.addEventListener('resize', syncTimelineRail);
   startAutoTimeline();
+
+  // About section: interactive live pharma data snapshot
+  const pharmaViz = document.getElementById('pharma-live-viz');
+  if (pharmaViz) {
+    const barsEl = pharmaViz.querySelector('.about-viz-bars');
+    const refreshBtn = pharmaViz.querySelector('.about-viz-refresh');
+    const updatedEl = pharmaViz.querySelector('.about-viz-updated');
+
+    const areas = [
+      { label: 'Oncology', expr: 'AREA[Condition] cancer' },
+      { label: 'Cardiovascular', expr: 'AREA[Condition] heart' },
+      { label: 'Diabetes', expr: 'AREA[Condition] diabetes' },
+      { label: 'Rare Diseases', expr: 'AREA[Condition] rare disease' },
+      { label: 'Neurology', expr: 'AREA[Condition] neurological' }
+    ];
+
+    const fallbackCounts = {
+      Oncology: 18000,
+      Cardiovascular: 8600,
+      Diabetes: 7200,
+      'Rare Diseases': 6100,
+      Neurology: 9400
+    };
+
+    const fetchCount = async (expr) => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
+      try {
+        const url = `https://clinicaltrials.gov/api/query/study_fields?expr=${encodeURIComponent(expr)}&fields=NCTId&min_rnk=1&max_rnk=1&fmt=json`;
+        const response = await fetch(url, { signal: controller.signal });
+        if (!response.ok) throw new Error('Request failed');
+        const data = await response.json();
+        const n = data?.StudyFieldsResponse?.NStudiesFound;
+        return Number.isFinite(Number(n)) ? Number(n) : 0;
+      } finally {
+        clearTimeout(timeout);
+      }
+    };
+
+    const renderBars = (items) => {
+      if (!barsEl) return;
+      const max = Math.max(...items.map(item => item.count), 1);
+      barsEl.innerHTML = items.map((item) => {
+        const pct = (item.count / max) * 100;
+        return `
+          <button type="button" class="viz-bar" role="listitem" aria-label="${item.label}: ${item.count.toLocaleString()} trials">
+            <span class="viz-label">${item.label}</span>
+            <span class="viz-track"><span class="viz-fill" style="width:${pct.toFixed(2)}%"></span></span>
+            <span class="viz-value">${item.count.toLocaleString()}</span>
+          </button>
+        `;
+      }).join('');
+
+      const rows = barsEl.querySelectorAll('.viz-bar');
+      rows.forEach((row) => {
+        row.addEventListener('click', () => {
+          rows.forEach(r => r.classList.remove('is-active'));
+          row.classList.add('is-active');
+        });
+      });
+      if (rows[0]) rows[0].classList.add('is-active');
+    };
+
+    const updateLiveData = async () => {
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.textContent = 'Loading...';
+      }
+      try {
+        const counts = await Promise.all(areas.map(area => fetchCount(area.expr)));
+        const items = areas.map((area, idx) => ({ label: area.label, count: counts[idx] }));
+        renderBars(items);
+        if (updatedEl) updatedEl.textContent = `Updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      } catch (error) {
+        const items = areas.map(area => ({ label: area.label, count: fallbackCounts[area.label] || 0 }));
+        renderBars(items);
+        if (updatedEl) updatedEl.textContent = 'Live source unavailable, showing fallback snapshot';
+      } finally {
+        if (refreshBtn) {
+          refreshBtn.disabled = false;
+          refreshBtn.textContent = 'Refresh data';
+        }
+      }
+    };
+
+    if (refreshBtn) refreshBtn.addEventListener('click', updateLiveData);
+    updateLiveData();
+  }
 </script>
