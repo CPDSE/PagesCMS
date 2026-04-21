@@ -297,6 +297,9 @@ a { color: inherit; }
 .section-announcements .card-arrow {
   color: var(--accent);
 }
+.section-announcements .section-header p {
+  color: var(--accent) !important;
+}
 .section-announcements::before {
   content: '';
   position: absolute;
@@ -646,6 +649,9 @@ a { color: inherit; }
 }
 .section-circles .circle-desc {
   color: rgba(255,255,255,0.7);
+}
+.section-circles .section-header p {
+  color: var(--accent);
 }
 .section-green {
   background: var(--green);
