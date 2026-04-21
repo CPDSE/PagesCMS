@@ -190,6 +190,12 @@ a { color: inherit; }
   position: relative;
   overflow: hidden;
 }
+.hero video,
+.page-hero video,
+.hero .hero-video,
+.page-hero .hero-video {
+  background: transparent !important;
+}
 .hero::before {
   content: '';
   position: absolute;
