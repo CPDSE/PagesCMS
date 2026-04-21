@@ -64,6 +64,61 @@ layout: default
       </div>
     </div>
   </div>
+  
+  <!-- Timeline -->
+  <div class="timeline-section">
+    <h3 style="color: #3C5E3E; margin-bottom: 2rem; text-align: center;">Our Journey</h3>
+    <div class="timeline-tabs-wrapper">
+      <div class="timeline-tabs">
+        <button class="timeline-tab active" data-year="2023">2023</button>
+        <button class="timeline-tab" data-year="2024">2024</button>
+        <button class="timeline-tab" data-year="2025">2025</button>
+        <button class="timeline-tab" data-year="today">Today</button>
+      </div>
+      
+      <div class="timeline-content">
+        <div class="timeline-item active" data-year="2023">
+          <h4>Center Foundation</h4>
+          <p>CPDSE was established to bridge the gap between pharmaceutical sciences and data science education, creating the first structured pathway for students to become truly bilingual in both fields.</p>
+          <ul style="color: rgba(63, 94, 62, 0.8); margin-top: 0.75rem;">
+            <li>Initial partnerships formed</li>
+            <li>Curriculum framework developed</li>
+            <li>First cohort of students enrolled</li>
+          </ul>
+        </div>
+        
+        <div class="timeline-item" data-year="2024">
+          <h4>Expansion & Innovation</h4>
+          <p>Our center grew to 60+ members across seven university departments at two institutions, establishing data science facilities and launching comprehensive educational programs.</p>
+          <ul style="color: rgba(63, 94, 62, 0.8); margin-top: 0.75rem;">
+            <li>Data science facility established</li>
+            <li>Cross-institutional collaboration strengthened</li>
+            <li>Research initiatives launched</li>
+          </ul>
+        </div>
+        
+        <div class="timeline-item" data-year="2025">
+          <h4>Strategic Growth</h4>
+          <p>We continue to advance our mission by developing cutting-edge educational materials, fostering community engagement, and expanding our influence in pharmaceutical data science.</p>
+          <ul style="color: rgba(63, 94, 62, 0.8); margin-top: 0.75rem;">
+            <li>New workshop series launched</li>
+            <li>Industry partnerships developed</li>
+            <li>Curriculum enhancements implemented</li>
+          </ul>
+        </div>
+        
+        <div class="timeline-item" data-year="today">
+          <h4>Shaping the Future</h4>
+          <p>Today, CPDSE stands as a beacon of excellence in pharmaceutical data science education, empowering students, researchers, and professionals to unlock the power of data in drug discovery and development.</p>
+          <ul style="color: rgba(63, 94, 62, 0.8); margin-top: 0.75rem;">
+            <li>Educating the next generation</li>
+            <li>Advancing research initiatives</li>
+            <li>Building a global community</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ANNOUNCEMENTS -->
@@ -196,3 +251,20 @@ layout: default
     </p>
   </div>
 </section>
+
+<script>
+  // Timeline tab functionality
+  document.querySelectorAll('.timeline-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const year = this.dataset.year;
+      
+      // Remove active class from all tabs and items
+      document.querySelectorAll('.timeline-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.timeline-item').forEach(item => item.classList.remove('active'));
+      
+      // Add active class to clicked tab and corresponding item
+      this.classList.add('active');
+      document.querySelector(`.timeline-item[data-year="${year}"]`).classList.add('active');
+    });
+  });
+</script>
