@@ -613,7 +613,7 @@ a { color: inherit; }
   stroke: rgba(15,26,20,0.2);
   stroke-width: 1;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 .sunburst-area-dk { fill: #D6C17C; }
 .sunburst-area-global { fill: #A9BBAA; }
@@ -623,6 +623,28 @@ a { color: inherit; }
   outline: none;
 }
 .sunburst-area.is-active {
+  stroke: rgba(249,249,249,0.95);
+  stroke-width: 2;
+}
+.sunburst-spike {
+  cursor: pointer;
+  stroke-width: 1;
+  transition: opacity 0.2s ease;
+}
+.sunburst-spike-dk {
+  fill: #E4D7A1;
+  stroke: rgba(214,193,124,0.55);
+}
+.sunburst-spike-global {
+  fill: #C6D2C7;
+  stroke: rgba(169,187,170,0.55);
+}
+.sunburst-spike:hover,
+.sunburst-spike:focus-visible {
+  opacity: 0.82;
+  outline: none;
+}
+.sunburst-spike.is-active {
   stroke: rgba(249,249,249,0.95);
   stroke-width: 2;
 }

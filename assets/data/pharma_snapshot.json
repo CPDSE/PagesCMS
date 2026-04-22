@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "name": "CPDSE pharma snapshot",
+    "updated": "2026-04-22",
+    "source": "Curated fallback for About visualization"
+  },
+  "areas": [
+    { "key": "oncology", "label": "Oncology", "dk": 680, "global": 182000 },
+    { "key": "cardio", "label": "Cardiovascular", "dk": 360, "global": 108000 },
+    { "key": "diabetes", "label": "Diabetes", "dk": 320, "global": 96000 },
+    { "key": "rare", "label": "Rare Diseases", "dk": 210, "global": 74000 },
+    { "key": "neuro", "label": "Neurology", "dk": 390, "global": 124000 }
+  ],
+  "status": {
+    "oncology": {
+      "recruiting": { "dk": 210, "global": 36000 },
+      "active": { "dk": 130, "global": 22000 },
+      "completed": { "dk": 340, "global": 124000 }
+    },
+    "cardio": {
+      "recruiting": { "dk": 95, "global": 18000 },
+      "active": { "dk": 72, "global": 14000 },
+      "completed": { "dk": 193, "global": 76000 }
+    },
+    "diabetes": {
+      "recruiting": { "dk": 85, "global": 16000 },
+      "active": { "dk": 64, "global": 12000 },
+      "completed": { "dk": 171, "global": 68000 }
+    },
+    "rare": {
+      "recruiting": { "dk": 58, "global": 13000 },
+      "active": { "dk": 38, "global": 9000 },
+      "completed": { "dk": 114, "global": 52000 }
+    },
+    "neuro": {
+      "recruiting": { "dk": 110, "global": 21000 },
+      "active": { "dk": 78, "global": 16000 },
+      "completed": { "dk": 202, "global": 87000 }
+    }
+  }
+}
