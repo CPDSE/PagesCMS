@@ -674,22 +674,6 @@ a { color: inherit; }
   font-style: normal;
 }
 
-.about-viz-back-btn {
-  display: none;
-  margin: 0.4rem auto 0;
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--accent-local);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  padding: 0.35rem 0.9rem;
-  cursor: pointer;
-  letter-spacing: 0.05em;
-  transition: background 0.15s;
-}
-.about-viz-back-btn:hover { background: var(--border); }
-.about-viz-back-btn.visible { display: block; }
-
 .about-viz-hint {
   width: 100%;
   text-align: center;
@@ -715,9 +699,10 @@ a { color: inherit; }
   min-width: 120px;
 }
 .about-viz-stat-label {
-  font-size: 0.62rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
   color: var(--muted);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .about-viz-stat-value {
@@ -726,6 +711,20 @@ a { color: inherit; }
   font-weight: 600;
   color: var(--text);
 }
+
+.about-viz-source-line {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-top: 0.9rem;
+}
+.about-viz-source-line a {
+  color: var(--accent-local);
+  text-decoration: none;
+}
+.about-viz-source-line a:hover { text-decoration: underline; }
 
 .about-viz-updated {
   font-size: 0.72rem;

@@ -53,15 +53,6 @@ layout: default
     <div class="about-visual">
       <div class="about-viz" id="pharma-live-viz">
         <!-- ELECTRIC WEB ROLLBACK: previous node-link diagram replaced with sunburst -->
-        <p class="about-viz-kicker">Danish Pharma Sunburst</p>
-        <h3>DDD intensity across sectors, ATC groups, ages &amp; top products</h3>
-        <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> yearly extracts via local snapshot</p>
-        <p class="about-viz-note">Click any segment to zoom in. Click center circle or Back to zoom out.</p>
-        <div class="about-viz-years" role="tablist" aria-label="Select Medstat year">
-          <button type="button" class="about-viz-year-btn is-active" data-year="2025" role="tab" aria-selected="true">2025</button>
-          <button type="button" class="about-viz-year-btn" data-year="2024" role="tab" aria-selected="false">2024</button>
-          <button type="button" class="about-viz-year-btn" data-year="2023" role="tab" aria-selected="false">2023</button>
-        </div>
         <div class="about-viz-breadcrumb" id="medstat-breadcrumb"></div>
 
         <div class="about-viz-chart-wrap">
@@ -69,28 +60,28 @@ layout: default
                role="img" aria-label="Sunburst diagram of Danish medicine use by DDD intensity"></svg>
           <div class="about-viz-center-label" id="medstat-center-label" aria-hidden="true">
             <div class="about-viz-center-name" id="medstat-center-name">All Drug Groups</div>
-            <div class="about-viz-center-value" id="medstat-center-value">Click a segment to explore</div>
+            <div class="about-viz-center-value" id="medstat-center-value">9 subcategories</div>
           </div>
         </div>
 
-        <button type="button" class="about-viz-back-btn" id="medstat-back-btn">&larr; Back</button>
         <div class="about-viz-hint">Click any segment to zoom in · Click center to zoom out</div>
 
         <div class="about-viz-info">
           <div class="about-viz-stat-box">
-            <div class="about-viz-stat-label">Viewing</div>
-            <div class="about-viz-stat-value" id="medstat-stat-name">All</div>
+            <div class="about-viz-stat-label">VIEWING</div>
+            <div class="about-viz-stat-value" id="medstat-stat-name">All Drug Groups</div>
           </div>
           <div class="about-viz-stat-box">
-            <div class="about-viz-stat-label">Defined Daily Doses</div>
+            <div class="about-viz-stat-label">DEFINED DAILY DOSES (M)</div>
             <div class="about-viz-stat-value" id="medstat-stat-ddd">&mdash;</div>
           </div>
           <div class="about-viz-stat-box">
-            <div class="about-viz-stat-label">Share of Total</div>
+            <div class="about-viz-stat-label">SHARE OF TOTAL</div>
             <div class="about-viz-stat-value" id="medstat-stat-share">&mdash;</div>
           </div>
         </div>
 
+        <div class="about-viz-source-line">SOURCE: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">MEDSTAT.DK</a> · ATC CLASSIFICATION · 2025</div>
         <div class="about-viz-tooltip" id="medstat-tooltip" aria-live="polite"></div>
         <div class="about-viz-updated"></div>
       </div>
@@ -425,14 +416,12 @@ layout: default
   if (pharmaViz) {
     const svgEl = pharmaViz.querySelector('#medstat-svg');
     const tooltipEl = pharmaViz.querySelector('#medstat-tooltip');
-    const backBtn = pharmaViz.querySelector('#medstat-back-btn');
     const breadcrumbEl = pharmaViz.querySelector('#medstat-breadcrumb');
     const centerNameEl = pharmaViz.querySelector('#medstat-center-name');
     const centerValueEl = pharmaViz.querySelector('#medstat-center-value');
     const statNameEl = pharmaViz.querySelector('#medstat-stat-name');
     const statDddEl = pharmaViz.querySelector('#medstat-stat-ddd');
     const statShareEl = pharmaViz.querySelector('#medstat-stat-share');
-    const yearButtons = pharmaViz.querySelectorAll('.about-viz-year-btn');
     const updatedEl = pharmaViz.querySelector('.about-viz-updated');
     const snapshotUrl = '{{ "/assets/data/medstat_hierarchy_snapshot.json" | relative_url }}';
     const NS = 'http://www.w3.org/2000/svg';
@@ -608,7 +597,6 @@ layout: default
     const updateUI = (node) => {
       if (centerNameEl) centerNameEl.textContent = node.name;
       if (centerValueEl) centerValueEl.textContent = node.children?.length ? `${node.children.length} subcategories` : `${fmt(node.value)} DDD`;
-      if (backBtn) backBtn.classList.toggle('visible', ancestorStack.length > 0);
       updateBreadcrumb();
       updateStats(node);
     };
@@ -787,14 +775,6 @@ layout: default
       animateTo(prev);
     };
 
-    const updateYearButtons = () => {
-      yearButtons.forEach((btn) => {
-        const on = btn.dataset.year === activeYear;
-        btn.classList.toggle('is-active', on);
-        btn.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-    };
-
     const getYearRoot = () => {
       const root = snapshotData?.years?.[activeYear];
       if (root) return root;
@@ -813,17 +793,7 @@ layout: default
       currentRoot = yearRoot;
       ancestorStack = [];
       renderStatic(currentRoot);
-      updateYearButtons();
     };
-
-    yearButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        activeYear = btn.dataset.year || activeYear;
-        initYear();
-      });
-    });
-
-    if (backBtn) backBtn.addEventListener('click', goBack);
 
     fetch(snapshotUrl, { cache: 'no-store' })
       .then((response) => {
