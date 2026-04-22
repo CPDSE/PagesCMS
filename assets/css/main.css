@@ -899,7 +899,7 @@ a { color: inherit; }
 }
 .timeline-content {
   position: relative;
-  margin-top: 0.85rem;
+  margin-top: 0.3rem;
   width: var(--track-width, 100%);
   max-width: 100%;
   margin-left: var(--track-start, 0px);
