@@ -55,7 +55,7 @@ layout: default
         <p class="about-viz-kicker">Live Pharma Snapshot</p>
         <h3>Danish medicine use by therapeutic area</h3>
         <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> via local snapshot (fallback-safe)</p>
-        <p class="about-viz-note">Click a therapeutic area to inspect Danish status split.</p>
+        <p class="about-viz-note">Click a therapeutic area to inspect recent Danish yearly trend.</p>
         <div class="about-viz-legend" aria-hidden="true">
           <span class="viz-legend-item"><span class="viz-dot viz-dot-dk"></span>Denmark</span>
         </div>
@@ -422,6 +422,12 @@ layout: default
       { key: 'completed', label: 'Completed' }
     ];
 
+    const defaultStatusLabels = {
+      recruiting: 'Latest year',
+      active: 'Previous year',
+      completed: 'Two years ago'
+    };
+
     const snapshotUrl = '{{ "/assets/data/pharma_snapshot.json" | relative_url }}';
 
     const getSnapshotAreaItems = (snapshot) => {
@@ -434,6 +440,11 @@ layout: default
     };
 
     const getSnapshotStatusMap = (snapshot) => snapshot?.status || {};
+
+    const getStatusLabel = (statusKey) => {
+      const fromMeta = snapshotData?.meta?.status_labels?.[statusKey];
+      return fromMeta || defaultStatusLabels[statusKey] || statusKey;
+    };
 
     const statusCache = new Map();
     let latestAreaItems = [];
@@ -568,7 +579,7 @@ layout: default
     const renderStatus = (areaKey, statusItems) => {
       if (!statusEl || !detailTitleEl) return;
       const area = findAreaByKey(areaKey);
-      detailTitleEl.textContent = `Status split in Denmark: ${area.label}`;
+      detailTitleEl.textContent = `Recent yearly trend in Denmark: ${area.label}`;
       if (selectionEl) selectionEl.textContent = `Selected area: ${area.label}`;
       const max = Math.max(...statusItems.map(item => item.count), 1);
       statusEl.innerHTML = statusItems.map((item) => {
@@ -592,7 +603,7 @@ layout: default
       const statusMap = getSnapshotStatusMap(snapshotData);
       const raw = statusMap[area.key] || statusMap.oncology || {};
       const items = statuses.map((status) => ({
-        label: status.label,
+        label: getStatusLabel(status.key),
         count: Number(raw[status.key]?.count ?? raw[status.key]?.dk) || 0
       }));
       statusCache.set(area.key, items);
