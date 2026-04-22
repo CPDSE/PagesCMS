@@ -387,11 +387,24 @@ layout: default
   // ─── AUDIENCE CARD TOGGLES ─────────────────────────────────────────────────
   document.querySelectorAll('.audience-toggle').forEach((btn) => {
     const panel = btn.nextElementSibling;
+    if (!panel) return;
     btn.addEventListener('click', () => {
       const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-      panel.removeAttribute('hidden');
-      panel.classList.toggle('is-open', !isOpen);
+      if (isOpen) {
+        btn.setAttribute('aria-expanded', 'false');
+        panel.classList.remove('is-open');
+        // Hide after transition so closed panels do not keep layout space.
+        window.setTimeout(() => {
+          if (btn.getAttribute('aria-expanded') === 'false') panel.setAttribute('hidden', '');
+        }, 280);
+      } else {
+        panel.removeAttribute('hidden');
+        // Ensure the browser applies display change before animation class.
+        requestAnimationFrame(() => {
+          btn.setAttribute('aria-expanded', 'true');
+          panel.classList.add('is-open');
+        });
+      }
     });
   });
 
