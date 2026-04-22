@@ -1203,21 +1203,20 @@ a { color: inherit; }
   }
 }
 .announcement-card {
-  background: #F9F9F9;
-  border: 1px solid rgba(15,26,20,0.12);
-  border-radius: 14px;
+  background: rgba(249,249,249,0.02);
+  border: 1px dashed rgba(249,249,249,0.2);
+  border-radius: 10px;
   padding: var(--space-md);
   text-decoration: none;
-  color: var(--ink);
+  color: var(--offwhite);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.12s;
+  transition: transform 0.14s ease, border-color 0.14s ease;
 }
 .announcement-card:hover {
-  background: #F9F9F9;
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(15,26,20,0.12);
+  border-color: rgba(249,249,249,0.4);
 }
 .card-meta {
   display: flex;
@@ -1248,6 +1247,7 @@ a { color: inherit; }
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.3;
+  color: var(--offwhite);
 }
 .card-arrow {
   margin-top: auto;
@@ -1255,7 +1255,7 @@ a { color: inherit; }
   font-size: 0.72rem;
   font-weight: 500;
   text-transform: uppercase;
-  color: var(--green-mid);
+  color: var(--accent);
   letter-spacing: 0.1em;
 }
 
@@ -1404,27 +1404,12 @@ a { color: inherit; }
 }
 .audience-card {
   position: relative;
-  border: 1px solid rgba(249,249,249,0.28);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 88% 12%, rgba(214,193,124,0.22) 0%, rgba(214,193,124,0) 35%),
-    linear-gradient(160deg, rgba(249,249,249,0.14) 0%, rgba(249,249,249,0.05) 100%);
-  box-shadow: 0 14px 28px rgba(15,26,20,0.2);
-  backdrop-filter: blur(1px);
+  border: 1px dashed rgba(249,249,249,0.2);
+  border-radius: 10px;
+  background: rgba(249,249,249,0.02);
   padding: var(--space-md);
   overflow: hidden;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-}
-.audience-card::before {
-  content: '';
-  position: absolute;
-  top: -42px;
-  right: -34px;
-  width: 128px;
-  height: 128px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(214,193,124,0.42) 0%, rgba(214,193,124,0) 70%);
-  pointer-events: none;
+  transition: transform 0.22s ease, border-color 0.22s ease;
 }
 .audience-card:nth-child(2) {
   transform: translateY(10px);
@@ -1435,8 +1420,7 @@ a { color: inherit; }
 .audience-card:hover,
 .audience-card:focus-within {
   transform: translateY(-6px);
-  border-color: rgba(214,193,124,0.68);
-  box-shadow: 0 20px 34px rgba(15,26,20,0.3);
+  border-color: rgba(249,249,249,0.4);
 }
 .audience-card h3 {
   font-size: 1rem;
