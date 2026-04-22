@@ -52,19 +52,11 @@ layout: default
   <div class="about-inner fade-in">
     <div class="about-visual">
       <div class="about-viz" id="pharma-live-viz">
-        <!-- SUNBURST ROLLBACK — restore lines below to revert
+        <!-- ELECTRIC WEB ROLLBACK: previous node-link diagram replaced with sunburst -->
         <p class="about-viz-kicker">Danish Pharma Sunburst</p>
-        <h3>DDD intensity across sectors, ATC groups, ages, and top products</h3>
-        <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> yearly extracts via local snapshot</p>
-        <p class="about-viz-note">Click segments to drill down. Use center circle to move one level up.</p>
-        <div class="about-viz-sunburst-wrap" aria-live="polite">
-          <svg class="about-viz-sunburst" viewBox="0 0 420 420" role="img" aria-label="Sunburst diagram of Danish medicine use"></svg>
-        </div>
-        END SUNBURST ROLLBACK -->
-        <p class="about-viz-kicker">Danish Pharma Web</p>
         <h3>DDD intensity across sectors, ATC groups, ages &amp; top products</h3>
         <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> yearly extracts via local snapshot</p>
-        <p class="about-viz-note">Hover to explore connections. Click a node to drill in. Click Back to return.</p>
+        <p class="about-viz-note">Click a segment to drill down. Click the center circle or Reset view to move back.</p>
         <div class="about-viz-years" role="tablist" aria-label="Select Medstat year">
           <button type="button" class="about-viz-year-btn is-active" data-year="2025" role="tab" aria-selected="true">2025</button>
           <button type="button" class="about-viz-year-btn" data-year="2024" role="tab" aria-selected="false">2024</button>
@@ -75,20 +67,9 @@ layout: default
           <span class="viz-legend-item"><span class="viz-dot viz-dot-high"></span>Higher DDD intensity</span>
         </div>
         <div class="about-viz-sunburst-wrap" style="position:relative;" aria-live="polite">
-          <svg class="pharma-web-svg" viewBox="0 0 520 420" preserveAspectRatio="xMidYMid meet"
-               role="img" aria-label="Electric data web of Danish medicine use by DDD intensity">
-            <defs>
-              <filter id="web-glow-filter" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-            <g class="web-link-layer"></g>
-            <g class="web-node-layer"></g>
-            <g class="web-label-layer"></g>
-          </svg>
-          <div class="web-tooltip" aria-live="polite"></div>
-          <button type="button" class="web-back-btn" style="display:none">← Back</button>
+          <svg class="about-viz-sunburst" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet"
+               role="img" aria-label="Sunburst diagram of Danish medicine use by DDD intensity"></svg>
+          <div class="about-viz-tooltip" aria-live="polite"></div>
         </div>
         <div class="about-viz-meta">
           <button type="button" class="about-viz-refresh">Reset view</button>
@@ -324,7 +305,6 @@ layout: default
   </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
   // Timeline tab functionality
   const timelineTrack = document.querySelector('.timeline-tabs');
@@ -422,310 +402,272 @@ layout: default
   window.addEventListener('resize', syncTimelineRail);
   startAutoTimeline();
 
-  // ─── ELECTRIC DATA WEB ─────────────────────────────────────────────────────
-  // Sunburst code preserved above in HTML comment (SUNBURST ROLLBACK).
-  // ─────────────────────────────────────────────────────────────────────────────
+  // ─── ABOUT VIZ: MEDSTAT SUNBURST ───────────────────────────────────────────
   const pharmaViz = document.getElementById('pharma-live-viz');
-  if (pharmaViz && typeof gsap !== 'undefined') {
-    const svgEl      = pharmaViz.querySelector('.pharma-web-svg');
-    const linkLayer  = svgEl.querySelector('.web-link-layer');
-    const nodeLayer  = svgEl.querySelector('.web-node-layer');
-    const labelLayer = svgEl.querySelector('.web-label-layer');
-    const tooltipEl  = pharmaViz.querySelector('.web-tooltip');
-    const backBtn    = pharmaViz.querySelector('.web-back-btn');
-    const yearBtns   = pharmaViz.querySelectorAll('.about-viz-year-btn');
-    const updatedEl  = pharmaViz.querySelector('.about-viz-updated');
+  if (pharmaViz) {
+    const sunburstEl = pharmaViz.querySelector('.about-viz-sunburst');
+    const tooltipEl = pharmaViz.querySelector('.about-viz-tooltip');
+    const yearButtons = pharmaViz.querySelectorAll('.about-viz-year-btn');
     const refreshBtn = pharmaViz.querySelector('.about-viz-refresh');
-    const CX = 260, CY = 210;
+    const updatedEl = pharmaViz.querySelector('.about-viz-updated');
+    const snapshotUrl = '{{ "/assets/data/medstat_hierarchy_snapshot.json" | relative_url }}';
     const NS = 'http://www.w3.org/2000/svg';
-    const LOW = [169, 187, 170], HIGH = [214, 193, 124];
-    let snapshotData = null, activeYear = '2025';
-    let hierStack = [], curHierRoot = null;
-    let gNodes = [], gLinks = [];
-    let idleTweens = [], tickerFn = null, hovIdx = -1;
 
-    // ── Helpers ──────────────────────────────────────────────────────────────
-    function lc(a, b, t) { return Math.round(a + (b - a) * Math.max(0, Math.min(1, t))); }
-    function dddColor(t, a) {
-      t = Math.max(0, Math.min(1, t));
-      const r = lc(LOW[0], HIGH[0], t), g = lc(LOW[1], HIGH[1], t), b = lc(LOW[2], HIGH[2], t);
-      return (a !== undefined && a < 1) ? `rgba(${r},${g},${b},${a})` : `rgb(${r},${g},${b})`;
-    }
-    function sumNode(node) {
+    let snapshotData = null;
+    let activeYear = '2025';
+    let yearRoot = null;
+    let currentRoot = null;
+    let ancestorStack = [];
+    let globalTotal = 0;
+
+    const sumTree = (node) => {
       if (!node) return 0;
       const own = Number(node.value) || 0;
       if (!node.children?.length) return own;
-      const s = node.children.reduce((acc, c) => acc + sumNode(c), 0);
-      return (node.value = s > 0 ? s : own);
-    }
+      const sum = node.children.reduce((acc, child) => acc + sumTree(child), 0);
+      node.value = sum > 0 ? sum : own;
+      return node.value;
+    };
 
-    // ── Build flat graph ─────────────────────────────────────────────────────
-    function buildGraph(hierNode) {
-      const nodes = [], links = [];
-      function add(node, depth, pIdx) {
-        const idx = nodes.length;
-        nodes.push({ idx, name: node.name, value: Number(node.value) || 0,
-          depth, parentIdx: pIdx, baseX: 0, baseY: 0, angle: 0,
-          el: null, labelEl: null, r: 0, cT: 0, hierNode: node });
-        if (pIdx !== null) links.push({ source: pIdx, target: idx, el: null });
-        if (node.children?.length && depth < 4) node.children.forEach(c => add(c, depth + 1, idx));
-      }
-      add(hierNode, 0, null);
-      return { nodes, links };
-    }
+    const mixColor = (a, b, t) => {
+      const clamp = (n) => Math.max(0, Math.min(255, Math.round(n)));
+      const r = clamp(a[0] + (b[0] - a[0]) * t);
+      const g = clamp(a[1] + (b[1] - a[1]) * t);
+      const bl = clamp(a[2] + (b[2] - a[2]) * t);
+      return `rgb(${r}, ${g}, ${bl})`;
+    };
 
-    // ── Radial layout ────────────────────────────────────────────────────────
-    const RADII = [0, 100, 175, 248, 310];
-    function layoutGraph(nodes) {
-      const byD = {};
-      nodes.forEach(n => { (byD[n.depth] = byD[n.depth] || []).push(n); });
-      (byD[0] || []).forEach(n => { n.baseX = CX; n.baseY = CY; n.angle = 0; });
-      (byD[1] || []).forEach((n, i, a) => {
-        n.angle = (2 * Math.PI * i / a.length) - Math.PI / 2;
-        n.baseX = CX + RADII[1] * Math.cos(n.angle);
-        n.baseY = CY + RADII[1] * Math.sin(n.angle);
+    const colorFor = (value, min, max, depth) => {
+      const t = max === min ? 0.5 : (value - min) / Math.max(1, (max - min));
+      const depthFade = Math.max(0.65, 1 - depth * 0.08);
+      const base = mixColor([169, 187, 170], [214, 193, 124], Math.max(0, Math.min(1, t)));
+      const m = base.match(/\d+/g).map(Number);
+      return `rgb(${Math.round(m[0] * depthFade)}, ${Math.round(m[1] * depthFade)}, ${Math.round(m[2] * depthFade)})`;
+    };
+
+    const polar = (cx, cy, r, a) => ({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
+    const ringPath = (cx, cy, r1, r2, a1, a2) => {
+      const p1 = polar(cx, cy, r1, a1);
+      const p2 = polar(cx, cy, r2, a1);
+      const p3 = polar(cx, cy, r2, a2);
+      const p4 = polar(cx, cy, r1, a2);
+      const large = (a2 - a1) > Math.PI ? 1 : 0;
+      return [
+        `M ${p1.x} ${p1.y}`,
+        `A ${r1} ${r1} 0 ${large} 1 ${p4.x} ${p4.y}`,
+        `L ${p3.x} ${p3.y}`,
+        `A ${r2} ${r2} 0 ${large} 0 ${p2.x} ${p2.y}`,
+        'Z'
+      ].join(' ');
+    };
+
+    const showTooltip = (event, node, parentValue) => {
+      if (!tooltipEl) return;
+      const shareParent = parentValue > 0 ? `${((node.value / parentValue) * 100).toFixed(1)}% of parent` : 'root';
+      const shareTotal = globalTotal > 0 ? `${((node.value / globalTotal) * 100).toFixed(1)}% of total` : '0% of total';
+      tooltipEl.innerHTML = `<strong>${node.name}</strong>${Number(node.value || 0).toLocaleString()} DDD<br>${shareParent}<br>${shareTotal}`;
+      tooltipEl.style.opacity = '1';
+      tooltipEl.style.left = `${event.clientX + 14}px`;
+      tooltipEl.style.top = `${event.clientY - 10}px`;
+    };
+
+    const hideTooltip = () => {
+      if (!tooltipEl) return;
+      tooltipEl.style.opacity = '0';
+    };
+
+    const updateYearButtons = () => {
+      yearButtons.forEach((btn) => {
+        const on = btn.dataset.year === activeYear;
+        btn.classList.toggle('is-active', on);
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
       });
-      for (let d = 2; d <= 4; d++) {
-        const byP = {};
-        (byD[d] || []).forEach(n => { (byP[n.parentIdx] = byP[n.parentIdx] || []).push(n); });
-        Object.values(byP).forEach(ch => {
-          const par = nodes[ch[0].parentIdx];
-          const spread = d === 2 ? 1.0 : d === 3 ? 0.72 : 0.48;
-          ch.forEach((c, i) => {
-            const f = ch.length === 1 ? 0.5 : i / (ch.length - 1);
-            c.angle = par.angle - spread / 2 + spread * f;
-            const j = (Math.random() - 0.5) * 14;
-            c.baseX = CX + (RADII[d] + j) * Math.cos(c.angle);
-            c.baseY = CY + (RADII[d] + j) * Math.sin(c.angle);
-          });
-        });
-      }
-    }
-    const DEPTH_R = [22, 15, 10, 7, 4];
+    };
 
-    // ── Render SVG ───────────────────────────────────────────────────────────
-    function renderGraph() {
-      linkLayer.innerHTML = '';
-      nodeLayer.innerHTML = '';
-      labelLayer.innerHTML = '';
-      const vals = gNodes.filter(n => n.depth > 0).map(n => n.value);
-      const minV = Math.min(...vals, 0);
-      const span = Math.max(Math.max(...vals, 1) - minV, 1);
-      gLinks.forEach(lk => {
-        const s = gNodes[lk.source], t = gNodes[lk.target];
-        const el = document.createElementNS(NS, 'line');
-        el.style.stroke = 'rgba(169,187,170,0.2)';
-        el.style.strokeWidth = '1px';
-        el.setAttribute('x1', s.baseX); el.setAttribute('y1', s.baseY);
-        el.setAttribute('x2', t.baseX); el.setAttribute('y2', t.baseY);
-        lk.el = el;
-        linkLayer.appendChild(el);
-      });
-      gNodes.forEach(node => {
-        const t = node.depth === 0 ? 1 : (node.value - minV) / span;
-        const r = DEPTH_R[node.depth] || 4;
-        node.r = r; node.cT = t;
-        const g = document.createElementNS(NS, 'g');
-        g.setAttribute('data-idx', node.idx);
-        g.style.cursor = node.hierNode.children?.length ? 'pointer' : 'default';
-        const glow = document.createElementNS(NS, 'circle');
-        glow.setAttribute('cx', '0'); glow.setAttribute('cy', '0');
-        glow.setAttribute('r', r * 2.4);
-        glow.style.fill = dddColor(t, 0.28);
-        glow.style.opacity = '0';
-        glow.setAttribute('class', 'web-glow');
-        g.appendChild(glow);
-        const circle = document.createElementNS(NS, 'circle');
-        circle.setAttribute('cx', '0'); circle.setAttribute('cy', '0');
-        circle.setAttribute('r', r);
-        circle.style.fill = dddColor(t, node.depth === 0 ? 1 : 0.85);
-        circle.style.stroke = dddColor(t, 0.45);
-        circle.style.strokeWidth = node.depth <= 1 ? '1.5px' : '1px';
-        circle.setAttribute('class', 'web-node-main');
-        g.appendChild(circle);
-        node.el = g;
-        nodeLayer.appendChild(g);
-        gsap.set(g, { x: node.baseX, y: node.baseY });
-        if (node.depth <= 2) {
-          const lbl = document.createElementNS(NS, 'text');
-          lbl.setAttribute('x', '0'); lbl.setAttribute('y', String(-(r + 6)));
-          lbl.setAttribute('text-anchor', 'middle');
-          lbl.setAttribute('font-size', node.depth === 0 ? '10' : '8');
-          lbl.setAttribute('font-family', 'monospace');
-          lbl.style.fill = 'rgba(249,249,249,0)';
-          lbl.textContent = node.name.length > 20 ? node.name.slice(0, 18) + '\u2026' : node.name;
-          node.labelEl = lbl;
-          labelLayer.appendChild(lbl);
-          gsap.set(lbl, { x: node.baseX, y: node.baseY });
-        }
-      });
-    }
+    const updateCenterText = (svg, node) => {
+      const cx = 300;
+      const cy = 300;
+      const centerLabel = document.createElementNS(NS, 'text');
+      centerLabel.setAttribute('x', String(cx));
+      centerLabel.setAttribute('y', String(cy - 2));
+      centerLabel.setAttribute('text-anchor', 'middle');
+      centerLabel.setAttribute('class', 'sunburst-center-label');
+      centerLabel.textContent = node.name.length > 26 ? `${node.name.slice(0, 24)}...` : node.name;
+      svg.appendChild(centerLabel);
 
-    // ── Idle animation ───────────────────────────────────────────────────────
-    function startIdle() {
-      stopIdle();
-      gNodes.forEach(n => {
-        if (!n.el || n.depth === 0) return;
-        const amp = Math.max(3, 9 - n.depth * 2);
-        idleTweens.push(gsap.to(n.el, {
-          x: n.baseX + (Math.random() - 0.5) * amp * 2,
-          y: n.baseY + (Math.random() - 0.5) * amp * 2,
-          duration: 2.5 + Math.random() * 2.5,
-          ease: 'sine.inOut', repeat: -1, yoyo: true, delay: Math.random() * 2
-        }));
-      });
-    }
-    function stopIdle() { idleTweens.forEach(t => t.kill()); idleTweens = []; }
+      const centerValue = document.createElementNS(NS, 'text');
+      centerValue.setAttribute('x', String(cx));
+      centerValue.setAttribute('y', String(cy + 16));
+      centerValue.setAttribute('text-anchor', 'middle');
+      centerValue.setAttribute('class', 'sunburst-center-value');
+      centerValue.textContent = `${Number(node.value || 0).toLocaleString()} DDD`;
+      svg.appendChild(centerValue);
+    };
 
-    // ── Ticker: sync link endpoints to drifting nodes ────────────────────────
-    function startTicker() {
-      if (tickerFn) gsap.ticker.remove(tickerFn);
-      tickerFn = () => {
-        gLinks.forEach(lk => {
-          if (!lk.el) return;
-          const s = gNodes[lk.source], t = gNodes[lk.target];
-          if (!s.el || !t.el) return;
-          lk.el.setAttribute('x1', gsap.getProperty(s.el, 'x'));
-          lk.el.setAttribute('y1', gsap.getProperty(s.el, 'y'));
-          lk.el.setAttribute('x2', gsap.getProperty(t.el, 'x'));
-          lk.el.setAttribute('y2', gsap.getProperty(t.el, 'y'));
+    const renderSunburst = (rootNode) => {
+      if (!sunburstEl || !rootNode) return;
+      sunburstEl.innerHTML = '';
+
+      const W = 600;
+      const H = 600;
+      const CX = 300;
+      const CY = 300;
+      const INNER = 60;
+      const RING = 104;
+
+      const items = [];
+      const collect = (node, depth, a1, a2, parent) => {
+        if (depth > 0) items.push({ node, depth, a1, a2, parent });
+        if (!node.children?.length || depth >= 2) return;
+        const total = Math.max(node.children.reduce((acc, child) => acc + (Number(child.value) || 0), 0), 1);
+        let cursor = a1;
+        node.children.forEach((child) => {
+          const sweep = ((Number(child.value) || 0) / total) * (a2 - a1);
+          collect(child, depth + 1, cursor, cursor + sweep, node);
+          cursor += sweep;
         });
       };
-      gsap.ticker.add(tickerFn);
-    }
-    function stopTicker() { if (tickerFn) { gsap.ticker.remove(tickerFn); tickerFn = null; } }
+      collect(rootNode, 0, -Math.PI / 2, (Math.PI * 3) / 2, null);
 
-    // ── Hover ────────────────────────────────────────────────────────────────
-    function connectedTo(idx) {
-      const s = new Set([idx]);
-      gLinks.forEach(l => { if (l.source === idx) s.add(l.target); if (l.target === idx) s.add(l.source); });
-      return s;
-    }
-    function hoverOn(idx) {
-      if (hovIdx === idx) return;
-      hovIdx = idx;
-      const node = gNodes[idx];
-      if (!node) return;
-      const conn = connectedTo(idx);
-      gNodes.forEach(n => { if (n.el) gsap.to(n.el, { opacity: conn.has(n.idx) ? 1 : 0.1, duration: 0.2 }); });
-      const main = node.el.querySelector('.web-node-main');
-      const glow = node.el.querySelector('.web-glow');
-      if (main) gsap.to(main, { attr: { r: node.r * 1.55 }, duration: 0.2 });
-      if (glow) gsap.to(glow, { opacity: 1, duration: 0.25 });
-      if (node.labelEl) gsap.to(node.labelEl, { fill: 'rgba(249,249,249,0.95)', duration: 0.2 });
-      gLinks.forEach(l => {
-        if (!l.el) return;
-        const active = l.source === idx || l.target === idx;
-        l.el.style.stroke = active ? dddColor(node.cT, 0.82) : 'rgba(169,187,170,0.04)';
-        l.el.style.strokeWidth = active ? '2px' : '1px';
+      const vals = items.map((entry) => Number(entry.node.value) || 0);
+      const min = Math.min(...vals, 0);
+      const max = Math.max(...vals, 1);
+
+      items.forEach((entry) => {
+        const r1 = INNER + (entry.depth - 1) * RING;
+        const r2 = r1 + RING - 4;
+        const path = document.createElementNS(NS, 'path');
+        path.setAttribute('d', ringPath(CX, CY, r1, r2, entry.a1, entry.a2));
+        path.setAttribute('class', 'sunburst-area');
+        path.setAttribute('fill', colorFor(Number(entry.node.value) || 0, min, max, entry.depth));
+        path.setAttribute('opacity', entry.depth === 1 ? '0.92' : '0.68');
+        path.setAttribute('tabindex', '0');
+
+        const title = document.createElementNS(NS, 'title');
+        title.textContent = `${entry.node.name}: ${Number(entry.node.value || 0).toLocaleString()} DDD`;
+        path.appendChild(title);
+
+        path.addEventListener('mouseenter', (event) => {
+          path.setAttribute('opacity', '1');
+          showTooltip(event, entry.node, Number(entry.parent?.value) || Number(rootNode.value) || 0);
+        });
+        path.addEventListener('mousemove', (event) => showTooltip(event, entry.node, Number(entry.parent?.value) || Number(rootNode.value) || 0));
+        path.addEventListener('mouseleave', () => {
+          path.setAttribute('opacity', entry.depth === 1 ? '0.92' : '0.68');
+          hideTooltip();
+        });
+        path.addEventListener('click', () => {
+          if (!entry.node.children?.length) return;
+          ancestorStack.push(rootNode);
+          currentRoot = entry.node;
+          renderSunburst(currentRoot);
+        });
+        path.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+          event.preventDefault();
+          if (!entry.node.children?.length) return;
+          ancestorStack.push(rootNode);
+          currentRoot = entry.node;
+          renderSunburst(currentRoot);
+        });
+
+        sunburstEl.appendChild(path);
+
+        const sweep = entry.a2 - entry.a1;
+        if (sweep > 0.18) {
+          const labelR = r1 + (r2 - r1) * 0.5;
+          const mid = (entry.a1 + entry.a2) / 2;
+          const pos = polar(CX, CY, labelR, mid);
+          const text = document.createElementNS(NS, 'text');
+          text.setAttribute('x', String(pos.x));
+          text.setAttribute('y', String(pos.y));
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('dominant-baseline', 'middle');
+          text.setAttribute('fill', '#f9f9f9');
+          text.setAttribute('font-size', sweep > 0.5 ? '9.5' : '8');
+          text.setAttribute('font-family', 'var(--font-mono)');
+          text.setAttribute('pointer-events', 'none');
+          text.setAttribute('opacity', '0.84');
+          const short = entry.node.name.split(' ')[0];
+          text.textContent = short.length > 12 ? `${short.slice(0, 11)}...` : short;
+          sunburstEl.appendChild(text);
+        }
       });
-      const pV = node.parentIdx !== null ? (gNodes[node.parentIdx]?.value || 0) : 0;
-      const pct = pV > 0 ? `<br>${((node.value / pV) * 100).toFixed(1)}% of parent` : '';
-      tooltipEl.innerHTML = `<strong>${node.name}</strong><br>${node.value.toLocaleString()} DDD${pct}`;
-      gsap.to(tooltipEl, { opacity: 1, duration: 0.15 });
-    }
-    function hoverOff() {
-      hovIdx = -1;
-      gNodes.forEach(n => {
-        if (!n.el) return;
-        gsap.to(n.el, { opacity: 1, duration: 0.3 });
-        const main = n.el.querySelector('.web-node-main');
-        const glow = n.el.querySelector('.web-glow');
-        if (main) gsap.to(main, { attr: { r: n.r }, duration: 0.2 });
-        if (glow) gsap.to(glow, { opacity: 0, duration: 0.2 });
-        if (n.labelEl) gsap.to(n.labelEl, { fill: 'rgba(249,249,249,0)', duration: 0.2 });
+
+      const center = document.createElementNS(NS, 'circle');
+      center.setAttribute('cx', String(CX));
+      center.setAttribute('cy', String(CY));
+      center.setAttribute('r', String(INNER));
+      center.setAttribute('class', 'sunburst-root');
+      center.setAttribute('tabindex', '0');
+      center.style.cursor = ancestorStack.length ? 'pointer' : 'default';
+      center.setAttribute('aria-label', ancestorStack.length ? 'Go up one level' : 'Root level');
+      const goUp = () => {
+        if (!ancestorStack.length) return;
+        currentRoot = ancestorStack.pop();
+        renderSunburst(currentRoot);
+      };
+      center.addEventListener('click', goUp);
+      center.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        goUp();
       });
-      gLinks.forEach(l => { if (l.el) { l.el.style.stroke = 'rgba(169,187,170,0.2)'; l.el.style.strokeWidth = '1px'; } });
-      gsap.to(tooltipEl, { opacity: 0, duration: 0.15 });
-    }
+      sunburstEl.appendChild(center);
 
-    // ── Rebuild ──────────────────────────────────────────────────────────────
-    function rebuildViz(hierNode, animate) {
-      stopIdle(); stopTicker(); hoverOff();
-      const { nodes, links } = buildGraph(hierNode);
-      layoutGraph(nodes);
-      function enterAndFinish() {
-        gNodes = nodes; gLinks = links;
-        renderGraph();
-        gNodes.forEach(n => { if (n.el) gsap.from(n.el, { opacity: 0, duration: 0.5, delay: n.depth * 0.07 }); });
-        backBtn.style.display = hierStack.length ? 'inline-flex' : 'none';
-        updateYearBtns();
-        if (updatedEl) updatedEl.textContent = snapshotData?.meta?.updated ? `Snapshot: ${snapshotData.meta.updated}` : '';
-        const maxD = Math.max(...nodes.map(n => n.depth), 0);
-        gsap.delayedCall(0.5 + maxD * 0.07, () => { startIdle(); startTicker(); });
+      updateCenterText(sunburstEl, rootNode);
+      updateYearButtons();
+      if (updatedEl) {
+        const stamp = snapshotData?.meta?.updated || '';
+        updatedEl.textContent = stamp ? `Snapshot updated: ${stamp}` : '';
       }
-      if (!animate) {
-        enterAndFinish();
-      } else {
-        const oldEls = [...nodeLayer.children, ...linkLayer.children, ...labelLayer.children];
-        gsap.timeline({ onComplete: enterAndFinish })
-            .to(oldEls, { opacity: 0, duration: 0.28, stagger: 0 });
-      }
-    }
+    };
 
-    function updateYearBtns() {
-      yearBtns.forEach(b => {
-        const active = b.dataset.year === activeYear;
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-selected', active ? 'true' : 'false');
+    const getYearRoot = () => {
+      const root = snapshotData?.years?.[activeYear];
+      if (root) return root;
+      const first = Object.keys(snapshotData?.years || {})[0];
+      if (!first) return null;
+      activeYear = first;
+      return snapshotData.years[first];
+    };
+
+    const initYear = () => {
+      yearRoot = getYearRoot();
+      if (!yearRoot) return;
+      sumTree(yearRoot);
+      globalTotal = Number(yearRoot.value) || 0;
+      currentRoot = yearRoot;
+      ancestorStack = [];
+      renderSunburst(currentRoot);
+    };
+
+    yearButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeYear = btn.dataset.year || activeYear;
+        initYear();
+      });
+    });
+
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        currentRoot = yearRoot;
+        ancestorStack = [];
+        renderSunburst(currentRoot);
       });
     }
 
-    // ── Events ───────────────────────────────────────────────────────────────
-    svgEl.addEventListener('mousemove', e => {
-      tooltipEl.style.left = (e.clientX + 16) + 'px';
-      tooltipEl.style.top  = (e.clientY - 48) + 'px';
-    });
-    nodeLayer.addEventListener('mouseover', e => {
-      const g = e.target.closest('[data-idx]');
-      if (g) hoverOn(parseInt(g.dataset.idx, 10));
-    });
-    nodeLayer.addEventListener('mouseout', e => {
-      const g = e.target.closest('[data-idx]');
-      if (g && !g.contains(e.relatedTarget)) hoverOff();
-    });
-    nodeLayer.addEventListener('click', e => {
-      const g = e.target.closest('[data-idx]');
-      if (!g) return;
-      const node = gNodes[parseInt(g.dataset.idx, 10)];
-      if (!node?.hierNode?.children?.length) return;
-      hoverOff();
-      hierStack.push(curHierRoot);
-      curHierRoot = node.hierNode;
-      rebuildViz(curHierRoot, true);
-    });
-    backBtn.addEventListener('click', () => {
-      if (!hierStack.length) return;
-      curHierRoot = hierStack.pop();
-      rebuildViz(curHierRoot, true);
-    });
-    yearBtns.forEach(b => b.addEventListener('click', () => {
-      activeYear = b.dataset.year;
-      hierStack = [];
-      curHierRoot = snapshotData?.years?.[activeYear];
-      if (curHierRoot) { sumNode(curHierRoot); rebuildViz(curHierRoot, true); }
-    }));
-    if (refreshBtn) refreshBtn.addEventListener('click', () => {
-      hierStack = [];
-      curHierRoot = snapshotData?.years?.[activeYear];
-      if (curHierRoot) { sumNode(curHierRoot); rebuildViz(curHierRoot, true); }
-    });
-
-    // ── Init ─────────────────────────────────────────────────────────────────
-    (async () => {
-      try {
-        const res = await fetch('{{ "/assets/data/medstat_hierarchy_snapshot.json" | relative_url }}', { cache: 'no-store' });
-        if (!res.ok) throw new Error('fetch failed');
-        snapshotData = await res.json();
-        const years = Object.keys(snapshotData?.years || {});
-        if (!years.length) throw new Error('no data');
-        if (!years.includes(activeYear)) activeYear = years[0];
-        curHierRoot = snapshotData.years[activeYear];
-        sumNode(curHierRoot);
-        rebuildViz(curHierRoot, false);
-      } catch (err) {
-        if (updatedEl) updatedEl.textContent = 'Data unavailable';
-      }
-    })();
+    fetch(snapshotUrl, { cache: 'no-store' })
+      .then((response) => {
+        if (!response.ok) throw new Error('Snapshot fetch failed');
+        return response.json();
+      })
+      .then((data) => {
+        snapshotData = data;
+        initYear();
+      })
+      .catch(() => {
+        if (updatedEl) updatedEl.textContent = 'Hierarchy snapshot unavailable';
+      });
   }
 </script>

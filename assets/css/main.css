@@ -633,7 +633,8 @@ a { color: inherit; }
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
-  .web-tooltip {
+  .web-tooltip,
+  .about-viz-tooltip {
     position: fixed;
     background: rgba(10, 20, 12, 0.88);
     border: 1px dashed rgba(249,249,249,0.22);
@@ -650,7 +651,8 @@ a { color: inherit; }
     max-width: 220px;
     white-space: normal;
   }
-  .web-tooltip strong {
+  .web-tooltip strong,
+  .about-viz-tooltip strong {
     display: block;
     color: #D6C17C;
     margin-bottom: 0.15rem;
