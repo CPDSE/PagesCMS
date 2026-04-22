@@ -173,15 +173,30 @@ a { color: inherit; }
   align-items: center;
 }
 .nav-socials a {
-  color: rgba(249,249,249,0.45);
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(249,249,249,0.28);
+  background: rgba(249,249,249,0.05);
+  color: rgba(249,249,249,0.78);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: color 0.15s;
+  transition: color 0.15s, border-color 0.15s, background 0.15s, transform 0.15s;
 }
-.nav-socials a:hover { color: var(--accent); }
+.nav-socials a:hover,
+.nav-socials a:focus-visible {
+  color: #3C5E3E;
+  border-color: #D6C17C;
+  background: #D6C17C;
+  transform: translateY(-1px);
+}
+.nav-socials a svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
 
 .nav-hamburger {
   display: none;
