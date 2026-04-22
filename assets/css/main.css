@@ -542,6 +542,29 @@ a { color: inherit; }
   font-size: 0.76rem;
   color: rgba(249,249,249,0.7);
 }
+.about-viz-years {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.8rem;
+}
+.about-viz-year-btn {
+  border: 1px solid rgba(249,249,249,0.28);
+  background: rgba(249,249,249,0.04);
+  color: rgba(249,249,249,0.84);
+  border-radius: 999px;
+  padding: 0.28rem 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.about-viz-year-btn.is-active {
+  border-color: rgba(214,193,124,0.85);
+  background: rgba(214,193,124,0.18);
+  color: rgba(249,249,249,0.95);
+}
 .about-viz-legend {
   display: flex;
   gap: 1rem;
@@ -566,6 +589,8 @@ a { color: inherit; }
 }
 .viz-dot-dk { background: #D6C17C; }
 .viz-dot-global { background: #A9BBAA; }
+.viz-dot-low { background: #A9BBAA; }
+.viz-dot-high { background: #D6C17C; }
 .about-viz-sunburst-wrap {
   width: 100%;
   margin-bottom: 0.5rem;
@@ -582,6 +607,7 @@ a { color: inherit; }
   fill: rgba(249,249,249,0.08);
   stroke: rgba(249,249,249,0.28);
   stroke-width: 1;
+  cursor: pointer;
 }
 .sunburst-center-label {
   font-family: var(--font-mono);
@@ -626,28 +652,6 @@ a { color: inherit; }
   stroke: rgba(249,249,249,0.95);
   stroke-width: 2;
 }
-.sunburst-spike {
-  cursor: pointer;
-  stroke-width: 1;
-  transition: opacity 0.2s ease;
-}
-.sunburst-spike-dk {
-  fill: #E4D7A1;
-  stroke: rgba(214,193,124,0.55);
-}
-.sunburst-spike-global {
-  fill: #C6D2C7;
-  stroke: rgba(169,187,170,0.55);
-}
-.sunburst-spike:hover,
-.sunburst-spike:focus-visible {
-  opacity: 0.82;
-  outline: none;
-}
-.sunburst-spike.is-active {
-  stroke: rgba(249,249,249,0.95);
-  stroke-width: 2;
-}
 .about-viz-selection {
   margin-top: 0.05rem;
   margin-bottom: 0.75rem;
@@ -680,11 +684,25 @@ a { color: inherit; }
   grid-template-columns: minmax(110px, 1fr) 1.9fr;
   gap: 0.55rem;
 }
+.viz-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed rgba(249,249,249,0.18);
+}
 .viz-status-single {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 0.45rem;
+}
+.viz-empty {
+  margin: 0.2rem 0;
+  font-size: 0.73rem;
+  color: rgba(249,249,249,0.72);
 }
 .viz-status-compare {
   display: grid;

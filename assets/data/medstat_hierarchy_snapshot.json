@@ -1,0 +1,523 @@
+{
+  "meta": {
+    "name": "CPDSE Medstat hierarchy snapshot",
+    "updated": "2026-04-22",
+    "metric": "DDD intensity index",
+    "source": "Medstat.dk curated yearly hierarchy"
+  },
+  "years": {
+    "2025": {
+      "name": "All Danish pharmaceutical data",
+      "children": [
+        {
+          "name": "Primary Care",
+          "children": [
+            {
+              "name": "Cardiovascular (ATC C)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Enalapril", "value": 18 },
+                    { "name": "Propranolol", "value": 14 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Atorvastatin", "value": 210 },
+                    { "name": "Ramipril", "value": 180 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Furosemide", "value": 240 },
+                    { "name": "Simvastatin", "value": 220 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Diabetes (ATC A10)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Insulin Aspart", "value": 40 },
+                    { "name": "Insulin Detemir", "value": 28 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Metformin", "value": 195 },
+                    { "name": "Semaglutide", "value": 130 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Metformin XR", "value": 165 },
+                    { "name": "Insulin Glargine", "value": 98 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Nervous System (ATC N06/N03)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Methylphenidate", "value": 95 },
+                    { "name": "Atomoxetine", "value": 36 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Sertraline", "value": 188 },
+                    { "name": "Venlafaxine", "value": 112 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Citalopram", "value": 154 },
+                    { "name": "Pregabalin", "value": 92 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Hospital",
+          "children": [
+            {
+              "name": "Oncology (ATC L01/L02)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Methotrexate", "value": 22 },
+                    { "name": "Vincristine", "value": 15 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Pembrolizumab", "value": 145 },
+                    { "name": "Nivolumab", "value": 133 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Rituximab", "value": 118 },
+                    { "name": "Daratumumab", "value": 101 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Anti-infectives (ATC J01/J05)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Amoxicillin IV", "value": 48 },
+                    { "name": "Cefotaxime", "value": 26 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Piperacillin/Tazobactam", "value": 124 },
+                    { "name": "Meropenem", "value": 116 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Ceftriaxone", "value": 102 },
+                    { "name": "Vancomycin", "value": 84 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Analgesics/Anesthesia (ATC N02B/N01)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Paracetamol IV", "value": 62 },
+                    { "name": "Ketamine", "value": 29 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Paracetamol IV", "value": 138 },
+                    { "name": "Morphine IV", "value": 96 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Oxycodone", "value": 88 },
+                    { "name": "Bupivacaine", "value": 73 }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2024": {
+      "name": "All Danish pharmaceutical data",
+      "children": [
+        {
+          "name": "Primary Care",
+          "children": [
+            {
+              "name": "Cardiovascular (ATC C)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Enalapril", "value": 16 },
+                    { "name": "Propranolol", "value": 13 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Atorvastatin", "value": 198 },
+                    { "name": "Ramipril", "value": 171 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Furosemide", "value": 227 },
+                    { "name": "Simvastatin", "value": 210 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Diabetes (ATC A10)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Insulin Aspart", "value": 36 },
+                    { "name": "Insulin Detemir", "value": 25 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Metformin", "value": 184 },
+                    { "name": "Semaglutide", "value": 112 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Metformin XR", "value": 154 },
+                    { "name": "Insulin Glargine", "value": 90 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Nervous System (ATC N06/N03)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Methylphenidate", "value": 86 },
+                    { "name": "Atomoxetine", "value": 33 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Sertraline", "value": 173 },
+                    { "name": "Venlafaxine", "value": 103 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Citalopram", "value": 145 },
+                    { "name": "Pregabalin", "value": 86 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Hospital",
+          "children": [
+            {
+              "name": "Oncology (ATC L01/L02)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Methotrexate", "value": 20 },
+                    { "name": "Vincristine", "value": 14 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Pembrolizumab", "value": 132 },
+                    { "name": "Nivolumab", "value": 122 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Rituximab", "value": 108 },
+                    { "name": "Daratumumab", "value": 94 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Anti-infectives (ATC J01/J05)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Amoxicillin IV", "value": 44 },
+                    { "name": "Cefotaxime", "value": 24 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Piperacillin/Tazobactam", "value": 114 },
+                    { "name": "Meropenem", "value": 106 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Ceftriaxone", "value": 94 },
+                    { "name": "Vancomycin", "value": 78 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Analgesics/Anesthesia (ATC N02B/N01)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Paracetamol IV", "value": 56 },
+                    { "name": "Ketamine", "value": 26 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Paracetamol IV", "value": 126 },
+                    { "name": "Morphine IV", "value": 90 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Oxycodone", "value": 81 },
+                    { "name": "Bupivacaine", "value": 68 }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2023": {
+      "name": "All Danish pharmaceutical data",
+      "children": [
+        {
+          "name": "Primary Care",
+          "children": [
+            {
+              "name": "Cardiovascular (ATC C)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Enalapril", "value": 15 },
+                    { "name": "Propranolol", "value": 12 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Atorvastatin", "value": 186 },
+                    { "name": "Ramipril", "value": 162 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Furosemide", "value": 214 },
+                    { "name": "Simvastatin", "value": 199 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Diabetes (ATC A10)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Insulin Aspart", "value": 33 },
+                    { "name": "Insulin Detemir", "value": 23 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Metformin", "value": 173 },
+                    { "name": "Semaglutide", "value": 96 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Metformin XR", "value": 144 },
+                    { "name": "Insulin Glargine", "value": 84 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Nervous System (ATC N06/N03)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Methylphenidate", "value": 79 },
+                    { "name": "Atomoxetine", "value": 30 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Sertraline", "value": 160 },
+                    { "name": "Venlafaxine", "value": 95 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Citalopram", "value": 135 },
+                    { "name": "Pregabalin", "value": 80 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Hospital",
+          "children": [
+            {
+              "name": "Oncology (ATC L01/L02)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Methotrexate", "value": 18 },
+                    { "name": "Vincristine", "value": 13 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Pembrolizumab", "value": 120 },
+                    { "name": "Nivolumab", "value": 112 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Rituximab", "value": 99 },
+                    { "name": "Daratumumab", "value": 87 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Anti-infectives (ATC J01/J05)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Amoxicillin IV", "value": 40 },
+                    { "name": "Cefotaxime", "value": 22 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Piperacillin/Tazobactam", "value": 103 },
+                    { "name": "Meropenem", "value": 98 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Ceftriaxone", "value": 87 },
+                    { "name": "Vancomycin", "value": 72 }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Analgesics/Anesthesia (ATC N02B/N01)",
+              "children": [
+                {
+                  "name": "Age 0-17",
+                  "children": [
+                    { "name": "Paracetamol IV", "value": 52 },
+                    { "name": "Ketamine", "value": 24 }
+                  ]
+                },
+                {
+                  "name": "Age 18-64",
+                  "children": [
+                    { "name": "Paracetamol IV", "value": 117 },
+                    { "name": "Morphine IV", "value": 84 }
+                  ]
+                },
+                {
+                  "name": "Age 65+",
+                  "children": [
+                    { "name": "Oxycodone", "value": 76 },
+                    { "name": "Bupivacaine", "value": 63 }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

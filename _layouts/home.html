@@ -52,12 +52,18 @@ layout: default
   <div class="about-inner fade-in">
     <div class="about-visual">
       <div class="about-viz" id="pharma-live-viz">
-        <p class="about-viz-kicker">Live Pharma Snapshot</p>
-        <h3>Danish medicine use by therapeutic area</h3>
-        <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> via local snapshot (fallback-safe)</p>
-        <p class="about-viz-note">Click a therapeutic area to inspect recent Danish yearly trend.</p>
+        <p class="about-viz-kicker">Danish Pharma Sunburst</p>
+        <h3>DDD intensity across sectors, ATC groups, ages, and top products</h3>
+        <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> yearly extracts via local snapshot</p>
+        <p class="about-viz-note">Click segments to drill down. Use center circle to move one level up.</p>
+        <div class="about-viz-years" role="tablist" aria-label="Select Medstat year">
+          <button type="button" class="about-viz-year-btn is-active" data-year="2025" role="tab" aria-selected="true">2025</button>
+          <button type="button" class="about-viz-year-btn" data-year="2024" role="tab" aria-selected="false">2024</button>
+          <button type="button" class="about-viz-year-btn" data-year="2023" role="tab" aria-selected="false">2023</button>
+        </div>
         <div class="about-viz-legend" aria-hidden="true">
-          <span class="viz-legend-item"><span class="viz-dot viz-dot-dk"></span>Denmark</span>
+          <span class="viz-legend-item"><span class="viz-dot viz-dot-low"></span>Lower DDD intensity</span>
+          <span class="viz-legend-item"><span class="viz-dot viz-dot-high"></span>Higher DDD intensity</span>
         </div>
         <div class="about-viz-sunburst-wrap" aria-live="polite">
           <svg class="about-viz-sunburst" viewBox="0 0 420 420" role="img" aria-label="Sunburst diagram of Danish medicine use"></svg>
@@ -68,7 +74,7 @@ layout: default
           <div class="about-viz-status" role="list" aria-live="polite"></div>
         </div>
         <div class="about-viz-meta">
-          <button type="button" class="about-viz-refresh">Refresh data</button>
+          <button type="button" class="about-viz-refresh">Reset view</button>
           <span class="about-viz-updated"></span>
         </div>
       </div>
@@ -86,25 +92,30 @@ layout: default
   </div>
 </section>
 
-<!-- COMMUNITY -->
-<section class="section section-circles section-community">
+<!-- ANNOUNCEMENTS -->
+<section class="section section-alt section-announcements" style="background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);">
   <div class="container">
-    <div class="community-layout fade-in">
-      <div class="community-text">
-        <div class="section-header" style="margin-bottom:var(--space-md);">
-          <span class="section-label">Community</span>
-          <h2>A center built by people, not just programs</h2>
-          <p>CPDSE is a cross-institutional community of students, researchers, educators, data scientists, pharmacists and collaborators working together to strengthen pharmaceutical data science education.</p>
-        </div>
-        <p class="community-copy">We grow through shared projects, workshops, retreats, teaching development and everyday collaboration across UCPH and SDU. What makes the center valuable is not only the formal structure, but the people in it: a community that exchanges ideas, builds capacity and helps each other move from plans to practice.</p>
-        <div class="community-ctas">
-          <a href="{{ '/who-are-we/' | relative_url }}" class="btn btn-primary">Meet the team</a>
-          <a href="{{ site.socials.linkedin }}" target="_blank" rel="noopener" class="btn btn-ghost">Follow us</a>
-        </div>
+    <div class="section-header fade-in" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <span class="section-label">Latest</span>
+        <h2>Announcements &amp; Events</h2>
       </div>
-      <div class="community-visual">
-        <img src="{{ '/assets/team.jpg' | relative_url }}" alt="CPDSE community group photo" class="community-img">
-      </div>
+      <a href="{{ '/announcements/' | relative_url }}" class="btn btn-ghost" style="border-color:var(--offwhite); color:var(--offwhite);">View all →</a>
+    </div>
+
+    <div class="announcements-grid fade-in-stagger">
+      {% assign posts = site.posts | slice: 0, 3 %}
+      {% for post in posts %}
+      <a class="announcement-card" href="{{ post.url | relative_url }}">
+        <div class="card-meta">
+          {% if post.category %}<span class="card-tag">{{ post.category }}</span>{% endif %}
+          <span class="card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        </div>
+        <h3>{{ post.title }}</h3>
+        {% if post.excerpt %}<p style="font-size:0.88rem; color:var(--muted); line-height:1.55;">{{ post.excerpt | strip_html | truncate: 100 }}</p>{% endif %}
+        <span class="card-arrow">Read more →</span>
+      </a>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -167,30 +178,25 @@ layout: default
   </div>
 </section>
 
-<!-- ANNOUNCEMENTS -->
-<section class="section section-alt section-announcements" style="background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);">
+<!-- COMMUNITY -->
+<section class="section section-circles section-community">
   <div class="container">
-    <div class="section-header fade-in" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
-      <div>
-        <span class="section-label">Latest</span>
-        <h2>Announcements &amp; Events</h2>
-      </div>
-      <a href="{{ '/announcements/' | relative_url }}" class="btn btn-ghost" style="border-color:var(--offwhite); color:var(--offwhite);">View all →</a>
-    </div>
-
-    <div class="announcements-grid fade-in-stagger">
-      {% assign posts = site.posts | slice: 0, 3 %}
-      {% for post in posts %}
-      <a class="announcement-card" href="{{ post.url | relative_url }}">
-        <div class="card-meta">
-          {% if post.category %}<span class="card-tag">{{ post.category }}</span>{% endif %}
-          <span class="card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+    <div class="community-layout fade-in">
+      <div class="community-text">
+        <div class="section-header" style="margin-bottom:var(--space-md);">
+          <span class="section-label">Community</span>
+          <h2>A center built by people, not just programs</h2>
+          <p>CPDSE is a cross-institutional community of students, researchers, educators, data scientists, pharmacists and collaborators working together to strengthen pharmaceutical data science education.</p>
         </div>
-        <h3>{{ post.title }}</h3>
-        {% if post.excerpt %}<p style="font-size:0.88rem; color:var(--muted); line-height:1.55;">{{ post.excerpt | strip_html | truncate: 100 }}</p>{% endif %}
-        <span class="card-arrow">Read more →</span>
-      </a>
-      {% endfor %}
+        <p class="community-copy">We grow through shared projects, workshops, retreats, teaching development and everyday collaboration across UCPH and SDU. What makes the center valuable is not only the formal structure, but the people in it: a community that exchanges ideas, builds capacity and helps each other move from plans to practice.</p>
+        <div class="community-ctas">
+          <a href="{{ '/who-are-we/' | relative_url }}" class="btn btn-primary">Meet the team</a>
+          <a href="{{ site.socials.linkedin }}" target="_blank" rel="noopener" class="btn btn-ghost">Follow us</a>
+        </div>
+      </div>
+      <div class="community-visual">
+        <img src="{{ '/assets/team.jpg' | relative_url }}" alt="CPDSE community group photo" class="community-img">
+      </div>
     </div>
   </div>
 </section>
@@ -402,54 +408,18 @@ layout: default
   const pharmaViz = document.getElementById('pharma-live-viz');
   if (pharmaViz) {
     const sunburstEl = pharmaViz.querySelector('.about-viz-sunburst');
+    const yearButtons = pharmaViz.querySelectorAll('.about-viz-year-btn');
     const selectionEl = pharmaViz.querySelector('.about-viz-selection');
     const statusEl = pharmaViz.querySelector('.about-viz-status');
     const detailTitleEl = pharmaViz.querySelector('.about-viz-detail-title');
     const refreshBtn = pharmaViz.querySelector('.about-viz-refresh');
     const updatedEl = pharmaViz.querySelector('.about-viz-updated');
 
-    const areas = [
-      { key: 'oncology', label: 'Oncology' },
-      { key: 'cardio', label: 'Cardiovascular' },
-      { key: 'diabetes', label: 'Diabetes' },
-      { key: 'rare', label: 'Rare Diseases' },
-      { key: 'neuro', label: 'Neurology' }
-    ];
-
-    const statuses = [
-      { key: 'recruiting', label: 'Recruiting' },
-      { key: 'active', label: 'Active, not recruiting' },
-      { key: 'completed', label: 'Completed' }
-    ];
-
-    const defaultStatusLabels = {
-      recruiting: 'Latest year',
-      active: 'Previous year',
-      completed: 'Two years ago'
-    };
-
-    const snapshotUrl = '{{ "/assets/data/pharma_snapshot.json" | relative_url }}';
-
-    const getSnapshotAreaItems = (snapshot) => {
-      if (!snapshot?.areas) return [];
-      return snapshot.areas.map((area) => ({
-        key: area.key,
-        label: area.label,
-        value: Number(area.value ?? area.dk) || 0
-      }));
-    };
-
-    const getSnapshotStatusMap = (snapshot) => snapshot?.status || {};
-
-    const getStatusLabel = (statusKey) => {
-      const fromMeta = snapshotData?.meta?.status_labels?.[statusKey];
-      return fromMeta || defaultStatusLabels[statusKey] || statusKey;
-    };
-
-    const statusCache = new Map();
-    let latestAreaItems = [];
+    const snapshotUrl = '{{ "/assets/data/medstat_hierarchy_snapshot.json" | relative_url }}';
     let snapshotData = null;
-    let activeAreaKey = areas[0].key;
+    let activeYear = '2025';
+    let currentRootPath = [];
+    let selectedPath = [];
 
     const fetchSnapshotData = async () => {
       const response = await fetch(snapshotUrl, { cache: 'no-store' });
@@ -457,7 +427,81 @@ layout: default
       return response.json();
     };
 
-    const findAreaByKey = (key) => areas.find(area => area.key === key) || areas[0];
+    const getNodeValue = (node) => {
+      if (!node) return 0;
+      const own = Number(node.value) || 0;
+      if (!Array.isArray(node.children) || !node.children.length) return own;
+      const childSum = node.children.reduce((acc, child) => acc + getNodeValue(child), 0);
+      const finalValue = childSum > 0 ? childSum : own;
+      node.value = finalValue;
+      return finalValue;
+    };
+
+    const normalizeTree = (rootNode) => {
+      if (!rootNode) return null;
+      getNodeValue(rootNode);
+      return rootNode;
+    };
+
+    const getYearRoot = (year) => {
+      const root = snapshotData?.years?.[year];
+      if (root) return root;
+      const first = Object.keys(snapshotData?.years || {})[0];
+      if (!first) return null;
+      activeYear = first;
+      return snapshotData.years[first];
+    };
+
+    const getNodeByPath = (rootNode, path) => {
+      let node = rootNode;
+      for (const idx of path) {
+        if (!node?.children || !node.children[idx]) return null;
+        node = node.children[idx];
+      }
+      return node;
+    };
+
+    const pathToString = (path) => path.join('.');
+    const stringToPath = (value) => {
+      if (!value) return [];
+      return value.split('.').map((entry) => Number(entry)).filter((entry) => Number.isInteger(entry));
+    };
+
+    const hexToRgb = (hex) => {
+      const clean = hex.replace('#', '');
+      const expanded = clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean;
+      const int = Number.parseInt(expanded, 16);
+      return {
+        r: (int >> 16) & 255,
+        g: (int >> 8) & 255,
+        b: int & 255
+      };
+    };
+
+    const rgbToHex = ({ r, g, b }) => {
+      const clamp = (n) => Math.max(0, Math.min(255, Math.round(n)));
+      const toHex = (n) => clamp(n).toString(16).padStart(2, '0');
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    };
+
+    const mixColor = (a, b, t) => {
+      const colorA = hexToRgb(a);
+      const colorB = hexToRgb(b);
+      return rgbToHex({
+        r: colorA.r + (colorB.r - colorA.r) * t,
+        g: colorA.g + (colorB.g - colorA.g) * t,
+        b: colorA.b + (colorB.b - colorA.b) * t
+      });
+    };
+
+    const intensityColor = (value, min, max, depth) => {
+      const span = Math.max(max - min, 1);
+      const t = (value - min) / span;
+      const base = mixColor('#A9BBAA', '#D6C17C', t);
+      const depthTint = 1 - Math.min((depth - 1) * 0.08, 0.26);
+      const rgb = hexToRgb(base);
+      return rgbToHex({ r: rgb.r * depthTint, g: rgb.g * depthTint, b: rgb.b * depthTint });
+    };
 
     const polarToCartesian = (cx, cy, r, angle) => ({
       x: cx + r * Math.cos(angle),
@@ -479,32 +523,45 @@ layout: default
       ].join(' ');
     };
 
-    const spikePath = (cx, cy, baseR, tipR, start, end) => {
-      const span = end - start;
-      const shoulder = Math.min(span * 0.22, 0.15);
-      const mid = start + span / 2;
-      const left = mid - shoulder;
-      const right = mid + shoulder;
-      const leftPoint = polarToCartesian(cx, cy, baseR, left);
-      const rightPoint = polarToCartesian(cx, cy, baseR, right);
-      const tipPoint = polarToCartesian(cx, cy, tipR, mid);
-      return `M ${leftPoint.x.toFixed(3)} ${leftPoint.y.toFixed(3)} L ${tipPoint.x.toFixed(3)} ${tipPoint.y.toFixed(3)} L ${rightPoint.x.toFixed(3)} ${rightPoint.y.toFixed(3)} Z`;
-    };
-
-    const renderSunburst = (items) => {
+    const renderSunburst = (rootNode) => {
       if (!sunburstEl) return;
+      const viewRoot = getNodeByPath(rootNode, currentRootPath) || rootNode;
+      const segments = [];
 
-      latestAreaItems = items;
+      const traverse = (node, startAngle, endAngle, depth, absPath) => {
+        if (!Array.isArray(node.children) || !node.children.length) return;
+        const total = Math.max(node.children.reduce((acc, child) => acc + (Number(child.value) || 0), 0), 1);
+        let cursor = startAngle;
+        node.children.forEach((child, index) => {
+          const childValue = Number(child.value) || 0;
+          const span = (childValue / total) * (endAngle - startAngle);
+          const childStart = cursor;
+          const childEnd = cursor + span;
+          const childPath = [...absPath, index];
+          segments.push({
+            node: child,
+            depth,
+            start: childStart,
+            end: childEnd,
+            path: childPath
+          });
+          traverse(child, childStart, childEnd, depth + 1, childPath);
+          cursor = childEnd;
+        });
+      };
+
+      traverse(viewRoot, -Math.PI / 2, (Math.PI * 3) / 2, 1, currentRootPath);
+      const values = segments.map((entry) => Number(entry.node.value) || 0);
+      const minValue = Math.min(...values, 0);
+      const maxValue = Math.max(...values, 1);
+
       const cx = 210;
       const cy = 210;
-      const rootR = 42;
-      const innerR0 = 56;
-      const innerR1 = 124;
-      const outerR0 = 132;
-      const outerR1 = 186;
-
-      const total = Math.max(items.reduce((acc, item) => acc + item.value, 0), 1);
-      const maxSingle = Math.max(...items.map((item) => item.value), 1);
+      const rootR = 56;
+      const ringStart = 72;
+      const ringWidth = 30;
+      const ringGap = 4;
+      const total = Number(viewRoot?.value) || 0;
 
       const ns = 'http://www.w3.org/2000/svg';
       sunburstEl.innerHTML = '';
@@ -514,6 +571,9 @@ layout: default
       root.setAttribute('cy', String(cy));
       root.setAttribute('r', String(rootR));
       root.setAttribute('class', 'sunburst-root');
+      root.setAttribute('tabindex', '0');
+      root.setAttribute('role', 'button');
+      root.setAttribute('aria-label', currentRootPath.length ? 'Go up one level' : 'Root level');
       sunburstEl.appendChild(root);
 
       const centerText = document.createElementNS(ns, 'text');
@@ -521,7 +581,7 @@ layout: default
       centerText.setAttribute('y', String(cy - 4));
       centerText.setAttribute('text-anchor', 'middle');
       centerText.setAttribute('class', 'sunburst-center-label');
-      centerText.textContent = 'DK Pharma';
+      centerText.textContent = activeYear;
       sunburstEl.appendChild(centerText);
 
       const centerSub = document.createElementNS(ns, 'text');
@@ -532,97 +592,115 @@ layout: default
       centerSub.textContent = total.toLocaleString();
       sunburstEl.appendChild(centerSub);
 
-      const countryPath = document.createElementNS(ns, 'path');
-      countryPath.setAttribute('d', ringSlicePath(cx, cy, innerR0, innerR1, -Math.PI / 2, (Math.PI * 3) / 2));
-      countryPath.setAttribute('class', 'sunburst-country sunburst-country-dk');
-      countryPath.setAttribute('aria-hidden', 'true');
-      sunburstEl.appendChild(countryPath);
-
-      let areaStart = -Math.PI / 2;
-      items.forEach((item) => {
-        const value = item.value;
-        const areaSpan = (value / total) * Math.PI * 2;
-        const areaEnd = areaStart + areaSpan;
-        const valueRatio = value / maxSingle;
-        const areaOuterR = outerR1 + valueRatio * 10;
-        const spikeTipR = areaOuterR + 10 + valueRatio * 28;
-
+      segments.forEach((segment) => {
+        const innerR = ringStart + (segment.depth - 1) * (ringWidth + ringGap);
+        const outerR = innerR + ringWidth;
         const areaPath = document.createElementNS(ns, 'path');
-        areaPath.setAttribute('d', ringSlicePath(cx, cy, outerR0, areaOuterR, areaStart, areaEnd));
-        areaPath.setAttribute('class', `sunburst-area sunburst-area-dk${item.key === activeAreaKey ? ' is-active' : ''}`);
-        areaPath.setAttribute('data-area-key', item.key);
+        areaPath.setAttribute('d', ringSlicePath(cx, cy, innerR, outerR, segment.start, segment.end));
+        areaPath.setAttribute('class', `sunburst-area${pathToString(segment.path) === pathToString(selectedPath) ? ' is-active' : ''}`);
+        areaPath.setAttribute('data-path', pathToString(segment.path));
         areaPath.setAttribute('tabindex', '0');
         areaPath.setAttribute('role', 'button');
-        areaPath.setAttribute('aria-label', `${item.label}: ${value.toLocaleString()} in Danish medicine use`);
+        areaPath.setAttribute('style', `fill:${intensityColor(segment.node.value, minValue, maxValue, segment.depth)};`);
+        areaPath.setAttribute('aria-label', `${segment.node.name}: ${Number(segment.node.value || 0).toLocaleString()} DDD intensity`);
 
         const title = document.createElementNS(ns, 'title');
-        title.textContent = `${item.label}: ${value.toLocaleString()} (Denmark)`;
+        title.textContent = `${segment.node.name}: ${Number(segment.node.value || 0).toLocaleString()} DDD intensity`;
         areaPath.appendChild(title);
         sunburstEl.appendChild(areaPath);
-
-        const spike = document.createElementNS(ns, 'path');
-        spike.setAttribute('d', spikePath(cx, cy, areaOuterR - 1, spikeTipR, areaStart, areaEnd));
-        spike.setAttribute('class', `sunburst-spike sunburst-spike-dk${item.key === activeAreaKey ? ' is-active' : ''}`);
-        spike.setAttribute('data-area-key', item.key);
-        spike.setAttribute('tabindex', '0');
-        spike.setAttribute('role', 'button');
-        spike.setAttribute('aria-label', `${item.label} spike: ${value.toLocaleString()} in Danish medicine use`);
-        const spikeTitle = document.createElementNS(ns, 'title');
-        spikeTitle.textContent = `${item.label} spike (Denmark)`;
-        spike.appendChild(spikeTitle);
-        sunburstEl.appendChild(spike);
-
-        areaStart = areaEnd;
       });
     };
 
-    const renderStatus = (areaKey, statusItems) => {
+    const renderDetails = (rootNode) => {
       if (!statusEl || !detailTitleEl) return;
-      const area = findAreaByKey(areaKey);
-      detailTitleEl.textContent = `Recent yearly trend in Denmark: ${area.label}`;
-      if (selectionEl) selectionEl.textContent = `Selected area: ${area.label}`;
-      const max = Math.max(...statusItems.map(item => item.count), 1);
-      statusEl.innerHTML = statusItems.map((item) => {
-        const pct = (item.count / max) * 100;
+      const selectedNode = getNodeByPath(rootNode, selectedPath) || getNodeByPath(rootNode, currentRootPath) || rootNode;
+      detailTitleEl.textContent = `${selectedNode.name} (${activeYear})`;
+
+      const crumbs = [rootNode.name];
+      let walkNode = rootNode;
+      for (const idx of selectedPath) {
+        if (!walkNode?.children || !walkNode.children[idx]) break;
+        walkNode = walkNode.children[idx];
+        crumbs.push(walkNode.name);
+      }
+      if (selectionEl) selectionEl.textContent = crumbs.join(' / ');
+
+      const topChildren = Array.isArray(selectedNode.children)
+        ? [...selectedNode.children].sort((a, b) => (b.value || 0) - (a.value || 0)).slice(0, 6)
+        : [];
+
+      const max = Math.max(...topChildren.map((item) => Number(item.value) || 0), 1);
+      const rows = topChildren.map((item) => {
+        const val = Number(item.value) || 0;
+        const pct = (val / max) * 100;
         return `
-          <div class="viz-status-row" role="listitem" aria-label="${item.label}: ${item.count.toLocaleString()}">
-            <span class="viz-status-label">${item.label}</span>
-            <span class="viz-status-single"><span class="viz-status-track"><span class="viz-status-fill viz-status-fill-dk" style="width:${pct.toFixed(2)}%"></span></span><span class="viz-status-value">${item.count.toLocaleString()}</span></span>
+          <div class="viz-status-row" role="listitem" aria-label="${item.name}: ${val.toLocaleString()} DDD intensity">
+            <span class="viz-status-label">${item.name}</span>
+            <span class="viz-status-single"><span class="viz-status-track"><span class="viz-status-fill viz-status-fill-dk" style="width:${pct.toFixed(2)}%"></span></span><span class="viz-status-value">${val.toLocaleString()}</span></span>
           </div>
         `;
       }).join('');
+
+      const summary = `
+        <div class="viz-meta-row" role="listitem">
+          <span class="viz-status-label">DDD intensity</span>
+          <span class="viz-status-value">${Number(selectedNode.value || 0).toLocaleString()}</span>
+        </div>
+      `;
+
+      statusEl.innerHTML = `${summary}${rows || '<p class="viz-empty">No deeper nodes at this level.</p>'}`;
     };
 
-    const loadStatusForArea = async (areaKey, forceRefresh = false) => {
-      const area = findAreaByKey(areaKey);
-      if (!forceRefresh && statusCache.has(area.key)) {
-        renderStatus(area.key, statusCache.get(area.key));
-        return;
-      }
+    const renderYearButtons = () => {
+      yearButtons.forEach((btn) => {
+        const isActive = btn.dataset.year === activeYear;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    };
 
-      const statusMap = getSnapshotStatusMap(snapshotData);
-      const raw = statusMap[area.key] || statusMap.oncology || {};
-      const items = statuses.map((status) => ({
-        label: getStatusLabel(status.key),
-        count: Number(raw[status.key]?.count ?? raw[status.key]?.dk) || 0
-      }));
-      statusCache.set(area.key, items);
-      renderStatus(area.key, items);
+    const renderAll = () => {
+      const root = getYearRoot(activeYear);
+      if (!root) return;
+      const rootNode = normalizeTree(root);
+
+      if (!getNodeByPath(rootNode, currentRootPath)) currentRootPath = [];
+      if (!getNodeByPath(rootNode, selectedPath)) selectedPath = currentRootPath;
+
+      renderYearButtons();
+      renderSunburst(rootNode);
+      renderDetails(rootNode);
+      if (updatedEl) {
+        const stamp = snapshotData?.meta?.updated || '';
+        updatedEl.textContent = `Snapshot updated: ${stamp}`;
+      }
     };
 
     const handleSunburstSelect = (target) => {
-      const nextKey = target?.dataset?.areaKey;
-      if (!nextKey) return;
-      activeAreaKey = nextKey;
-      if (latestAreaItems.length) renderSunburst(latestAreaItems);
-      loadStatusForArea(nextKey);
+      const path = stringToPath(target?.dataset?.path || '');
+      if (!path.length) return;
+      const root = getYearRoot(activeYear);
+      const node = getNodeByPath(root, path);
+      selectedPath = path;
+      if (node?.children?.length) {
+        currentRootPath = path;
+      }
+      renderAll();
     };
 
     if (sunburstEl) {
       sunburstEl.addEventListener('click', (event) => {
         const target = event.target;
         if (!(target instanceof Element)) return;
-        if (!target.classList.contains('sunburst-area') && !target.classList.contains('sunburst-spike')) return;
+        if (target.classList.contains('sunburst-root')) {
+          if (currentRootPath.length) {
+            currentRootPath = currentRootPath.slice(0, -1);
+            selectedPath = currentRootPath;
+            renderAll();
+          }
+          return;
+        }
+        if (!target.classList.contains('sunburst-area')) return;
         handleSunburstSelect(target);
       });
 
@@ -630,43 +708,52 @@ layout: default
         if (event.key !== 'Enter' && event.key !== ' ') return;
         const target = event.target;
         if (!(target instanceof Element)) return;
-        if (!target.classList.contains('sunburst-area') && !target.classList.contains('sunburst-spike')) return;
+        if (target.classList.contains('sunburst-root')) {
+          event.preventDefault();
+          if (currentRootPath.length) {
+            currentRootPath = currentRootPath.slice(0, -1);
+            selectedPath = currentRootPath;
+            renderAll();
+          }
+          return;
+        }
+        if (!target.classList.contains('sunburst-area')) return;
         event.preventDefault();
         handleSunburstSelect(target);
       });
     }
 
-    const updateLiveData = async () => {
-      if (refreshBtn) {
-        refreshBtn.disabled = true;
-        refreshBtn.textContent = 'Loading...';
-      }
+    const updateSnapshot = async () => {
       try {
         snapshotData = await fetchSnapshotData();
-        const items = getSnapshotAreaItems(snapshotData);
-        if (!items.length) throw new Error('Snapshot has no data');
-        renderSunburst(items);
-        statusCache.clear();
-        await loadStatusForArea(activeAreaKey, true);
-        if (updatedEl) {
-          const stamp = snapshotData?.meta?.updated || new Date().toLocaleDateString();
-          updatedEl.textContent = `Snapshot updated: ${stamp} (Medstat Denmark)`;
-        }
+        const availableYears = Object.keys(snapshotData?.years || {});
+        if (!availableYears.length) throw new Error('No year datasets available');
+        if (!availableYears.includes(activeYear)) activeYear = availableYears[0];
+        currentRootPath = [];
+        selectedPath = [];
+        renderAll();
       } catch (error) {
-        const items = areas.map((area) => ({ key: area.key, label: area.label, value: 0 }));
-        renderSunburst(items);
-        statusCache.clear();
-        await loadStatusForArea(activeAreaKey, true);
-        if (updatedEl) updatedEl.textContent = 'Snapshot unavailable';
-      } finally {
-        if (refreshBtn) {
-          refreshBtn.disabled = false;
-          refreshBtn.textContent = 'Refresh data';
-        }
+        if (updatedEl) updatedEl.textContent = 'Hierarchy snapshot unavailable';
       }
     };
 
-    if (refreshBtn) refreshBtn.addEventListener('click', updateLiveData);
-    updateLiveData();
+    yearButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeYear = btn.dataset.year || activeYear;
+        currentRootPath = [];
+        selectedPath = [];
+        renderAll();
+      });
+    });
+
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        currentRootPath = [];
+        selectedPath = [];
+        renderAll();
+      });
+    }
+
+    updateSnapshot();
   }
 </script>
