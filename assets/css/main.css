@@ -680,6 +680,12 @@ a { color: inherit; }
   grid-template-columns: minmax(110px, 1fr) 1.9fr;
   gap: 0.55rem;
 }
+.viz-status-single {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.45rem;
+}
 .viz-status-compare {
   display: grid;
   gap: 0.35rem;

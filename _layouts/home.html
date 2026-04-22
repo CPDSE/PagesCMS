@@ -53,15 +53,14 @@ layout: default
     <div class="about-visual">
       <div class="about-viz" id="pharma-live-viz">
         <p class="about-viz-kicker">Live Pharma Snapshot</p>
-        <h3>Denmark vs Global clinical trials by therapeutic area</h3>
-        <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> (Danish primary), <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> (temporary fallback), local snapshot (offline fallback)</p>
-        <p class="about-viz-note">Click a therapeutic area to inspect status split comparison (Denmark vs Global).</p>
+        <h3>Danish medicine use by therapeutic area</h3>
+        <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> via local snapshot (fallback-safe)</p>
+        <p class="about-viz-note">Click a therapeutic area to inspect Danish status split.</p>
         <div class="about-viz-legend" aria-hidden="true">
           <span class="viz-legend-item"><span class="viz-dot viz-dot-dk"></span>Denmark</span>
-          <span class="viz-legend-item"><span class="viz-dot viz-dot-global"></span>Global</span>
         </div>
         <div class="about-viz-sunburst-wrap" aria-live="polite">
-          <svg class="about-viz-sunburst" viewBox="0 0 420 420" role="img" aria-label="Sunburst diagram comparing Denmark and Global clinical trial distribution"></svg>
+          <svg class="about-viz-sunburst" viewBox="0 0 420 420" role="img" aria-label="Sunburst diagram of Danish medicine use"></svg>
         </div>
         <p class="about-viz-selection"></p>
         <div class="about-viz-detail">
@@ -410,37 +409,27 @@ layout: default
     const updatedEl = pharmaViz.querySelector('.about-viz-updated');
 
     const areas = [
-      { key: 'oncology', label: 'Oncology', dkTerm: 'denmark cancer clinical trial', globalTerm: 'cancer clinical trial', medstatPrefixes: ['L01', 'L02'] },
-      { key: 'cardio', label: 'Cardiovascular', dkTerm: 'denmark cardiovascular clinical trial', globalTerm: 'cardiovascular clinical trial', medstatPrefixes: ['C'] },
-      { key: 'diabetes', label: 'Diabetes', dkTerm: 'denmark diabetes clinical trial', globalTerm: 'diabetes clinical trial', medstatPrefixes: ['A10'] },
-      { key: 'rare', label: 'Rare Diseases', dkTerm: 'denmark rare disease clinical trial', globalTerm: 'rare disease clinical trial', medstatPrefixes: ['A16'] },
-      { key: 'neuro', label: 'Neurology', dkTerm: 'denmark neurology clinical trial', globalTerm: 'neurology clinical trial', medstatPrefixes: ['N'] }
+      { key: 'oncology', label: 'Oncology' },
+      { key: 'cardio', label: 'Cardiovascular' },
+      { key: 'diabetes', label: 'Diabetes' },
+      { key: 'rare', label: 'Rare Diseases' },
+      { key: 'neuro', label: 'Neurology' }
     ];
 
     const statuses = [
-      { key: 'recruiting', label: 'Recruiting', term: 'recruiting' },
-      { key: 'active', label: 'Active, not recruiting', term: 'active not recruiting' },
-      { key: 'completed', label: 'Completed', term: 'completed' }
+      { key: 'recruiting', label: 'Recruiting' },
+      { key: 'active', label: 'Active, not recruiting' },
+      { key: 'completed', label: 'Completed' }
     ];
 
     const snapshotUrl = '{{ "/assets/data/pharma_snapshot.json" | relative_url }}';
-    const MEDSTAT_BASE = 'https://www.medstat.dk/da/download/file/';
-
-    const encodeBase64 = (value) => {
-      try {
-        return btoa(value);
-      } catch (error) {
-        return '';
-      }
-    };
 
     const getSnapshotAreaItems = (snapshot) => {
       if (!snapshot?.areas) return [];
       return snapshot.areas.map((area) => ({
         key: area.key,
         label: area.label,
-        dk: Number(area.dk) || 0,
-        global: Number(area.global) || 0
+        value: Number(area.value ?? area.dk) || 0
       }));
     };
 
@@ -448,109 +437,13 @@ layout: default
 
     const statusCache = new Map();
     let latestAreaItems = [];
-    let statusMode = 'clinical';
     let snapshotData = null;
     let activeAreaKey = areas[0].key;
-
-    const fetchCount = async (term) => {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 8000);
-      try {
-        const url = `https://clinicaltrials.gov/api/v2/studies?query.term=${encodeURIComponent(term)}&pageSize=1&countTotal=true`;
-        const response = await fetch(url, { signal: controller.signal });
-        if (!response.ok) throw new Error('Request failed');
-        const data = await response.json();
-        const n = data?.totalCount;
-        return Number.isFinite(Number(n)) ? Number(n) : 0;
-      } finally {
-        clearTimeout(timeout);
-      }
-    };
 
     const fetchSnapshotData = async () => {
       const response = await fetch(snapshotUrl, { cache: 'no-store' });
       if (!response.ok) throw new Error('Snapshot fetch failed');
       return response.json();
-    };
-
-    const extractNumericMeasure = (parts) => {
-      const numbers = parts
-        .slice(2)
-        .map((value) => Number.parseFloat(String(value).replace(',', '.')))
-        .filter((value) => Number.isFinite(value) && value > 0);
-      if (!numbers.length) return 0;
-      return Math.max(...numbers);
-    };
-
-    const getMedstatUrlForYear = (year) => {
-      const token = encodeBase64(`${year}_atc_code_data.txt`);
-      if (!token) return '';
-      return `${MEDSTAT_BASE}${token}`;
-    };
-
-    const matchesPrefix = (code, prefix) => {
-      if (!code || !prefix) return false;
-      if (!code.startsWith(prefix)) return false;
-      if (prefix.length === 1) return code.length === 1;
-      return code === prefix;
-    };
-
-    const fetchMedstatAreaItems = async (snapshot) => {
-      const years = [new Date().getFullYear(), new Date().getFullYear() - 1, new Date().getFullYear() - 2];
-      let text = '';
-      let usedYear = null;
-
-      for (const year of years) {
-        const url = getMedstatUrlForYear(year);
-        if (!url) continue;
-        try {
-          const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 15000);
-          const response = await fetch(url, {
-            signal: controller.signal,
-            headers: { Accept: 'text/plain,*/*' }
-          });
-          clearTimeout(timeout);
-          if (!response.ok) continue;
-          text = await response.text();
-          usedYear = year;
-          if (text.length > 1000) break;
-        } catch (error) {
-          // Try the next year when Medstat has not yet published the latest file.
-        }
-      }
-
-      if (!text || !usedYear) throw new Error('No Medstat year file available');
-
-      const accum = new Map();
-      areas.forEach((area) => accum.set(area.key, 0));
-
-      const lines = text.split(/\r?\n/);
-      for (const line of lines) {
-        if (!line || line.indexOf(';') === -1) continue;
-        const parts = line.split(';');
-        if (parts.length < 4) continue;
-        const code = (parts[0] || '').trim().toUpperCase();
-        const year = Number(parts[1]);
-        if (!code || year !== usedYear) continue;
-        const measure = extractNumericMeasure(parts);
-        if (measure <= 0) continue;
-        areas.forEach((area) => {
-          const hit = (area.medstatPrefixes || []).some((prefix) => matchesPrefix(code, prefix));
-          if (!hit) return;
-          accum.set(area.key, (accum.get(area.key) || 0) + measure);
-        });
-      }
-
-      const snapshotAreas = getSnapshotAreaItems(snapshot);
-      const snapshotByKey = new Map(snapshotAreas.map((area) => [area.key, area]));
-
-      return areas.map((area) => ({
-        key: area.key,
-        label: area.label,
-        dk: Math.round(accum.get(area.key) || 0),
-        global: Math.round(snapshotByKey.get(area.key)?.global || 0)
-      }));
     };
 
     const findAreaByKey = (key) => areas.find(area => area.key === key) || areas[0];
@@ -599,10 +492,8 @@ layout: default
       const outerR0 = 132;
       const outerR1 = 186;
 
-      const dkTotal = items.reduce((acc, item) => acc + item.dk, 0);
-      const globalTotal = items.reduce((acc, item) => acc + item.global, 0);
-      const total = Math.max(dkTotal + globalTotal, 1);
-      const maxSingle = Math.max(...items.flatMap((item) => [item.dk, item.global]), 1);
+      const total = Math.max(items.reduce((acc, item) => acc + item.value, 0), 1);
+      const maxSingle = Math.max(...items.map((item) => item.value), 1);
 
       const ns = 'http://www.w3.org/2000/svg';
       sunburstEl.innerHTML = '';
@@ -619,7 +510,7 @@ layout: default
       centerText.setAttribute('y', String(cy - 4));
       centerText.setAttribute('text-anchor', 'middle');
       centerText.setAttribute('class', 'sunburst-center-label');
-      centerText.textContent = 'Trials';
+      centerText.textContent = 'DK Pharma';
       sunburstEl.appendChild(centerText);
 
       const centerSub = document.createElementNS(ns, 'text');
@@ -630,92 +521,62 @@ layout: default
       centerSub.textContent = total.toLocaleString();
       sunburstEl.appendChild(centerSub);
 
-      const countries = [
-        { key: 'dk', label: 'Denmark', value: dkTotal },
-        { key: 'global', label: 'Global', value: globalTotal }
-      ];
+      const countryPath = document.createElementNS(ns, 'path');
+      countryPath.setAttribute('d', ringSlicePath(cx, cy, innerR0, innerR1, -Math.PI / 2, (Math.PI * 3) / 2));
+      countryPath.setAttribute('class', 'sunburst-country sunburst-country-dk');
+      countryPath.setAttribute('aria-hidden', 'true');
+      sunburstEl.appendChild(countryPath);
 
-      let countryStart = -Math.PI / 2;
-      countries.forEach((country) => {
-        const span = (country.value / total) * Math.PI * 2;
-        const countryEnd = countryStart + span;
+      let areaStart = -Math.PI / 2;
+      items.forEach((item) => {
+        const value = item.value;
+        const areaSpan = (value / total) * Math.PI * 2;
+        const areaEnd = areaStart + areaSpan;
+        const valueRatio = value / maxSingle;
+        const areaOuterR = outerR1 + valueRatio * 10;
+        const spikeTipR = areaOuterR + 10 + valueRatio * 28;
 
-        const countryPath = document.createElementNS(ns, 'path');
-        countryPath.setAttribute('d', ringSlicePath(cx, cy, innerR0, innerR1, countryStart, countryEnd));
-        countryPath.setAttribute('class', `sunburst-country sunburst-country-${country.key}`);
-        countryPath.setAttribute('aria-hidden', 'true');
-        sunburstEl.appendChild(countryPath);
+        const areaPath = document.createElementNS(ns, 'path');
+        areaPath.setAttribute('d', ringSlicePath(cx, cy, outerR0, areaOuterR, areaStart, areaEnd));
+        areaPath.setAttribute('class', `sunburst-area sunburst-area-dk${item.key === activeAreaKey ? ' is-active' : ''}`);
+        areaPath.setAttribute('data-area-key', item.key);
+        areaPath.setAttribute('tabindex', '0');
+        areaPath.setAttribute('role', 'button');
+        areaPath.setAttribute('aria-label', `${item.label}: ${value.toLocaleString()} in Danish medicine use`);
 
-        const mid = countryStart + span / 2;
-        const labelPoint = polarToCartesian(cx, cy, (innerR0 + innerR1) / 2, mid);
-        const countryLabel = document.createElementNS(ns, 'text');
-        countryLabel.setAttribute('x', labelPoint.x.toFixed(2));
-        countryLabel.setAttribute('y', labelPoint.y.toFixed(2));
-        countryLabel.setAttribute('text-anchor', 'middle');
-        countryLabel.setAttribute('class', 'sunburst-country-label');
-        countryLabel.textContent = country.label;
-        sunburstEl.appendChild(countryLabel);
+        const title = document.createElementNS(ns, 'title');
+        title.textContent = `${item.label}: ${value.toLocaleString()} (Denmark)`;
+        areaPath.appendChild(title);
+        sunburstEl.appendChild(areaPath);
 
-        let areaStart = countryStart;
-        const areaTotal = Math.max(country.value, 1);
-        items.forEach((item) => {
-          const value = country.key === 'dk' ? item.dk : item.global;
-          const areaSpan = (value / areaTotal) * span;
-          const areaEnd = areaStart + areaSpan;
-          const valueRatio = value / maxSingle;
-          const areaOuterR = outerR1 + valueRatio * 10;
-          const spikeTipR = areaOuterR + 10 + valueRatio * 28;
-          const areaPath = document.createElementNS(ns, 'path');
-          areaPath.setAttribute('d', ringSlicePath(cx, cy, outerR0, areaOuterR, areaStart, areaEnd));
-          areaPath.setAttribute('class', `sunburst-area sunburst-area-${country.key}${item.key === activeAreaKey ? ' is-active' : ''}`);
-          areaPath.setAttribute('data-area-key', item.key);
-          areaPath.setAttribute('data-country', country.key);
-          areaPath.setAttribute('tabindex', '0');
-          areaPath.setAttribute('role', 'button');
-          areaPath.setAttribute('aria-label', `${item.label} in ${country.label}: ${value.toLocaleString()} trials`);
+        const spike = document.createElementNS(ns, 'path');
+        spike.setAttribute('d', spikePath(cx, cy, areaOuterR - 1, spikeTipR, areaStart, areaEnd));
+        spike.setAttribute('class', `sunburst-spike sunburst-spike-dk${item.key === activeAreaKey ? ' is-active' : ''}`);
+        spike.setAttribute('data-area-key', item.key);
+        spike.setAttribute('tabindex', '0');
+        spike.setAttribute('role', 'button');
+        spike.setAttribute('aria-label', `${item.label} spike: ${value.toLocaleString()} in Danish medicine use`);
+        const spikeTitle = document.createElementNS(ns, 'title');
+        spikeTitle.textContent = `${item.label} spike (Denmark)`;
+        spike.appendChild(spikeTitle);
+        sunburstEl.appendChild(spike);
 
-          const title = document.createElementNS(ns, 'title');
-          title.textContent = `${item.label} (${country.label}): ${value.toLocaleString()} trials`;
-          areaPath.appendChild(title);
-
-          sunburstEl.appendChild(areaPath);
-
-          const spike = document.createElementNS(ns, 'path');
-          spike.setAttribute('d', spikePath(cx, cy, areaOuterR - 1, spikeTipR, areaStart, areaEnd));
-          spike.setAttribute('class', `sunburst-spike sunburst-spike-${country.key}${item.key === activeAreaKey ? ' is-active' : ''}`);
-          spike.setAttribute('data-area-key', item.key);
-          spike.setAttribute('data-country', country.key);
-          spike.setAttribute('tabindex', '0');
-          spike.setAttribute('role', 'button');
-          spike.setAttribute('aria-label', `${item.label} spike in ${country.label}: ${value.toLocaleString()} trials`);
-          const spikeTitle = document.createElementNS(ns, 'title');
-          spikeTitle.textContent = `${item.label} (${country.label}) spike`;
-          spike.appendChild(spikeTitle);
-          sunburstEl.appendChild(spike);
-
-          areaStart = areaEnd;
-        });
-
-        countryStart = countryEnd;
+        areaStart = areaEnd;
       });
     };
 
     const renderStatus = (areaKey, statusItems) => {
       if (!statusEl || !detailTitleEl) return;
       const area = findAreaByKey(areaKey);
-      detailTitleEl.textContent = `Status comparison: ${area.label}`;
+      detailTitleEl.textContent = `Status split in Denmark: ${area.label}`;
       if (selectionEl) selectionEl.textContent = `Selected area: ${area.label}`;
-      const max = Math.max(...statusItems.flatMap(item => [item.dk, item.global]), 1);
+      const max = Math.max(...statusItems.map(item => item.count), 1);
       statusEl.innerHTML = statusItems.map((item) => {
-        const pctDk = (item.dk / max) * 100;
-        const pctGlobal = (item.global / max) * 100;
+        const pct = (item.count / max) * 100;
         return `
-          <div class="viz-status-row" role="listitem" aria-label="${item.label}: Denmark ${item.dk.toLocaleString()}, Global ${item.global.toLocaleString()} trials">
+          <div class="viz-status-row" role="listitem" aria-label="${item.label}: ${item.count.toLocaleString()}">
             <span class="viz-status-label">${item.label}</span>
-            <div class="viz-status-compare">
-              <span class="viz-status-line"><span class="viz-mini-label">DK</span><span class="viz-status-track"><span class="viz-status-fill viz-status-fill-dk" style="width:${pctDk.toFixed(2)}%"></span></span><span class="viz-status-value">${item.dk.toLocaleString()}</span></span>
-              <span class="viz-status-line"><span class="viz-mini-label">Global</span><span class="viz-status-track"><span class="viz-status-fill viz-status-fill-global" style="width:${pctGlobal.toFixed(2)}%"></span></span><span class="viz-status-value">${item.global.toLocaleString()}</span></span>
-            </div>
+            <span class="viz-status-single"><span class="viz-status-track"><span class="viz-status-fill viz-status-fill-dk" style="width:${pct.toFixed(2)}%"></span></span><span class="viz-status-value">${item.count.toLocaleString()}</span></span>
           </div>
         `;
       }).join('');
@@ -728,40 +589,14 @@ layout: default
         return;
       }
 
-      if (statusMode === 'snapshot') {
-        const statusMap = getSnapshotStatusMap(snapshotData);
-        const raw = statusMap[area.key] || {};
-        const items = statuses.map((status) => ({
-          label: status.label,
-          dk: Number(raw[status.key]?.dk) || 0,
-          global: Number(raw[status.key]?.global) || 0
-        }));
-        statusCache.set(area.key, items);
-        renderStatus(area.key, items);
-        return;
-      }
-
-      try {
-        const items = await Promise.all(statuses.map(async (status) => {
-          const [dk, global] = await Promise.all([
-            fetchCount(`${area.dkTerm} ${status.term}`),
-            fetchCount(`${area.globalTerm} ${status.term}`)
-          ]);
-          return { label: status.label, dk, global };
-        }));
-        statusCache.set(area.key, items);
-        renderStatus(area.key, items);
-      } catch (error) {
-        const statusMap = getSnapshotStatusMap(snapshotData);
-        const fallback = statusMap[area.key] || statusMap.oncology || {};
-        const items = statuses.map((status) => ({
-          label: status.label,
-          dk: Number(fallback[status.key]?.dk) || 0,
-          global: Number(fallback[status.key]?.global) || 0
-        }));
-        statusCache.set(area.key, items);
-        renderStatus(area.key, items);
-      }
+      const statusMap = getSnapshotStatusMap(snapshotData);
+      const raw = statusMap[area.key] || statusMap.oncology || {};
+      const items = statuses.map((status) => ({
+        label: status.label,
+        count: Number(raw[status.key]?.count ?? raw[status.key]?.dk) || 0
+      }));
+      statusCache.set(area.key, items);
+      renderStatus(area.key, items);
     };
 
     const handleSunburstSelect = (target) => {
@@ -797,52 +632,21 @@ layout: default
       }
       try {
         snapshotData = await fetchSnapshotData();
-      } catch (error) {
-        snapshotData = null;
-      }
-
-      try {
-        if (!snapshotData) throw new Error('Snapshot unavailable');
-        const medstatItems = await fetchMedstatAreaItems(snapshotData);
-        const hasDanishValues = medstatItems.some((item) => item.dk > 0);
-        if (!hasDanishValues) throw new Error('Medstat had no values');
-
-        statusMode = 'snapshot';
-        renderSunburst(medstatItems);
-        statusCache.clear();
-        await loadStatusForArea(activeAreaKey, true);
-        if (updatedEl) {
-          const stamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-          updatedEl.textContent = `Updated: ${stamp} (Medstat DK + snapshot backup)`;
-        }
-        return;
-      } catch (error) {
-        // Continue to temporary ClinicalTrials fallback.
-      }
-
-      try {
-        const items = await Promise.all(areas.map(async (area) => {
-          const [dk, global] = await Promise.all([
-            fetchCount(area.dkTerm),
-            fetchCount(area.globalTerm)
-          ]);
-          return { key: area.key, label: area.label, dk, global };
-        }));
-        statusMode = 'clinical';
+        const items = getSnapshotAreaItems(snapshotData);
+        if (!items.length) throw new Error('Snapshot has no data');
         renderSunburst(items);
         statusCache.clear();
         await loadStatusForArea(activeAreaKey, true);
         if (updatedEl) {
-          updatedEl.textContent = `Updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (ClinicalTrials fallback)`;
+          const stamp = snapshotData?.meta?.updated || new Date().toLocaleDateString();
+          updatedEl.textContent = `Snapshot updated: ${stamp} (Medstat Denmark)`;
         }
       } catch (error) {
-        const snapshotItems = getSnapshotAreaItems(snapshotData);
-        const items = snapshotItems.length ? snapshotItems : areas.map((area) => ({ key: area.key, label: area.label, dk: 0, global: 0 }));
-        statusMode = 'snapshot';
+        const items = areas.map((area) => ({ key: area.key, label: area.label, value: 0 }));
         renderSunburst(items);
         statusCache.clear();
         await loadStatusForArea(activeAreaKey, true);
-        if (updatedEl) updatedEl.textContent = 'Live sources unavailable, showing local pharma snapshot';
+        if (updatedEl) updatedEl.textContent = 'Snapshot unavailable';
       } finally {
         if (refreshBtn) {
           refreshBtn.disabled = false;

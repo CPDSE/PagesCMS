@@ -2,40 +2,40 @@
   "meta": {
     "name": "CPDSE pharma snapshot",
     "updated": "2026-04-22",
-    "source": "Curated fallback for About visualization"
+    "source": "Medstat.dk curated Danish fallback for About visualization"
   },
   "areas": [
-    { "key": "oncology", "label": "Oncology", "dk": 680, "global": 182000 },
-    { "key": "cardio", "label": "Cardiovascular", "dk": 360, "global": 108000 },
-    { "key": "diabetes", "label": "Diabetes", "dk": 320, "global": 96000 },
-    { "key": "rare", "label": "Rare Diseases", "dk": 210, "global": 74000 },
-    { "key": "neuro", "label": "Neurology", "dk": 390, "global": 124000 }
+    { "key": "oncology", "label": "Oncology", "value": 680 },
+    { "key": "cardio", "label": "Cardiovascular", "value": 360 },
+    { "key": "diabetes", "label": "Diabetes", "value": 320 },
+    { "key": "rare", "label": "Rare Diseases", "value": 210 },
+    { "key": "neuro", "label": "Neurology", "value": 390 }
   ],
   "status": {
     "oncology": {
-      "recruiting": { "dk": 210, "global": 36000 },
-      "active": { "dk": 130, "global": 22000 },
-      "completed": { "dk": 340, "global": 124000 }
+      "recruiting": { "count": 210 },
+      "active": { "count": 130 },
+      "completed": { "count": 340 }
     },
     "cardio": {
-      "recruiting": { "dk": 95, "global": 18000 },
-      "active": { "dk": 72, "global": 14000 },
-      "completed": { "dk": 193, "global": 76000 }
+      "recruiting": { "count": 95 },
+      "active": { "count": 72 },
+      "completed": { "count": 193 }
     },
     "diabetes": {
-      "recruiting": { "dk": 85, "global": 16000 },
-      "active": { "dk": 64, "global": 12000 },
-      "completed": { "dk": 171, "global": 68000 }
+      "recruiting": { "count": 85 },
+      "active": { "count": 64 },
+      "completed": { "count": 171 }
     },
     "rare": {
-      "recruiting": { "dk": 58, "global": 13000 },
-      "active": { "dk": 38, "global": 9000 },
-      "completed": { "dk": 114, "global": 52000 }
+      "recruiting": { "count": 58 },
+      "active": { "count": 38 },
+      "completed": { "count": 114 }
     },
     "neuro": {
-      "recruiting": { "dk": 110, "global": 21000 },
-      "active": { "dk": 78, "global": 16000 },
-      "completed": { "dk": 202, "global": 87000 }
+      "recruiting": { "count": 110 },
+      "active": { "count": 78 },
+      "completed": { "count": 202 }
     }
   }
 }
