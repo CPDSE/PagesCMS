@@ -7,7 +7,7 @@
   },
   "years": {
     "2025": {
-      "name": "All Danish pharmaceutical data",
+      "name": "All Data",
       "children": [
         {
           "name": "Primary Care",
@@ -178,7 +178,7 @@
       ]
     },
     "2024": {
-      "name": "All Danish pharmaceutical data",
+      "name": "All Data",
       "children": [
         {
           "name": "Primary Care",
@@ -349,7 +349,7 @@
       ]
     },
     "2023": {
-      "name": "All Danish pharmaceutical data",
+      "name": "All Data",
       "children": [
         {
           "name": "Primary Care",

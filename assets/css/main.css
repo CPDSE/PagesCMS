@@ -285,14 +285,13 @@ a { color: inherit; }
 .section-announcements .announcement-card {
   background: #3C5E3E;
   color: var(--offwhite);
-  border: 1px dashed rgba(249,249,249,0.2);
+  border: none;
   box-shadow: none;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 .section-announcements .announcement-card:hover {
   background: #3C5E3E;
-  border-color: rgba(249,249,249,0.4);
 }
 .section-announcements .card-meta {
   color: rgba(249,249,249,0.74);
@@ -589,7 +588,7 @@ a { color: inherit; }
 }
 .about-viz-breadcrumb span {
   cursor: pointer;
-  color: var(--accent-local);
+  color: #D6C17C;
   transition: opacity 0.15s;
 }
 .about-viz-breadcrumb span:hover { opacity: 0.7; }
