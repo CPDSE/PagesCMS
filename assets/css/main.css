@@ -1397,6 +1397,60 @@ a { color: inherit; }
   line-height: 1.6;
 }
 
+.audience-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  color: #D6C17C;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.15s;
+}
+.audience-toggle:hover { opacity: 0.75; }
+.audience-toggle-icon {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+.audience-toggle[aria-expanded="true"] .audience-toggle-icon {
+  transform: rotate(45deg);
+}
+.audience-offers {
+  margin-top: 0.75rem;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.audience-offers.is-open {
+  max-height: 200px;
+  opacity: 1;
+}
+.audience-offers ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.audience-offers li {
+  font-size: 0.82rem;
+  color: rgba(249,249,249,0.8);
+  line-height: 1.6;
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  position: relative;
+}
+.audience-offers li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: #D6C17C;
+}
+
 /* ─── LOGO STRIPS ─────────────────────────────────────────── */
 .logo-strip {
   padding: var(--space-md) 0;
