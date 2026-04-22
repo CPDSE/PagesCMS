@@ -90,11 +90,6 @@ layout: default
           <div class="web-tooltip" aria-live="polite"></div>
           <button type="button" class="web-back-btn" style="display:none">← Back</button>
         </div>
-        <p class="about-viz-selection"></p>
-        <div class="about-viz-detail">
-          <p class="about-viz-detail-title"></p>
-          <div class="about-viz-status" role="list" aria-live="polite"></div>
-        </div>
         <div class="about-viz-meta">
           <button type="button" class="about-viz-refresh">Reset view</button>
           <span class="about-viz-updated"></span>
@@ -439,8 +434,6 @@ layout: default
     const tooltipEl  = pharmaViz.querySelector('.web-tooltip');
     const backBtn    = pharmaViz.querySelector('.web-back-btn');
     const yearBtns   = pharmaViz.querySelectorAll('.about-viz-year-btn');
-    const statusEl   = pharmaViz.querySelector('.about-viz-status');
-    const detailTitleEl = pharmaViz.querySelector('.about-viz-detail-title');
     const updatedEl  = pharmaViz.querySelector('.about-viz-updated');
     const refreshBtn = pharmaViz.querySelector('.about-viz-refresh');
     const CX = 260, CY = 210;
@@ -657,7 +650,6 @@ layout: default
         gNodes.forEach(n => { if (n.el) gsap.from(n.el, { opacity: 0, duration: 0.5, delay: n.depth * 0.07 }); });
         backBtn.style.display = hierStack.length ? 'inline-flex' : 'none';
         updateYearBtns();
-        renderDetailPanel(hierNode);
         if (updatedEl) updatedEl.textContent = snapshotData?.meta?.updated ? `Snapshot: ${snapshotData.meta.updated}` : '';
         const maxD = Math.max(...nodes.map(n => n.depth), 0);
         gsap.delayedCall(0.5 + maxD * 0.07, () => { startIdle(); startTicker(); });
@@ -671,20 +663,6 @@ layout: default
       }
     }
 
-    // ── Detail panel ─────────────────────────────────────────────────────────
-    function renderDetailPanel(hierNode) {
-      if (!detailTitleEl || !statusEl) return;
-      detailTitleEl.textContent = `${hierNode.name} (${activeYear})`;
-      const top = [...(hierNode.children || [])].sort((a, b) => (b.value || 0) - (a.value || 0)).slice(0, 6);
-      const maxV = Math.max(...top.map(c => c.value || 0), 1);
-      statusEl.innerHTML = `
-        <div class="viz-meta-row" role="listitem"><span class="viz-status-label">DDD total</span><span class="viz-status-value">${(hierNode.value || 0).toLocaleString()}</span></div>
-        ${top.map(c => {
-          const pct = ((c.value || 0) / maxV * 100).toFixed(1);
-          return `<div class="viz-status-row" role="listitem"><span class="viz-status-label">${c.name}</span><span class="viz-status-single"><span class="viz-status-track"><span class="viz-status-fill viz-status-fill-dk" style="width:${pct}%"></span></span><span class="viz-status-value">${(c.value || 0).toLocaleString()}</span></span></div>`;
-        }).join('') || '<p class="viz-empty">No sub-categories.</p>'}
-      `;
-    }
     function updateYearBtns() {
       yearBtns.forEach(b => {
         const active = b.dataset.year === activeYear;
