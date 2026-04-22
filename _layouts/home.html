@@ -56,25 +56,43 @@ layout: default
         <p class="about-viz-kicker">Danish Pharma Sunburst</p>
         <h3>DDD intensity across sectors, ATC groups, ages &amp; top products</h3>
         <p class="about-viz-source">Data source: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">Medstat.dk</a> yearly extracts via local snapshot</p>
-        <p class="about-viz-note">Click a segment to drill down. Click the center circle or Reset view to move back.</p>
+        <p class="about-viz-note">Click any segment to zoom in. Click center circle or Back to zoom out.</p>
         <div class="about-viz-years" role="tablist" aria-label="Select Medstat year">
           <button type="button" class="about-viz-year-btn is-active" data-year="2025" role="tab" aria-selected="true">2025</button>
           <button type="button" class="about-viz-year-btn" data-year="2024" role="tab" aria-selected="false">2024</button>
           <button type="button" class="about-viz-year-btn" data-year="2023" role="tab" aria-selected="false">2023</button>
         </div>
-        <div class="about-viz-legend" aria-hidden="true">
-          <span class="viz-legend-item"><span class="viz-dot viz-dot-low"></span>Lower DDD intensity</span>
-          <span class="viz-legend-item"><span class="viz-dot viz-dot-high"></span>Higher DDD intensity</span>
-        </div>
-        <div class="about-viz-sunburst-wrap" style="position:relative;" aria-live="polite">
-          <svg class="about-viz-sunburst" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet"
+        <div class="about-viz-breadcrumb" id="medstat-breadcrumb"></div>
+
+        <div class="about-viz-chart-wrap">
+          <svg class="about-viz-sunburst" id="medstat-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet"
                role="img" aria-label="Sunburst diagram of Danish medicine use by DDD intensity"></svg>
-          <div class="about-viz-tooltip" aria-live="polite"></div>
+          <div class="about-viz-center-label" id="medstat-center-label" aria-hidden="true">
+            <div class="about-viz-center-name" id="medstat-center-name">All Drug Groups</div>
+            <div class="about-viz-center-value" id="medstat-center-value">Click a segment to explore</div>
+          </div>
         </div>
-        <div class="about-viz-meta">
-          <button type="button" class="about-viz-refresh">Reset view</button>
-          <span class="about-viz-updated"></span>
+
+        <button type="button" class="about-viz-back-btn" id="medstat-back-btn">&larr; Back</button>
+        <div class="about-viz-hint">Click any segment to zoom in · Click center to zoom out</div>
+
+        <div class="about-viz-info">
+          <div class="about-viz-stat-box">
+            <div class="about-viz-stat-label">Viewing</div>
+            <div class="about-viz-stat-value" id="medstat-stat-name">All</div>
+          </div>
+          <div class="about-viz-stat-box">
+            <div class="about-viz-stat-label">Defined Daily Doses</div>
+            <div class="about-viz-stat-value" id="medstat-stat-ddd">&mdash;</div>
+          </div>
+          <div class="about-viz-stat-box">
+            <div class="about-viz-stat-label">Share of Total</div>
+            <div class="about-viz-stat-value" id="medstat-stat-share">&mdash;</div>
+          </div>
         </div>
+
+        <div class="about-viz-tooltip" id="medstat-tooltip" aria-live="polite"></div>
+        <div class="about-viz-updated"></div>
       </div>
     </div>
     <div class="about-text">
@@ -405,13 +423,27 @@ layout: default
   // ─── ABOUT VIZ: MEDSTAT SUNBURST ───────────────────────────────────────────
   const pharmaViz = document.getElementById('pharma-live-viz');
   if (pharmaViz) {
-    const sunburstEl = pharmaViz.querySelector('.about-viz-sunburst');
-    const tooltipEl = pharmaViz.querySelector('.about-viz-tooltip');
+    const svgEl = pharmaViz.querySelector('#medstat-svg');
+    const tooltipEl = pharmaViz.querySelector('#medstat-tooltip');
+    const backBtn = pharmaViz.querySelector('#medstat-back-btn');
+    const breadcrumbEl = pharmaViz.querySelector('#medstat-breadcrumb');
+    const centerNameEl = pharmaViz.querySelector('#medstat-center-name');
+    const centerValueEl = pharmaViz.querySelector('#medstat-center-value');
+    const statNameEl = pharmaViz.querySelector('#medstat-stat-name');
+    const statDddEl = pharmaViz.querySelector('#medstat-stat-ddd');
+    const statShareEl = pharmaViz.querySelector('#medstat-stat-share');
     const yearButtons = pharmaViz.querySelectorAll('.about-viz-year-btn');
-    const refreshBtn = pharmaViz.querySelector('.about-viz-refresh');
     const updatedEl = pharmaViz.querySelector('.about-viz-updated');
     const snapshotUrl = '{{ "/assets/data/medstat_hierarchy_snapshot.json" | relative_url }}';
     const NS = 'http://www.w3.org/2000/svg';
+    const W = 600;
+    const H = 600;
+    const CX = 300;
+    const CY = 300;
+    const GAP_INNER = 48;
+    const RING_W = 105;
+    const DURATION = 480;
+    const PALETTE = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f', '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac'];
 
     let snapshotData = null;
     let activeYear = '2025';
@@ -419,6 +451,7 @@ layout: default
     let currentRoot = null;
     let ancestorStack = [];
     let globalTotal = 0;
+    let animating = false;
 
     const sumTree = (node) => {
       if (!node) return 0;
@@ -429,51 +462,329 @@ layout: default
       return node.value;
     };
 
-    const mixColor = (a, b, t) => {
-      const clamp = (n) => Math.max(0, Math.min(255, Math.round(n)));
-      const r = clamp(a[0] + (b[0] - a[0]) * t);
-      const g = clamp(a[1] + (b[1] - a[1]) * t);
-      const bl = clamp(a[2] + (b[2] - a[2]) * t);
-      return `rgb(${r}, ${g}, ${bl})`;
+    const assignColors = (root) => {
+      if (!root?.children?.length) return;
+      root.children.forEach((child, index) => {
+        child.color = PALETTE[index % PALETTE.length];
+      });
+
+      const walk = (node, inheritedColor) => {
+        const color = node.color || inheritedColor || PALETTE[9];
+        node.color = color;
+        if (!node.children?.length) return;
+        node.children.forEach((child) => walk(child, color));
+      };
+
+      root.children.forEach((child) => walk(child, child.color));
     };
 
-    const colorFor = (value, min, max, depth) => {
-      const t = max === min ? 0.5 : (value - min) / Math.max(1, (max - min));
-      const depthFade = Math.max(0.65, 1 - depth * 0.08);
-      const base = mixColor([169, 187, 170], [214, 193, 124], Math.max(0, Math.min(1, t)));
-      const m = base.match(/\d+/g).map(Number);
-      return `rgb(${Math.round(m[0] * depthFade)}, ${Math.round(m[1] * depthFade)}, ${Math.round(m[2] * depthFade)})`;
+    const fmt = (n) => Number(n || 0).toLocaleString('da-DK');
+
+    const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    const resolveColor = (node, root, depth) => {
+      if (depth === 1) return node.color || node._parent?.color || PALETTE[9];
+      const ancestor = root === yearRoot ? node._parent : root;
+      return ancestor?.color || PALETTE[9];
     };
 
-    const polar = (cx, cy, r, a) => ({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
-    const ringPath = (cx, cy, r1, r2, a1, a2) => {
-      const p1 = polar(cx, cy, r1, a1);
-      const p2 = polar(cx, cy, r2, a1);
-      const p3 = polar(cx, cy, r2, a2);
-      const p4 = polar(cx, cy, r1, a2);
-      const large = (a2 - a1) > Math.PI ? 1 : 0;
-      return [
-        `M ${p1.x} ${p1.y}`,
-        `A ${r1} ${r1} 0 ${large} 1 ${p4.x} ${p4.y}`,
-        `L ${p3.x} ${p3.y}`,
-        `A ${r2} ${r2} 0 ${large} 0 ${p2.x} ${p2.y}`,
-        'Z'
-      ].join(' ');
+    const arcPath = (r1, r2, startAngle, endAngle) => {
+      const sweep = Math.max(endAngle - startAngle, 0.0001);
+      const safeEnd = startAngle + sweep;
+      const largeArc = sweep > Math.PI ? 1 : 0;
+      const x1 = CX + r1 * Math.cos(startAngle);
+      const y1 = CY + r1 * Math.sin(startAngle);
+      const x2 = CX + r2 * Math.cos(startAngle);
+      const y2 = CY + r2 * Math.sin(startAngle);
+      const x3 = CX + r2 * Math.cos(safeEnd);
+      const y3 = CY + r2 * Math.sin(safeEnd);
+      const x4 = CX + r1 * Math.cos(safeEnd);
+      const y4 = CY + r1 * Math.sin(safeEnd);
+      return `M${x1} ${y1} A${r1} ${r1} 0 ${largeArc} 1 ${x4} ${y4} L${x3} ${y3} A${r2} ${r2} 0 ${largeArc} 0 ${x2} ${y2}Z`;
     };
 
-    const showTooltip = (event, node, parentValue) => {
+    const collectItems = (root) => {
+      const items = [];
+      const walk = (node, depth, sa, ea, parent) => {
+        node._parent = parent;
+        if (depth > 0) items.push({ node, depth, sa, ea });
+        if (node.children?.length && depth < 2) {
+          const total = Math.max(node.children.reduce((s, c) => s + (Number(c.value) || 0), 0), 1);
+          let a = sa;
+          node.children.forEach((child) => {
+            const sw = ((Number(child.value) || 0) / total) * (ea - sa);
+            walk(child, depth + 1, a, a + sw, node);
+            a += sw;
+          });
+        }
+      };
+      walk(root, 0, -Math.PI / 2, 3 * Math.PI / 2, null);
+      return items;
+    };
+
+    const maybeLabel = (node, depth, r1, r2, sa, ea) => {
+      const sweep = ea - sa;
+      if (sweep <= 0.18) return null;
+      const mid = (sa + ea) / 2;
+      const labelR = r1 + (r2 - r1) * 0.52;
+      const text = document.createElementNS(NS, 'text');
+      text.setAttribute('x', String(CX + labelR * Math.cos(mid)));
+      text.setAttribute('y', String(CY + labelR * Math.sin(mid)));
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('dominant-baseline', 'central');
+      text.setAttribute('fill', '#fff');
+      text.setAttribute('font-size', sweep > 0.5 ? '9.5' : '8');
+      text.setAttribute('font-family', 'DM Mono, monospace');
+      text.setAttribute('pointer-events', 'none');
+      text.setAttribute('opacity', '0.85');
+      const label = node.name.split(' · ')[0];
+      text.textContent = label.length > 12 ? `${label.slice(0, 11)}...` : label;
+      return text;
+    };
+
+    const showTooltip = (event, node) => {
       if (!tooltipEl) return;
-      const shareParent = parentValue > 0 ? `${((node.value / parentValue) * 100).toFixed(1)}% of parent` : 'root';
-      const shareTotal = globalTotal > 0 ? `${((node.value / globalTotal) * 100).toFixed(1)}% of total` : '0% of total';
-      tooltipEl.innerHTML = `<strong>${node.name}</strong>${Number(node.value || 0).toLocaleString()} DDD<br>${shareParent}<br>${shareTotal}`;
+      const share = globalTotal > 0 ? ((Number(node.value || 0) / globalTotal) * 100).toFixed(1) : '0.0';
+      tooltipEl.innerHTML = `<strong>${node.name}</strong><em>${fmt(node.value)} DDD · ${share}% of total</em>`;
       tooltipEl.style.opacity = '1';
       tooltipEl.style.left = `${event.clientX + 14}px`;
       tooltipEl.style.top = `${event.clientY - 10}px`;
     };
 
     const hideTooltip = () => {
-      if (!tooltipEl) return;
-      tooltipEl.style.opacity = '0';
+      if (tooltipEl) tooltipEl.style.opacity = '0';
+    };
+
+    const attachHover = (path, node, depth) => {
+      path.addEventListener('mouseenter', (event) => {
+        if (animating) return;
+        path.setAttribute('opacity', '1');
+        showTooltip(event, node);
+      });
+      path.addEventListener('mousemove', (event) => {
+        if (!tooltipEl) return;
+        tooltipEl.style.left = `${event.clientX + 14}px`;
+        tooltipEl.style.top = `${event.clientY - 10}px`;
+      });
+      path.addEventListener('mouseleave', () => {
+        path.setAttribute('opacity', depth === 1 ? '0.92' : '0.58');
+        hideTooltip();
+      });
+    };
+
+    const updateBreadcrumb = () => {
+      if (!breadcrumbEl) return;
+      breadcrumbEl.innerHTML = '';
+      const trail = [...ancestorStack, currentRoot];
+      trail.forEach((node, i) => {
+        const sp = document.createElement('span');
+        sp.textContent = node.name.split(' · ')[0];
+        if (i < trail.length - 1) {
+          sp.addEventListener('click', () => {
+            if (animating) return;
+            while (ancestorStack.length > i) ancestorStack.pop();
+            updateUI(node);
+            animateTo(node);
+          });
+        } else {
+          sp.classList.add('current');
+        }
+        breadcrumbEl.appendChild(sp);
+        if (i < trail.length - 1) {
+          const sep = document.createElement('span');
+          sep.className = 'sep';
+          sep.textContent = ' › ';
+          breadcrumbEl.appendChild(sep);
+        }
+      });
+    };
+
+    const updateStats = (node) => {
+      if (statNameEl) statNameEl.textContent = node.name.split(' · ')[0];
+      if (statDddEl) statDddEl.textContent = `${fmt(node.value)}`;
+      if (statShareEl) statShareEl.textContent = node === yearRoot ? '100%' : `${((Number(node.value || 0) / Math.max(globalTotal, 1)) * 100).toFixed(1)}%`;
+    };
+
+    const updateUI = (node) => {
+      if (centerNameEl) centerNameEl.textContent = node.name;
+      if (centerValueEl) centerValueEl.textContent = node.children?.length ? `${node.children.length} subcategories` : `${fmt(node.value)} DDD`;
+      if (backBtn) backBtn.classList.toggle('visible', ancestorStack.length > 0);
+      updateBreadcrumb();
+      updateStats(node);
+    };
+
+    const renderStatic = (root) => {
+      if (!svgEl) return;
+      svgEl.innerHTML = '';
+      svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      const items = collectItems(root);
+
+      items.forEach(({ node, depth, sa, ea }) => {
+        const r1 = GAP_INNER + (depth - 1) * RING_W;
+        const r2 = r1 + RING_W - 3;
+        const path = document.createElementNS(NS, 'path');
+        path.setAttribute('d', arcPath(r1, r2, sa, ea));
+        path.setAttribute('fill', resolveColor(node, root, depth));
+        path.setAttribute('opacity', depth === 1 ? '0.92' : '0.58');
+        path.style.cursor = node.children?.length ? 'pointer' : 'default';
+        attachHover(path, node, depth);
+        path.addEventListener('click', () => handleClick(node));
+        svgEl.appendChild(path);
+
+        const text = maybeLabel(node, depth, r1, r2, sa, ea);
+        if (text) svgEl.appendChild(text);
+      });
+
+      const center = document.createElementNS(NS, 'circle');
+      center.setAttribute('cx', String(CX));
+      center.setAttribute('cy', String(CY));
+      center.setAttribute('r', String(GAP_INNER));
+      center.setAttribute('class', 'sunburst-root');
+      center.style.cursor = ancestorStack.length ? 'pointer' : 'default';
+      if (ancestorStack.length) center.addEventListener('click', goBack);
+      svgEl.appendChild(center);
+
+      updateUI(root);
+      if (updatedEl) {
+        const stamp = snapshotData?.meta?.updated || '';
+        updatedEl.textContent = stamp ? `Snapshot updated: ${stamp}` : '';
+      }
+    };
+
+    const animateTo = (nextRoot) => {
+      if (!svgEl || animating) return;
+      animating = true;
+      hideTooltip();
+
+      const prevItems = collectItems(currentRoot);
+      const nextItems = collectItems(nextRoot);
+      const prevMap = new Map(prevItems.map((it) => [it.node, it]));
+      const nextMap = new Map(nextItems.map((it) => [it.node, it]));
+      const allNodes = new Set([...prevMap.keys(), ...nextMap.keys()]);
+      const tweens = [];
+
+      allNodes.forEach((node) => {
+        const prev = prevMap.get(node);
+        const next = nextMap.get(node);
+        const depthFrom = prev ? prev.depth : (next ? next.depth : 1);
+        const depthTo = next ? next.depth : (prev ? prev.depth : 1);
+        const r1From = GAP_INNER + (depthFrom - 1) * RING_W;
+        const r2From = r1From + RING_W - 3;
+        const r1To = GAP_INNER + (depthTo - 1) * RING_W;
+        const r2To = r1To + RING_W - 3;
+
+        let saFrom;
+        let eaFrom;
+        let saTo;
+        let eaTo;
+        let opFrom;
+        let opTo;
+        const baseOp = depthTo === 1 ? 0.92 : 0.58;
+
+        if (prev && next) {
+          saFrom = prev.sa;
+          eaFrom = prev.ea;
+          saTo = next.sa;
+          eaTo = next.ea;
+          opFrom = depthFrom === 1 ? 0.92 : 0.58;
+          opTo = baseOp;
+        } else if (!prev && next) {
+          const parentNext = next.node._parent;
+          if (parentNext && nextMap.get(parentNext)) {
+            const pm = nextMap.get(parentNext);
+            const mid = (pm.sa + pm.ea) / 2;
+            saFrom = mid;
+            eaFrom = mid;
+          } else {
+            const mid = (next.sa + next.ea) / 2;
+            saFrom = mid;
+            eaFrom = mid;
+          }
+          saTo = next.sa;
+          eaTo = next.ea;
+          opFrom = 0;
+          opTo = baseOp;
+        } else {
+          const mid = (prev.sa + prev.ea) / 2;
+          saFrom = prev.sa;
+          eaFrom = prev.ea;
+          saTo = mid;
+          eaTo = mid;
+          opFrom = depthFrom === 1 ? 0.92 : 0.58;
+          opTo = 0;
+        }
+
+        tweens.push({
+          node,
+          saFrom,
+          eaFrom,
+          saTo,
+          eaTo,
+          r1From,
+          r2From,
+          r1To,
+          r2To,
+          opFrom,
+          opTo,
+          color: resolveColor(node, nextRoot, depthTo)
+        });
+      });
+
+      svgEl.innerHTML = '';
+      const pathEls = new Map();
+      tweens.forEach((tw) => {
+        const path = document.createElementNS(NS, 'path');
+        path.setAttribute('fill', tw.color);
+        svgEl.appendChild(path);
+        pathEls.set(tw.node, path);
+      });
+
+      const center = document.createElementNS(NS, 'circle');
+      center.setAttribute('cx', String(CX));
+      center.setAttribute('cy', String(CY));
+      center.setAttribute('r', String(GAP_INNER));
+      center.setAttribute('class', 'sunburst-root');
+      svgEl.appendChild(center);
+
+      const start = performance.now();
+      const frame = (now) => {
+        const raw = Math.min((now - start) / DURATION, 1);
+        const t = easeInOutCubic(raw);
+        tweens.forEach((tw) => {
+          const path = pathEls.get(tw.node);
+          const r1 = tw.r1From + (tw.r1To - tw.r1From) * t;
+          const r2 = tw.r2From + (tw.r2To - tw.r2From) * t;
+          const sa = tw.saFrom + (tw.saTo - tw.saFrom) * t;
+          const ea = tw.eaFrom + (tw.eaTo - tw.eaFrom) * t;
+          const op = tw.opFrom + (tw.opTo - tw.opFrom) * t;
+          path.setAttribute('d', arcPath(r1, r2, sa, ea));
+          path.setAttribute('opacity', String(op));
+        });
+
+        if (raw < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          animating = false;
+          currentRoot = nextRoot;
+          renderStatic(nextRoot);
+        }
+      };
+
+      requestAnimationFrame(frame);
+    };
+
+    const handleClick = (node) => {
+      if (animating || !node.children?.length) return;
+      ancestorStack.push(currentRoot);
+      updateUI(node);
+      animateTo(node);
+    };
+
+    const goBack = () => {
+      if (animating || ancestorStack.length === 0) return;
+      const prev = ancestorStack.pop();
+      updateUI(prev);
+      animateTo(prev);
     };
 
     const updateYearButtons = () => {
@@ -482,145 +793,6 @@ layout: default
         btn.classList.toggle('is-active', on);
         btn.setAttribute('aria-selected', on ? 'true' : 'false');
       });
-    };
-
-    const updateCenterText = (svg, node) => {
-      const cx = 300;
-      const cy = 300;
-      const centerLabel = document.createElementNS(NS, 'text');
-      centerLabel.setAttribute('x', String(cx));
-      centerLabel.setAttribute('y', String(cy - 2));
-      centerLabel.setAttribute('text-anchor', 'middle');
-      centerLabel.setAttribute('class', 'sunburst-center-label');
-      centerLabel.textContent = node.name.length > 26 ? `${node.name.slice(0, 24)}...` : node.name;
-      svg.appendChild(centerLabel);
-
-      const centerValue = document.createElementNS(NS, 'text');
-      centerValue.setAttribute('x', String(cx));
-      centerValue.setAttribute('y', String(cy + 16));
-      centerValue.setAttribute('text-anchor', 'middle');
-      centerValue.setAttribute('class', 'sunburst-center-value');
-      centerValue.textContent = `${Number(node.value || 0).toLocaleString()} DDD`;
-      svg.appendChild(centerValue);
-    };
-
-    const renderSunburst = (rootNode) => {
-      if (!sunburstEl || !rootNode) return;
-      sunburstEl.innerHTML = '';
-
-      const W = 600;
-      const H = 600;
-      const CX = 300;
-      const CY = 300;
-      const INNER = 60;
-      const RING = 104;
-
-      const items = [];
-      const collect = (node, depth, a1, a2, parent) => {
-        if (depth > 0) items.push({ node, depth, a1, a2, parent });
-        if (!node.children?.length || depth >= 2) return;
-        const total = Math.max(node.children.reduce((acc, child) => acc + (Number(child.value) || 0), 0), 1);
-        let cursor = a1;
-        node.children.forEach((child) => {
-          const sweep = ((Number(child.value) || 0) / total) * (a2 - a1);
-          collect(child, depth + 1, cursor, cursor + sweep, node);
-          cursor += sweep;
-        });
-      };
-      collect(rootNode, 0, -Math.PI / 2, (Math.PI * 3) / 2, null);
-
-      const vals = items.map((entry) => Number(entry.node.value) || 0);
-      const min = Math.min(...vals, 0);
-      const max = Math.max(...vals, 1);
-
-      items.forEach((entry) => {
-        const r1 = INNER + (entry.depth - 1) * RING;
-        const r2 = r1 + RING - 4;
-        const path = document.createElementNS(NS, 'path');
-        path.setAttribute('d', ringPath(CX, CY, r1, r2, entry.a1, entry.a2));
-        path.setAttribute('class', 'sunburst-area');
-        path.setAttribute('fill', colorFor(Number(entry.node.value) || 0, min, max, entry.depth));
-        path.setAttribute('opacity', entry.depth === 1 ? '0.92' : '0.68');
-        path.setAttribute('tabindex', '0');
-
-        const title = document.createElementNS(NS, 'title');
-        title.textContent = `${entry.node.name}: ${Number(entry.node.value || 0).toLocaleString()} DDD`;
-        path.appendChild(title);
-
-        path.addEventListener('mouseenter', (event) => {
-          path.setAttribute('opacity', '1');
-          showTooltip(event, entry.node, Number(entry.parent?.value) || Number(rootNode.value) || 0);
-        });
-        path.addEventListener('mousemove', (event) => showTooltip(event, entry.node, Number(entry.parent?.value) || Number(rootNode.value) || 0));
-        path.addEventListener('mouseleave', () => {
-          path.setAttribute('opacity', entry.depth === 1 ? '0.92' : '0.68');
-          hideTooltip();
-        });
-        path.addEventListener('click', () => {
-          if (!entry.node.children?.length) return;
-          ancestorStack.push(rootNode);
-          currentRoot = entry.node;
-          renderSunburst(currentRoot);
-        });
-        path.addEventListener('keydown', (event) => {
-          if (event.key !== 'Enter' && event.key !== ' ') return;
-          event.preventDefault();
-          if (!entry.node.children?.length) return;
-          ancestorStack.push(rootNode);
-          currentRoot = entry.node;
-          renderSunburst(currentRoot);
-        });
-
-        sunburstEl.appendChild(path);
-
-        const sweep = entry.a2 - entry.a1;
-        if (sweep > 0.18) {
-          const labelR = r1 + (r2 - r1) * 0.5;
-          const mid = (entry.a1 + entry.a2) / 2;
-          const pos = polar(CX, CY, labelR, mid);
-          const text = document.createElementNS(NS, 'text');
-          text.setAttribute('x', String(pos.x));
-          text.setAttribute('y', String(pos.y));
-          text.setAttribute('text-anchor', 'middle');
-          text.setAttribute('dominant-baseline', 'middle');
-          text.setAttribute('fill', '#f9f9f9');
-          text.setAttribute('font-size', sweep > 0.5 ? '9.5' : '8');
-          text.setAttribute('font-family', 'var(--font-mono)');
-          text.setAttribute('pointer-events', 'none');
-          text.setAttribute('opacity', '0.84');
-          const short = entry.node.name.split(' ')[0];
-          text.textContent = short.length > 12 ? `${short.slice(0, 11)}...` : short;
-          sunburstEl.appendChild(text);
-        }
-      });
-
-      const center = document.createElementNS(NS, 'circle');
-      center.setAttribute('cx', String(CX));
-      center.setAttribute('cy', String(CY));
-      center.setAttribute('r', String(INNER));
-      center.setAttribute('class', 'sunburst-root');
-      center.setAttribute('tabindex', '0');
-      center.style.cursor = ancestorStack.length ? 'pointer' : 'default';
-      center.setAttribute('aria-label', ancestorStack.length ? 'Go up one level' : 'Root level');
-      const goUp = () => {
-        if (!ancestorStack.length) return;
-        currentRoot = ancestorStack.pop();
-        renderSunburst(currentRoot);
-      };
-      center.addEventListener('click', goUp);
-      center.addEventListener('keydown', (event) => {
-        if (event.key !== 'Enter' && event.key !== ' ') return;
-        event.preventDefault();
-        goUp();
-      });
-      sunburstEl.appendChild(center);
-
-      updateCenterText(sunburstEl, rootNode);
-      updateYearButtons();
-      if (updatedEl) {
-        const stamp = snapshotData?.meta?.updated || '';
-        updatedEl.textContent = stamp ? `Snapshot updated: ${stamp}` : '';
-      }
     };
 
     const getYearRoot = () => {
@@ -636,10 +808,12 @@ layout: default
       yearRoot = getYearRoot();
       if (!yearRoot) return;
       sumTree(yearRoot);
+      assignColors(yearRoot);
       globalTotal = Number(yearRoot.value) || 0;
       currentRoot = yearRoot;
       ancestorStack = [];
-      renderSunburst(currentRoot);
+      renderStatic(currentRoot);
+      updateYearButtons();
     };
 
     yearButtons.forEach((btn) => {
@@ -649,13 +823,7 @@ layout: default
       });
     });
 
-    if (refreshBtn) {
-      refreshBtn.addEventListener('click', () => {
-        currentRoot = yearRoot;
-        ancestorStack = [];
-        renderSunburst(currentRoot);
-      });
-    }
+    if (backBtn) backBtn.addEventListener('click', goBack);
 
     fetch(snapshotUrl, { cache: 'no-store' })
       .then((response) => {
