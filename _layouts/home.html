@@ -52,7 +52,6 @@ layout: default
   <div class="about-inner fade-in">
     <div class="about-visual">
       <div class="about-viz" id="pharma-live-viz">
-        <!-- ELECTRIC WEB ROLLBACK: previous node-link diagram replaced with sunburst -->
         <div class="about-viz-breadcrumb" id="medstat-breadcrumb"></div>
 
         <div class="about-viz-chart-wrap">
@@ -432,7 +431,7 @@ layout: default
     const GAP_INNER = 48;
     const RING_W = 105;
     const DURATION = 480;
-    const PALETTE = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f', '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac'];
+    const PALETTE = ['#A9BBAA', '#D6C17C', '#e15759', '#76b7b2', '#59a14f', '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac'];
 
     let snapshotData = null;
     let activeYear = '2025';
@@ -536,8 +535,8 @@ layout: default
       const share = globalTotal > 0 ? ((Number(node.value || 0) / globalTotal) * 100).toFixed(1) : '0.0';
       tooltipEl.innerHTML = `<strong>${node.name}</strong><em>${fmt(node.value)} DDD · ${share}% of total</em>`;
       tooltipEl.style.opacity = '1';
-      tooltipEl.style.left = `${event.clientX + 14}px`;
-      tooltipEl.style.top = `${event.clientY - 10}px`;
+      tooltipEl.style.left = `${event.clientX + 8}px`;
+      tooltipEl.style.top = `${event.clientY - 6}px`;
     };
 
     const hideTooltip = () => {
@@ -552,8 +551,8 @@ layout: default
       });
       path.addEventListener('mousemove', (event) => {
         if (!tooltipEl) return;
-        tooltipEl.style.left = `${event.clientX + 14}px`;
-        tooltipEl.style.top = `${event.clientY - 10}px`;
+        tooltipEl.style.left = `${event.clientX + 8}px`;
+        tooltipEl.style.top = `${event.clientY - 6}px`;
       });
       path.addEventListener('mouseleave', () => {
         path.setAttribute('opacity', depth === 1 ? '0.92' : '0.58');
@@ -634,8 +633,7 @@ layout: default
 
       updateUI(root);
       if (updatedEl) {
-        const stamp = snapshotData?.meta?.updated || '';
-        updatedEl.textContent = stamp ? `Snapshot updated: ${stamp}` : '';
+        updatedEl.textContent = '';
       }
     };
 
@@ -805,7 +803,7 @@ layout: default
         initYear();
       })
       .catch(() => {
-        if (updatedEl) updatedEl.textContent = 'Hierarchy snapshot unavailable';
+        if (updatedEl) updatedEl.textContent = '';
       });
   }
 </script>

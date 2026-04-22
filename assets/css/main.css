@@ -610,7 +610,7 @@ a { color: inherit; }
 .about-viz-sunburst path {
   cursor: pointer;
   transition: opacity 0.2s;
-  stroke: var(--bg);
+  stroke: #3C5E3E;
   stroke-width: 1.5;
 }
 .about-viz-sunburst path:hover { opacity: 0.82; }
@@ -642,8 +642,8 @@ a { color: inherit; }
 }
 
 .sunburst-root {
-  fill: var(--bg);
-  stroke: var(--border);
+  fill: #3C5E3E;
+  stroke: #3C5E3E;
   stroke-width: 1;
 }
 
@@ -678,7 +678,7 @@ a { color: inherit; }
   width: 100%;
   text-align: center;
   font-size: 0.63rem;
-  color: var(--muted);
+  color: rgba(249,249,249,0.55);
   letter-spacing: 0.06em;
   padding: 0.45rem 0 0.1rem;
 }
@@ -700,8 +700,8 @@ a { color: inherit; }
 }
 .about-viz-stat-label {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
-  color: var(--muted);
+  font-size: 0.63rem;
+  color: rgba(249,249,249,0.55);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -709,19 +709,19 @@ a { color: inherit; }
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text);
+  color: #D6C17C;
 }
 
 .about-viz-source-line {
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 0.58rem;
-  color: var(--muted);
+  font-size: 0.63rem;
+  color: rgba(249,249,249,0.55);
   letter-spacing: 0.08em;
   margin-top: 0.9rem;
 }
 .about-viz-source-line a {
-  color: var(--accent-local);
+  color: #D6C17C;
   text-decoration: none;
 }
 .about-viz-source-line a:hover { text-decoration: underline; }
