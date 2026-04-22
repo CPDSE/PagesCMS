@@ -714,10 +714,9 @@ a { color: inherit; }
 
 .about-viz-source-line {
   text-align: center;
-  font-family: var(--font-mono);
   font-size: 0.63rem;
-  color: rgba(249,249,249,0.55);
-  letter-spacing: 0.08em;
+  color: #D6C17C;
+  letter-spacing: 0.06em;
   margin-top: 0.9rem;
 }
 .about-viz-source-line a {

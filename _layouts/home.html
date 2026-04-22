@@ -59,11 +59,11 @@ layout: default
                role="img" aria-label="Sunburst diagram of Danish medicine use by DDD intensity"></svg>
           <div class="about-viz-center-label" id="medstat-center-label" aria-hidden="true">
             <div class="about-viz-center-name" id="medstat-center-name">All Drug Groups</div>
-            <div class="about-viz-center-value" id="medstat-center-value">9 subcategories</div>
           </div>
         </div>
 
         <div class="about-viz-hint">Click any segment to zoom in · Click center to zoom out</div>
+        <div class="about-viz-hint">SOURCE: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">MEDSTAT.DK</a> · ATC CLASSIFICATION · 2025</div>
 
         <div class="about-viz-info">
           <div class="about-viz-stat-box">
@@ -80,7 +80,6 @@ layout: default
           </div>
         </div>
 
-        <div class="about-viz-source-line">SOURCE: <a href="https://www.medstat.dk/" target="_blank" rel="noopener">MEDSTAT.DK</a> · ATC CLASSIFICATION · 2025</div>
         <div class="about-viz-tooltip" id="medstat-tooltip" aria-live="polite"></div>
         <div class="about-viz-updated"></div>
       </div>
@@ -417,7 +416,6 @@ layout: default
     const tooltipEl = pharmaViz.querySelector('#medstat-tooltip');
     const breadcrumbEl = pharmaViz.querySelector('#medstat-breadcrumb');
     const centerNameEl = pharmaViz.querySelector('#medstat-center-name');
-    const centerValueEl = pharmaViz.querySelector('#medstat-center-value');
     const statNameEl = pharmaViz.querySelector('#medstat-stat-name');
     const statDddEl = pharmaViz.querySelector('#medstat-stat-ddd');
     const statShareEl = pharmaViz.querySelector('#medstat-stat-share');
@@ -595,7 +593,6 @@ layout: default
 
     const updateUI = (node) => {
       if (centerNameEl) centerNameEl.textContent = node.name;
-      if (centerValueEl) centerValueEl.textContent = node.children?.length ? `${node.children.length} subcategories` : `${fmt(node.value)} DDD`;
       updateBreadcrumb();
       updateStats(node);
     };
