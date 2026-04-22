@@ -283,15 +283,16 @@ a { color: inherit; }
   color: var(--offwhite);
 }
 .section-announcements .announcement-card {
-  background: rgba(95,125,97,0.28);
+  background: #3C5E3E;
   color: var(--offwhite);
-  border: 1px solid rgba(249,249,249,0.18);
-  box-shadow: 0 10px 24px rgba(15,26,20,0.12), inset 0 1px 0 rgba(249,249,249,0.18);
-  -webkit-backdrop-filter: blur(7px) saturate(125%);
-  backdrop-filter: blur(7px) saturate(125%);
+  border: 1px dashed rgba(249,249,249,0.2);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 .section-announcements .announcement-card:hover {
-  background: rgba(95,125,97,0.36);
+  background: #3C5E3E;
+  border-color: rgba(249,249,249,0.4);
 }
 .section-announcements .card-meta {
   color: rgba(249,249,249,0.74);
