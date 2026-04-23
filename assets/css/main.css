@@ -1659,7 +1659,6 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
   gap: 0;
-  border: 1px solid var(--border);
 }
 .announcement-row {
   display: grid;
