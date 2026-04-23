@@ -925,7 +925,7 @@ a { color: inherit; }
   display: none;
   padding: 2.5rem;
   background: rgba(249,249,249,0.02);
-  border: 1px dashed rgba(249,249,249,0.2);
+  border: 1px solid rgba(249,249,249,0.35);
   border-radius: 10px;
   will-change: transform, opacity;
 }
@@ -970,7 +970,7 @@ a { color: inherit; }
 }
 .timeline-item h4 {
   font-size: 1rem;
-  color: var(--offwhite);
+  color: #D6C17C;
   margin-bottom: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
