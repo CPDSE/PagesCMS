@@ -1376,71 +1376,81 @@ a { color: inherit; }
 }
 
 /* ─── AUDIENCE CARDS ──────────────────────────────────────── */
-.audience-grid {
+.audience-layout {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.2rem);
+  align-items: stretch;
+}
+.audience-ladder {
   position: relative;
+  border: 1px solid rgba(249,249,249,0.24);
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgba(249,249,249,0.07) 0%, rgba(249,249,249,0.01) 100%);
+  padding: 1.35rem 0.9rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  width: 100%;
-  max-width: 980px;
-  margin: 0 auto;
-  padding-left: 4.8rem;
+  justify-content: space-between;
+  min-height: 100%;
 }
-.audience-grid::before {
+.audience-ladder::before,
+.audience-ladder::after {
   content: '';
   position: absolute;
-  left: 1rem;
-  top: 0.35rem;
-  bottom: 0.35rem;
-  width: 3px;
+  top: 1rem;
+  bottom: 1rem;
+  width: 4px;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(214,193,124,0.86) 0%, rgba(214,193,124,0.35) 100%);
+  background: linear-gradient(180deg, rgba(214,193,124,0.85) 0%, rgba(214,193,124,0.4) 100%);
 }
-.audience-card {
+.audience-ladder::before { left: 1rem; }
+.audience-ladder::after { right: 1rem; }
+.audience-ladder-rung {
   position: relative;
-  --rung: 1;
-  border: 1px solid rgba(249,249,249,0.3);
-  border-radius: 10px;
-  background: linear-gradient(125deg, rgba(249,249,249,0.05) 0%, rgba(249,249,249,0.015) 100%);
-  padding: calc(var(--space-md) + 0.2rem) var(--space-md) var(--space-md);
-  overflow: hidden;
-  width: min(100%, 760px);
-  margin-left: calc((var(--rung) - 1) * 60px);
-  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-}
-.audience-card:nth-child(2) {
-  --rung: 2;
-}
-.audience-card:nth-child(3) {
-  --rung: 3;
-}
-.audience-card::before {
-  content: attr(data-stage);
-  position: absolute;
-  left: -4.8rem;
-  top: 1.15rem;
-  width: 2rem;
-  height: 2rem;
+  height: 2.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  border: 2px solid rgba(214,193,124,0.75);
-  background: #3C5E3E;
-  color: #F9F9F9;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
 }
-.audience-card::after {
+.audience-ladder-rung::before {
   content: '';
   position: absolute;
-  left: -2.8rem;
-  top: 2.1rem;
-  width: 2.8rem;
-  height: 2px;
-  background: rgba(214,193,124,0.55);
+  left: 1rem;
+  right: 1rem;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(214,193,124,0.68);
+}
+.audience-ladder-rung span {
+  position: relative;
+  z-index: 1;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  border: 2px solid rgba(214,193,124,0.82);
+  background: #3C5E3E;
+  color: #F9F9F9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.audience-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+.audience-card {
+  position: relative;
+  border: 1px solid rgba(249,249,249,0.3);
+  border-radius: 10px;
+  background: linear-gradient(125deg, rgba(249,249,249,0.05) 0%, rgba(249,249,249,0.015) 100%);
+  padding: calc(var(--space-md) + 0.1rem) var(--space-md) var(--space-md);
+  overflow: hidden;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
 }
 .audience-card:hover,
 .audience-card:focus-within {
@@ -1482,18 +1492,28 @@ a { color: inherit; }
 }
 
 @media (max-width: 900px) {
-  .audience-grid {
-    padding-left: 4rem;
+  .audience-layout {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
   }
-  .audience-card {
-    margin-left: calc((var(--rung) - 1) * 38px);
+  .audience-ladder {
+    min-height: auto;
+    padding: 0.9rem 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
-  .audience-card::before {
-    left: -4rem;
+  .audience-ladder::before,
+  .audience-ladder::after {
+    display: none;
   }
-  .audience-card::after {
-    left: -2rem;
-    width: 2rem;
+  .audience-ladder-rung {
+    height: 2rem;
+    flex: 1;
+  }
+  .audience-ladder-rung::before {
+    left: 0.5rem;
+    right: 0.5rem;
   }
 }
 .audience-toggle:hover,
@@ -1810,20 +1830,11 @@ a { color: inherit; }
   .circles-grid { grid-template-columns: 1fr; }
   .audience-grid {
     max-width: 100%;
-    padding-left: 3rem;
   }
   .audience-card,
   .audience-card:hover,
   .audience-card:focus-within {
-    margin-left: 0;
     transform: translateY(0);
-  }
-  .audience-card::before {
-    left: -3rem;
-  }
-  .audience-card::after {
-    left: -1rem;
-    width: 1rem;
   }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-maps-row { grid-template-columns: 1fr; }
