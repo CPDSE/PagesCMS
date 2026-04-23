@@ -591,6 +591,7 @@ a { color: inherit; }
 .about-viz-breadcrumb {
   width: 100%;
   max-width: 600px;
+  margin: 0 auto;
   padding: 0.2rem 0 0.3rem;
   font-size: 0.7rem;
   color: var(--muted);
@@ -598,6 +599,7 @@ a { color: inherit; }
   min-height: 1.7rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   flex-wrap: wrap;
 }
