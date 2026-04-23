@@ -1678,9 +1678,12 @@ a { color: inherit; }
   max-width: 55ch;
 }
 .page-body {
-  max-width: 720px;
+  max-width: var(--max-w);
   margin: var(--space-lg) auto;
   padding: 0 var(--space-md);
+}
+.page-body > * {
+  max-width: 720px;
 }
 .page-body h2 {
   font-family: var(--font-display);
