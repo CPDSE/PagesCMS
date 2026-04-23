@@ -1,7 +1,7 @@
 title: CPDSE
 description: Center for Pharmaceutical Data Science Education
 tagline: Pharma is full of data, but not data science. We are here to change that.
-baseurl: ""
+baseurl: "/PagesCMS"
 url: "https://cpdse.github.io"
 
 markdown: kramdown

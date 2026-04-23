@@ -11,7 +11,7 @@
             <button aria-haspopup="true" aria-expanded="false">{{ item.title }}</button>
             <div class="dropdown" role="menu">
               {% for child in item.children %}
-                <a href="{{ child.url }}" {% if child.external %}target="_blank" rel="noopener"{% endif %} role="menuitem">{{ child.title }}</a>
+                <a href="{{ child.url | relative_url }}" {% if child.external %}target="_blank" rel="noopener"{% endif %} role="menuitem">{{ child.title }}</a>
               {% endfor %}
             </div>
           </li>
