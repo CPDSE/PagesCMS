@@ -1378,98 +1378,95 @@ a { color: inherit; }
 /* ─── AUDIENCE CARDS ──────────────────────────────────────── */
 .audience-layout {
   display: grid;
-  grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1fr);
-  gap: clamp(1rem, 3vw, 2.2rem);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.95fr);
+  gap: clamp(1.6rem, 4vw, 3.2rem);
+  align-items: start;
 }
-.audience-ladder {
+.audience-intro {
+  margin-bottom: 0;
+}
+.audience-progress {
   position: relative;
-  border: 1px solid rgba(249,249,249,0.24);
-  border-radius: 12px;
-  background: linear-gradient(160deg, rgba(249,249,249,0.07) 0%, rgba(249,249,249,0.01) 100%);
-  padding: 1.35rem 0.9rem;
+  padding-left: clamp(3.8rem, 5vw, 5rem);
+}
+.audience-progress::before,
+.audience-progress::after {
+  content: '';
+  position: absolute;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  width: 3px;
+  border-radius: 999px;
+  background: rgba(214,193,124,0.9);
+}
+.audience-progress::before {
+  left: 0;
+}
+.audience-progress::after {
+  left: clamp(2.7rem, 4vw, 3.1rem);
+}
+
+.audience-grid {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 100%;
+  gap: 1.45rem;
 }
-.audience-ladder::before,
-.audience-ladder::after {
-  content: '';
-  position: absolute;
-  top: 1rem;
-  bottom: 1rem;
-  width: 4px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(214,193,124,0.85) 0%, rgba(214,193,124,0.4) 100%);
-}
-.audience-ladder::before { left: 1rem; }
-.audience-ladder::after { right: 1rem; }
-.audience-ladder-rung {
+.audience-card {
   position: relative;
-  height: 2.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0 0 0.25rem;
+  overflow: hidden;
+  transition: transform 0.22s ease;
 }
-.audience-ladder-rung::before {
-  content: '';
+.audience-card::before {
+  content: attr(data-stage);
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(214,193,124,0.68);
-}
-.audience-ladder-rung span {
-  position: relative;
-  z-index: 1;
-  width: 1.8rem;
-  height: 1.8rem;
+  left: calc(clamp(3.8rem, 5vw, 5rem) * -1 + 0.46rem);
+  top: 0.22rem;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 50%;
-  border: 2px solid rgba(214,193,124,0.82);
+  border: 2px solid rgba(214,193,124,0.92);
   background: #3C5E3E;
   color: #F9F9F9;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.68rem;
   font-weight: 600;
 }
-
-.audience-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1.15rem;
-}
-.audience-card {
-  position: relative;
-  border: 1px solid rgba(249,249,249,0.3);
-  border-radius: 10px;
-  background: linear-gradient(125deg, rgba(249,249,249,0.05) 0%, rgba(249,249,249,0.015) 100%);
-  padding: calc(var(--space-md) + 0.1rem) var(--space-md) var(--space-md);
-  overflow: hidden;
-  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+.audience-card::after {
+  content: '';
+  position: absolute;
+  left: calc(clamp(3.8rem, 5vw, 5rem) * -1 + 2.15rem);
+  top: 1rem;
+  width: calc(clamp(3.8rem, 5vw, 5rem) - 2.5rem);
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(214,193,124,0.9);
 }
 .audience-card:hover,
 .audience-card:focus-within {
-  transform: translateY(-6px);
-  border-color: rgba(249,249,249,0.5);
-  box-shadow: 0 14px 28px rgba(15,26,20,0.24);
-  background: linear-gradient(125deg, rgba(249,249,249,0.08) 0%, rgba(249,249,249,0.03) 100%);
+  transform: translateX(6px);
 }
 .audience-card h3 {
-  font-size: 1rem;
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.15rem;
   letter-spacing: 0.02em;
   color: var(--offwhite);
+  border-bottom: 4px solid #D6C17C;
+  width: fit-content;
 }
 .audience-card p {
-  font-size: 0.88rem;
+  font-size: 1.02rem;
   color: rgba(249,249,249,0.8);
-  line-height: 1.6;
+  line-height: 1.45;
+  max-width: 44ch;
 }
 
 .audience-toggle {
@@ -1494,26 +1491,29 @@ a { color: inherit; }
 @media (max-width: 900px) {
   .audience-layout {
     grid-template-columns: 1fr;
-    gap: 0.9rem;
+    gap: 1.2rem;
   }
-  .audience-ladder {
-    min-height: auto;
-    padding: 0.9rem 1rem;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  .audience-intro {
+    order: -1;
   }
-  .audience-ladder::before,
-  .audience-ladder::after {
-    display: none;
+  .audience-progress {
+    padding-left: 3.6rem;
   }
-  .audience-ladder-rung {
-    height: 2rem;
-    flex: 1;
+  .audience-progress::after {
+    left: 2.5rem;
   }
-  .audience-ladder-rung::before {
-    left: 0.5rem;
-    right: 0.5rem;
+  .audience-card::before {
+    left: -3.12rem;
+  }
+  .audience-card::after {
+    left: -1.44rem;
+    width: 1.12rem;
+  }
+  .audience-card h3 {
+    font-size: clamp(1.25rem, 4.8vw, 1.5rem);
+  }
+  .audience-card p {
+    font-size: 0.95rem;
   }
 }
 .audience-toggle:hover,
