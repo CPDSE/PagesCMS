@@ -22,9 +22,18 @@
     document.querySelectorAll('.fade-in, .fade-in-stagger').forEach(el => observer.observe(el));
 
     // Count-up animation for stats
+    const isMostlyVisible = (el, ratio = 0.6) => {
+      const rect = el.getBoundingClientRect();
+      const viewportH = window.innerHeight || document.documentElement.clientHeight;
+      const visibleTop = Math.max(rect.top, 0);
+      const visibleBottom = Math.min(rect.bottom, viewportH);
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+      return rect.height > 0 && (visibleHeight / rect.height) >= ratio;
+    };
+
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
+        if (!entry.isIntersecting || !isMostlyVisible(entry.target)) return;
         entry.target.querySelectorAll('.stat-number[data-count]').forEach(el => {
           const target = parseInt(el.dataset.count, 10);
           const suffix = el.dataset.suffix || '';
@@ -40,7 +49,7 @@
         });
         statsObserver.unobserve(entry.target);
       });
-    }, { threshold: 0.3 });
+    }, { threshold: [0.25, 0.6] });
 
     const statsStrip = document.querySelector('.stats-panel-wrap, .stats-strip');
     if (statsStrip) statsObserver.observe(statsStrip);

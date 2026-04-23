@@ -925,7 +925,7 @@ a { color: inherit; }
   display: none;
   padding: 2.5rem;
   background: rgba(249,249,249,0.02);
-  border: 1px solid rgba(249,249,249,0.35);
+  border: 2px solid #D6C17C;
   border-radius: 10px;
   will-change: transform, opacity;
 }
@@ -1381,6 +1381,7 @@ a { color: inherit; }
   grid-template-columns: 1fr 1fr;
   gap: clamp(1.6rem, 4vw, 3.2rem);
   align-items: start;
+  padding: 0 var(--space-md);
 }
 .audience-intro {
   margin-bottom: 0;
@@ -1431,11 +1432,11 @@ a { color: inherit; }
 }
 
 .audience-card h3 {
-  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   margin: 0;
   letter-spacing: 0.02em;
-  color: var(--offwhite);
+  color: #D6C17C;
 }
 .audience-card p {
   font-size: 1rem;
@@ -1472,7 +1473,7 @@ a { color: inherit; }
     order: -1;
   }
   .audience-card h3 {
-    font-size: clamp(1.25rem, 4.8vw, 1.5rem);
+    font-size: 0.95rem;
   }
   .audience-card p {
     font-size: 0.95rem;
