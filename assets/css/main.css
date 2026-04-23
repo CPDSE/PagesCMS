@@ -820,7 +820,7 @@ a { color: inherit; }
 .timeline-tabs-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1.25rem;
   max-width: 1120px;
   margin: 0 auto;
 }
@@ -924,7 +924,7 @@ a { color: inherit; }
 .timeline-item {
   display: none;
   padding: 2.5rem;
-  background: rgba(249,249,249,0.02);
+  background: rgba(249,249,249,0.07);
   border: 2px solid #D6C17C;
   border-radius: 10px;
   will-change: transform, opacity;
