@@ -7,7 +7,7 @@ permalink: /people/
 
 <section class="people-directory" aria-label="People directory">
   <article class="person-card person-card-photo">
-    <img src="https://www.cpdse.dk/wp-content/uploads/2026/01/Morten_Lindow_1-1.jpg" alt="Portrait of Morten Lindow" loading="lazy">
+    <img src="{{ '/assets/images/portraits/Morten_Lindow.jpg' | relative_url }}" alt="Portrait of Morten Lindow" loading="lazy">
     <div>
       <h2>Morten Lindow</h2>
       <p class="person-role">Professor, Head of Center</p>
@@ -16,7 +16,7 @@ permalink: /people/
   </article>
 
   <article class="person-card person-card-photo">
-    <img src="https://www.cpdse.dk/wp-content/uploads/2026/01/Jacob_Kongsted_PhotographerJacobFredegaardHansen-6_kvadrat.jpg" alt="Portrait of Jacob Kongsted" loading="lazy">
+    <img src="{{ '/assets/images/portraits/Jacob_Kongsted_PhotographerJacobFredegaardHansen-6_kvadrat.jpg' | relative_url }}" alt="Portrait of Jacob Kongsted" loading="lazy">
     <div>
       <h2>Jacob Kongsted</h2>
       <p class="person-role">Professor, Interim Deputy Head of Center</p>
