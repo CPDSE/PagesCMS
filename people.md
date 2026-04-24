@@ -5,85 +5,166 @@ description: The people in CPDSE.
 permalink: /people/
 ---
 
-The following information reflects the People section on CPDSE.
+<section class="people-directory" aria-label="People directory">
+  <article class="person-card person-card-photo">
+    <img src="https://www.cpdse.dk/wp-content/uploads/2026/01/Morten_Lindow_1-1.jpg" alt="Portrait of Morten Lindow" loading="lazy">
+    <div>
+      <h2>Morten Lindow</h2>
+      <p class="person-role">Professor, Head of Center</p>
+      <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+    </div>
+  </article>
 
-## People
+  <article class="person-card person-card-photo">
+    <img src="https://www.cpdse.dk/wp-content/uploads/2026/01/Jacob_Kongsted_PhotographerJacobFredegaardHansen-6_kvadrat.jpg" alt="Portrait of Jacob Kongsted" loading="lazy">
+    <div>
+      <h2>Jacob Kongsted</h2>
+      <p class="person-role">Professor, Interim Deputy Head of Center</p>
+      <p>Department of Physics, Chemistry and Pharmacy, University of Southern Denmark</p>
+    </div>
+  </article>
 
-- **Morten Lindow**
-  Professor, Head of Center  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Jacob Kongsted**
-  Professor, Interim Deputy Head of Center  
-  Department of Physics, Chemistry and Pharmacy, University of Southern Denmark
-- **Adrienne Traxler**
-  Associate Professor  
-  Department of Science Education, University of Copenhagen
-- **Alexander Hauser**
-  Associate Professor  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Anders Østergaard Madsen**
-  Associate Professor  
-  Department of Pharmacy, University of Copenhagen
-- **Arnault-Quentin Vermillet**
-  Data Science Specialist  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Christian Schönbeck**
-  Teaching Associate Professor  
-  Department of Pharmacy, University of Copenhagen
-- **Emma Bjørk**
-  Vice head of pharmacy education  
-  Department of Public Health, University of Southern Denmark
-- **Frederik V. Christiansen**
-  Associate Professor  
-  Department of Science Education, University of Copenhagen
-- **Icaro A. Simon**
-  Postdoctoral Researcher  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Jane Knöchel**
-  Assistant Professor  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Jeppe Hartmann**
-  Project Coordinator, Special Consultant  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Jonas Verhellen**
-  Postdoctoral Researcher  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Kasper Harpsøe**
-  Data and Computing Facility Manager, Research Consultant  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Karlis Berzins**
-  Assistant Professor  
-  Department of Pharmacy, Pharmaceuticals, Processes and Products, University of Copenhagen
-- **Lotte Stig Nørgaard**
-  Professor, Head of Social and Clinical Pharmacy  
-  Department of Pharmacy, University of Copenhagen
-- **Lucy Rebecca Davies**
-  Project Manager  
-  Faculty of Science, University of Southern Denmark
-- **Lykke Pedersen**
-  Data Science Specialist  
-  Department of Pharmacy, Pharmaceuticals, Processes and Products, University of Copenhagen
-- **Marin Matic**
-  Postdoctoral Researcher  
-  Department of Drug Design and Pharmacology, University of Copenhagen
-- **Nadia S. Andersen**
-  Assistant Teaching Professor  
-  Institute for Physics, Chemistry and Pharmacy, University of Southern Denmark
-- **Noémie Roland**
-  Assistant Professor  
-  Department of Public Health, University of Southern Denmark
-- **Philipp Hans**
-  Postdoctoral Researcher  
-  Department of Pharmacy, Pharmaceuticals, Processes and Products, University of Copenhagen
-- **Sarah Mittenentzwei**
-  Data Science Specialist  
-  Department of Public Health, University of Southern Denmark
-- **Sebastian Jakobsen**
-  Pharmaceutical Data Science Officer  
-  Department of Physics, Chemistry and Pharmacy, University of Southern Denmark
-- **Stine Marie Jensen**
-  PhD Student  
-  Department of Science Education, University of Copenhagen
-- **Trine Meldgaard Lund**
-  Associate Professor  
-  Department of Drug Design and Pharmacology, University of Copenhagen
+  <article class="person-card">
+    <h2>Adrienne Traxler</h2>
+    <p class="person-role">Associate Professor</p>
+    <p>Department of Science Education, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Alexander Hauser</h2>
+    <p class="person-role">Associate Professor</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Anders Østergaard Madsen</h2>
+    <p class="person-role">Associate Professor</p>
+    <p>Department of Pharmacy, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Arnault-Quentin Vermillet</h2>
+    <p class="person-role">Data Science Specialist</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Christian Schoenbeck</h2>
+    <p class="person-role">Teaching Associate Professor</p>
+    <p>Department of Pharmacy, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Emma Bjoerk</h2>
+    <p class="person-role">Vice head of pharmacy education</p>
+    <p>Department of Public Health, University of Southern Denmark</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Frederik V. Christiansen</h2>
+    <p class="person-role">Associate Professor</p>
+    <p>Department of Science Education, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Icaro A. Simon</h2>
+    <p class="person-role">Postdoctoral Researcher</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Jane Knoechel</h2>
+    <p class="person-role">Assistant Professor</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Jeppe Hartmann</h2>
+    <p class="person-role">Project Coordinator, Special Consultant</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Jonas Verhellen</h2>
+    <p class="person-role">Postdoctoral Researcher</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Kasper Harpsoe</h2>
+    <p class="person-role">Data and Computing Facility Manager, Research Consultant</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Karlis Berzins</h2>
+    <p class="person-role">Assistant Professor</p>
+    <p>Department of Pharmacy, Pharmaceuticals, Processes and Products, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Lotte Stig Norgaard</h2>
+    <p class="person-role">Professor, Head of Social and Clinical Pharmacy</p>
+    <p>Department of Pharmacy, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Lucy Rebecca Davies</h2>
+    <p class="person-role">Project Manager</p>
+    <p>Faculty of Science, University of Southern Denmark</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Lykke Pedersen</h2>
+    <p class="person-role">Data Science Specialist</p>
+    <p>Department of Pharmacy, Pharmaceuticals, Processes and Products, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Marin Matic</h2>
+    <p class="person-role">Postdoctoral Researcher</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Nadia S. Andersen</h2>
+    <p class="person-role">Assistant Teaching Professor</p>
+    <p>Institute for Physics, Chemistry and Pharmacy, University of Southern Denmark</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Noemie Roland</h2>
+    <p class="person-role">Assistant Professor</p>
+    <p>Department of Public Health, University of Southern Denmark</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Philipp Hans</h2>
+    <p class="person-role">Postdoctoral Researcher</p>
+    <p>Department of Pharmacy, Pharmaceuticals, Processes and Products, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Sarah Mittenentzwei</h2>
+    <p class="person-role">Data Science Specialist</p>
+    <p>Department of Public Health, University of Southern Denmark</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Sebastian Jakobsen</h2>
+    <p class="person-role">Pharmaceutical Data Science Officer</p>
+    <p>Department of Physics, Chemistry and Pharmacy, University of Southern Denmark</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Stine Marie Jensen</h2>
+    <p class="person-role">PhD Student</p>
+    <p>Department of Science Education, University of Copenhagen</p>
+  </article>
+
+  <article class="person-card">
+    <h2>Trine Meldgaard Lund</h2>
+    <p class="person-role">Associate Professor</p>
+    <p>Department of Drug Design and Pharmacology, University of Copenhagen</p>
+  </article>
+</section>
