@@ -1726,7 +1726,7 @@ a { color: inherit; }
 }
 .person-card h2 {
   font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.6vw, 1.6rem);
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
   font-weight: 600;
   color: #2f5a3d;
   margin-bottom: 0.45rem;
