@@ -33,6 +33,8 @@ nav:
         url: /about/
       - title: Who Are We
         url: /who-are-we/
+      - title: People
+        url: /people/
       - title: Funding
         url: /funding/
   - title: Education
