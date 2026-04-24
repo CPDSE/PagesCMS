@@ -1720,16 +1720,26 @@ a { color: inherit; }
   border-top: 1px solid rgba(60,94,62,0.75);
   padding: 0.8rem 0 1.4rem;
 }
+.person-card-body {
+  min-width: 0;
+}
 .person-card:nth-child(-n+2) {
   border-top: none;
   padding-top: 0;
+}
+.person-affiliation {
+  max-width: none;
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: #475864;
 }
 .person-card h2 {
   font-family: var(--font-body);
   font-size: clamp(0.9rem, 1.1vw, 1.2rem);
   font-weight: 600;
   color: #2f5a3d;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.28rem;
   line-height: 1.2;
 }
 .person-card p {
@@ -1740,9 +1750,46 @@ a { color: inherit; }
   color: #1a2430;
 }
 .person-card .person-role {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.55rem;
   font-weight: 700;
   color: #15202b;
+}
+.person-links {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+.person-link {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(60,94,62,0.28);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #2f5a3d;
+  text-decoration: none;
+  background: rgba(60,94,62,0.03);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+.person-link:hover,
+.person-link:focus-visible {
+  color: #1d3f29;
+  border-color: rgba(60,94,62,0.52);
+  background: rgba(60,94,62,0.08);
+  transform: translateY(-1px);
+}
+.person-link svg {
+  width: 0.92rem;
+  height: 0.92rem;
+  fill: currentColor;
+}
+.person-link-text {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 .person-card-photo {
   display: grid;
