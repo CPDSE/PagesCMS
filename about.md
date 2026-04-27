@@ -5,14 +5,17 @@ description: Developing research-based education for the future workforce of dru
 permalink: /about/
 ---
 
-<div class="about-intro">
+<section class="about-banner">
+<div class="about-banner-inner">
+<h1 class="about-banner-title">Pharmaceutical sciences boosted by data science</h1>
+<div class="about-banner-content">
+<p>Today's transformation towards data-driven solutions is highly dependent on talents with the necessary skills. CPDSE is dedicated to developing research-based education for the future workforce of drug experts, spanning bachelor, master, PhD and life-long learning levels. The Center for Pharmaceutical Data Science Education is a close collaboration between UCPH and SDU. The goal of the center is to advance Danish education within pharmaceutical sciences through integration of data science.</p>
+</div>
+</div>
+</section>
 
-## Pharmaceutical Sciences Boosted by Data Science
-
-<p class="about-tagline">Today's transformation towards data-driven solutions is highly dependent on talents with the necessary skills. CPDSE is dedicated to developing research-based education for the future workforce of drug experts, spanning bachelor, master, PhD and life-long learning levels.</p>
-
-Pharmaceutical scientists will become bilinguals speaking both "data and drugs". CPDSE works closely with students, university teachers and researchers, as well as professionals from the pharmaceutical industry to ensure education that is relevant, collaborative, and aligned with real-world needs.
-
+<div class="about-secondary">
+<p>Pharmaceutical scientists will become bilinguals speaking both "data and drugs". CPDSE works closely with students, university teachers and researchers, as well as professionals from the pharmaceutical industry to ensure education that is relevant, collaborative, and aligned with real-world needs.</p>
 </div>
 
 ## Our Mission
