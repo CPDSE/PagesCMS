@@ -1732,6 +1732,14 @@ a { color: inherit; }
   width: 100vw;
   margin-left: calc(50% - 50vw);
 }
+
+.page-body > .about-dark-section:first-child {
+  margin-top: calc(-1 * var(--space-lg));
+}
+
+.page-body > .about-activities:last-child {
+  margin-bottom: calc(-1 * var(--space-lg));
+}
 .people-filters {
   margin-bottom: var(--space-md);
   padding: 1.5rem;
