@@ -35,8 +35,6 @@ nav:
         url: /who-are-we/
       - title: People
         url: /people/
-      - title: Funding
-        url: /funding/
   - title: Education
     children:
       - title: Educational Git
