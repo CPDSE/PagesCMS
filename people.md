@@ -5,6 +5,30 @@ description: The people in CPDSE.
 permalink: /people/
 ---
 
+<!-- FILTERS -->
+<div class="people-filters" role="group" aria-label="Filter people">
+  <div class="filter-group">
+    <label class="filter-label">University</label>
+    <div class="filter-buttons">
+      <button class="filter-btn filter-active" data-filter="university" data-value="">All</button>
+      <button class="filter-btn" data-filter="university" data-value="University of Copenhagen">UCPH</button>
+      <button class="filter-btn" data-filter="university" data-value="University of Southern Denmark">SDU</button>
+    </div>
+  </div>
+  
+  <div class="filter-group">
+    <label class="filter-label">Department</label>
+    <div class="filter-buttons">
+      <button class="filter-btn filter-active" data-filter="department" data-value="">All</button>
+      <button class="filter-btn" data-filter="department" data-value="Drug Design and Pharmacology">Drug Design & Pharmacology</button>
+      <button class="filter-btn" data-filter="department" data-value="Science Education">Science Education</button>
+      <button class="filter-btn" data-filter="department" data-value="Pharmacy">Pharmacy</button>
+      <button class="filter-btn" data-filter="department" data-value="Public Health">Public Health</button>
+      <button class="filter-btn" data-filter="department" data-value="Physics, Chemistry and Pharmacy">Physics, Chemistry & Pharmacy</button>
+    </div>
+  </div>
+</div>
+
 <section class="people-directory" aria-label="People directory">
   <article class="person-card person-card-photo">
     <img src="{{ '/assets/images/portraits/Morten_Lindow.jpg' | relative_url }}" alt="Portrait of Morten Lindow" loading="lazy">
@@ -232,5 +256,61 @@ permalink: /people/
         links.appendChild(anchor);
       });
     });
+
+    // ─── PEOPLE FILTER FUNCTIONALITY ───────────────────────────────
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const personCards = document.querySelectorAll('.person-card');
+    let activeFilters = {
+      university: '',
+      department: ''
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filterType = button.dataset.filter;
+        const filterValue = button.dataset.value;
+
+        // Remove active class from siblings
+        document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`).forEach((btn) => {
+          btn.classList.remove('filter-active');
+        });
+
+        // Add active class to clicked button
+        button.classList.add('filter-active');
+
+        // Update active filters
+        activeFilters[filterType] = filterValue;
+
+        // Filter person cards
+        filterCards();
+      });
+    });
+
+    const filterCards = () => {
+      personCards.forEach((card) => {
+        const affiliation = card.querySelector('.person-affiliation')?.textContent || '';
+        
+        // Check university filter
+        let universityMatch = true;
+        if (activeFilters.university) {
+          universityMatch = affiliation.includes(activeFilters.university);
+        }
+
+        // Check department filter
+        let departmentMatch = true;
+        if (activeFilters.department) {
+          departmentMatch = affiliation.includes(activeFilters.department);
+        }
+
+        // Show or hide card
+        if (universityMatch && departmentMatch) {
+          card.style.display = '';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+        }
+      });
+    };
   });
 </script>

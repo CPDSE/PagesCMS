@@ -1712,10 +1712,75 @@ a { color: inherit; }
 .page-body > .people-directory {
   max-width: none;
 }
+.page-body > .people-filters {
+  max-width: none;
+}
+.people-filters {
+  margin-bottom: var(--space-md);
+  padding: 1.5rem;
+  background: var(--green-pale);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.filter-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.25rem;
+}
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #fff;
+  background: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.filter-btn:hover {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+  transform: translateY(-1px);
+}
+.filter-btn.filter-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+}
+.filter-btn.filter-active:hover {
+  background: #e4d29a;
+  border-color: #e4d29a;
+}
 .people-directory {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 1.1rem;
+}
+.people-directory.filtered {
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
 .person-card {
   border-top: 1px solid rgba(60,94,62,0.75);
@@ -1815,12 +1880,24 @@ a { color: inherit; }
   .people-directory {
     grid-template-columns: 1fr;
   }
+  .people-filters {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
   .person-card:nth-child(2) {
     border-top: 1px solid rgba(60,94,62,0.75);
     padding-top: 0.8rem;
   }
 }
 @media (max-width: 640px) {
+  .people-filters {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .filter-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
   .person-card-photo {
     grid-template-columns: 120px 1fr;
     gap: 0.85rem;
