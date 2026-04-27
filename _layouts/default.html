@@ -54,10 +54,10 @@
     const statsStrip = document.querySelector('.stats-panel-wrap, .stats-strip');
     if (statsStrip) statsObserver.observe(statsStrip);
 
-    // Home nav becomes solid shortly after scrolling starts
+    // Nav becomes solid shortly after scrolling starts
     const siteNav = document.querySelector('.site-nav');
-    const hero = document.querySelector('.hero');
-    if (siteNav && hero && document.body.classList.contains('page-home')) {
+    const hero = document.querySelector('.hero, .page-hero');
+    if (siteNav && hero) {
       const syncNavState = () => {
         const scrolled = window.scrollY || window.pageYOffset || 0;
         siteNav.classList.toggle('nav-solid', scrolled > 8);

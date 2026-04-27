@@ -56,16 +56,12 @@ a { color: inherit; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #3C5E3E;
+  background: transparent;
   border-bottom: 1px solid rgba(249,249,249,0.08);
+  border-bottom-color: transparent;
   transition: background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
-.page-home .site-nav {
-  background: transparent;
-  border-bottom-color: transparent;
-  box-shadow: none;
-}
-.page-home .site-nav.nav-solid {
+.site-nav.nav-solid {
   background: #3C5E3E;
   border-bottom-color: rgba(249,249,249,0.08);
   box-shadow: 0 8px 18px rgba(15,26,20,0.28);
@@ -1666,9 +1662,28 @@ a { color: inherit; }
 
 /* ─── PAGE LAYOUT ─────────────────────────────────────────── */
 .page-hero {
-  background: var(--green);
+  background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
   color: var(--offwhite);
-  padding: var(--space-lg) 0 var(--space-md);
+  padding: calc(var(--space-xl) + 40px) 0 var(--space-md);
+  margin-top: -60px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(214,193,124,0.10) 0%, transparent 70%),
+    radial-gradient(circle, rgba(249,249,249,0.07) 1px, transparent 1px);
+  background-size: auto, 28px 28px;
+  background-position: 0 0, 0 0;
+  pointer-events: none;
+}
+.page-hero .container {
+  position: relative;
+  z-index: 2;
 }
 .page-hero h1 {
   font-family: var(--font-display);
@@ -1964,6 +1979,12 @@ a { color: inherit; }
   .hero-video {
     max-height: 220px;
   }
+  .page-hero {
+    padding: calc(var(--space-lg) + 20px) 0 var(--space-md);
+  }
+  .page-hero h1 {
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  }
   .circles-grid { grid-template-columns: repeat(2, 1fr); }
   .circles-layout {
     grid-template-columns: 1fr;
@@ -1997,6 +2018,12 @@ a { color: inherit; }
   .nav-links.open > li > a,
   .nav-links.open > li > button { padding: 0.75rem 1.5rem; width: 100%; }
   .dropdown { position: static; opacity: 1; pointer-events: all; transform: none; border: none; padding-left: 1.5rem; }
+  .page-hero {
+    padding: calc(var(--space-lg) - 10px) 0 var(--space-md);
+  }
+  .page-hero h1 {
+    font-size: 1.5rem;
+  }
   .circles-grid { grid-template-columns: 1fr; }
   .audience-grid {
     max-width: 100%;
