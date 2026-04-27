@@ -792,7 +792,7 @@ a { color: inherit; }
 }
 
 .section-journey {
-  background: #3C5E3E;
+  background: #f7f4ea;
 }
 .section-journey .timeline-section {
   margin: 0 auto;
@@ -801,10 +801,10 @@ a { color: inherit; }
   color: var(--accent);
 }
 .section-journey h2 {
-  color: var(--offwhite);
+  color: var(--green);
 }
 .section-journey .section-header p {
-  color: rgba(249,249,249,0.72);
+  color: rgba(15,26,20,0.75);
 }
 
 /* ─── TIMELINE ─────────────────────────────────────────────── */
@@ -839,7 +839,7 @@ a { color: inherit; }
   left: var(--track-start);
   width: var(--track-width);
   height: 3px;
-  background: rgba(246,241,220,0.28);
+  background: rgba(60,94,62,0.2);
   z-index: 0;
 }
 .timeline-tabs::after {
@@ -864,7 +864,7 @@ a { color: inherit; }
   padding: 0;
   background: none;
   border: none;
-  color: rgba(249,249,249,0.82);
+  color: rgba(60,94,62,0.88);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 500;
@@ -890,13 +890,13 @@ a { color: inherit; }
   height: 18px;
   margin-top: 15px;
   border-radius: 50%;
-  background: rgba(246,241,220,0.16);
-  border: 2px solid rgba(246,241,220,0.65);
+  background: rgba(60,94,62,0.08);
+  border: 2px solid rgba(60,94,62,0.45);
   transition: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .timeline-tab:hover::before {
-  background: rgba(246,241,220,0.28);
-  border-color: #F6F1DC;
+  background: rgba(60,94,62,0.16);
+  border-color: var(--green);
 }
 .timeline-tab.active::before {
   background: #D6C17C;
@@ -907,7 +907,7 @@ a { color: inherit; }
   box-shadow: 0 0 0 4px rgba(214, 193, 124, 0.28);
 }
 .timeline-tab.active {
-  color: #F6F1DC;
+  color: var(--green);
   font-weight: 600;
 }
 .timeline-content {
@@ -920,8 +920,8 @@ a { color: inherit; }
 .timeline-item {
   display: none;
   padding: 2.5rem;
-  background: rgba(249,249,249,0.07);
-  border: 2px solid #D6C17C;
+  background: rgba(60,94,62,0.04);
+  border: 2px solid rgba(60,94,62,0.25);
   border-radius: 10px;
   will-change: transform, opacity;
 }
@@ -972,7 +972,7 @@ a { color: inherit; }
   letter-spacing: 0.02em;
 }
 .timeline-item p {
-  color: rgba(249,249,249,0.8);
+  color: rgba(15,26,20,0.8);
   line-height: 1.6;
   margin-bottom: 1rem;
   font-size: 0.88rem;
@@ -985,7 +985,7 @@ a { color: inherit; }
 .timeline-item li {
   padding: 0.5rem 0 0.5rem 1.75rem;
   position: relative;
-  color: rgba(249,249,249,0.8);
+  color: rgba(15,26,20,0.8);
   font-size: 0.88rem;
   line-height: 1.6;
 }
@@ -1560,7 +1560,9 @@ a { color: inherit; }
 }
 .section-partners {
   padding: var(--space-md) 0;
-  background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
+  background: #f7f4ea;
+  border-top: 1px solid rgba(60,94,62,0.12);
+  border-bottom: 1px solid rgba(60,94,62,0.12);
 }
 .section-partners > .container > p {
   margin-left: auto;

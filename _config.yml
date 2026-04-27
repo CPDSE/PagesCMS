@@ -31,6 +31,8 @@ nav:
     children:
       - title: CPDSE
         url: /about/
+      - title: Corporate Identity
+        url: /corporate-identity/
       - title: Who Are We
         url: /who-are-we/
       - title: People
