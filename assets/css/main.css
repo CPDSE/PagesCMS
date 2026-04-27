@@ -792,7 +792,7 @@ a { color: inherit; }
 }
 
 .section-journey {
-  background: #f7f4ea;
+  background: var(--offwhite);
 }
 .section-journey .timeline-section {
   margin: 0 auto;
@@ -1560,7 +1560,7 @@ a { color: inherit; }
 }
 .section-partners {
   padding: var(--space-md) 0;
-  background: #f7f4ea;
+  background: var(--offwhite);
   border-top: 1px solid rgba(60,94,62,0.12);
   border-bottom: 1px solid rgba(60,94,62,0.12);
 }
