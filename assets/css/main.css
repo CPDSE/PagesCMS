@@ -2039,32 +2039,15 @@ a { color: inherit; }
 
 /* ─── ABOUT PAGE ──────────────────────────────────────────── */
 
-/* About Banner - Featured intro section */
-.about-banner {
-  background: linear-gradient(135deg, #3C5E3E 0%, #2d7a52 50%, #3C5E3E 100%);
-  color: var(--offwhite);
-  padding: calc(var(--space-lg) + 20px) var(--space-md);
+/* About Banner - Inherits section-circles styling */
+.about-banner-section {
+  padding: calc(var(--space-lg) + 20px) 0;
   margin: -60px 0 0 0;
   margin-top: -60px;
-  position: relative;
-  overflow: hidden;
-}
-
-.about-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-image:
-    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(214,193,124,0.08) 0%, transparent 70%),
-    radial-gradient(circle, rgba(249,249,249,0.04) 1px, transparent 1px);
-  background-size: auto, 28px 28px;
-  pointer-events: none;
 }
 
 .about-banner-inner {
   max-width: 900px;
-  margin: 0 auto;
   position: relative;
   z-index: 2;
 }
@@ -2247,8 +2230,8 @@ a { color: inherit; }
 
 /* Responsive About Page */
 @media (max-width: 900px) {
-  .about-banner {
-    padding: calc(var(--space-lg) + 10px) var(--space-md);
+  .about-banner-section {
+    padding: calc(var(--space-lg) + 10px) 0;
   }
 
   .about-banner-title {
@@ -2281,8 +2264,8 @@ a { color: inherit; }
 }
 
 @media (max-width: 640px) {
-  .about-banner {
-    padding: calc(var(--space-lg) - 10px) var(--space-sm);
+  .about-banner-section {
+    padding: calc(var(--space-lg) - 10px) 0;
     margin-top: -60px;
   }
 
