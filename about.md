@@ -6,6 +6,7 @@ description: Today's transformation towards data-driven solutions is highly depe
 permalink: /about/
 ---
 
+<section class="about-dark-section">
 <div class="about-vision-mission">
   <div class="about-vm-card">
     <div class="about-vm-icon" aria-hidden="true">
@@ -42,8 +43,9 @@ permalink: /about/
     </div>
   </div>
 </div>
+</section>
 
-<section class="about-activities">
+<section class="about-activities section-circles">
   <div class="about-activities-inner">
     <div class="about-activities-header">
       <span class="hero-label">What we do</span>
