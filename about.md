@@ -42,3 +42,87 @@ permalink: /about/
     </div>
   </div>
 </div>
+
+<section class="about-activities">
+  <div class="about-activities-inner">
+    <div class="about-activities-header">
+      <span class="hero-label">What we do</span>
+      <h2>Our activities</h2>
+    </div>
+    <ul class="about-activities-list">
+      <li class="about-activity">
+        <div class="about-activity-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="22" cy="10" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="16" cy="22" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="13.5" y1="11.5" x2="18.5" y2="11.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="12" y1="13.5" x2="15" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="20" y1="13.5" x2="17" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Community</strong>
+          <p>We build a strong and open community for pharmaceutical data science.</p>
+        </div>
+      </li>
+      <li class="about-activity">
+        <div class="about-activity-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M10 14h5M10 18h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="22" cy="16" r="3" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M24.5 18.5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Infrastructure</strong>
+          <p>We develop and deploy low-friction infrastructure that enables and empowers non-expert data science.</p>
+        </div>
+      </li>
+      <li class="about-activity">
+        <div class="about-activity-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 26V14l10-8 10 8v12" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <rect x="12" y="18" width="8" height="8" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M16 14v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Curriculum reform</strong>
+          <p>We upgrade and reform pharma courses, and design new courses to integrate data science throughout.</p>
+        </div>
+      </li>
+      <li class="about-activity">
+        <div class="about-activity-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 24l7-7 5 5 7-8 5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="8" cy="10" r="3" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 10h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M14 14h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Direct teaching</strong>
+          <p>We contribute directly to teaching at BA, MS, PhD and life-long learning levels.</p>
+        </div>
+      </li>
+      <li class="about-activity">
+        <div class="about-activity-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="16" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="24" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="24" cy="24" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="11.5" y1="14.5" x2="20.5" y2="9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="11.5" y1="17.5" x2="20.5" y2="22.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="27.5" y1="11" x2="27.5" y2="21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Networks</strong>
+          <p>We connect and develop national and international networks in pharma data science and data science education.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
