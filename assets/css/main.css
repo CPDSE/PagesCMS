@@ -2066,6 +2066,69 @@ a { color: inherit; }
 
 /* ─── ABOUT PAGE ──────────────────────────────────────────── */
 
+.about-vision-mission {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  max-width: var(--max-w);
+  margin: var(--space-lg) auto 0;
+  padding: 0 var(--space-md);
+}
+
+.about-vm-card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.about-vm-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(60,94,62,0.08);
+}
+
+.about-vm-icon {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--green-mid);
+}
+
+.about-vm-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.about-vm-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.about-vm-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--green);
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+}
+
+.about-vm-text p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0;
+}
+
 .about-secondary {
   max-width: 900px;
   margin: var(--space-lg) auto;
@@ -2221,6 +2284,11 @@ a { color: inherit; }
 
 /* Responsive About Page */
 @media (max-width: 900px) {
+  .about-vision-mission {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
   .about-secondary p {
     font-size: 1rem;
     padding: var(--space-md) var(--space-sm);

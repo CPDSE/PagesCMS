@@ -6,78 +6,39 @@ description: Today's transformation towards data-driven solutions is highly depe
 permalink: /about/
 ---
 
-<div class="about-secondary">
-<p>Pharmaceutical scientists will become bilinguals speaking both "data and drugs". CPDSE works closely with students, university teachers and researchers, as well as professionals from the pharmaceutical industry to ensure education that is relevant, collaborative, and aligned with real-world needs.</p>
+<div class="about-vision-mission">
+  <div class="about-vm-card">
+    <div class="about-vm-icon" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="2.5"/>
+        <circle cx="24" cy="24" r="4" fill="currentColor"/>
+        <line x1="24" y1="4" x2="24" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="24" y1="36" x2="24" y2="44" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="12" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="36" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="9.37" y1="9.37" x2="15.2" y2="15.2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="32.8" y1="32.8" x2="38.63" y2="38.63" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="38.63" y1="9.37" x2="32.8" y2="15.2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="15.2" y1="32.8" x2="9.37" y2="38.63" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="about-vm-text">
+      <span class="about-vm-label">Vision</span>
+      <p>Data science is an integral core capability in life science workers and organisations.</p>
+    </div>
+  </div>
+
+  <div class="about-vm-card">
+    <div class="about-vm-icon" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 6C14.06 6 6 14.06 6 24s8.06 18 18 18 18-8.06 18-18S33.94 6 24 6Z" stroke="currentColor" stroke-width="2.5"/>
+        <path d="M17 24l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 14v4M24 30v4M14 24h4M30 24h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="about-vm-text">
+      <span class="about-vm-label">Mission</span>
+      <p>To educate the workforce of pharmaceutical data science professionals and researchers. Therefore, the center develops education for people to be 'data and drugs' bilinguals.</p>
+    </div>
+  </div>
 </div>
-
-## Our Mission
-
-If pharmaceutical science lives in one person's head and data science in another's, we have trouble understanding each other, doing the right thing, and doing it right. We aim to upskill and educate people that understand and can apply the right data science across the breadth of the pharmaceutical value chain.
-
-## About the Center
-
-<div class="about-content-grid">
-
-<div class="about-content-block">
-
-### Who We Are
-
-The Center for Pharmaceutical Data Science Education (CPDSE) is a collaborative initiative between the **University of Copenhagen** and the **University of Southern Denmark**. Together, we bring seven university departments with distinct strengths in pharmaceutical sciences, data science, and science education.
-
-Our mission is to advance Danish education within pharmaceutical sciences through the integration of data science, creating the next generation of drug experts equipped with both pharmaceutical knowledge and data literacy.
-
-</div>
-
-<div class="about-content-block">
-
-### What We Do
-
-We develop and deliver research-based education programs across multiple levels:
-- **Bachelor programs** in pharmaceutical sciences with integrated data science components
-- **Master's programs** combining pharmacy, pharmacology, and data analysis
-- **PhD training** for advanced pharmaceutical researchers
-- **Lifelong learning** programs for professionals in the pharmaceutical industry
-
-Each program is designed to ensure students understand how data science applies across the entire pharmaceutical value chain.
-
-</div>
-
-</div>
-
-## Our Locations
-
-<div class="locations-grid">
-
-<div class="location-card">
-
-### University of Copenhagen
-
-**Faculty of Health and Medical Sciences**
-
-Universitetsparken 2  
-2100 Copenhagen  
-Denmark
-
-The Copenhagen office serves as the hub for our pharmaceutical sciences programs and brings together researchers in drug design, pharmacology, and pharmacy practice.
-
-</div>
-
-<div class="location-card">
-
-### University of Southern Denmark
-
-**Faculty of Science**
-
-Campusvej 55  
-5230 Odense  
-Denmark
-
-The Odense office focuses on data science integration and statistics-driven pharmaceutical research, complementing CPDSE's education initiatives.
-
-</div>
-
-</div>
-
-## Our Partners
-
-CPDSE collaborates with leading pharmaceutical companies and research institutions to ensure our curricula remain aligned with industry needs and cutting-edge research. This partnership approach ensures our graduates are prepared for real-world challenges in pharmaceutical development and practice.
