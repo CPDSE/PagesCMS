@@ -1564,6 +1564,7 @@ a { color: inherit; }
 }
 .section-partners {
   padding: var(--space-md) 0;
+  background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
 }
 .section-partners > .container > p {
   margin-left: auto;
