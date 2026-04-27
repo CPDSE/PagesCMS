@@ -29,16 +29,16 @@ nav:
     url: /announcements/
   - title: About
     children:
-      - title: CPDSE
+      - title: About CPDSE
         url: /about/
-      - title: Corporate Identity
-        url: /corporate-identity/
-      - title: Who Are We
-        url: /who-are-we/
       - title: People
         url: /people/
+      - title: Corporate Identity
+        url: /corporate-identity/
   - title: Education
     children:
+      - title: Educational Offerings
+        url: /offerings/
       - title: Educational Git
         url: https://github.com/CPDSE-EDUX
         external: true
