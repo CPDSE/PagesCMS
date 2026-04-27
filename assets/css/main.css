@@ -1753,7 +1753,7 @@ a { color: inherit; }
   color: #1a2430;
 }
 .person-card .person-role {
-
+  margin-bottom: 0.55rem;
 }
 .person-links {
   display: flex;
