@@ -2077,7 +2077,7 @@ a { color: inherit; }
 /* ─── ABOUT PAGE ──────────────────────────────────────────── */
 
 .about-dark-section {
-  background: var(--offwhite);
+  background: var(--green);
   position: relative;
   overflow: hidden;
   padding: var(--space-lg) 0;
@@ -2086,7 +2086,8 @@ a { color: inherit; }
   content: '';
   position: absolute;
   inset: 0;
-  background: none;
+  background-image: radial-gradient(circle, rgba(249,249,249,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
   pointer-events: none;
 }
 .about-vision-mission {
