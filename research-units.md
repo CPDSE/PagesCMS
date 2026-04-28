@@ -63,7 +63,6 @@ permalink: /research-units/
 			<li>Educational research on how people learn data science in a pharmaceutical context</li>
 			<li>Cross-disciplinary projects across pharmaceutical science, statistics, machine learning, and science education</li>
 		</ul>
+        <p>Interested in a research collaboration? <a href="/PagesCMS/contact/">Get in touch →</a></p>
 	</div>
 </section>
-
-<p>Interested in a research collaboration? We are always looking to work with industry partners, academic groups, and individual researchers who share our mission. <a href="/PagesCMS/contact/">Get in touch →</a></p>
