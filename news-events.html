@@ -178,6 +178,74 @@ permalink: /news-events/
       render();
     }
 
+    function formatListEventTime(event) {
+      var start = event.start;
+      var end = event.end;
+
+      if (!start) {
+        return '';
+      }
+
+      if (event.allDay) {
+        return 'All day';
+      }
+
+      if (!end) {
+        return new Intl.DateTimeFormat('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(start);
+      }
+
+      return new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(start) + ' - ' + new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(end);
+    }
+
+    function buildListEventContent(arg) {
+      var event = arg.event;
+      var start = event.start;
+      var wrapper = document.createElement('div');
+      var badge = document.createElement('div');
+      var month = document.createElement('span');
+      var day = document.createElement('span');
+      var content = document.createElement('div');
+      var title = document.createElement('span');
+      var time = document.createElement('span');
+
+      wrapper.className = 'calendar-list-item';
+      badge.className = 'calendar-list-badge';
+      month.className = 'calendar-list-month';
+      day.className = 'calendar-list-day';
+      content.className = 'calendar-list-content';
+      title.className = 'calendar-list-title';
+      time.className = 'calendar-list-time';
+
+      if (start) {
+        month.textContent = new Intl.DateTimeFormat('en', { month: 'short' }).format(start).toUpperCase();
+        day.textContent = String(start.getDate());
+      } else {
+        month.textContent = 'TBA';
+        day.textContent = '-';
+      }
+
+      title.textContent = event.title || 'Untitled event';
+      time.textContent = formatListEventTime(event);
+
+      badge.appendChild(month);
+      badge.appendChild(day);
+      content.appendChild(title);
+      content.appendChild(time);
+      wrapper.appendChild(badge);
+      wrapper.appendChild(content);
+
+      return { domNodes: [wrapper] };
+    }
+
     function initCalendar(eventsData) {
       var calendarEl = document.getElementById('events-calendar');
 
@@ -186,7 +254,7 @@ permalink: /news-events/
       }
 
       eventsCalendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridWeek',
+        initialView: 'dayGridMonth',
         headerToolbar: {
           left: 'prev,next',
           center: 'title',
@@ -197,6 +265,13 @@ permalink: /news-events/
         eventBackgroundColor: '#a9bbaa',
         eventBorderColor: '#3C5E3E',
         eventTextColor: '#0f1a14',
+        eventContent: function (arg) {
+          if (arg.view && arg.view.type && arg.view.type.indexOf('list') === 0) {
+            return buildListEventContent(arg);
+          }
+
+          return null;
+        },
         eventClick: function (info) {
           info.jsEvent.preventDefault();
           openEventModal(info.event);
