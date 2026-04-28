@@ -1275,7 +1275,7 @@ a { color: inherit; }
   justify-content: center;
   text-align: center;
   padding: 1rem;
-  cursor: pointer;
+  cursor: default;
   border: none;
   font-family: inherit;
   box-shadow: 0 6px 18px rgba(0,0,0,0.28);
