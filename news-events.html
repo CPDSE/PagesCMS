@@ -254,7 +254,7 @@ permalink: /news-events/
       }
 
       eventsCalendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
+        initialView: 'listMonth',
         headerToolbar: {
           left: 'prev,next',
           center: 'title',
@@ -320,6 +320,31 @@ permalink: /news-events/
           location: location
         }
       };
+    }
+
+    function toDate(value) {
+      if (!value) {
+        return null;
+      }
+
+      if (Object.prototype.toString.call(value) === '[object Date]') {
+        return isNaN(value.getTime()) ? null : value;
+      }
+
+      var parsed = new Date(value);
+      return isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    function filterUpcomingEvents(eventsData) {
+      var now = new Date();
+
+      return (eventsData || []).filter(function (event) {
+        var startDate = toDate(event.start);
+        var endDate = toDate(event.end);
+        var compareDate = endDate || startDate;
+
+        return !!compareDate && compareDate >= now;
+      });
     }
 
     function isWithinCalendarRange(startTime, rangeStart, rangeEnd) {
@@ -536,7 +561,7 @@ permalink: /news-events/
 
       if (!window.fetch || !window.ICAL || !window.FullCalendar) {
         eventsCalendarNote.hidden = false;
-        initCalendar(fallbackEvents);
+        initCalendar(filterUpcomingEvents(fallbackEvents));
         return;
       }
 
@@ -549,15 +574,16 @@ permalink: /news-events/
         })
         .then(function (icsText) {
           var parsedEvents = buildCalendarEvents(icsText);
+          var upcomingEvents = filterUpcomingEvents(parsedEvents);
 
-          initCalendar(parsedEvents.length ? parsedEvents : fallbackEvents);
-          if (!parsedEvents.length) {
+          initCalendar(upcomingEvents.length ? upcomingEvents : filterUpcomingEvents(fallbackEvents));
+          if (!upcomingEvents.length) {
             eventsCalendarNote.hidden = false;
           }
         })
         .catch(function () {
           eventsCalendarNote.hidden = false;
-          initCalendar(fallbackEvents);
+          initCalendar(filterUpcomingEvents(fallbackEvents));
         });
     }
 

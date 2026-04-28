@@ -2368,6 +2368,10 @@ a { color: inherit; }
   text-transform: uppercase;
 }
 
+.fc .fc-list-day {
+  display: none;
+}
+
 .fc .fc-list-event-time,
 .fc .fc-list-event-graphic {
   display: none;
