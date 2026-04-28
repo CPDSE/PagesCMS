@@ -319,7 +319,7 @@ a { color: inherit; }
 }
 .section-announcements .card-tag {
   color: var(--green);
-  background: var(--green-pale);
+  background: var(--accent);
   border-color: rgba(60,94,62,0.24);
 }
 .section-announcements .card-arrow {
