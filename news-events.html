@@ -18,10 +18,10 @@ permalink: /news-events/
     {% assign news_posts = site.posts | where_exp: "post", "post.category != 'Event'" %}
 
     <div class="updates-split">
-      <section class="updates-pane updates-announcements" id="news-overview" aria-labelledby="news-overview-title">
+      <section class="updates-pane updates-news" id="news-overview" aria-labelledby="news-overview-title">
         <h2 id="news-overview-title">News</h2>
 
-        <div class="updates-list" role="list">
+        <div class="updates-list updates-list-news" role="list">
           {% if news_posts.size > 0 %}
           {% for post in news_posts %}
           <a class="updates-item" href="{{ post.url | relative_url }}" role="listitem">
@@ -36,10 +36,9 @@ permalink: /news-events/
         </div>
 
         <div class="updates-footer">
-          <a class="updates-more" href="#news-overview">All news</a>
-          <div class="updates-arrows" aria-hidden="true">
-            <span class="updates-arrow">&#8249;</span>
-            <span class="updates-arrow">&#8250;</span>
+          <div class="updates-arrows" data-pager="news">
+            <button class="updates-arrow-btn" type="button" data-target="news" data-dir="prev" aria-label="Previous news page">&#8249;</button>
+            <button class="updates-arrow-btn" type="button" data-target="news" data-dir="next" aria-label="Next news page">&#8250;</button>
           </div>
         </div>
       </section>
@@ -47,7 +46,7 @@ permalink: /news-events/
       <section class="updates-pane updates-events" id="events-overview" aria-labelledby="events-overview-title">
         <h2 id="events-overview-title">Events</h2>
 
-        <div class="updates-list" role="list">
+        <div class="updates-list updates-list-events" role="list">
           {% if events.size > 0 %}
           {% for post in events %}
           {% assign event_display_date = post.event_date | default: post.date %}
@@ -72,13 +71,55 @@ permalink: /news-events/
         </div>
 
         <div class="updates-footer">
-          <a class="updates-more" href="#events-overview">All events</a>
-          <div class="updates-arrows" aria-hidden="true">
-            <span class="updates-arrow">&#8249;</span>
-            <span class="updates-arrow">&#8250;</span>
+          <div class="updates-arrows" data-pager="events">
+            <button class="updates-arrow-btn" type="button" data-target="events" data-dir="prev" aria-label="Previous events page">&#8249;</button>
+            <button class="updates-arrow-btn" type="button" data-target="events" data-dir="next" aria-label="Next events page">&#8250;</button>
           </div>
         </div>
       </section>
     </div>
   </div>
 </main>
+
+<script>
+  (function () {
+    const pageSize = 3;
+
+    const setupPager = (target, itemSelector) => {
+      const items = Array.from(document.querySelectorAll(itemSelector));
+      const prev = document.querySelector(`.updates-arrow-btn[data-target="${target}"][data-dir="prev"]`);
+      const next = document.querySelector(`.updates-arrow-btn[data-target="${target}"][data-dir="next"]`);
+
+      if (!items.length || !prev || !next) return;
+
+      let page = 0;
+      const maxPage = Math.max(0, Math.ceil(items.length / pageSize) - 1);
+
+      const render = () => {
+        items.forEach((item, idx) => {
+          const start = page * pageSize;
+          const end = start + pageSize;
+          item.style.display = idx >= start && idx < end ? '' : 'none';
+        });
+
+        prev.disabled = page <= 0;
+        next.disabled = page >= maxPage;
+      };
+
+      prev.addEventListener('click', () => {
+        page = Math.max(0, page - 1);
+        render();
+      });
+
+      next.addEventListener('click', () => {
+        page = Math.min(maxPage, page + 1);
+        render();
+      });
+
+      render();
+    };
+
+    setupPager('news', '.updates-list-news .updates-item');
+    setupPager('events', '.updates-list-events .event-item');
+  })();
+</script>

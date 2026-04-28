@@ -10,18 +10,6 @@ permalink: /:categories/:title/
 plugins:
   - jekyll-feed
 
-collections:
-  announcements:
-    output: true
-    permalink: /news-events/:title/
-
-defaults:
-  - scope:
-      path: ""
-      type: "announcements"
-    values:
-      layout: "post"
-
 nav:
   - title: Home
     url: /
