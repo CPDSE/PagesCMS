@@ -11,13 +11,13 @@
             <button aria-haspopup="true" aria-expanded="false">{{ item.title }}</button>
             <div class="dropdown" role="menu">
               {% for child in item.children %}
-                <a href="{{ child.url | relative_url }}" {% if child.external %}target="_blank" rel="noopener"{% endif %} role="menuitem">{{ child.title }}</a>
+                <a {% if child.external %}class="is-external" href="{{ child.url }}" target="_blank" rel="noopener"{% else %}href="{{ child.url | relative_url }}"{% endif %} role="menuitem">{{ child.title }}</a>
               {% endfor %}
             </div>
           </li>
         {% else %}
           <li>
-            <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a>
+            <a {% if item.external %}class="is-external{% if page.url == item.url %} active{% endif %}" href="{{ item.url }}" target="_blank" rel="noopener"{% else %}{% if page.url == item.url %}class="active"{% endif %} href="{{ item.url | relative_url }}"{% endif %}>{{ item.title }}</a>
           </li>
         {% endif %}
       {% endfor %}
