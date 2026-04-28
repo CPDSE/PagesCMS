@@ -12,7 +12,7 @@ permalink: /news-events/
   </div>
 </header>
 
-<main class="section section-alt">
+<main class="section section-alt news-events-main">
   <div class="container">
     {% assign events = site.posts | where: "category", "Event" %}
     {% assign news_posts = site.posts | where_exp: "post", "post.category != 'Event'" %}
@@ -35,7 +35,13 @@ permalink: /news-events/
           {% endif %}
         </div>
 
-        <a class="updates-more" href="#news-overview">All news</a>
+        <div class="updates-footer">
+          <a class="updates-more" href="#news-overview">All news</a>
+          <div class="updates-arrows" aria-hidden="true">
+            <span class="updates-arrow">&#8249;</span>
+            <span class="updates-arrow">&#8250;</span>
+          </div>
+        </div>
       </section>
 
       <section class="updates-pane updates-events" id="events-overview" aria-labelledby="events-overview-title">
@@ -65,7 +71,13 @@ permalink: /news-events/
           {% endif %}
         </div>
 
-        <a class="updates-more" href="#events-overview">All events</a>
+        <div class="updates-footer">
+          <a class="updates-more" href="#events-overview">All events</a>
+          <div class="updates-arrows" aria-hidden="true">
+            <span class="updates-arrow">&#8249;</span>
+            <span class="updates-arrow">&#8250;</span>
+          </div>
+        </div>
       </section>
     </div>
   </div>
