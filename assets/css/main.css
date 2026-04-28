@@ -1835,61 +1835,78 @@ a { color: inherit; }
 }
 .people-filters {
   margin-bottom: var(--space-md);
-  padding: 1.5rem;
-  background: var(--green-pale);
-  border-radius: 8px;
+  padding: 1.35rem;
+  background: linear-gradient(180deg, rgba(249,249,249,0.96), rgba(232,240,235,0.92));
+  border: 1px solid rgba(60,94,62,0.2);
+  border-top: 3px solid rgba(60,94,62,0.6);
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(15,26,20,0.07);
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
 }
 .filter-group {
+  flex: 1 1 280px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  padding: 0.7rem;
+  border: 1px solid rgba(60,94,62,0.12);
+  border-radius: 8px;
+  background: rgba(249,249,249,0.78);
 }
 .filter-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 0.25rem;
+  color: rgba(60,94,62,0.88);
+  margin: 0;
 }
 .filter-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: rgba(60,94,62,0.07);
 }
 .filter-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0.42rem 0.88rem;
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  color: #fff;
-  background: var(--green);
-  border: 1px solid var(--green);
-  border-radius: 20px;
+  color: rgba(15,26,20,0.78);
+  background: rgba(249,249,249,0.96);
+  border: 1px solid transparent;
+  border-radius: 999px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
 }
 .filter-btn:hover {
-  background: var(--green-mid);
-  border-color: var(--green-mid);
-  transform: translateY(-1px);
+  background: rgba(169,187,170,0.34);
+  border-color: rgba(60,94,62,0.2);
+  color: var(--green);
 }
 .filter-btn.filter-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--ink);
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--offwhite);
   font-weight: 600;
+  box-shadow: 0 2px 9px rgba(60,94,62,0.22);
 }
 .filter-btn.filter-active:hover {
-  background: #e4d29a;
-  border-color: #e4d29a;
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+}
+.filter-btn:focus-visible {
+  outline: none;
+  border-color: rgba(60,94,62,0.55);
+  box-shadow: 0 0 0 2px rgba(214,193,124,0.55);
 }
 .people-directory {
   display: grid;
@@ -2009,8 +2026,14 @@ a { color: inherit; }
 }
 @media (max-width: 640px) {
   .people-filters {
-    padding: 1rem;
+    padding: 0.95rem;
     gap: 1rem;
+  }
+  .filter-group {
+    padding: 0.6rem;
+  }
+  .filter-buttons {
+    border-radius: 8px;
   }
   .filter-btn {
     padding: 0.4rem 0.8rem;
@@ -2890,11 +2913,15 @@ a { color: inherit; }
 
 .research-focus-strip {
   margin-top: 0;
-  margin-bottom: var(--space-md);
+  margin-bottom: 0;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   padding: 1.2rem 0;
   background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
+}
+
+.page-body > .research-focus-strip:last-child {
+  margin-bottom: calc(-1 * var(--space-lg));
 }
 
 .research-focus-inner {
