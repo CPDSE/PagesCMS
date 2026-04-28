@@ -1,0 +1,30 @@
+name: Update events calendar mirror
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-calendar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Update mirrored ICS file
+        shell: pwsh
+        run: ./scripts/update-events-calendar.ps1
+
+      - name: Commit calendar changes
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add assets/data/events-calendar.ics
+          git diff --cached --quiet && exit 0
+          git commit -m "Update events calendar mirror"
+          git push

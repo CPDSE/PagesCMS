@@ -1,0 +1,1277 @@
+BEGIN:VCALENDAR
+PRODID:-//Proton AG//ProtonCalendar 1.0.0//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:My calendar
+X-WR-CALDESC:
+X-WR-TIMEZONE:Europe/Berlin
+REFRESH-INTERVAL;VALUE=DURATION:PT240M
+X-PUBLISHED-TTL:PT240M
+BEGIN:VTIMEZONE
+TZID:Europe/Paris
+LAST-MODIFIED:20250218T131521Z
+X-LIC-LOCATION:Europe/Paris
+BEGIN:DAYLIGHT
+TZNAME:CEST
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZNAME:CET
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+LAST-MODIFIED:20250218T131521Z
+X-LIC-LOCATION:Europe/Berlin
+BEGIN:DAYLIGHT
+TZNAME:CEST
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZNAME:CET
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+ORGANIZER;CN=Arnault Vermillet:MAILTO:arnault@sund.ku.dk
+UID:040000008200E00074C5B7101A82E0080000000038785169498CDC01000000000000000
+ 010000000904406794DF7FE4D8CCE84EE539B119E
+DTSTART;TZID=Europe/Paris:20260127T120000
+DTEND;TZID=Europe/Paris:20260127T130000
+DTSTAMP:20260424T084405Z
+SEQUENCE:2
+DESCRIPTION;LANGUAGE=en-US:\n
+SUMMARY;LANGUAGE=en-US:Canceled: Test invite outside outlook
+STATUS:CANCELLED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=arnotilk@proton.me;X-PM-TOKEN=ca
+ 099143f265e4a9ca87fe709e8597c70985b954;PARTSTAT=NEEDS-ACTION:mailto:arnoti
+ lk@proton.me
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=CPDSE@protonmail.com;X-PM-TOKEN=
+ c038543557f297e1e28879e77184a0d6c3f8c483;PARTSTAT=NEEDS-ACTION:mailto:CPDS
+ E@protonmail.com
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Arnault Vermillet:MAILTO:arnault@sund.ku.dk
+UID:040000008200E00074C5B7101A82E0080000000063164B574B8CDC01000000000000000
+ 0100000008C5B649B4C65884CAD3E1392324C096E
+DTSTART;TZID=Europe/Paris:20260127T100000
+DTEND;TZID=Europe/Paris:20260127T110000
+DTSTAMP:20260424T084405Z
+SEQUENCE:1
+DESCRIPTION;LANGUAGE=en-US:\n
+SUMMARY;LANGUAGE=en-US:Canceled: BIG TEST
+STATUS:CANCELLED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=CPDSE@protonmail.com;X-PM-TOKEN=
+ 08c9e6aea2bfac83becbf86f55d835c852283106;PARTSTAT=NEEDS-ACTION:mailto:CPDS
+ E@protonmail.com
+END:VEVENT
+BEGIN:VEVENT
+UID:o_6pj91gzNpa_mh21Ymo8AI7d-UO@proton.me
+DTSTAMP:20260424T084405Z
+DESCRIPTION:We're jamming guys!
+SUMMARY:Cool stuff going on
+LOCATION:CPDSE common room
+DTSTART;TZID=Europe/Berlin:20260129T130000
+DTEND;TZID=Europe/Berlin:20260129T140000
+SEQUENCE:0
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Arnault Vermillet:mailto:arnault@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000A5F569B33F91DC01000000000000000
+ 010000000BF3A7EDD9AB9B64C8C27F83D10376EAE
+DTSTART;TZID=Europe/Paris:20260130T180000
+DTEND;TZID=Europe/Paris:20260130T190000
+DTSTAMP:20260424T084405Z
+SEQUENCE:1
+DESCRIPTION;LANGUAGE=en-US:\n
+SUMMARY;LANGUAGE=en-US:Philipp is not chilling anymore
+STATUS:CONFIRMED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=CPDSE@protonmail.com;X-PM-TOKEN=
+ 07954fc2a6bb4add2395c8558a8f8fb2dd18587c;PARTSTAT=NEEDS-ACTION:mailto:CPDS
+ E@protonmail.com
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Arnault Vermillet:MAILTO:arnault@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000899E6B5FBC91DC01000000000000000
+ 0100000006793074C4C1DC84DAAA1FA2976F23AE3
+DTSTART;TZID=Europe/Paris:20260130T154500
+DTEND;TZID=Europe/Paris:20260130T160000
+DTSTAMP:20260424T084405Z
+SEQUENCE:1
+DESCRIPTION;LANGUAGE=en-US:\n
+SUMMARY;LANGUAGE=en-US:Canceled: secret plan
+STATUS:CANCELLED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=40e
+ dac6181d8cfa3cb51d3b3caf7ad17a1723566;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Philipp Hans:mailto:philipp.hans@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000D0FC3BD10A92DC01000000000000000
+ 010000000C263773801BC8A4490241DD17FBE8222
+DTSTART;TZID=Europe/Paris:20260131T100000
+DTEND;TZID=Europe/Paris:20260131T103000
+DTSTAMP:20260424T084405Z
+SEQUENCE:0
+DESCRIPTION;LANGUAGE=en-US:\n
+SUMMARY;LANGUAGE=en-US:potentially\, philipp will work
+STATUS:CONFIRMED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=815
+ 37ea0422e25643062378d5a9bd2fea4702fb7;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+UID:KA-zd6t57pZyhxHguzUdZlJOYMXL@proton.me
+DTSTAMP:20260424T084405Z
+SUMMARY:test
+DTSTART;TZID=Europe/Berlin:20260124T080000
+DTEND;TZID=Europe/Berlin:20260124T083000
+SEQUENCE:0
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Arnault Vermillet:mailto:arnault@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000E5DDF9B62C94DC01000000000000000
+ 0100000000EF951330ECB4F4798896572F4097FCE
+DTSTART;TZID=Europe/Paris:20260205T170000
+DTEND;TZID=Europe/Paris:20260205T200000
+DTSTAMP:20260424T084405Z
+SEQUENCE:0
+DESCRIPTION;LANGUAGE=en-US:\n
+SUMMARY;LANGUAGE=en-US:Finishing calendar integration
+STATUS:CONFIRMED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=Philipp Hans;X-PM-TOKEN=79f50f61
+ cb2c0e9179334f0c99d309644738b3c3;PARTSTAT=NEEDS-ACTION:mailto:philipp.hans
+ @sund.ku.dk
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=1dc
+ 59527f11b7079a506cb0ec3d12a53a08d8ca7;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+UID:W_zxrnMHFabqtzugna4LFQqwHZrm@proton.me
+DTSTAMP:20260424T084405Z
+DTSTART;TZID=Europe/Berlin:20260210T120000
+DTEND;TZID=Europe/Berlin:20260210T130000
+ORGANIZER;CN=Arnault:mailto:CPDSE@protonmail.com
+SEQUENCE:0
+SUMMARY:Some event like lunch IDK
+STATUS:CONFIRMED
+ATTENDEE;CN=arnault@sund.ku.dk;ROLE=REQ-PARTICIPANT;RSVP=TRUE;X-PM-TOKEN=fb
+ 9cfe3066ec2b7b051c7158125de25934bf9376;PARTSTAT=NEEDS-ACTION:mailto:arnaul
+ t@sund.ku.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=sjz756 sjz756:MAILTO:arnault@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000132FE7C26089DC01000000000000000
+ 0100000006AAFA6716065A94886FFEE7701E0EE6B
+DTSTART;TZID=Europe/Paris:20260210T150000
+DTEND;TZID=Europe/Paris:20260210T161500
+DTSTAMP:20260424T084405Z
+SEQUENCE:3
+DESCRIPTION;LANGUAGE=en-US:\n
+SUMMARY;LANGUAGE=en-US:Canceled: AN EVENT
+STATUS:CANCELLED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=66b
+ c17b8b33163a496691d3ff66939fa046f77ff;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+UID:OWqZCyy4zHuNC1PD12GOU7AEwuKi@proton.me
+DTSTAMP:20260424T084405Z
+SUMMARY:something up
+DTSTART;TZID=Europe/Berlin:20260211T080000
+DTEND;TZID=Europe/Berlin:20260211T090000
+SEQUENCE:0
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ixwAk0UEhSH3uj8aPEFkaw0bskfT@proton.me
+DTSTAMP:20260424T084405Z
+SUMMARY:No way!
+DTSTART;TZID=Europe/Berlin:20260209T090000
+DTEND;TZID=Europe/Berlin:20260209T100000
+SEQUENCE:0
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:gVqP_4zuO9FaYPt_8-PHnzehJYXG@proton.me
+DTSTAMP:20260424T084405Z
+DTSTART;TZID=Europe/Berlin:20260210T170000
+DTEND;TZID=Europe/Berlin:20260210T180000
+ORGANIZER;CN=Arnault:mailto:CPDSE@protonmail.com
+SEQUENCE:0
+SUMMARY:Syncing my friend
+STATUS:CONFIRMED
+ATTENDEE;CN=arnault@sund.ku.dk;ROLE=REQ-PARTICIPANT;RSVP=TRUE;X-PM-TOKEN=bc
+ 0bc6b8bf42184b3d16bf4a6f4126701fcef5f3;PARTSTAT=NEEDS-ACTION:mailto:arnaul
+ t@sund.ku.dk
+END:VEVENT
+BEGIN:VEVENT
+UID:ShRBIdZHo6Umsq0-vb2UeO6BLOw-@proton.me
+DTSTAMP:20260424T084405Z
+SUMMARY:tough day
+DTSTART;VALUE=DATE:20260212
+DTEND;VALUE=DATE:20260213
+SEQUENCE:0
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Lykke Pedersen:mailto:lykke.p@sund.ku.dk
+UID:040000008200E00074C5B7101A82E008000000008A06B40536C7DC01000000000000000
+ 0100000007FEA51CBCDCB9442BAB397426C8584AE
+DTSTART;TZID=Europe/Paris:20260407T080000
+DTEND;TZID=Europe/Paris:20260407T081500
+DTSTAMP:20260424T084405Z
+SEQUENCE:0
+DESCRIPTION;LANGUAGE=da-DK:\n
+SUMMARY;LANGUAGE=da-DK:Meeting test
+STATUS:CONFIRMED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=ffd
+ 9b8310b1ef1ccc008ceb333e63fffbd21c310;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000F09905A25D6FDC01000000000000000
+ 01000000044DE28F8B195CB4DAD66A82866CC8B6F
+RECURRENCE-ID;TZID=Europe/Paris:20260605T090000
+DTSTART;TZID=Europe/Paris:20260605T090000
+DTEND;TZID=Europe/Paris:20260605T093000
+DTSTAMP:20260424T084405Z
+SEQUENCE:74
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to our ConvergenceTalk series for spring 2026 which will be every secon
+ d Friday. We will update the individual invitations with speaker and title
+  as they are planned. Invitations conflicting with other planned activitie
+ s will of course be deleted.\n\nThe talks are held at PharmaDataHub@UCPH\,
+  Jagtvej 160\, 1st floor\, and it is also possible to participate via Team
+ s. You are very welcome to join our ConvergenceCoffee from 8:30-9:00.\n\nL
+ ooking forward to seeing you to our exiting talks.\n\nBest\,\nMarin Matic 
+ & Jeppe Hartmann\n________________________________________________________
+ ________________________\nMicrosoft Teams Need help?<https://aka.ms/JoinTe
+ amsMeeting?omkt=en-US>\nJoin the meeting now<https://teams.microsoft.com/l
+ /meetup-join/19%3ameeting_MGJkYmM0N2MtNzlmNi00MTVkLTkzMmUtZmU3M2M3NTRlYTk2
+ %40thread.v2/0?context=%7b%22Tid%22%3a%22a3927f91-cda1-4696-af89-8c9f1ceff
+ a91%22%2c%22Oid%22%3a%224f33c9c6-7cec-4896-989f-8d511d58f4ea%22%7d>\nMeeti
+ ng ID: 380 568 823 955 53\nPasscode: L3349y74\n___________________________
+ _____\nDial in by phone\n+45 32 72 07 55\,\,231856860#<tel:+4532720755\,\,
+ 231856860> Denmark\, All locations\nFind a local number<https://dialin.tea
+ ms.microsoft.com/8fa1ad49-0722-4052-88ca-11fecd3ccf50?id=231856860>\nPhone
+  conference ID: 231 856 860#\nFor organizers: Meeting options<https://team
+ s.microsoft.com/meetingOptions/?organizerId=4f33c9c6-7cec-4896-989f-8d511d
+ 58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1ceffa91&threadId=19_meeting_M
+ GJkYmM0N2MtNzlmNi00MTVkLTkzMmUtZmU3M2M3NTRlYTk2@thread.v2&messageId=0&lang
+ uage=en-US> | Reset dial-in PIN<https://dialin.teams.microsoft.com/usp/pst
+ nconferencing>\n__________________________________________________________
+ ______________________\nJeppe Hartmann\nProject Coordinator\n\nUniversity 
+ of Copenhagen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsp
+ arken 2\nDK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann
+ @sund.ku.dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Uni
+ versitet]\n\nHow we protect personal data<https://informationssikkerhed.ku
+ .dk/english/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:ConvergenceTalk
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor + Micr
+ osoft Teams
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=62c
+ a07b08f98c5aca7f80b9917608b658efd3674;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:MAILTO:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000F09905A25D6FDC01000000000000000
+ 01000000044DE28F8B195CB4DAD66A82866CC8B6F
+RECURRENCE-ID;TZID=Europe/Paris:20260508T090000
+DTSTART;TZID=Europe/Paris:20260508T090000
+DTEND;TZID=Europe/Paris:20260508T093000
+DTSTAMP:20260424T084405Z
+SEQUENCE:75
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to our ConvergenceTalk series for spring 2026 which will be every secon
+ d Friday. We will update the individual invitations with speaker and title
+  as they are planned. Invitations conflicting with other planned activitie
+ s will of course be deleted.\n\nThe talks are held at PharmaDataHub@UCPH\,
+  Jagtvej 160\, 1st floor\, and it is also possible to participate via Team
+ s. You are very welcome to join our ConvergenceCoffee from 8:30-9:00.\n\nL
+ ooking forward to seeing you to our exiting talks.\n\nBest\,\nMarin Matic 
+ & Jeppe Hartmann\n________________________________________________________
+ ________________________\nMicrosoft Teams Need help?<https://aka.ms/JoinTe
+ amsMeeting?omkt=en-US>\nJoin the meeting now<https://teams.microsoft.com/l
+ /meetup-join/19%3ameeting_MGJkYmM0N2MtNzlmNi00MTVkLTkzMmUtZmU3M2M3NTRlYTk2
+ %40thread.v2/0?context=%7b%22Tid%22%3a%22a3927f91-cda1-4696-af89-8c9f1ceff
+ a91%22%2c%22Oid%22%3a%224f33c9c6-7cec-4896-989f-8d511d58f4ea%22%7d>\nMeeti
+ ng ID: 380 568 823 955 53\nPasscode: L3349y74\n___________________________
+ _____\nDial in by phone\n+45 32 72 07 55\,\,231856860#<tel:+4532720755\,\,
+ 231856860> Denmark\, All locations\nFind a local number<https://dialin.tea
+ ms.microsoft.com/8fa1ad49-0722-4052-88ca-11fecd3ccf50?id=231856860>\nPhone
+  conference ID: 231 856 860#\nFor organizers: Meeting options<https://team
+ s.microsoft.com/meetingOptions/?organizerId=4f33c9c6-7cec-4896-989f-8d511d
+ 58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1ceffa91&threadId=19_meeting_M
+ GJkYmM0N2MtNzlmNi00MTVkLTkzMmUtZmU3M2M3NTRlYTk2@thread.v2&messageId=0&lang
+ uage=en-US> | Reset dial-in PIN<https://dialin.teams.microsoft.com/usp/pst
+ nconferencing>\n__________________________________________________________
+ ______________________\nJeppe Hartmann\nProject Coordinator\n\nUniversity 
+ of Copenhagen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsp
+ arken 2\nDK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann
+ @sund.ku.dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Uni
+ versitet]\n\nHow we protect personal data<https://informationssikkerhed.ku
+ .dk/english/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:Canceled: ConvergenceTalk
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor + Micr
+ osoft Teams
+STATUS:CANCELLED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=62c
+ a07b08f98c5aca7f80b9917608b658efd3674;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+RRULE:FREQ=WEEKLY;UNTIL=20260619T215959Z;INTERVAL=2;BYDAY=FR;WKST=MO
+EXDATE;TZID=Europe/Paris:20260508T090000
+UID:040000008200E00074C5B7101A82E00800000000F09905A25D6FDC01000000000000000
+ 01000000044DE28F8B195CB4DAD66A82866CC8B6F
+DTSTART;TZID=Europe/Paris:20260116T090000
+DTEND;TZID=Europe/Paris:20260116T093000
+DTSTAMP:20260424T090224Z
+SEQUENCE:73
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to our ConvergenceTalk series for spring 2026 which will be every secon
+ d Friday. We will update the individual invitations with speaker and title
+  as they are planned. Invitations conflicting with other planned activitie
+ s will of course be deleted.\n\nThe talks are held at PharmaDataHub@UCPH\,
+  Jagtvej 160\, 1st floor\, and it is also possible to participate via Team
+ s. You are very welcome to join our ConvergenceCoffee from 8:30-9:00.\n\nL
+ ooking forward to seeing you to our exiting talks.\n\nBest\,\nMarin Matic 
+ & Jeppe Hartmann\n________________________________________________________
+ ________________________\nMicrosoft Teams Need help?<https://aka.ms/JoinTe
+ amsMeeting?omkt=en-US>\nJoin the meeting now<https://teams.microsoft.com/l
+ /meetup-join/19%3ameeting_MGJkYmM0N2MtNzlmNi00MTVkLTkzMmUtZmU3M2M3NTRlYTk2
+ %40thread.v2/0?context=%7b%22Tid%22%3a%22a3927f91-cda1-4696-af89-8c9f1ceff
+ a91%22%2c%22Oid%22%3a%224f33c9c6-7cec-4896-989f-8d511d58f4ea%22%7d>\nMeeti
+ ng ID: 380 568 823 955 53\nPasscode: L3349y74\n___________________________
+ _____\nDial in by phone\n+45 32 72 07 55\,\,231856860#<tel:+4532720755\,\,
+ 231856860> Denmark\, All locations\nFind a local number<https://dialin.tea
+ ms.microsoft.com/8fa1ad49-0722-4052-88ca-11fecd3ccf50?id=231856860>\nPhone
+  conference ID: 231 856 860#\nFor organizers: Meeting options<https://team
+ s.microsoft.com/meetingOptions/?organizerId=4f33c9c6-7cec-4896-989f-8d511d
+ 58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1ceffa91&threadId=19_meeting_M
+ GJkYmM0N2MtNzlmNi00MTVkLTkzMmUtZmU3M2M3NTRlYTk2@thread.v2&messageId=0&lang
+ uage=en-US> | Reset dial-in PIN<https://dialin.teams.microsoft.com/usp/pst
+ nconferencing>\n__________________________________________________________
+ ______________________\nJeppe Hartmann\nProject Coordinator\n\nUniversity 
+ of Copenhagen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsp
+ arken 2\nDK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann
+ @sund.ku.dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Uni
+ versitet]\n\nHow we protect personal data<https://informationssikkerhed.ku
+ .dk/english/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:ConvergenceTalk
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor + Micr
+ osoft Teams
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=62c
+ a07b08f98c5aca7f80b9917608b658efd3674;PARTSTAT=ACCEPTED:mailto:calendar@cp
+ dse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000F09905A25D6FDC01000000000000000
+ 01000000044DE28F8B195CB4DAD66A82866CC8B6F
+RECURRENCE-ID;TZID=Europe/Paris:20260522T090000
+DTSTART;TZID=Europe/Paris:20260522T090000
+DTEND;TZID=Europe/Paris:20260522T093000
+DTSTAMP:20260424T084405Z
+SEQUENCE:75
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to our ConvergenceTalk series for spring 2026 which will be every secon
+ d Friday. We will update the individual invitations with speaker and title
+  as they are planned. Invitations conflicting with other planned activitie
+ s will of course be deleted.\n\nThe talks are held at PharmaDataHub@UCPH\,
+  Jagtvej 160\, 1st floor\, and it is also possible to participate via Team
+ s. You are very welcome to join our ConvergenceCoffee from 8:30-9:00.\n\nL
+ ooking forward to seeing you to our exiting talks.\n\nBest\,\nMarin Matic 
+ & Jeppe Hartmann\n________________________________________________________
+ ________________________\nMicrosoft Teams Need help?<https://aka.ms/JoinTe
+ amsMeeting?omkt=en-US>\nJoin the meeting now<https://teams.microsoft.com/l
+ /meetup-join/19%3ameeting_MGJkYmM0N2MtNzlmNi00MTVkLTkzMmUtZmU3M2M3NTRlYTk2
+ %40thread.v2/0?context=%7b%22Tid%22%3a%22a3927f91-cda1-4696-af89-8c9f1ceff
+ a91%22%2c%22Oid%22%3a%224f33c9c6-7cec-4896-989f-8d511d58f4ea%22%7d>\nMeeti
+ ng ID: 380 568 823 955 53\nPasscode: L3349y74\n___________________________
+ _____\nDial in by phone\n+45 32 72 07 55\,\,231856860#<tel:+4532720755\,\,
+ 231856860> Denmark\, All locations\nFind a local number<https://dialin.tea
+ ms.microsoft.com/8fa1ad49-0722-4052-88ca-11fecd3ccf50?id=231856860>\nPhone
+  conference ID: 231 856 860#\nFor organizers: Meeting options<https://team
+ s.microsoft.com/meetingOptions/?organizerId=4f33c9c6-7cec-4896-989f-8d511d
+ 58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1ceffa91&threadId=19_meeting_M
+ GJkYmM0N2MtNzlmNi00MTVkLTkzMmUtZmU3M2M3NTRlYTk2@thread.v2&messageId=0&lang
+ uage=en-US> | Reset dial-in PIN<https://dialin.teams.microsoft.com/usp/pst
+ nconferencing>\n__________________________________________________________
+ ______________________\nJeppe Hartmann\nProject Coordinator\n\nUniversity 
+ of Copenhagen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsp
+ arken 2\nDK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann
+ @sund.ku.dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Uni
+ versitet]\n\nHow we protect personal data<https://informationssikkerhed.ku
+ .dk/english/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:ConvergenceTalk
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor + Micr
+ osoft Teams
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=62c
+ a07b08f98c5aca7f80b9917608b658efd3674;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+RRULE:FREQ=WEEKLY;UNTIL=20260626T215959Z;INTERVAL=1;BYDAY=FR;WKST=MO
+EXDATE;TZID=Europe/Paris:20260213T083000,20260403T083000
+UID:040000008200E00074C5B7101A82E00800000000D0CE3FB35C6FDC01000000000000000
+ 0100000001B15A84F79F9D444BEF9340AE7EF2D6F
+DTSTART;TZID=Europe/Paris:20260109T083000
+DTEND;TZID=Europe/Paris:20260109T090000
+DTSTAMP:20260424T090225Z
+SEQUENCE:11
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe are continuing our Friday break
+ fast in 2026.\n\nCome and join us when you can for a piece of bread\, some
+  coffee\, and a chat.\n\nBest\nMorten & Jeppe\n\n[cid:image001.png@01DC6F5
+ D.6DA7FE00]\n\nJeppe Hartmann\nProject Coordinator\n\nUniversity of Copenh
+ agen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsparken 2\n
+ DK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann@sund.ku.
+ dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Universitet]
+ \n\nHow we protect personal data<https://informationssikkerhed.ku.dk/engli
+ sh/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:ConvergenceCoffee
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=575
+ 8ec2e3fa78bb5691fd5bc898fb729561ce3ab;PARTSTAT=ACCEPTED:mailto:calendar@cp
+ dse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000D0CE3FB35C6FDC01000000000000000
+ 0100000001B15A84F79F9D444BEF9340AE7EF2D6F
+RECURRENCE-ID;TZID=Europe/Paris:20260508T083000
+DTSTART;TZID=Europe/Paris:20260508T083000
+DTEND;TZID=Europe/Paris:20260508T090000
+DTSTAMP:20260424T084405Z
+SEQUENCE:15
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe are continuing our Friday break
+ fast in 2026.\n\nCome and join us when you can for a piece of bread\, some
+  coffee\, and a chat.\n\nBest\nMorten & Jeppe\n\n[cid:image001.png@01DC6F5
+ D.6DA7FE00]\n\nJeppe Hartmann\nProject Coordinator\n\nUniversity of Copenh
+ agen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsparken 2\n
+ DK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann@sund.ku.
+ dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Universitet]
+ \n\nHow we protect personal data<https://informationssikkerhed.ku.dk/engli
+ sh/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:ConvergenceCoffee
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=575
+ 8ec2e3fa78bb5691fd5bc898fb729561ce3ab;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000D0CE3FB35C6FDC01000000000000000
+ 0100000001B15A84F79F9D444BEF9340AE7EF2D6F
+RECURRENCE-ID;TZID=Europe/Paris:20260605T083000
+DTSTART;TZID=Europe/Paris:20260605T083000
+DTEND;TZID=Europe/Paris:20260605T090000
+DTSTAMP:20260424T084405Z
+SEQUENCE:13
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe are continuing our Friday break
+ fast in 2026.\n\nCome and join us when you can for a piece of bread\, some
+  coffee\, and a chat.\n\nBest\nMorten & Jeppe\n\n[cid:image001.png@01DC6F5
+ D.6DA7FE00]\n\nJeppe Hartmann\nProject Coordinator\n\nUniversity of Copenh
+ agen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsparken 2\n
+ DK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann@sund.ku.
+ dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Universitet]
+ \n\nHow we protect personal data<https://informationssikkerhed.ku.dk/engli
+ sh/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:ConvergenceCoffee
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=575
+ 8ec2e3fa78bb5691fd5bc898fb729561ce3ab;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000D0CE3FB35C6FDC01000000000000000
+ 0100000001B15A84F79F9D444BEF9340AE7EF2D6F
+RECURRENCE-ID;TZID=Europe/Paris:20260619T083000
+DTSTART;TZID=Europe/Paris:20260619T083000
+DTEND;TZID=Europe/Paris:20260619T090000
+DTSTAMP:20260424T084405Z
+SEQUENCE:12
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe are continuing our Friday break
+ fast in 2026.\n\nCome and join us when you can for a piece of bread\, some
+  coffee\, and a chat.\n\nBest\nMorten & Jeppe\n\n[cid:image001.png@01DC6F5
+ D.6DA7FE00]\n\nJeppe Hartmann\nProject Coordinator\n\nUniversity of Copenh
+ agen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsparken 2\n
+ DK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann@sund.ku.
+ dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Universitet]
+ \n\nHow we protect personal data<https://informationssikkerhed.ku.dk/engli
+ sh/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:ConvergenceCoffee
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=575
+ 8ec2e3fa78bb5691fd5bc898fb729561ce3ab;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000D0CE3FB35C6FDC01000000000000000
+ 0100000001B15A84F79F9D444BEF9340AE7EF2D6F
+RECURRENCE-ID;TZID=Europe/Paris:20260522T083000
+DTSTART;TZID=Europe/Paris:20260522T083000
+DTEND;TZID=Europe/Paris:20260522T090000
+DTSTAMP:20260424T084405Z
+SEQUENCE:14
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe are continuing our Friday break
+ fast in 2026.\n\nCome and join us when you can for a piece of bread\, some
+  coffee\, and a chat.\n\nBest\nMorten & Jeppe\n\n[cid:image001.png@01DC6F5
+ D.6DA7FE00]\n\nJeppe Hartmann\nProject Coordinator\n\nUniversity of Copenh
+ agen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsparken 2\n
+ DK - 2100 Copenhagen\nDenmark\nPhone +45 35323413\njeppe.hartmann@sund.ku.
+ dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Universitet]
+ \n\nHow we protect personal data<https://informationssikkerhed.ku.dk/engli
+ sh/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:ConvergenceCoffee
+LOCATION;LANGUAGE=en-US:PharmaDataHub@UCPH\, Jagtvej 160\, 1st floor
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=575
+ 8ec2e3fa78bb5691fd5bc898fb729561ce3ab;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000B0CD51D8931DDC01000000000000000
+ 01000000096A01684063F85408882898E9EDF9A54
+DTSTART;TZID=Europe/Paris:20260519T103000
+DTEND;TZID=Europe/Paris:20260519T143000
+DTSTAMP:20260424T084405Z
+SEQUENCE:9
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to our CPDSE Episode Meetings.\n\nWe will have these meetings every six
+  weeks as a physical meeting alternating between SDU and KU. The meetings 
+ at KU will be at CPDSE\, Jagtvej 160\, 1st floor and at SDU you can use th
+ is map<https://clients.mapsindoors.com/sdu/573f26e4bc1f571b08094312/search
+ > to guide you to the meeting room.\n\nOur default agenda is:\n\n  *   Cir
+ cle Sync: Individual circles meet internally to review their progress on t
+ he Episode's goal. The output is a clear status update to share with the l
+ arger group. Commitments are captured directly as Todo-items and decisions
+  are documented as Messages.\n  *   Break / Lunch 🥪\n  *   Center Sync:
+  All circles come together to share their progress. Each circle presents a
+  brief\, high-level summary of their work\, highlighting key accomplishmen
+ ts and any dependencies or blockers.\n  *   Pharma Data Science Showcase: 
+ Research Circle organizes scientific talks and workshops (Storebælt serie
+ s).\n\nWe will be serving lunch at the meeting\, so we kindly ask that you
+  reply to the invitation\, so we know how many people to expect. If you ha
+ ve any dietary restrictions/allergies\, please let Jeppe know.\n\nLooking 
+ forward to seeing you.\n\nBest\,\nMorten & Jeppe\n\nJeppe Hartmann\nProjec
+ t Coordinator\n\nUniversity of Copenhagen\nDepartment of Drug Design and P
+ harmacology\n\nUniversitetsparken 2\nDK - 2100 Copenhagen\nDenmark\nLync/S
+ kype +45 35323413\njeppe.hartmann@sund.ku.dk<mailto:jeppe.hartmann@sund.ku
+ .dk>\n\n[Logo for Københavns Universitet]\n\nHow we protect personal data
+ <https://informationssikkerhed.ku.dk/english/protection-of-information-pri
+ vacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Episode Meeting
+LOCATION;LANGUAGE=en-US:KU\, Jagtvej 160\, 1st floor\, CPDSE meeting room
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=59e
+ 1e823e5b8c5ec3a958f8a54e4df7b2f6b9587;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E008000000000022B3FF931DDC01000000000000000
+ 010000000A0DD8456547A624C8E9B1449FBDA9172
+DTSTART;TZID=Europe/Paris:20260630T103000
+DTEND;TZID=Europe/Paris:20260630T143000
+DTSTAMP:20260424T084406Z
+SEQUENCE:8
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nThis is an invitation for the CPDS
+ E episode meeting on 30 June 2026 a part of the episode meetings series.\n
+ \nWe will have these meetings every six weeks as a physical meeting altern
+ ating between SDU and KU. The meetings at KU will be at CPDSE\, Jagtvej 16
+ 0\, 1st floor and at SDU you can use this map<https://clients.mapsindoors.
+ com/sdu/573f26e4bc1f571b08094312/search> to guide you to the meeting room.
+ \n\nOur default agenda is:\n\n  *   Circle Sync: Individual circles meet i
+ nternally to review their progress on the Episode's goal. The output is a 
+ clear status update to share with the larger group. Commitments are captur
+ ed directly as Todo-items and decisions are documented as Messages.\n  *  
+  Break / Lunch 🥪\n  *   Center Sync: All circles come together to share
+  their progress. Each circle presents a brief\, high-level summary of thei
+ r work\, highlighting key accomplishments and any dependencies or blockers
+ .\n  *   Pharma Data Science Showcase: Research Circle organizes scientifi
+ c talks and workshops (Storebælt series).\n\nWe will be serving lunch at 
+ the meeting\, so we kindly ask that you reply to the invitation\, so we kn
+ ow how many people to expect. If you have any dietary restrictions/allergi
+ es\, please let Jeppe know.\n\nLooking forward to seeing you.\n\nBest\,\nM
+ orten & Jeppe\n\nJeppe Hartmann\nProject Coordinator\n\nUniversity of Cope
+ nhagen\nDepartment of Drug Design and Pharmacology\n\nUniversitetsparken 2
+ \nDK - 2100 Copenhagen\nDenmark\nLync/Skype +45 35323413\njeppe.hartmann@s
+ und.ku.dk<mailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Unive
+ rsitet]\n\nHow we protect personal data<https://informationssikkerhed.ku.d
+ k/english/protection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Episode Meeting
+LOCATION;LANGUAGE=en-US:SDU - meeting room M-0.60 Dialogen
+STATUS:CONFIRMED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=fdf
+ df6a60ecd31ccb44fee44691e00c48b1b8b74;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000C09265631BBDDC01000000000000000
+ 010000000468B654730B83E45999C1204CE6CDB64
+DTSTART;TZID=Europe/Paris:20260825T100000
+DTEND;TZID=Europe/Paris:20260826T150000
+DTSTAMP:20260424T084406Z
+SEQUENCE:2
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to our CPDSE center retreat. We have chosen the date where most of you 
+ have indicated that you were able to attend.\n\nThe retreat will be both t
+ he season finale for season 3 and kickoff of season 4. As always\, we will
+  of course have time to network\, to talk\, to play games etc.\n\nWe will 
+ send you the agenda for the retreat as well as information about the venue
+ .\n\nPlease reach out to Jeppe (jeppe.hartmann@sund.ku.dk<mailto:jeppe.har
+ tmann@sund.ku.dk>) if you have any questions.\n\nAll the best from the pla
+ nning group\nJacob\, Lucy\, Lykke\, Stefan & Jeppe\n\nJeppe Hartmann\nProj
+ ect Coordinator\n\nUniversity of Copenhagen\nDepartment of Drug Design and
+  Pharmacology\n\nUniversitetsparken 2\nDK - 2100 Copenhagen\nDenmark\nPhon
+ e +45 35323413\njeppe.hartmann@sund.ku.dk<mailto:jeppe.hartmann@sund.ku.dk
+ >\n\n[Logo for Københavns Universitet]\n\nHow we protect personal data<ht
+ tps://informationssikkerhed.ku.dk/english/protection-of-information-privac
+ y/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE center retreat
+LOCATION;LANGUAGE=en-US:TBA
+STATUS:CONFIRMED
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=c29
+ 4d096c948634e7cc9bceb63b1e8bc4db3a9f8;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000B0C3D545EEB2DC01000000000000000
+ 0100000003F79DD45EED96D4B82FB5107936C9FA0
+DTSTART;TZID=Europe/Paris:20260429T110000
+DTEND;TZID=Europe/Paris:20260429T113000
+DTSTAMP:20260428T105947Z
+SEQUENCE:2
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to CPDSE Connect meetings in 2026.\n\nThese meetings are a short check-
+ in between our episode meetings to update you on what is going on in CPDSE
+ . The meetings will only be online.\n\nAgenda for the meetings:\n\n11:00-1
+ 1:15: Announcements\n\n  *   News from the circles\n  *   Basecamp highlig
+ hts\n  *   AI Tips & Tricks\n\n11:15-11:30: Feature: “Implementing UClou
+ d in an elective data-science course for pharmacy students: Some experienc
+ es and reflections” by Anders Østergaard Madsen (IF)\n\nLooking forward
+  to connecting with you.\n\nBest regards\,\nJacob Fredegaard Hansen & Jepp
+ e Hartmann\n______________________________________________________________
+ __________________\nMicrosoft Teams meeting\nJoin: https://teams.microsoft
+ .com/meet/39962210042633?p=lKFgvXlnKLOjuU0a76\nMeeting ID: 399 622 100 426
+  33\nPasscode: Ta9Yp3od\n________________________________\nNeed help?<http
+ s://aka.ms/JoinTeamsMeeting?omkt=en-US> | System reference<https://teams.m
+ icrosoft.com/l/meetup-join/19%3ameeting_MjM5ZGYxNzktMDM5OC00MzU4LWFjNmQtMm
+ RmN2JiNGIyZTI2%40thread.v2/0?context=%7b%22Tid%22%3a%22a3927f91-cda1-4696-
+ af89-8c9f1ceffa91%22%2c%22Oid%22%3a%224f33c9c6-7cec-4896-989f-8d511d58f4ea
+ %22%7d>\nDial in by phone\n+45 32 72 07 55\,\,304104798#<tel:+4532720755\,
+ \,304104798> Denmark\, All locations\nFind a local number<https://dialin.t
+ eams.microsoft.com/8fa1ad49-0722-4052-88ca-11fecd3ccf50?id=304104798>\nPho
+ ne conference ID: 304 104 798#\nFor organizers: Meeting options<https://te
+ ams.microsoft.com/meetingOptions/?organizerId=4f33c9c6-7cec-4896-989f-8d51
+ 1d58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1ceffa91&threadId=19_meeting
+ _MjM5ZGYxNzktMDM5OC00MzU4LWFjNmQtMmRmN2JiNGIyZTI2@thread.v2&messageId=0&la
+ nguage=en-US> | Reset dial-in PIN<https://dialin.teams.microsoft.com/usp/p
+ stnconferencing>\n________________________________________________________
+ ________________________\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Connect
+LOCATION;LANGUAGE=en-US:Microsoft Teams Meeting
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Adrienne Lorelei Traxler;X-PM-TO
+ KEN=20d57b31149f59ec02e1de9dff6a6c8fab4de488;PARTSTAT=NEEDS-ACTION:mailto:
+ atraxler@ind.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Albert Jelke Kooistra;X-PM-TOKEN
+ =e5c889a16ea7395c0dff64b3d3d131a9aeebb50e;PARTSTAT=NEEDS-ACTION:mailto:alb
+ ert.kooistra@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Alexander Peder Smiszek Pedersen
+ ;X-PM-TOKEN=ba1b21d8ead82c58f9434e53215292a94e1fa03a;PARTSTAT=NEEDS-ACTION
+ :mailto:alexander.pedersen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Alexander Sebastian Hauser;X-PM-
+ TOKEN=faaaa8207c19d0a6d93d544279b19689644b65f4;PARTSTAT=NEEDS-ACTION:mailt
+ o:alexander.hauser@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=aljoscha.goetschi@insel.ch;X-PM-
+ TOKEN=4c37f3974957c8428c7d8a6b6eae2ff83702ee3e;PARTSTAT=NEEDS-ACTION:mailt
+ o:aljoscha.goetschi@insel.ch
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Anders Krogh;X-PM-TOKEN=03d06813
+ 90f83ddb0d20da406947625c18df6fed;PARTSTAT=NEEDS-ACTION:mailto:akrogh@di.ku
+ .dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Anders Støttrup Larsen;X-PM-TOK
+ EN=034fca5174619ca173550f5b266b4bade86c8383;PARTSTAT=NEEDS-ACTION:mailto:a
+ nders.larsen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Anders Østergaard Madsen;X-PM-T
+ OKEN=3457249d2aa8d913deb536e44e4560df145d5263;PARTSTAT=NEEDS-ACTION:mailto
+ :a.madsen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=apottegaard@health.sdu.dk;X-PM-T
+ OKEN=af812dce384ee576f7ec8585c737695acc0b7c31;PARTSTAT=NEEDS-ACTION:mailto
+ :apottegaard@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Arman Simonyan;X-PM-TOKEN=2e988d
+ d25490582f02a8f37fcf3e78aaab36823c;PARTSTAT=NEEDS-ACTION:mailto:arman.simo
+ nyan@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Arnault-Quentin Vermillet;X-PM-T
+ OKEN=381bf0a1764e7ec643a17c5065a1d9d6a3a6fcef;PARTSTAT=NEEDS-ACTION:mailto
+ :arnault@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Binghan Xiao;X-PM-TOKEN=59305647
+ b810492fb95e21b0596f74234baa96bc;PARTSTAT=NEEDS-ACTION:mailto:binghan.xiao
+ @sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Boris Düdder;X-PM-TOKEN=afcaf52
+ f232036fbad010323337692a8391d47d8;PARTSTAT=NEEDS-ACTION:mailto:boris.d@di.
+ ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Christian Janfelt;X-PM-TOKEN=231
+ 9c4cc1ce52bcd13ab83f9014e988875544031;PARTSTAT=NEEDS-ACTION:mailto:christi
+ an.janfelt@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Christian Schönbeck;X-PM-TOKEN=
+ 589daab250d3ee69e448ad9cfec6bc2792bdb154;PARTSTAT=NEEDS-ACTION:mailto:chri
+ stian.schonbeck@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Christine Erikstrup Hallgreen;X-
+ PM-TOKEN=ea192b388d34837a0bb3d63fc7dd7b55bf7ae6a1;PARTSTAT=NEEDS-ACTION:ma
+ ilto:christine.hallgreen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=cun@sdu.dk;X-PM-TOKEN=0df2a3b4a9
+ 5d58b6678bd0a3a0c47a67608d6c64;PARTSTAT=NEEDS-ACTION:mailto:cun@sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Danielle Elizabeth Hagood;X-PM-T
+ OKEN=504dce085fb5c3aecaf700ec1dacb45a439a3394;PARTSTAT=NEEDS-ACTION:mailto
+ :dh@ind.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=David E. Gloriam;X-PM-TOKEN=c2d9
+ cd716fea0982f1bb30c7c095f577dd3e05c7;PARTSTAT=NEEDS-ACTION:mailto:david.gl
+ oriam@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Débora Dalmas Gräf;X-PM-TOKEN=
+ 981560415dba6ccf0da8876495adb3194f4c2e01;PARTSTAT=NEEDS-ACTION:mailto:debo
+ ra.graf@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Despoina Georgia Papoutsi;X-PM-T
+ OKEN=9d593e82a045ca85e887aa5961e860aabddd7238;PARTSTAT=NEEDS-ACTION:mailto
+ :gxw430@alumni.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Dilsad Simay Peker;X-PM-TOKEN=3b
+ ac75f9055f986386455043dbac69084543fc0c;PARTSTAT=NEEDS-ACTION:mailto:simay.
+ peker@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Emma Bjørk (ebjoerk@health.sdu.
+ dk);X-PM-TOKEN=5d4bf30d85c8774867eda43b45c2ff367ca48308;PARTSTAT=NEEDS-ACT
+ ION:mailto:ebjoerk@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Frederik Voetmann Christiansen;X
+ -PM-TOKEN=144b4540398122dc590ebbb90c30847bac17f6d6;PARTSTAT=NEEDS-ACTION:m
+ ailto:fchristiansen@ind.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Gáspár Pándy-Szekeres;X-PM-TO
+ KEN=8446064c289fb8faece6bfc5ba16f388948ef09e;PARTSTAT=NEEDS-ACTION:mailto:
+ gaspar@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Gerard Ompad;X-PM-TOKEN=6d4ce6fa
+ 348c4ebb5a690c17f630216ce22c509f;PARTSTAT=NEEDS-ACTION:mailto:ztd256@sund.
+ ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Haoxin Le;X-PM-TOKEN=bbdcaabb17a
+ ffe43cbca840da0738a06a52ad2f0;PARTSTAT=NEEDS-ACTION:mailto:haoxin.le@sund.
+ ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=hckildegaard@health.sdu.dk;X-PM-
+ TOKEN=e26c94a88de5e9e93f5ac59897a3c917121e6a7b;PARTSTAT=NEEDS-ACTION:mailt
+ o:hckildegaard@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Hendra Yusup Agustian;X-PM-TOKEN
+ =61586455c25ea4ddd44003ff2c0eb090341b3d30;PARTSTAT=NEEDS-ACTION:mailto:hen
+ dra.agustian@ind.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Icaro Ariel Simon;X-PM-TOKEN=f18
+ 58f3f646a7a2e7aecacd503441cac4ec5c4f4;PARTSTAT=NEEDS-ACTION:mailto:icaro.s
+ imon@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Ida Klitzing Storgaard;X-PM-TOKE
+ N=9292459a9e848e6ac3e35eb02cc6607a20d01580;PARTSTAT=NEEDS-ACTION:mailto:id
+ a.storgaard@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Inês Catarina Batista Martins;X
+ -PM-TOKEN=ef1b7d092064ec3c2f1c64c9f456eef9ea49bf67;PARTSTAT=NEEDS-ACTION:m
+ ailto:ines.martins@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Ismael Rodriguez Espigares;X-PM-
+ TOKEN=263f46d7fe8f8f6b31fa8c01f647187b187af698;PARTSTAT=NEEDS-ACTION:mailt
+ o:ismael.espigares@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jacob Fredegaard Hansen;X-PM-TOK
+ EN=a8b91bb2772caf5826c321a01306a2fc6db714ec;PARTSTAT=NEEDS-ACTION:mailto:j
+ acob.f.hansen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jacob Kongsted (kongsted@sdu.dk)
+ ;X-PM-TOKEN=91e7dc99bf228ab1142724bd6be5271b89c98d9f;PARTSTAT=NEEDS-ACTION
+ :mailto:kongsted@sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jake Jackson;X-PM-TOKEN=8477a8c3
+ 4c99a5872cbdc105237de9b143dcd98b;PARTSTAT=NEEDS-ACTION:mailto:jake.jackson
+ @sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jakob Sture Madsen;X-PM-TOKEN=62
+ f869e7d5ba1046f90faeea9faeef1ed7bbe764;PARTSTAT=NEEDS-ACTION:mailto:jsmads
+ en@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jane Knöchel;X-PM-TOKEN=e00c2f6
+ f7e1c4607b2555b8165fde4185fa957fb;PARTSTAT=NEEDS-ACTION:mailto:jane.knoech
+ el@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jascha Henseler;X-PM-TOKEN=804d6
+ fe1286a22534ea7bc383945bf5a1000950e;PARTSTAT=NEEDS-ACTION:mailto:jascha.he
+ nseler@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Javier Sánchez Lorente;X-PM-TOK
+ EN=d711047ef9c688d4e92aab04799811c1f2363548;PARTSTAT=NEEDS-ACTION:mailto:j
+ avier.sanchez.lorente@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jesper Østergaard;X-PM-TOKEN=40
+ 3addde71c052852b90a75fe6776f067b909eca;PARTSTAT=NEEDS-ACTION:mailto:jesper
+ .ostergaard@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jette Sandholm Jensen Kastrup;X-
+ PM-TOKEN=d82f3920ab9e2cd7e8c8df8a029cfb82ea6e8990;PARTSTAT=NEEDS-ACTION:ma
+ ilto:jsk@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=jhallas@health.sdu.dk;X-PM-TOKEN
+ =043c72934584eb2691e528273b374f737317c3ef;PARTSTAT=NEEDS-ACTION:mailto:jha
+ llas@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=jhandersen@health.sdu.dk;X-PM-TO
+ KEN=2b17f44ce7e1bb89fd589152486bf74dc3e73061;PARTSTAT=NEEDS-ACTION:mailto:
+ jhandersen@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jonas Verhellen;X-PM-TOKEN=6abc3
+ cb595555bdacbd72185c29f9039294a286e;PARTSTAT=NEEDS-ACTION:mailto:jonas.ver
+ hellen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=jtryggedsson@health.sdu.dk;X-PM-
+ TOKEN=b3e92c9bcb19c490bbfa95483ca55f8cd4f5f9a6;PARTSTAT=NEEDS-ACTION:mailt
+ o:jtryggedsson@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Jukka Rantanen;X-PM-TOKEN=d3998b
+ 16b701fb8a812187710008abad1905c3d7;PARTSTAT=NEEDS-ACTION:mailto:jukka.rant
+ anen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=juliekrumborg@health.sdu.dk;X-PM
+ -TOKEN=99855fbb833e450475c42608c13f3f64e0734b12;PARTSTAT=NEEDS-ACTION:mail
+ to:juliekrumborg@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Karlis Berzins;X-PM-TOKEN=fdc150
+ 5e86687c707433e458f59e886b509416f1;PARTSTAT=NEEDS-ACTION:mailto:karlis.ber
+ zins@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Kasper Harpsøe;X-PM-TOKEN=7279c
+ 5a2b4f22bf559a0a7331de1d300696b6080;PARTSTAT=NEEDS-ACTION:mailto:kasper.ha
+ rpsoe@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=kpakula@sdu.dk;X-PM-TOKEN=6bedd6
+ bcfd87748b9e3d490a977a6377a63709eb;PARTSTAT=NEEDS-ACTION:mailto:kpakula@sd
+ u.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=kuntsche@sdu.dk;X-PM-TOKEN=a9596
+ a64bc37e6fce7825a6dbd4619c1bb94545e;PARTSTAT=NEEDS-ACTION:mailto:kuntsche@
+ sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Lampros Spiliopoulos;X-PM-TOKEN=
+ e1cdb6e5d114378c413945857fe591fe7e2d5e7a;PARTSTAT=NEEDS-ACTION:mailto:kxt1
+ 05@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Lasse Skjoldborg Krog;X-PM-TOKEN
+ =d7e7b76d40864216bd526f53b998dbd0f0ee2877;PARTSTAT=NEEDS-ACTION:mailto:las
+ se.krog@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Lene Jørgensen;X-PM-TOKEN=09322
+ 3a17bd69ced8d6239e680bcf9e28538ffc8;PARTSTAT=NEEDS-ACTION:mailto:lene.jorg
+ ensen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=ljtr@hst.aau.dk;X-PM-TOKEN=fa1ae
+ 69f683477a362e5d5a9e87ba97d1bd7ffe9;PARTSTAT=NEEDS-ACTION:mailto:ljtr@hst.
+ aau.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=lkr388 lkr388;X-PM-TOKEN=7785b92
+ a4c697bb367ae1d0f1f7a4a6533b75d96;PARTSTAT=NEEDS-ACTION:mailto:jody.pacalo
+ n@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Lotte Stig Nørgaard;X-PM-TOKEN=
+ 21e4da80e5dd8d1f63e0031e0dce51972790bd21;PARTSTAT=NEEDS-ACTION:mailto:lott
+ e.norgaard@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Lucia Sanchez Schneider;X-PM-TOK
+ EN=3a9c7774e3c3d52a48a6e04b4224e0d51204f662;PARTSTAT=NEEDS-ACTION:mailto:t
+ hx990@alumni.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=lucyd@sdu.dk;X-PM-TOKEN=53072c9a
+ f4c6435528987cb2b839a8a2945bd7a5;PARTSTAT=NEEDS-ACTION:mailto:lucyd@sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Lukas Frederic Westphal-Ostrowsk
+ i;X-PM-TOKEN=6441cdea9673b39071f3397adb915b2205acb577;PARTSTAT=NEEDS-ACTIO
+ N:mailto:lukas.westphal@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Lykke Pedersen;X-PM-TOKEN=408e22
+ 2aa5d97bec7499b8da23a2da1835fc548c;PARTSTAT=NEEDS-ACTION:mailto:lykke.p@su
+ nd.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Marco Polimeni;X-PM-TOKEN=3ed401
+ 183dd76e190f51f47f03efd5ef22beb594;PARTSTAT=NEEDS-ACTION:mailto:marco.poli
+ meni@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Mariena van der Plas;X-PM-TOKEN=
+ 7abed532be07af9ccd2442341762ec3890cbd86c;PARTSTAT=NEEDS-ACTION:mailto:mari
+ ena.van_der_plas@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Marin Matic;X-PM-TOKEN=9a656ff51
+ cbc113cd80e78e6de7cc73a677d58aa;PARTSTAT=NEEDS-ACTION:mailto:marin.matic@s
+ und.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Martina Pipoli;X-PM-TOKEN=cb3493
+ b39f1bfd1cfe5ae4bce4cf51686645a77e;PARTSTAT=NEEDS-ACTION:mailto:smv410@sun
+ d.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Mathias Møllebæk;X-PM-TOKEN=1c
+ 124dbca35e38ca2056c8f5737324b13c10a9f4;PARTSTAT=NEEDS-ACTION:mailto:mathia
+ s.moellebaek@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Maurizio Sessa;X-PM-TOKEN=d61d11
+ 3650a3e31113f56b130d494d41c7eb9d99;PARTSTAT=NEEDS-ACTION:mailto:maurizio.s
+ essa@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Melika Keshavarzmirzamohammadi;X
+ -PM-TOKEN=ae1b84feff00ba87ad431511cc9c0f29c031f114;PARTSTAT=NEEDS-ACTION:m
+ ailto:melika.kesh@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Mette Syberg Jespersen;X-PM-TOKE
+ N=6c04d9488a21c84e5b73a3ef3be2819842393ee5;PARTSTAT=NEEDS-ACTION:mailto:wh
+ q938@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=mittenentzwei@health.sdu.dk;X-PM
+ -TOKEN=ee745a90387b7908fb90cdf87ececd2244493513;PARTSTAT=NEEDS-ACTION:mail
+ to:mittenentzwei@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=moesgaard@sdu.dk;X-PM-TOKEN=e651
+ 5f99529ac1c265e49cb71d55f7373fc50a26;PARTSTAT=NEEDS-ACTION:mailto:moesgaar
+ d@sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=moolesen@health.sdu.dk;X-PM-TOKE
+ N=366d1d7ecf47b3194fa827b8664c4eb62daab470;PARTSTAT=NEEDS-ACTION:mailto:mo
+ olesen@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Morten Andersen;X-PM-TOKEN=78ffe
+ 7bfddff49012af6453e4e466246afb78756;PARTSTAT=NEEDS-ACTION:mailto:morten.an
+ dersen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Morten Lindow;X-PM-TOKEN=fb5affa
+ f88c35b6d7cddbc89546f23387b94620c;PARTSTAT=NEEDS-ACTION:mailto:morten.lind
+ ow@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Morten Misfeldt;X-PM-TOKEN=782a5
+ 1e78f9f6023be87bc31197e359b7b7e9206;PARTSTAT=NEEDS-ACTION:mailto:misfeldt@
+ ind.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=mternst@health.sdu.dk;X-PM-TOKEN
+ =ca4c9dd63eca3f11e76e9d02e1a374bbdf44c88e;PARTSTAT=NEEDS-ACTION:mailto:mte
+ rnst@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=mtthomsen@health.sdu.dk;X-PM-TOK
+ EN=36a00d9680179567c789a647a8082f33109b88bd;PARTSTAT=NEEDS-ACTION:mailto:m
+ tthomsen@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=ngb@sdu.dk;X-PM-TOKEN=b877e95962
+ 37d274eb937f91533cecc2fda4cc5a;PARTSTAT=NEEDS-ACTION:mailto:ngb@sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Niels Skotte;X-PM-TOKEN=e0d88a0d
+ 9609ae933f47912e17b38acea6f4bd80;PARTSTAT=NEEDS-ACTION:mailto:niels.skotte
+ @sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Nikolai Constantin Brun;X-PM-TOK
+ EN=4344758493665fd2c3995e54f33ff83c0e71789f;PARTSTAT=NEEDS-ACTION:mailto:n
+ ikolai.brun@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=noerol@health.sdu.dk;X-PM-TOKEN=
+ 2cf890fc5ea9350df54f3a92bc7da7a23814ff12;PARTSTAT=NEEDS-ACTION:mailto:noer
+ ol@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Olav Larsen;X-PM-TOKEN=da955262d
+ 4ec14322a745b02bc38c1f2df967c16;PARTSTAT=NEEDS-ACTION:mailto:olavl@sund.ku
+ .dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Peidi Xu;X-PM-TOKEN=08913a88f0b8
+ d8ce0daef86ec55a7ed5af18dfbf;PARTSTAT=NEEDS-ACTION:mailto:peidi.xu@sund.ku
+ .dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=petjensen@health.sdu.dk;X-PM-TOK
+ EN=b635faa971800987e3748c69d8069a48beeb1735;PARTSTAT=NEEDS-ACTION:mailto:p
+ etjensen@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Philipp Hans;X-PM-TOKEN=40940cac
+ 615bbb3d14fe9ab90561dfc35e04c8d4;PARTSTAT=NEEDS-ACTION:mailto:philipp.hans
+ @sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Qinwen Lu;X-PM-TOKEN=0d650774c87
+ b2afd5c00e89c8a59ee823590be43;PARTSTAT=NEEDS-ACTION:mailto:lqs985@sund.ku.
+ dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Raghavendra Selvan;X-PM-TOKEN=4f
+ dc814ecd4c744dc11293b9d1deec022e2fea8d;PARTSTAT=NEEDS-ACTION:mailto:raghav
+ @di.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Ramune Jacobsen;X-PM-TOKEN=97fd9
+ 28fbd18ce58cc11437bbc3bb5320e94c5c6;PARTSTAT=NEEDS-ACTION:mailto:ramune.ja
+ cobsen@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=René Holm;X-PM-TOKEN=117721f054
+ 5c6a4e1f1a83ea2c1e4af915fe460e;PARTSTAT=NEEDS-ACTION:mailto:reho@sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=roettger@imada.sdu.dk;X-PM-TOKEN
+ =d6bcebd0a9a86ba1f97140ccbc22d0142822d2fd;PARTSTAT=NEEDS-ACTION:mailto:roe
+ ttger@imada.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Samuel John Lenton;X-PM-TOKEN=38
+ c057052ed72e0977148a6cddd29407c8475fcf;PARTSTAT=NEEDS-ACTION:mailto:samuel
+ .lenton@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=seja@sdu.dk;X-PM-TOKEN=042ab192b
+ ce2c7abc653a9e6cd89396a6b5886eb;PARTSTAT=NEEDS-ACTION:mailto:seja@sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Srishti Nagaraj;X-PM-TOKEN=0ea1f
+ 43b40be9a94150937be23f97144883ef584;PARTSTAT=NEEDS-ACTION:mailto:qcd174@su
+ nd.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Stefan Stürup;X-PM-TOKEN=a4cda8
+ 919a356aa9af73931e181f45b85f6061b9;PARTSTAT=NEEDS-ACTION:mailto:stefan.stu
+ rup@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=steinmann@sdu.dk;X-PM-TOKEN=5180
+ 34558e72ce3fb0be40685c7d9d033dd517fe;PARTSTAT=NEEDS-ACTION:mailto:steinman
+ n@sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Stine Marie Jensen;X-PM-TOKEN=6c
+ 86b7ca04ecfcc496ad67713273a5dd000fe50d;PARTSTAT=NEEDS-ACTION:mailto:stine.
+ m.jensen@ind.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Stine Rønholt;X-PM-TOKEN=2174d2
+ aad9d38797aa6300f49f02632264e97d31;PARTSTAT=NEEDS-ACTION:mailto:stine.roen
+ holt@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Susanne Kaae;X-PM-TOKEN=a24a702d
+ 7e4ff1769957af24e8d56dbf52861d98;PARTSTAT=NEEDS-ACTION:mailto:susanne.kaae
+ @sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Søren Norge Andreassen;X-PM-TOK
+ EN=6efb64068c5283ed5b4375fd96a3389148ee0088;PARTSTAT=NEEDS-ACTION:mailto:s
+ norge@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Teemu Kalle Eemeli Rönkkö;X-PM
+ -TOKEN=33065847bceb189becc87b398c0cca2bf96b4539;PARTSTAT=NEEDS-ACTION:mail
+ to:teemu.ronkko@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Tianwu Yang;X-PM-TOKEN=e3485463e
+ c88ea8f2153d3b00fbccecaf6183a37;PARTSTAT=NEEDS-ACTION:mailto:tianwu.yang@s
+ und.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Tommy Nørskov Johansen;X-PM-TOK
+ EN=572591206a9435a9a994e12c27c83841d9aa7e0b;PARTSTAT=NEEDS-ACTION:mailto:t
+ nj@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Trine Meldgaard Lund;X-PM-TOKEN=
+ a4fffb046cfcaadfed20e194ae431fec207deafd;PARTSTAT=NEEDS-ACTION:mailto:trin
+ e.lund@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Trinh Trung Duong Nguyen;X-PM-TO
+ KEN=099752018396edd7c67a73cbeab3fec64acbe149;PARTSTAT=NEEDS-ACTION:mailto:
+ trung.trinh@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=tstage@health.sdu.dk;X-PM-TOKEN=
+ 469f55b59a195a18e6349a16405711ea2a358bbe;PARTSTAT=NEEDS-ACTION:mailto:tsta
+ ge@health.sdu.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Vito Foderà;X-PM-TOKEN=45c8b282
+ 598333bf2db9a20d2bad16ac21956edd;PARTSTAT=NEEDS-ACTION:mailto:vito.fodera@
+ sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Wouter Boomsma;X-PM-TOKEN=f518e6
+ c43130bf212f59bef1a58897ec8d0486db;PARTSTAT=NEEDS-ACTION:mailto:wb@di.ku.d
+ k
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Yashraj Kulkarni;X-PM-TOKEN=ea25
+ 166eb8db518cf12039a1566af05057c4fc55;PARTSTAT=NEEDS-ACTION:mailto:yashraj.
+ kulkarni@sund.ku.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=174
+ 251026aa8360ab57917fea2b48b3f834134c4;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=Finn Kollerup;X-PM-TOKEN=64fc09b
+ 6cc531e404fc9d57bfd7e101163487095;PARTSTAT=NEEDS-ACTION:mailto:finn.koller
+ up@sund.ku.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000D0A5917DEEB2DC01000000000000000
+ 01000000013DEC7FDA463E24AB6C22BFD2FF8388D
+DTSTART;TZID=Europe/Paris:20260609T110000
+DTEND;TZID=Europe/Paris:20260609T113000
+DTSTAMP:20260424T084406Z
+SEQUENCE:1
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to CPDSE Connect meetings in 2026.\n\nThese meetings are a short check-
+ in between our episode meetings to update you on what is going on in CPDSE
+ . The meetings will only be online.\n\nAgenda for the meetings:\n\n11:00-1
+ 1:15: Announcements\n\n  *   News from the circles\n  *   Basecamp highlig
+ hts\n  *   AI Tips & Tricks\n\n11:15-11:30: People\, Data\, & Drugs short 
+ feature\n\nLooking forward to connecting with you.\n\nBest regards\,\nJaco
+ b Fredegaard Hansen & Jeppe Hartmann\n____________________________________
+ ____________________________________________\nMicrosoft Teams meeting\nJoi
+ n: https://teams.microsoft.com/meet/34227852967376?p=anuZpRM7dglD9GTlO4\nM
+ eeting ID: 342 278 529 673 76\nPasscode: nc9Vi3S6\n_______________________
+ _________\nNeed help?<https://aka.ms/JoinTeamsMeeting?omkt=en-US> | System
+  reference<https://teams.microsoft.com/l/meetup-join/19%3ameeting_YzJkN2Ni
+ M2MtMWFkZC00YjM2LTgzYWQtZTc2NDAzOWY5ZTk2%40thread.v2/0?context=%7b%22Tid%2
+ 2%3a%22a3927f91-cda1-4696-af89-8c9f1ceffa91%22%2c%22Oid%22%3a%224f33c9c6-7
+ cec-4896-989f-8d511d58f4ea%22%7d>\nDial in by phone\n+45 32 72 07 55\,\,10
+ 2960938#<tel:+4532720755\,\,102960938> Denmark\, All locations\nFind a loc
+ al number<https://dialin.teams.microsoft.com/8fa1ad49-0722-4052-88ca-11fec
+ d3ccf50?id=102960938>\nPhone conference ID: 102 960 938#\nFor organizers: 
+ Meeting options<https://teams.microsoft.com/meetingOptions/?organizerId=4f
+ 33c9c6-7cec-4896-989f-8d511d58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1c
+ effa91&threadId=19_meeting_YzJkN2NiM2MtMWFkZC00YjM2LTgzYWQtZTc2NDAzOWY5ZTk
+ 2@thread.v2&messageId=0&language=en-US> | Reset dial-in PIN<https://dialin
+ .teams.microsoft.com/usp/pstnconferencing>\n______________________________
+ __________________________________________________\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Connect
+LOCATION;LANGUAGE=en-US:Microsoft Teams Meeting
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=b2a
+ eb8e5cc85db2c8b3e2876e8dbe06d1bd42564;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E0080000000010BD2C95EEB2DC01000000000000000
+ 0100000003DCA9CD84E371646B73B03CAD00CBEAA
+DTSTART;TZID=Europe/Paris:20260916T110000
+DTEND;TZID=Europe/Paris:20260916T113000
+DTSTAMP:20260424T084406Z
+SEQUENCE:1
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to CPDSE Connect meetings in 2026.\n\nThese meetings are a short check-
+ in between our episode meetings to update you on what is going on in CPDSE
+ . The meetings will only be online.\n\nAgenda for the meetings:\n\n11:00-1
+ 1:15: Announcements\n\n  *   News from the circles\n  *   Basecamp highlig
+ hts\n  *   AI Tips & Tricks\n\n11:15-11:30: People\, Data\, & Drugs short 
+ feature\n\nLooking forward to connecting with you.\n\nBest regards\,\nJaco
+ b Fredegaard Hansen & Jeppe Hartmann\n____________________________________
+ ____________________________________________\nMicrosoft Teams meeting\nJoi
+ n: https://teams.microsoft.com/meet/33624916991327?p=QXLkbJtimrcnE8adCK\nM
+ eeting ID: 336 249 169 913 27\nPasscode: MD9J8gf3\n_______________________
+ _________\nNeed help?<https://aka.ms/JoinTeamsMeeting?omkt=en-US> | System
+  reference<https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZjFhNTQz
+ NTMtMWU2Zi00YTk2LWI3MzktZmRlYjA0MThiZjUx%40thread.v2/0?context=%7b%22Tid%2
+ 2%3a%22a3927f91-cda1-4696-af89-8c9f1ceffa91%22%2c%22Oid%22%3a%224f33c9c6-7
+ cec-4896-989f-8d511d58f4ea%22%7d>\nDial in by phone\n+45 32 72 07 55\,\,66
+ 8915884#<tel:+4532720755\,\,668915884> Denmark\, All locations\nFind a loc
+ al number<https://dialin.teams.microsoft.com/8fa1ad49-0722-4052-88ca-11fec
+ d3ccf50?id=668915884>\nPhone conference ID: 668 915 884#\nFor organizers: 
+ Meeting options<https://teams.microsoft.com/meetingOptions/?organizerId=4f
+ 33c9c6-7cec-4896-989f-8d511d58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1c
+ effa91&threadId=19_meeting_ZjFhNTQzNTMtMWU2Zi00YTk2LWI3MzktZmRlYjA0MThiZjU
+ x@thread.v2&messageId=0&language=en-US> | Reset dial-in PIN<https://dialin
+ .teams.microsoft.com/usp/pstnconferencing>\n______________________________
+ __________________________________________________\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Connect
+LOCATION;LANGUAGE=en-US:Microsoft Teams Meeting
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=ea1
+ 9ea88ffc17563cc89c6f2e39294a08f4c44e5;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E008000000007044E544991DDC01000000000000000
+ 010000000E4C5C6CABDBFAC439EF30A3D02E8A46A
+DTSTART;TZID=Europe/Paris:20261007T103000
+DTEND;TZID=Europe/Paris:20261007T143000
+DTSTAMP:20260424T084406Z
+SEQUENCE:9
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to our CPDSE Episode Meetings.\n\nWe will have these meetings every six
+  weeks as a physical meeting alternating between SDU and KU. The meetings 
+ at KU will be at CPDSE\, Jagtvej 160\, 1st floor and at SDU you can use th
+ is map<https://clients.mapsindoors.com/sdu/573f26e4bc1f571b08094312/search
+ > to guide you to the meeting room. The meetings are usually on a Tuesday\
+ , but for this specific meeting we will have it on a Wednesday.\n\nOur def
+ ault agenda is:\n\n  *   Circle Sync: Individual circles meet internally t
+ o review their progress on the Episode's goal. The output is a clear statu
+ s update to share with the larger group. Commitments are captured directly
+  as Todo-items and decisions are documented as Messages.\n  *   Break / Lu
+ nch 🥪\n  *   Center Sync: All circles come together to share their prog
+ ress. Each circle presents a brief\, high-level summary of their work\, hi
+ ghlighting key accomplishments and any dependencies or blockers.\n  *   Ph
+ arma Data Science Showcase: Research Circle organizes scientific talks and
+  workshops (Storebælt series).\n\nWe will be serving lunch at the meeting
+ \, so we kindly ask that you reply to the invitation\, so we know how many
+  people to expect. If you have any dietary restrictions/allergies\, please
+  let Jeppe know.\n\nLooking forward to seeing you.\n\nBest\,\nMorten & Jep
+ pe\n\nJeppe Hartmann\nProject Coordinator\n\nUniversity of Copenhagen\nDep
+ artment of Drug Design and Pharmacology\n\nUniversitetsparken 2\nDK - 2100
+  Copenhagen\nDenmark\nLync/Skype +45 35323413\njeppe.hartmann@sund.ku.dk<m
+ ailto:jeppe.hartmann@sund.ku.dk>\n\n[Logo for Københavns Universitet]\n\n
+ How we protect personal data<https://informationssikkerhed.ku.dk/english/p
+ rotection-of-information-privacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Episode Meeting
+LOCATION;LANGUAGE=en-US:SDU - meeting room M-0.60 Dialogen
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=13c
+ 206039f63cc1e34acf130b319f601a0e537d1;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000F0234CB1EEB2DC01000000000000000
+ 010000000D4A6FE6E2651DF45A91F59F36765E577
+DTSTART;TZID=Europe/Paris:20261028T110000
+DTEND;TZID=Europe/Paris:20261028T113000
+DTSTAMP:20260424T084406Z
+SEQUENCE:1
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to CPDSE Connect meetings in 2026.\n\nThese meetings are a short check-
+ in between our episode meetings to update you on what is going on in CPDSE
+ . The meetings will only be online.\n\nAgenda for the meetings:\n\n11:00-1
+ 1:15: Announcements\n\n  *   News from the circles\n  *   Basecamp highlig
+ hts\n  *   AI Tips & Tricks\n\n11:15-11:30: People\, Data\, & Drugs short 
+ feature\n\nLooking forward to connecting with you.\n\nBest regards\,\nJaco
+ b Fredegaard Hansen & Jeppe Hartmann\n____________________________________
+ ____________________________________________\nMicrosoft Teams meeting\nJoi
+ n: https://teams.microsoft.com/meet/33917926652911?p=ywx7QY0ypFaiRHRfjE\nM
+ eeting ID: 339 179 266 529 11\nPasscode: nT7wh9Gu\n_______________________
+ _________\nNeed help?<https://aka.ms/JoinTeamsMeeting?omkt=en-US> | System
+  reference<https://teams.microsoft.com/l/meetup-join/19%3ameeting_Mjk0ZTBm
+ NTctMjIwNy00MDE5LWJjM2UtZmEyOTE2ODUyYjM5%40thread.v2/0?context=%7b%22Tid%2
+ 2%3a%22a3927f91-cda1-4696-af89-8c9f1ceffa91%22%2c%22Oid%22%3a%224f33c9c6-7
+ cec-4896-989f-8d511d58f4ea%22%7d>\nDial in by phone\n+45 32 72 07 55\,\,76
+ 3431687#<tel:+4532720755\,\,763431687> Denmark\, All locations\nFind a loc
+ al number<https://dialin.teams.microsoft.com/8fa1ad49-0722-4052-88ca-11fec
+ d3ccf50?id=763431687>\nPhone conference ID: 763 431 687#\nFor organizers: 
+ Meeting options<https://teams.microsoft.com/meetingOptions/?organizerId=4f
+ 33c9c6-7cec-4896-989f-8d511d58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1c
+ effa91&threadId=19_meeting_Mjk0ZTBmNTctMjIwNy00MDE5LWJjM2UtZmEyOTE2ODUyYjM
+ 5@thread.v2&messageId=0&language=en-US> | Reset dial-in PIN<https://dialin
+ .teams.microsoft.com/usp/pstnconferencing>\n______________________________
+ __________________________________________________\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Connect
+LOCATION;LANGUAGE=en-US:Microsoft Teams Meeting
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=205
+ d8faaabf209f10160025f34b3f3d41295924d;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E00800000000B00E74B0991DDC01000000000000000
+ 01000000036998FAB80B25347B7FCC94440E48751
+DTSTART;TZID=Europe/Paris:20261117T103000
+DTEND;TZID=Europe/Paris:20261117T143000
+DTSTAMP:20260424T084406Z
+SEQUENCE:9
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to our CPDSE Episode Meetings.\n\nWe will have these meetings every six
+  weeks as a physical meeting alternating between SDU and KU. The meetings 
+ at KU will be at CPDSE\, Jagtvej 160\, 1st floor and at SDU you can use th
+ is map<https://clients.mapsindoors.com/sdu/573f26e4bc1f571b08094312/search
+ > to guide you to the meeting room.\n\nOur default agenda is:\n\n  *   Cir
+ cle Sync: Individual circles meet internally to review their progress on t
+ he Episode's goal. The output is a clear status update to share with the l
+ arger group. Commitments are captured directly as Todo-items and decisions
+  are documented as Messages.\n  *   Break / Lunch 🥪\n  *   Center Sync:
+  All circles come together to share their progress. Each circle presents a
+  brief\, high-level summary of their work\, highlighting key accomplishmen
+ ts and any dependencies or blockers.\n  *   Pharma Data Science Showcase: 
+ Research Circle organizes scientific talks and workshops (Storebælt serie
+ s).\n\nWe will be serving lunch at the meeting\, so we kindly ask that you
+  reply to the invitation\, so we know how many people to expect. If you ha
+ ve any dietary restrictions/allergies\, please let Jeppe know.\n\nLooking 
+ forward to seeing you.\n\nBest\,\nMorten & Jeppe\n\nJeppe Hartmann\nProjec
+ t Coordinator\n\nUniversity of Copenhagen\nDepartment of Drug Design and P
+ harmacology\n\nUniversitetsparken 2\nDK - 2100 Copenhagen\nDenmark\nLync/S
+ kype +45 35323413\njeppe.hartmann@sund.ku.dk<mailto:jeppe.hartmann@sund.ku
+ .dk>\n\n[Logo for Københavns Universitet]\n\nHow we protect personal data
+ <https://informationssikkerhed.ku.dk/english/protection-of-information-pri
+ vacy/privacy-policy/>\n\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Episode Meeting
+LOCATION;LANGUAGE=en-US:KU\, Jagtvej 160\, 1st floor\, CPDSE meeting room
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=445
+ a3c7e6632abd3c0590738de86d47aaf6350c0;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+BEGIN:VEVENT
+ORGANIZER;CN=Jeppe Hartmann:mailto:jeppe.hartmann@sund.ku.dk
+UID:040000008200E00074C5B7101A82E0080000000000F398F3EEB2DC01000000000000000
+ 01000000003A5827E5AC5474A9E933AB5C989DD66
+DTSTART;TZID=Europe/Paris:20261209T110000
+DTEND;TZID=Europe/Paris:20261209T113000
+DTSTAMP:20260424T084406Z
+SEQUENCE:1
+DESCRIPTION;LANGUAGE=en-US:Dear all\,\n\nWe have the pleasure of inviting y
+ ou to CPDSE Connect meetings in 2026.\n\nThese meetings are a short check-
+ in between our episode meetings to update you on what is going on in CPDSE
+ . The meetings will only be online.\n\nAgenda for the meetings:\n\n11:00-1
+ 1:15: Announcements\n\n  *   News from the circles\n  *   Basecamp highlig
+ hts\n  *   AI Tips & Tricks\n\n11:15-11:30: People\, Data\, & Drugs short 
+ feature\n\nLooking forward to connecting with you.\n\nBest regards\,\nJaco
+ b Fredegaard Hansen & Jeppe Hartmann\n____________________________________
+ ____________________________________________\nMicrosoft Teams meeting\nJoi
+ n: https://teams.microsoft.com/meet/36855832731093?p=75KwyJpanCHEnMCz6I\nM
+ eeting ID: 368 558 327 310 93\nPasscode: JD9uP7ZV\n_______________________
+ _________\nNeed help?<https://aka.ms/JoinTeamsMeeting?omkt=en-US> | System
+  reference<https://teams.microsoft.com/l/meetup-join/19%3ameeting_NDU4OWM4
+ MzQtMWY0Mi00NzMxLTlkMGEtNDQyNGE2ZGUyNGNm%40thread.v2/0?context=%7b%22Tid%2
+ 2%3a%22a3927f91-cda1-4696-af89-8c9f1ceffa91%22%2c%22Oid%22%3a%224f33c9c6-7
+ cec-4896-989f-8d511d58f4ea%22%7d>\nDial in by phone\n+45 32 72 07 55\,\,38
+ 2598882#<tel:+4532720755\,\,382598882> Denmark\, All locations\nFind a loc
+ al number<https://dialin.teams.microsoft.com/8fa1ad49-0722-4052-88ca-11fec
+ d3ccf50?id=382598882>\nPhone conference ID: 382 598 882#\nFor organizers: 
+ Meeting options<https://teams.microsoft.com/meetingOptions/?organizerId=4f
+ 33c9c6-7cec-4896-989f-8d511d58f4ea&tenantId=a3927f91-cda1-4696-af89-8c9f1c
+ effa91&threadId=19_meeting_NDU4OWM4MzQtMWY0Mi00NzMxLTlkMGEtNDQyNGE2ZGUyNGN
+ m@thread.v2&messageId=0&language=en-US> | Reset dial-in PIN<https://dialin
+ .teams.microsoft.com/usp/pstnconferencing>\n______________________________
+ __________________________________________________\n\n
+SUMMARY;LANGUAGE=en-US:CPDSE Connect
+LOCATION;LANGUAGE=en-US:Microsoft Teams Meeting
+STATUS:CONFIRMED
+ATTENDEE;ROLE=OPT-PARTICIPANT;RSVP=TRUE;CN=calendar@cpdse.dk;X-PM-TOKEN=204
+ 6a8131f023583c43b813b48baf428144bc122;PARTSTAT=NEEDS-ACTION:mailto:calenda
+ r@cpdse.dk
+END:VEVENT
+END:VCALENDAR

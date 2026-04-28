@@ -86,7 +86,7 @@ permalink: /news-events/
           </div>
           <div class="updates-actions">
             <button class="updates-action-btn" type="button" id="events-view-toggle" aria-pressed="false">Calendar View</button>
-            <a class="updates-action-btn updates-action-btn-download" href="https://calendar.proton.me/api/calendar/v1/url/UpzCDxijJRWVQEDhaTiwMK81XtRUgwWRbcO_61QH_EZfTDW0Czg9lAzUKPVCpUitrXqtW5jo1B8RjivsvSpFxw==/calendar.ics?CacheKey=21o3DCCs8xsxJIWKZFilPg%3D%3D&amp;PassphraseKey=hCzoAx4RH4SFgEZD0jk9mWPlYvKHGXWdBcIg9M_oX44%3D" target="_blank" rel="noopener">Download .ics file</a>
+            <a class="updates-action-btn updates-action-btn-download" href="{{ '/assets/data/events-calendar.ics' | relative_url }}" target="_blank" rel="noopener">Download .ics file</a>
           </div>
         </div>
       </section>
@@ -99,7 +99,7 @@ permalink: /news-events/
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var pageSize = 3;
-    var calendarFeedUrl = 'https://calendar.proton.me/api/calendar/v1/url/UpzCDxijJRWVQEDhaTiwMK81XtRUgwWRbcO_61QH_EZfTDW0Czg9lAzUKPVCpUitrXqtW5jo1B8RjivsvSpFxw==/calendar.ics?CacheKey=21o3DCCs8xsxJIWKZFilPg%3D%3D&PassphraseKey=hCzoAx4RH4SFgEZD0jk9mWPlYvKHGXWdBcIg9M_oX44%3D';
+    var calendarFeedUrl = {{ '/assets/data/events-calendar.ics' | relative_url | jsonify }};
     var eventsViewToggle = document.getElementById('events-view-toggle');
     var eventsList = document.querySelector('.updates-list-events');
     var eventsCalendarPanel = document.getElementById('events-calendar-panel');
