@@ -2391,6 +2391,10 @@ a { color: inherit; }
   border-top: 1px solid var(--border);
 }
 
+.fc .fc-list-event.calendar-list-event-hidden {
+  display: none;
+}
+
 .fc .fc-list-event:last-child {
   border-bottom: 1px solid var(--border);
 }

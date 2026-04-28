@@ -199,6 +199,19 @@ permalink: /news-events/
       return { domNodes: [wrapper] };
     }
 
+    function isPastEvent(event) {
+      var start = event ? event.start : null;
+      var end = event ? event.end : null;
+      var now = new Date();
+      var compareDate = end || start;
+
+      if (!compareDate) {
+        return false;
+      }
+
+      return compareDate < now;
+    }
+
     function initCalendar(eventsData) {
       var calendarEl = document.getElementById('events-calendar');
 
@@ -225,6 +238,13 @@ permalink: /news-events/
 
           return null;
         },
+        eventClassNames: function (arg) {
+          if (arg.view && arg.view.type && arg.view.type.indexOf('list') === 0 && isPastEvent(arg.event)) {
+            return ['calendar-list-event-hidden'];
+          }
+
+          return [];
+        },
         eventClick: function (info) {
           info.jsEvent.preventDefault();
           openEventModal(info.event);
@@ -234,6 +254,13 @@ permalink: /news-events/
           month: 'Month',
           week: 'Week',
           list: 'List'
+        },
+        noEventsContent: function (arg) {
+          if (arg.view && arg.view.type && arg.view.type.indexOf('list') === 0) {
+            return 'no upcoming events';
+          }
+
+          return 'No events to display';
         }
       });
 
@@ -273,31 +300,6 @@ permalink: /news-events/
           location: location
         }
       };
-    }
-
-    function toDate(value) {
-      if (!value) {
-        return null;
-      }
-
-      if (Object.prototype.toString.call(value) === '[object Date]') {
-        return isNaN(value.getTime()) ? null : value;
-      }
-
-      var parsed = new Date(value);
-      return isNaN(parsed.getTime()) ? null : parsed;
-    }
-
-    function filterUpcomingEvents(eventsData) {
-      var now = new Date();
-
-      return (eventsData || []).filter(function (event) {
-        var startDate = toDate(event.start);
-        var endDate = toDate(event.end);
-        var compareDate = endDate || startDate;
-
-        return !!compareDate && compareDate >= now;
-      });
     }
 
     function isWithinCalendarRange(startTime, rangeStart, rangeEnd) {
@@ -514,7 +516,7 @@ permalink: /news-events/
 
       if (!window.fetch || !window.ICAL || !window.FullCalendar) {
         eventsCalendarNote.hidden = false;
-        initCalendar(filterUpcomingEvents(fallbackEvents));
+        initCalendar(fallbackEvents);
         return;
       }
 
@@ -527,16 +529,15 @@ permalink: /news-events/
         })
         .then(function (icsText) {
           var parsedEvents = buildCalendarEvents(icsText);
-          var upcomingEvents = filterUpcomingEvents(parsedEvents);
 
-          initCalendar(upcomingEvents);
-          if (!upcomingEvents.length) {
+          initCalendar(parsedEvents);
+          if (!parsedEvents.length) {
             eventsCalendarNote.hidden = false;
           }
         })
         .catch(function () {
           eventsCalendarNote.hidden = false;
-          initCalendar(filterUpcomingEvents(fallbackEvents));
+          initCalendar(fallbackEvents);
         });
     }
 
