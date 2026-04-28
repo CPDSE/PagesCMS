@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Research Units
+hero_label: Research
 description: Seven university departments, two universities, one mission.
 permalink: /research-units/
 ---

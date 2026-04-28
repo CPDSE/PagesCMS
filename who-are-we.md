@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Who Are We
+hero_label: About CPDSE
 description: Students, professors, pharmacists, educators, geeks and fellows.
 permalink: /who-are-we/
 ---

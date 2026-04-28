@@ -1,6 +1,7 @@
 ---
 layout: page
 title: People
+hero_label: About CPDSE
 description: The people in CPDSE.
 permalink: /people/
 ---

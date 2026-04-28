@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Educational Offerings
+hero_label: Education
 description: Overview of CPDSE educational activities, formats, and learning opportunities.
 permalink: /educational-offerings/
 ---

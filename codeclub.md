@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Student Code Club
+hero_label: Education
 description: A safe and collaborative space to practice and advance your data science skills.
 permalink: /codeclub/
 ---

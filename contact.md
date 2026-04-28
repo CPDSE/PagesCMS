@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Contact
+hero_label: Get in touch
 description: Get in touch with CPDSE.
 permalink: /contact/
 ---
