@@ -1,5 +1,4 @@
 ---
----
 layout: page
 title: Educational Offerings
 hero_label: Education
