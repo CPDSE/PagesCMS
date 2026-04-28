@@ -6,26 +6,32 @@ description: Get in touch with CPDSE.
 permalink: /contact/
 ---
 
-We'd love to hear from you — whether you're a student looking for help, a researcher interested in collaboration, or an industry partner exploring opportunities.
+## Write us
 
-## University of Copenhagen
+[cpdse@ku.dk](mailto:cpdse@ku.dk)
 
-**PharmaDataHub**  
-[University of Copenhagen](http://www.ku.dk/)  
-Universitetsparken 2  
-2100 Copenhagen
+## Delivery address (post and packages)
 
-## University of Southern Denmark
+NBB BA1  
+Varemodtagelsen  
+Jagtvej 128  
+2200 Copenhagen N  
+Denmark
 
-**PharmaDataHub**  
-[University of Southern Denmark](https://www.sdu.dk/en)  
+Att. (The Center for Pharmaceutical Data Science Education, Building 21, 1. floor + name of recipient)
+
+## Visiting Addresses
+
+### UCPH
+
+Building 21, 1. Floor  
+Jagtvej 160  
+2100 Copenhagen Ø  
+Denmark
+
+### SDU
+
+Building 21Ø, 2. Floor ([PharmaDataHub](https://clients.mapsindoors.com/sdu/573f26e4bc1f571b08094312/details/563cb992423b7d0540c9a84c))  
 Campusvej 55  
-5230 Odense
-
-## Follow Us
-
-- [LinkedIn](https://www.linkedin.com/company/centre-for-pharmaceutical-data-science-education)
-- [Instagram](https://www.instagram.com/peopledatadrugs/)
-- [GitHub (Education)](https://github.com/CPDSE-EDUX)
-- [GitHub (Research)](https://github.com/CPDSE)
-- [All links](https://linktr.ee/cpdse)
+5230 Odense M  
+Denmark
