@@ -294,35 +294,36 @@ a { color: inherit; }
   color: var(--offwhite);
 }
 .section-announcements .announcement-card {
-  background: #3C5E3E;
-  color: var(--offwhite);
-  border: none;
-  box-shadow: none;
+  background: var(--offwhite);
+  color: var(--ink);
+  border: 1px solid rgba(60,94,62,0.18);
+  box-shadow: 0 10px 24px rgba(15,26,20,0.12);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 .section-announcements .announcement-card:hover {
-  background: #3C5E3E;
+  background: var(--offwhite);
+  border-color: rgba(60,94,62,0.35);
 }
 .section-announcements .card-meta {
-  color: rgba(249,249,249,0.74);
+  color: rgba(15,26,20,0.68);
 }
 .section-announcements .announcement-card h3 {
-  color: var(--accent);
+  color: var(--green);
 }
 .section-announcements .announcement-card p {
-  color: rgba(249,249,249,0.82) !important;
+  color: rgba(15,26,20,0.78) !important;
 }
 .section-announcements .card-date {
-  color: rgba(249,249,249,0.7);
+  color: rgba(15,26,20,0.6);
 }
 .section-announcements .card-tag {
-  color: #3C5E3E;
-  background: rgba(249,249,249,0.78);
-  border-color: rgba(60,94,62,0.18);
+  color: var(--green);
+  background: var(--green-pale);
+  border-color: rgba(60,94,62,0.24);
 }
 .section-announcements .card-arrow {
-  color: var(--accent);
+  color: var(--green-mid);
 }
 .section-announcements .section-header p {
   color: var(--accent) !important;
