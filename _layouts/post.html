@@ -6,7 +6,11 @@ layout: default
   <div class="container">
     {% if page.category %}<span class="card-tag">{{ page.category }}</span>{% endif %}
     <h1>{{ page.title }}</h1>
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    {% assign post_display_date = page.date %}
+    {% if page.category and page.category | downcase == 'event' and page.event_date %}
+      {% assign post_display_date = page.event_date %}
+    {% endif %}
+    <time datetime="{{ post_display_date | date_to_xmlschema }}">{{ post_display_date | date: "%B %-d, %Y" }}</time>
   </div>
 </header>
 

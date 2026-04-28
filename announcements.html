@@ -20,51 +20,59 @@ permalink: /announcements/
       <span class="filter-label">Filter by tag</span>
       <div class="filter-buttons">
         <button class="filter-btn filter-active" type="button" data-filter="all">All</button>
-        {% for tag in announcement_tags %}
-        <button class="filter-btn" type="button" data-filter="{{ tag | slugify }}">{{ tag }}</button>
-        {% endfor %}
-      </div>
-    </div>
+          {% assign events = site.posts | where_exp: "post", "post.category and post.category | downcase == 'event'" %}
+          {% assign announcements = site.posts | where_exp: "post", "post.category == nil or post.category | downcase != 'event'" %}
 
-    <div class="announcements-list">
-      {% for post in site.posts %}
-      <a class="announcement-row" href="{{ post.url | relative_url }}" data-tag="{{ post.category | default: 'uncategorized' | slugify }}">
-        <span class="card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h3>{{ post.title }}</h3>
-        {% if post.category %}<span class="card-tag">{{ post.category }}</span>{% endif %}
-      </a>
-      {% endfor %}
-    </div>
-    {% else %}
-    <p style="color:var(--muted); padding:var(--space-lg) 0;">No announcements yet. Check back soon.</p>
-    {% endif %}
-  </div>
-</main>
+          <div class="updates-split">
+            <section class="updates-pane updates-announcements" id="announcements-overview" aria-labelledby="announcements-overview-title">
+              <h2 id="announcements-overview-title">Announcements</h2>
 
-<script>
-  (function () {
+              <div class="updates-list" role="list">
+                {% if announcements.size > 0 %}
+                {% for post in announcements %}
+                <a class="updates-item" href="{{ post.url | relative_url }}" role="listitem">
+                  <span class="updates-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+                  <h3>{{ post.title }}</h3>
+                  {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncate: 120 }}</p>{% endif %}
+                </a>
+                {% endfor %}
+                {% else %}
+                <p class="updates-empty">No announcements yet.</p>
+                {% endif %}
+              </div>
+
+              <a class="updates-more" href="#announcements-overview">All announcements</a>
+            </section>
+
+            <section class="updates-pane updates-events" id="events-overview" aria-labelledby="events-overview-title">
+              <h2 id="events-overview-title">Events</h2>
+
+              <div class="updates-list" role="list">
+                {% if events.size > 0 %}
+                {% for post in events %}
+                {% assign event_display_date = post.event_date | default: post.date %}
+                <a class="event-item" href="{{ post.url | relative_url }}" role="listitem">
+                  <div class="event-badge" aria-hidden="true">
+                    <span class="event-month">{{ event_display_date | date: "%b" | upcase }}</span>
+                    <span class="event-day">{{ event_display_date | date: "%d" }}</span>
+                  </div>
+                  <div class="event-content">
+                    <h3>{{ post.title }}</h3>
+                    {% if post.event_time %}
+                    <p class="event-time">{{ post.event_time }}</p>
+                    {% else %}
+                    <p class="event-time">{{ event_display_date | date: "%B %-d, %Y" }}</p>
+                    {% endif %}
+                  </div>
+                </a>
+                {% endfor %}
+                {% else %}
+                <p class="updates-empty">No events yet.</p>
+                {% endif %}
+              </div>
+
+              <a class="updates-more" href="#events-overview">All events</a>
+            </section>
+          </div>
     const filterButtons = Array.from(document.querySelectorAll('.announcements-filters .filter-btn'));
     const rows = Array.from(document.querySelectorAll('.announcements-list .announcement-row'));
-
-    if (!filterButtons.length || !rows.length) return;
-
-    const applyFilter = (filterValue) => {
-      rows.forEach((row) => {
-        const rowTag = row.getAttribute('data-tag') || 'uncategorized';
-        const visible = filterValue === 'all' || rowTag === filterValue;
-        row.style.display = visible ? 'grid' : 'none';
-      });
-    };
-
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const filterValue = button.getAttribute('data-filter') || 'all';
-
-        filterButtons.forEach((btn) => btn.classList.remove('filter-active'));
-        button.classList.add('filter-active');
-
-        applyFilter(filterValue);
-      });
-    });
-  })();
-</script>
