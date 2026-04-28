@@ -16,8 +16,7 @@ permalink: /news-events/
 
 <main class="section section-alt news-events-main">
   <div class="container">
-    {% assign events = site.posts | where: "category", "Event" %}
-    {% assign news_posts = site.posts | where_exp: "post", "post.category != 'Event'" %}
+    {% assign news_posts = site.posts %}
 
     <div class="updates-split">
       <section class="updates-pane updates-news" id="news-overview" aria-labelledby="news-overview-title">
@@ -49,33 +48,9 @@ permalink: /news-events/
         <h2 id="events-overview-title">Events</h2>
 
         <div class="updates-events-body">
-        <div class="updates-list updates-list-events" role="list">
-          {% if events.size > 0 %}
-          {% for post in events %}
-          {% assign event_display_date = post.event_date | default: post.date %}
-          <a class="event-item" href="{{ post.url | relative_url }}" role="listitem">
-            <div class="event-badge" aria-hidden="true">
-              <span class="event-month">{{ event_display_date | date: "%b" | upcase }}</span>
-              <span class="event-day">{{ event_display_date | date: "%d" }}</span>
-            </div>
-            <div class="event-content">
-              <h3>{{ post.title }}</h3>
-              {% if post.event_time %}
-              <p class="event-time">{{ post.event_time }}</p>
-              {% else %}
-              <p class="event-time">{{ event_display_date | date: "%B %-d, %Y" }}</p>
-              {% endif %}
-            </div>
-          </a>
-          {% endfor %}
-          {% else %}
-          <p class="updates-empty">No events yet.</p>
-          {% endif %}
-        </div>
-
-        <div class="events-calendar-panel" id="events-calendar-panel" hidden>
+        <div class="events-calendar-panel" id="events-calendar-panel">
           <div id="events-calendar" class="events-calendar" aria-live="polite"></div>
-          <p class="events-calendar-note" id="events-calendar-note" hidden>Calendar feed could not be loaded live, so the view is showing locally available event entries.</p>
+          <p class="events-calendar-note" id="events-calendar-note" hidden>Calendar feed could not be loaded live.</p>
           <div class="calendar-event-modal" id="calendar-event-modal" hidden>
             <div class="calendar-event-modal__backdrop" data-calendar-modal-close></div>
             <div class="calendar-event-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="calendar-event-modal-title">
@@ -92,12 +67,7 @@ permalink: /news-events/
         </div>
 
         <div class="updates-footer">
-          <div class="updates-arrows" data-pager="events">
-            <button class="updates-arrow-btn" type="button" data-target="events" data-dir="prev" aria-label="Previous events page">&#8249;</button>
-            <button class="updates-arrow-btn" type="button" data-target="events" data-dir="next" aria-label="Next events page">&#8250;</button>
-          </div>
           <div class="updates-actions">
-            <button class="updates-action-btn" type="button" id="events-view-toggle" aria-pressed="false">Calendar View</button>
             <a class="updates-action-btn updates-action-btn-download" href="{{ '/assets/data/events-calendar.ics' | relative_url }}" target="_blank" rel="noopener">Download .ics file</a>
           </div>
         </div>
@@ -112,11 +82,8 @@ permalink: /news-events/
   document.addEventListener('DOMContentLoaded', function () {
     var pageSize = 3;
     var calendarFeedUrl = {{ '/assets/data/events-calendar.ics' | relative_url | jsonify }};
-    var eventsViewToggle = document.getElementById('events-view-toggle');
-    var eventsList = document.querySelector('.updates-list-events');
     var eventsCalendarPanel = document.getElementById('events-calendar-panel');
     var eventsCalendarNote = document.getElementById('events-calendar-note');
-    var eventsPager = document.querySelector('.updates-arrows[data-pager="events"]');
     var eventModal = document.getElementById('calendar-event-modal');
     var eventModalTitle = document.getElementById('calendar-event-modal-title');
     var eventModalTime = document.getElementById('calendar-event-modal-time');
@@ -125,21 +92,7 @@ permalink: /news-events/
     var eventModalLink = document.getElementById('calendar-event-modal-link');
     var eventModalClose = document.getElementById('calendar-event-modal-close');
     var eventsCalendar = null;
-
-    var fallbackEvents = [
-      {% for post in events %}
-      {% assign event_display_date = post.event_date | default: post.date %}
-      {
-        title: {{ post.title | jsonify }},
-        start: {{ event_display_date | date: "%Y-%m-%d" | jsonify }},
-        url: {{ post.url | relative_url | jsonify }},
-        allDay: true,
-        extendedProps: {
-          description: {{ post.excerpt | strip_html | strip_newlines | jsonify }}
-        }
-      }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ];
+    var fallbackEvents = [];
 
     function setupPager(target, itemSelector) {
       var items = Array.prototype.slice.call(document.querySelectorAll(itemSelector));
@@ -576,7 +529,7 @@ permalink: /news-events/
           var parsedEvents = buildCalendarEvents(icsText);
           var upcomingEvents = filterUpcomingEvents(parsedEvents);
 
-          initCalendar(upcomingEvents.length ? upcomingEvents : filterUpcomingEvents(fallbackEvents));
+          initCalendar(upcomingEvents);
           if (!upcomingEvents.length) {
             eventsCalendarNote.hidden = false;
           }
@@ -587,37 +540,8 @@ permalink: /news-events/
         });
     }
 
-    function setEventsView(mode) {
-      var isCalendar = mode === 'calendar';
-
-      if (!eventsList || !eventsCalendarPanel || !eventsViewToggle) {
-        return;
-      }
-
-      eventsList.hidden = isCalendar;
-      eventsCalendarPanel.hidden = !isCalendar;
-
-      if (eventsPager) {
-        eventsPager.hidden = isCalendar;
-      }
-
-      eventsViewToggle.textContent = isCalendar ? 'List view' : 'Calendar View';
-      eventsViewToggle.setAttribute('aria-pressed', isCalendar ? 'true' : 'false');
-
-      if (isCalendar) {
-        loadCalendar();
-      }
-    }
-
     setupPager('news', '.updates-list-news .updates-item');
-    setupPager('events', '.updates-list-events .event-item');
-
-    if (eventsViewToggle) {
-      eventsViewToggle.addEventListener('click', function () {
-        var nextMode = eventsCalendarPanel && eventsCalendarPanel.hidden ? 'calendar' : 'list';
-        setEventsView(nextMode);
-      });
-    }
+    loadCalendar();
 
     if (eventModal) {
       eventModal.addEventListener('click', function (event) {

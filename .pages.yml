@@ -30,27 +30,6 @@ content:
             - Update
       - { name: body, label: Body, type: rich-text }
 
-  # --- EVENT POSTS ---
-  - name: events
-    label: Events
-    type: collection
-    path: _posts/events
-    filename: "{year}-{month}-{day}-{primary}.md"
-    view:
-      fields: [title, event_date, event_time]
-      primary: title
-      sort: [event_date]
-      default:
-        sort: event_date
-        order: asc
-    fields:
-      - { name: title, label: Title, type: string, required: true }
-      - { name: date, label: Publish Date, type: date, required: true }
-      - { name: category, label: Category, type: string, default: Event }
-      - { name: event_date, label: Event Date, type: date, required: true }
-      - { name: event_time, label: Event Time, type: string }
-      - { name: body, label: Body, type: rich-text }
-
   # --- STATIC PAGES ---
   - name: home
     label: Home Page

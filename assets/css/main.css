@@ -2197,10 +2197,10 @@ a { color: inherit; }
 }
 
 .events-calendar {
-  background: var(--offwhite);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
 }
 
 .events-calendar-note {
