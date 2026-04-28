@@ -4,6 +4,8 @@ title: News & Events
 permalink: /news-events/
 ---
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css">
+
 <header class="page-hero">
   <div class="container">
     <span class="hero-label">Latest from CPDSE</span>
@@ -46,6 +48,7 @@ permalink: /news-events/
       <section class="updates-pane updates-events" id="events-overview" aria-labelledby="events-overview-title">
         <h2 id="events-overview-title">Events</h2>
 
+        <div class="updates-events-body">
         <div class="updates-list updates-list-events" role="list">
           {% if events.size > 0 %}
           {% for post in events %}
@@ -70,10 +73,20 @@ permalink: /news-events/
           {% endif %}
         </div>
 
+        <div class="events-calendar-panel" id="events-calendar-panel" hidden>
+          <div id="events-calendar" class="events-calendar" aria-live="polite"></div>
+          <p class="events-calendar-note" id="events-calendar-note" hidden>Calendar feed could not be loaded live, so the view is showing locally available event entries.</p>
+        </div>
+        </div>
+
         <div class="updates-footer">
           <div class="updates-arrows" data-pager="events">
             <button class="updates-arrow-btn" type="button" data-target="events" data-dir="prev" aria-label="Previous events page">&#8249;</button>
             <button class="updates-arrow-btn" type="button" data-target="events" data-dir="next" aria-label="Next events page">&#8250;</button>
+          </div>
+          <div class="updates-actions">
+            <button class="updates-action-btn" type="button" id="events-view-toggle" aria-pressed="false">Calendar View</button>
+            <a class="updates-action-btn updates-action-btn-download" href="https://calendar.proton.me/api/calendar/v1/url/UpzCDxijJRWVQEDhaTiwMK81XtRUgwWRbcO_61QH_EZfTDW0Czg9lAzUKPVCpUitrXqtW5jo1B8RjivsvSpFxw==/calendar.ics?CacheKey=21o3DCCs8xsxJIWKZFilPg%3D%3D&amp;PassphraseKey=hCzoAx4RH4SFgEZD0jk9mWPlYvKHGXWdBcIg9M_oX44%3D" target="_blank" rel="noopener">Download .ics file</a>
           </div>
         </div>
       </section>
@@ -81,9 +94,30 @@ permalink: /news-events/
   </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var pageSize = 3;
+    var calendarFeedUrl = 'https://calendar.proton.me/api/calendar/v1/url/UpzCDxijJRWVQEDhaTiwMK81XtRUgwWRbcO_61QH_EZfTDW0Czg9lAzUKPVCpUitrXqtW5jo1B8RjivsvSpFxw==/calendar.ics?CacheKey=21o3DCCs8xsxJIWKZFilPg%3D%3D&PassphraseKey=hCzoAx4RH4SFgEZD0jk9mWPlYvKHGXWdBcIg9M_oX44%3D';
+    var eventsViewToggle = document.getElementById('events-view-toggle');
+    var eventsList = document.querySelector('.updates-list-events');
+    var eventsCalendarPanel = document.getElementById('events-calendar-panel');
+    var eventsCalendarNote = document.getElementById('events-calendar-note');
+    var eventsPager = document.querySelector('.updates-arrows[data-pager="events"]');
+    var eventsCalendar = null;
+
+    var fallbackEvents = [
+      {% for post in events %}
+      {% assign event_display_date = post.event_date | default: post.date %}
+      {
+        title: {{ post.title | jsonify }},
+        start: {{ event_display_date | date: "%Y-%m-%d" | jsonify }},
+        url: {{ post.url | relative_url | jsonify }},
+        allDay: true
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ];
 
     function setupPager(target, itemSelector) {
       var items = Array.prototype.slice.call(document.querySelectorAll(itemSelector));
@@ -122,7 +156,113 @@ permalink: /news-events/
       render();
     }
 
+    function initCalendar(eventsData) {
+      var calendarEl = document.getElementById('events-calendar');
+
+      if (!calendarEl || eventsCalendar) {
+        return;
+      }
+
+      eventsCalendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridWeek',
+        headerToolbar: {
+          left: 'prev,next',
+          center: 'title',
+          right: 'dayGridMonth,dayGridWeek,listMonth'
+        },
+        height: 'auto',
+        events: eventsData,
+        eventBackgroundColor: '#a9bbaa',
+        eventBorderColor: '#3C5E3E',
+        eventTextColor: '#0f1a14',
+        buttonText: {
+          today: 'Today',
+          month: 'Month',
+          week: 'Week',
+          list: 'List'
+        }
+      });
+
+      eventsCalendar.render();
+    }
+
+    function loadCalendar() {
+      if (eventsCalendar) {
+        return;
+      }
+
+      if (!window.fetch || !window.ICAL || !window.FullCalendar) {
+        eventsCalendarNote.hidden = false;
+        initCalendar(fallbackEvents);
+        return;
+      }
+
+      fetch(calendarFeedUrl)
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Calendar feed request failed');
+          }
+          return response.text();
+        })
+        .then(function (icsText) {
+          var jcalData = ICAL.parse(icsText);
+          var component = new ICAL.Component(jcalData);
+          var vevents = component.getAllSubcomponents('vevent');
+          var parsedEvents = vevents.map(function (vevent) {
+            var event = new ICAL.Event(vevent);
+            var startDate = event.startDate ? event.startDate.toJSDate() : null;
+            var endDate = event.endDate ? event.endDate.toJSDate() : null;
+            return {
+              title: event.summary,
+              start: startDate,
+              end: endDate,
+              allDay: event.startDate ? event.startDate.isDate : false
+            };
+          }).filter(function (event) {
+            return !!event.start;
+          });
+
+          initCalendar(parsedEvents.length ? parsedEvents : fallbackEvents);
+          if (!parsedEvents.length) {
+            eventsCalendarNote.hidden = false;
+          }
+        })
+        .catch(function () {
+          eventsCalendarNote.hidden = false;
+          initCalendar(fallbackEvents);
+        });
+    }
+
+    function setEventsView(mode) {
+      var isCalendar = mode === 'calendar';
+
+      if (!eventsList || !eventsCalendarPanel || !eventsViewToggle) {
+        return;
+      }
+
+      eventsList.hidden = isCalendar;
+      eventsCalendarPanel.hidden = !isCalendar;
+
+      if (eventsPager) {
+        eventsPager.hidden = isCalendar;
+      }
+
+      eventsViewToggle.textContent = isCalendar ? 'List view' : 'Calendar View';
+      eventsViewToggle.setAttribute('aria-pressed', isCalendar ? 'true' : 'false');
+
+      if (isCalendar) {
+        loadCalendar();
+      }
+    }
+
     setupPager('news', '.updates-list-news .updates-item');
     setupPager('events', '.updates-list-events .event-item');
+
+    if (eventsViewToggle) {
+      eventsViewToggle.addEventListener('click', function () {
+        var nextMode = eventsCalendarPanel && eventsCalendarPanel.hidden ? 'calendar' : 'list';
+        setEventsView(nextMode);
+      });
+    }
   });
 </script>
