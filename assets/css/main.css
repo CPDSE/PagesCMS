@@ -2208,6 +2208,104 @@ a { color: inherit; }
   color: rgba(15,26,20,0.72);
 }
 
+.calendar-modal-open {
+  overflow: hidden;
+}
+
+.calendar-event-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: var(--space-md);
+}
+
+.calendar-event-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15,26,20,0.48);
+  backdrop-filter: blur(3px);
+}
+
+.calendar-event-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 620px);
+  max-height: min(80vh, 760px);
+  overflow: auto;
+  background: linear-gradient(180deg, #fdfcf8 0%, #f4f0e4 100%);
+  border: 1px solid rgba(60,94,62,0.18);
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(15,26,20,0.18);
+  padding: calc(var(--space-md) + 0.25rem);
+}
+
+.calendar-event-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(60,94,62,0.22);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.7);
+  color: var(--green);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.calendar-event-modal__eyebrow {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(60,94,62,0.7);
+}
+
+.calendar-event-modal__title {
+  margin: 0;
+  padding-right: 2.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.05;
+  color: var(--green);
+}
+
+.calendar-event-modal__time,
+.calendar-event-modal__location {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(15,26,20,0.72);
+}
+
+.calendar-event-modal__location {
+  color: var(--green-mid);
+}
+
+.calendar-event-modal__description {
+  margin-top: 1.2rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.calendar-event-modal__description p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(15,26,20,0.88);
+}
+
+.calendar-event-modal__link {
+  margin-top: 1.4rem;
+}
+
 .fc .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0.9rem;
 }
@@ -2367,6 +2465,9 @@ a { color: inherit; }
   }
   .updates-actions {
     margin-top: 0;
+  }
+  .calendar-event-modal__dialog {
+    padding: var(--space-md);
   }
 }
 

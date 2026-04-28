@@ -94,6 +94,19 @@ permalink: /news-events/
   </div>
 </main>
 
+<div class="calendar-event-modal" id="calendar-event-modal" hidden>
+  <div class="calendar-event-modal__backdrop" data-calendar-modal-close></div>
+  <div class="calendar-event-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="calendar-event-modal-title">
+    <button class="calendar-event-modal__close" type="button" id="calendar-event-modal-close" aria-label="Close event details">&times;</button>
+    <p class="calendar-event-modal__eyebrow">Event details</p>
+    <h3 class="calendar-event-modal__title" id="calendar-event-modal-title"></h3>
+    <p class="calendar-event-modal__time" id="calendar-event-modal-time"></p>
+    <p class="calendar-event-modal__location" id="calendar-event-modal-location" hidden></p>
+    <div class="calendar-event-modal__description" id="calendar-event-modal-description"></div>
+    <a class="updates-action-btn updates-action-btn-download calendar-event-modal__link" id="calendar-event-modal-link" href="#" hidden>Open event page</a>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script>
@@ -105,6 +118,13 @@ permalink: /news-events/
     var eventsCalendarPanel = document.getElementById('events-calendar-panel');
     var eventsCalendarNote = document.getElementById('events-calendar-note');
     var eventsPager = document.querySelector('.updates-arrows[data-pager="events"]');
+    var eventModal = document.getElementById('calendar-event-modal');
+    var eventModalTitle = document.getElementById('calendar-event-modal-title');
+    var eventModalTime = document.getElementById('calendar-event-modal-time');
+    var eventModalLocation = document.getElementById('calendar-event-modal-location');
+    var eventModalDescription = document.getElementById('calendar-event-modal-description');
+    var eventModalLink = document.getElementById('calendar-event-modal-link');
+    var eventModalClose = document.getElementById('calendar-event-modal-close');
     var eventsCalendar = null;
 
     var fallbackEvents = [
@@ -114,7 +134,10 @@ permalink: /news-events/
         title: {{ post.title | jsonify }},
         start: {{ event_display_date | date: "%Y-%m-%d" | jsonify }},
         url: {{ post.url | relative_url | jsonify }},
-        allDay: true
+        allDay: true,
+        extendedProps: {
+          description: {{ post.excerpt | strip_html | strip_newlines | jsonify }}
+        }
       }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ];
@@ -175,6 +198,10 @@ permalink: /news-events/
         eventBackgroundColor: '#a9bbaa',
         eventBorderColor: '#3C5E3E',
         eventTextColor: '#0f1a14',
+        eventClick: function (info) {
+          info.jsEvent.preventDefault();
+          openEventModal(info.event);
+        },
         buttonText: {
           today: 'Today',
           month: 'Month',
@@ -184,6 +211,248 @@ permalink: /news-events/
       });
 
       eventsCalendar.render();
+    }
+
+    function normalizeCalendarText(value) {
+      if (!value) {
+        return '';
+      }
+
+      return String(value)
+        .replace(/\\n/g, '\n')
+        .replace(/\\,/g, ',')
+        .replace(/\\;/g, ';')
+        .replace(/\\\\/g, '\\')
+        .trim();
+    }
+
+    function recurrenceKey(uid, timeValue) {
+      return uid + '::' + timeValue.toICALString();
+    }
+
+    function buildCalendarEvent(record, startTime, endTime) {
+      var description = normalizeCalendarText(record.description);
+      var location = normalizeCalendarText(record.location);
+      var eventUrl = normalizeCalendarText(record.url);
+
+      return {
+        title: record.title || 'Untitled event',
+        start: startTime ? startTime.toJSDate() : null,
+        end: endTime ? endTime.toJSDate() : null,
+        allDay: startTime ? startTime.isDate : false,
+        url: eventUrl || '',
+        extendedProps: {
+          description: description,
+          location: location
+        }
+      };
+    }
+
+    function isWithinCalendarRange(startTime, rangeStart, rangeEnd) {
+      if (!startTime) {
+        return false;
+      }
+
+      var startDate = startTime.toJSDate();
+      return startDate >= rangeStart && startDate <= rangeEnd;
+    }
+
+    function buildCalendarEvents(icsText) {
+      var jcalData = ICAL.parse(icsText);
+      var component = new ICAL.Component(jcalData);
+      var vevents = component.getAllSubcomponents('vevent');
+      var recurringMasters = [];
+      var standaloneEvents = [];
+      var recurrenceOverrides = {};
+      var consumedOverrides = {};
+      var rangeStart = new Date();
+      var rangeEnd = new Date();
+      var parsedEvents = [];
+
+      rangeStart.setMonth(rangeStart.getMonth() - 3);
+      rangeEnd.setFullYear(rangeEnd.getFullYear() + 2);
+
+      vevents.forEach(function (vevent) {
+        var icalEvent = new ICAL.Event(vevent);
+        var uid = icalEvent.uid || vevent.getFirstPropertyValue('uid') || icalEvent.summary || 'event';
+        var recurrenceId = vevent.getFirstPropertyValue('recurrence-id');
+        var record = {
+          icalEvent: icalEvent,
+          uid: uid,
+          title: icalEvent.summary,
+          description: vevent.getFirstPropertyValue('description'),
+          location: vevent.getFirstPropertyValue('location'),
+          url: vevent.getFirstPropertyValue('url'),
+          status: String(vevent.getFirstPropertyValue('status') || '').toUpperCase(),
+          recurrenceId: recurrenceId
+        };
+
+        if (recurrenceId) {
+          recurrenceOverrides[recurrenceKey(uid, recurrenceId)] = record;
+          return;
+        }
+
+        if (icalEvent.isRecurring()) {
+          recurringMasters.push(record);
+          return;
+        }
+
+        standaloneEvents.push(record);
+      });
+
+      standaloneEvents.forEach(function (record) {
+        if (record.status === 'CANCELLED' || !isWithinCalendarRange(record.icalEvent.startDate, rangeStart, rangeEnd)) {
+          return;
+        }
+
+        parsedEvents.push(buildCalendarEvent(record, record.icalEvent.startDate, record.icalEvent.endDate));
+      });
+
+      recurringMasters.forEach(function (record) {
+        var iterator = record.icalEvent.iterator();
+        var occurrenceTime = iterator.next();
+
+        while (occurrenceTime) {
+          var occurrenceDate = occurrenceTime.toJSDate();
+          var overrideKey = recurrenceKey(record.uid, occurrenceTime);
+          var overrideRecord = recurrenceOverrides[overrideKey];
+          var occurrenceDetails;
+
+          if (occurrenceDate > rangeEnd) {
+            break;
+          }
+
+          if (occurrenceDate >= rangeStart) {
+            if (overrideRecord) {
+              consumedOverrides[overrideKey] = true;
+
+              if (overrideRecord.status !== 'CANCELLED') {
+                parsedEvents.push(buildCalendarEvent(overrideRecord, overrideRecord.icalEvent.startDate, overrideRecord.icalEvent.endDate));
+              }
+            } else {
+              occurrenceDetails = record.icalEvent.getOccurrenceDetails(occurrenceTime);
+              parsedEvents.push(buildCalendarEvent(record, occurrenceDetails.startDate, occurrenceDetails.endDate));
+            }
+          }
+
+          occurrenceTime = iterator.next();
+        }
+      });
+
+      Object.keys(recurrenceOverrides).forEach(function (key) {
+        var overrideRecord = recurrenceOverrides[key];
+
+        if (consumedOverrides[key] || overrideRecord.status === 'CANCELLED' || !isWithinCalendarRange(overrideRecord.icalEvent.startDate, rangeStart, rangeEnd)) {
+          return;
+        }
+
+        parsedEvents.push(buildCalendarEvent(overrideRecord, overrideRecord.icalEvent.startDate, overrideRecord.icalEvent.endDate));
+      });
+
+      return parsedEvents.filter(function (event) {
+        return !!event.start;
+      });
+    }
+
+    function formatEventDate(event) {
+      var start = event.start;
+      var end = event.end;
+
+      if (!start) {
+        return '';
+      }
+
+      if (event.allDay) {
+        return new Intl.DateTimeFormat('en-GB', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }).format(start);
+      }
+
+      if (!end) {
+        return new Intl.DateTimeFormat('en-GB', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(start);
+      }
+
+      return new Intl.DateTimeFormat('en-GB', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(start) + ' - ' + new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(end);
+    }
+
+    function closeEventModal() {
+      if (!eventModal) {
+        return;
+      }
+
+      eventModal.hidden = true;
+      document.body.classList.remove('calendar-modal-open');
+    }
+
+    function openEventModal(event) {
+      var description = event.extendedProps ? event.extendedProps.description : '';
+      var location = event.extendedProps ? event.extendedProps.location : '';
+
+      if (!eventModal || !eventModalTitle || !eventModalTime || !eventModalDescription) {
+        return;
+      }
+
+      eventModalTitle.textContent = event.title || 'Event details';
+      eventModalTime.textContent = formatEventDate(event);
+      eventModalDescription.innerHTML = '';
+
+      if (description) {
+        description.split(/\n{2,}/).forEach(function (paragraph) {
+          var text = paragraph.replace(/\n/g, ' ').trim();
+          var p;
+
+          if (!text) {
+            return;
+          }
+
+          p = document.createElement('p');
+          p.textContent = text;
+          eventModalDescription.appendChild(p);
+        });
+      } else {
+        var emptyText = document.createElement('p');
+        emptyText.textContent = 'No additional description is available for this event.';
+        eventModalDescription.appendChild(emptyText);
+      }
+
+      if (location) {
+        eventModalLocation.hidden = false;
+        eventModalLocation.textContent = location;
+      } else {
+        eventModalLocation.hidden = true;
+        eventModalLocation.textContent = '';
+      }
+
+      if (event.url) {
+        eventModalLink.hidden = false;
+        eventModalLink.href = event.url;
+      } else {
+        eventModalLink.hidden = true;
+        eventModalLink.removeAttribute('href');
+      }
+
+      eventModal.hidden = false;
+      document.body.classList.add('calendar-modal-open');
     }
 
     function loadCalendar() {
@@ -205,22 +474,7 @@ permalink: /news-events/
           return response.text();
         })
         .then(function (icsText) {
-          var jcalData = ICAL.parse(icsText);
-          var component = new ICAL.Component(jcalData);
-          var vevents = component.getAllSubcomponents('vevent');
-          var parsedEvents = vevents.map(function (vevent) {
-            var event = new ICAL.Event(vevent);
-            var startDate = event.startDate ? event.startDate.toJSDate() : null;
-            var endDate = event.endDate ? event.endDate.toJSDate() : null;
-            return {
-              title: event.summary,
-              start: startDate,
-              end: endDate,
-              allDay: event.startDate ? event.startDate.isDate : false
-            };
-          }).filter(function (event) {
-            return !!event.start;
-          });
+          var parsedEvents = buildCalendarEvents(icsText);
 
           initCalendar(parsedEvents.length ? parsedEvents : fallbackEvents);
           if (!parsedEvents.length) {
@@ -264,5 +518,23 @@ permalink: /news-events/
         setEventsView(nextMode);
       });
     }
+
+    if (eventModal) {
+      eventModal.addEventListener('click', function (event) {
+        if (event.target.hasAttribute('data-calendar-modal-close')) {
+          closeEventModal();
+        }
+      });
+    }
+
+    if (eventModalClose) {
+      eventModalClose.addEventListener('click', closeEventModal);
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && eventModal && !eventModal.hidden) {
+        closeEventModal();
+      }
+    });
   });
 </script>
