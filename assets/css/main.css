@@ -2003,7 +2003,7 @@ a { color: inherit; }
 .updates-item h3 {
   font-size: 1.02rem;
   line-height: 1.24;
-  color: var(--ink);
+  color: var(--green);
   margin: 0 0 0.24rem;
   font-weight: 700;
 }
@@ -2033,7 +2033,7 @@ a { color: inherit; }
   width: 56px;
   min-height: 56px;
   border-radius: 2px;
-  background: var(--green-mid);
+  background: var(--green);
   display: grid;
   place-items: center;
   align-content: center;
@@ -2059,7 +2059,7 @@ a { color: inherit; }
 .event-content h3 {
   font-size: 1rem;
   line-height: 1.2;
-  color: var(--ink);
+  color: var(--green);
   margin: 0 0 0.22rem;
   font-weight: 700;
 }
@@ -2130,43 +2130,65 @@ a { color: inherit; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 28px;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(60,94,62,0.4);
-  background: var(--offwhite);
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.75rem 1.35rem;
+  border: 1px solid rgba(60,94,62,0.35);
+  border-radius: 999px;
+  background: transparent;
   color: var(--green);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
 .updates-action-btn:hover,
 .updates-action-btn:focus-visible {
-  background: var(--green-pale);
-  border-color: var(--green-mid);
+  background: rgba(60,94,62,0.08);
+  border-color: var(--green);
   color: var(--green);
+  transform: translateY(-1px);
 }
 
-.updates-action-btn-download {
+.updates-action-btn[aria-pressed="true"] {
   background: var(--green);
   border-color: var(--green);
   color: var(--offwhite);
 }
 
-.updates-action-btn-download:hover,
-.updates-action-btn-download:focus-visible {
+.updates-action-btn[aria-pressed="true"]:hover,
+.updates-action-btn[aria-pressed="true"]:focus-visible {
   background: var(--green-mid);
   border-color: var(--green-mid);
   color: var(--offwhite);
 }
 
+.updates-action-btn-download {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.updates-action-btn-download:hover,
+.updates-action-btn-download:focus-visible {
+  background: #e4d29a;
+  border-color: #e4d29a;
+  color: var(--ink);
+}
+
 .updates-events-body {
   min-height: 360px;
+}
+
+.updates-list[hidden],
+.updates-arrows[hidden],
+.events-calendar-panel[hidden] {
+  display: none !important;
 }
 
 .events-calendar-panel {
