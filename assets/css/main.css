@@ -1570,7 +1570,11 @@ a { color: inherit; }
 }
 .section-partners {
   padding: var(--space-md) 0;
-  background: linear-gradient(135deg, #3C5E3E 0%, #A9BBAA 100%);
+  background: var(--offwhite);
+  color: var(--ink);
+}
+.section-partners.section-circles::before {
+  display: none;
 }
 .section-partners > .container > p {
   margin-left: auto;
