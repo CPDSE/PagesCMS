@@ -26,7 +26,7 @@ nav:
   - title: Education
     children:
       - title: Educational Offerings
-        url: /offerings/
+        url: /educational-offerings/
       - title: Educational Git
         url: https://github.com/CPDSE-EDUX
         external: true

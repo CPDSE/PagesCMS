@@ -80,7 +80,7 @@ permalink: /news-events/
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var pageSize = 3;
+    var pageSize = 6;
     var calendarFeedUrl = {{ '/assets/data/events-calendar.ics' | relative_url | jsonify }};
     var eventsCalendarPanel = document.getElementById('events-calendar-panel');
     var eventsCalendarNote = document.getElementById('events-calendar-note');
