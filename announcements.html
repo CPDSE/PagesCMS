@@ -12,7 +12,7 @@ permalink: /announcements/
   </div>
 </header>
 
-<main class="section section-alt">
+<main class="section announcements-main">
   <div class="container">
     {% if site.posts.size > 0 %}
     <div class="announcements-list">
@@ -25,7 +25,7 @@ permalink: /announcements/
       {% endfor %}
     </div>
     {% else %}
-    <p style="color:var(--muted); padding:var(--space-lg) 0;">No announcements yet. Check back soon.</p>
+    <p style="color:rgba(249,249,249,0.75); padding:var(--space-lg) 0;">No announcements yet. Check back soon.</p>
     {% endif %}
   </div>
 </main>
