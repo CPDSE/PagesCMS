@@ -82,44 +82,47 @@ permalink: /news-events/
 </main>
 
 <script>
-  (function () {
-    const pageSize = 3;
+  document.addEventListener('DOMContentLoaded', function () {
+    var pageSize = 3;
 
-    const setupPager = (target, itemSelector) => {
-      const items = Array.from(document.querySelectorAll(itemSelector));
-      const prev = document.querySelector(`.updates-arrow-btn[data-target="${target}"][data-dir="prev"]`);
-      const next = document.querySelector(`.updates-arrow-btn[data-target="${target}"][data-dir="next"]`);
+    function setupPager(target, itemSelector) {
+      var items = Array.prototype.slice.call(document.querySelectorAll(itemSelector));
+      var prev = document.querySelector('.updates-arrow-btn[data-target="' + target + '"][data-dir="prev"]');
+      var next = document.querySelector('.updates-arrow-btn[data-target="' + target + '"][data-dir="next"]');
 
-      if (!items.length || !prev || !next) return;
+      if (!items.length || !prev || !next) {
+        return;
+      }
 
-      let page = 0;
-      const maxPage = Math.max(0, Math.ceil(items.length / pageSize) - 1);
+      var page = 0;
+      var maxPage = Math.max(0, Math.ceil(items.length / pageSize) - 1);
 
-      const render = () => {
-        items.forEach((item, idx) => {
-          const start = page * pageSize;
-          const end = start + pageSize;
-          item.style.display = idx >= start && idx < end ? '' : 'none';
+      function render() {
+        var start = page * pageSize;
+        var end = start + pageSize;
+
+        items.forEach(function (item, idx) {
+          item.style.display = (idx >= start && idx < end) ? '' : 'none';
         });
 
         prev.disabled = page <= 0;
         next.disabled = page >= maxPage;
-      };
+      }
 
-      prev.addEventListener('click', () => {
+      prev.addEventListener('click', function () {
         page = Math.max(0, page - 1);
         render();
       });
 
-      next.addEventListener('click', () => {
+      next.addEventListener('click', function () {
         page = Math.min(maxPage, page + 1);
         render();
       });
 
       render();
-    };
+    }
 
     setupPager('news', '.updates-list-news .updates-item');
     setupPager('events', '.updates-list-events .event-item');
-  })();
+  });
 </script>
