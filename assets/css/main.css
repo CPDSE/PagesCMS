@@ -1935,6 +1935,17 @@ a { color: inherit; }
 }
 
 /* ─── ANNOUNCEMENTS LIST PAGE ─────────────────────────────── */
+.announcements-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.announcements-filters .filter-buttons {
+  gap: 0.6rem;
+}
+
 .announcements-list {
   display: flex;
   flex-direction: column;

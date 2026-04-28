@@ -15,9 +15,20 @@ permalink: /announcements/
 <main class="section section-alt">
   <div class="container">
     {% if site.posts.size > 0 %}
+    {% assign announcement_tags = site.posts | map: "category" | compact | uniq | sort %}
+    <div class="announcements-filters" aria-label="Filter announcements by tag">
+      <span class="filter-label">Filter by tag</span>
+      <div class="filter-buttons">
+        <button class="filter-btn filter-active" type="button" data-filter="all">All</button>
+        {% for tag in announcement_tags %}
+        <button class="filter-btn" type="button" data-filter="{{ tag | slugify }}">{{ tag }}</button>
+        {% endfor %}
+      </div>
+    </div>
+
     <div class="announcements-list">
       {% for post in site.posts %}
-      <a class="announcement-row" href="{{ post.url | relative_url }}">
+      <a class="announcement-row" href="{{ post.url | relative_url }}" data-tag="{{ post.category | default: 'uncategorized' | slugify }}">
         <span class="card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
         <h3>{{ post.title }}</h3>
         {% if post.category %}<span class="card-tag">{{ post.category }}</span>{% endif %}
@@ -29,3 +40,31 @@ permalink: /announcements/
     {% endif %}
   </div>
 </main>
+
+<script>
+  (function () {
+    const filterButtons = Array.from(document.querySelectorAll('.announcements-filters .filter-btn'));
+    const rows = Array.from(document.querySelectorAll('.announcements-list .announcement-row'));
+
+    if (!filterButtons.length || !rows.length) return;
+
+    const applyFilter = (filterValue) => {
+      rows.forEach((row) => {
+        const rowTag = row.getAttribute('data-tag') || 'uncategorized';
+        const visible = filterValue === 'all' || rowTag === filterValue;
+        row.style.display = visible ? 'grid' : 'none';
+      });
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filterValue = button.getAttribute('data-filter') || 'all';
+
+        filterButtons.forEach((btn) => btn.classList.remove('filter-active'));
+        button.classList.add('filter-active');
+
+        applyFilter(filterValue);
+      });
+    });
+  })();
+</script>
