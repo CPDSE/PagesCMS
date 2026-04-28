@@ -2590,6 +2590,120 @@ a { color: inherit; }
   }
 }
 
+/* ─── RESEARCH UNITS PAGE ────────────────────────────────── */
+.page-body > .research-units-overview,
+.page-body > .research-focus-strip {
+  max-width: none;
+}
+
+.research-units-overview {
+  margin-bottom: var(--space-md);
+}
+
+.research-units-lead {
+  max-width: 72ch;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+}
+
+.research-units-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.research-units-card {
+  border: 1px solid var(--border);
+  background: var(--offwhite);
+  border-radius: 6px;
+  padding: 1.3rem 1.25rem 1.35rem;
+  position: relative;
+}
+
+.research-units-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--green);
+}
+
+.research-units-card__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.2rem;
+  height: 1.35rem;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  background: var(--green-pale);
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.research-units-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0.6rem 0 0.8rem;
+}
+
+.research-units-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.research-units-list li {
+  margin: 0;
+  padding: 0.45rem 0.6rem;
+  border-radius: 4px;
+  background: rgba(60,94,62,0.06);
+  color: rgba(15,26,20,0.82);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.research-focus-strip {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+  padding: 1.15rem 1.2rem;
+  border-left: 3px solid var(--green);
+  background: linear-gradient(90deg, rgba(60,94,62,0.08), rgba(60,94,62,0.03));
+  border-radius: 4px;
+}
+
+.research-focus-strip h2 {
+  margin: 0 0 0.7rem;
+  font-size: 1.45rem;
+}
+
+.research-focus-strip ul {
+  margin: 0;
+}
+
+.research-focus-strip li {
+  margin-bottom: 0.5rem;
+  color: rgba(15,26,20,0.84);
+}
+
+@media (max-width: 760px) {
+  .research-units-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ─── POST ────────────────────────────────────────────────── */
 .post-header {
   background: var(--green);
