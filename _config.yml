@@ -13,7 +13,7 @@ plugins:
 collections:
   announcements:
     output: true
-    permalink: /announcements/:title/
+    permalink: /news-events/:title/
 
 defaults:
   - scope:
@@ -25,8 +25,8 @@ defaults:
 nav:
   - title: Home
     url: /
-  - title: Announcements
-    url: /announcements/
+  - title: News & Events
+    url: /news-events/
   - title: About
     children:
       - title: About CPDSE

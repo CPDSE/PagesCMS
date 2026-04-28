@@ -1,78 +1,72 @@
 ---
 layout: default
-title: Announcements & Events
-permalink: /announcements/
+title: News & Events
+permalink: /news-events/
 ---
 
 <header class="page-hero">
   <div class="container">
     <span class="hero-label">Latest from CPDSE</span>
-    <h1>Announcements &amp; Events</h1>
-    <p class="hero-sub">See the latest announcements and events from CPDSE.</p>
+    <h1>News &amp; Events</h1>
+    <p class="hero-sub">See the latest news and upcoming events from CPDSE.</p>
   </div>
 </header>
 
 <main class="section section-alt">
   <div class="container">
-    {% if site.posts.size > 0 %}
-    {% assign announcement_tags = site.posts | map: "category" | compact | uniq | sort %}
-    <div class="announcements-filters" aria-label="Filter announcements by tag">
-      <span class="filter-label">Filter by tag</span>
-      <div class="filter-buttons">
-        <button class="filter-btn filter-active" type="button" data-filter="all">All</button>
-          {% assign events = site.posts | where_exp: "post", "post.category and post.category | downcase == 'event'" %}
-          {% assign announcements = site.posts | where_exp: "post", "post.category == nil or post.category | downcase != 'event'" %}
+    {% assign events = site.posts | where_exp: "post", "post.category and post.category | downcase == 'event'" %}
+    {% assign news_posts = site.posts | where_exp: "post", "post.category == nil or post.category | downcase != 'event'" %}
 
-          <div class="updates-split">
-            <section class="updates-pane updates-announcements" id="announcements-overview" aria-labelledby="announcements-overview-title">
-              <h2 id="announcements-overview-title">Announcements</h2>
+    <div class="updates-split">
+      <section class="updates-pane updates-announcements" id="news-overview" aria-labelledby="news-overview-title">
+        <h2 id="news-overview-title">News</h2>
 
-              <div class="updates-list" role="list">
-                {% if announcements.size > 0 %}
-                {% for post in announcements %}
-                <a class="updates-item" href="{{ post.url | relative_url }}" role="listitem">
-                  <span class="updates-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-                  <h3>{{ post.title }}</h3>
-                  {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncate: 120 }}</p>{% endif %}
-                </a>
-                {% endfor %}
-                {% else %}
-                <p class="updates-empty">No announcements yet.</p>
-                {% endif %}
-              </div>
+        <div class="updates-list" role="list">
+          {% if news_posts.size > 0 %}
+          {% for post in news_posts %}
+          <a class="updates-item" href="{{ post.url | relative_url }}" role="listitem">
+            <span class="updates-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <h3>{{ post.title }}</h3>
+            {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncate: 120 }}</p>{% endif %}
+          </a>
+          {% endfor %}
+          {% else %}
+          <p class="updates-empty">No news yet.</p>
+          {% endif %}
+        </div>
 
-              <a class="updates-more" href="#announcements-overview">All announcements</a>
-            </section>
+        <a class="updates-more" href="#news-overview">All news</a>
+      </section>
 
-            <section class="updates-pane updates-events" id="events-overview" aria-labelledby="events-overview-title">
-              <h2 id="events-overview-title">Events</h2>
+      <section class="updates-pane updates-events" id="events-overview" aria-labelledby="events-overview-title">
+        <h2 id="events-overview-title">Events</h2>
 
-              <div class="updates-list" role="list">
-                {% if events.size > 0 %}
-                {% for post in events %}
-                {% assign event_display_date = post.event_date | default: post.date %}
-                <a class="event-item" href="{{ post.url | relative_url }}" role="listitem">
-                  <div class="event-badge" aria-hidden="true">
-                    <span class="event-month">{{ event_display_date | date: "%b" | upcase }}</span>
-                    <span class="event-day">{{ event_display_date | date: "%d" }}</span>
-                  </div>
-                  <div class="event-content">
-                    <h3>{{ post.title }}</h3>
-                    {% if post.event_time %}
-                    <p class="event-time">{{ post.event_time }}</p>
-                    {% else %}
-                    <p class="event-time">{{ event_display_date | date: "%B %-d, %Y" }}</p>
-                    {% endif %}
-                  </div>
-                </a>
-                {% endfor %}
-                {% else %}
-                <p class="updates-empty">No events yet.</p>
-                {% endif %}
-              </div>
+        <div class="updates-list" role="list">
+          {% if events.size > 0 %}
+          {% for post in events %}
+          {% assign event_display_date = post.event_date | default: post.date %}
+          <a class="event-item" href="{{ post.url | relative_url }}" role="listitem">
+            <div class="event-badge" aria-hidden="true">
+              <span class="event-month">{{ event_display_date | date: "%b" | upcase }}</span>
+              <span class="event-day">{{ event_display_date | date: "%d" }}</span>
+            </div>
+            <div class="event-content">
+              <h3>{{ post.title }}</h3>
+              {% if post.event_time %}
+              <p class="event-time">{{ post.event_time }}</p>
+              {% else %}
+              <p class="event-time">{{ event_display_date | date: "%B %-d, %Y" }}</p>
+              {% endif %}
+            </div>
+          </a>
+          {% endfor %}
+          {% else %}
+          <p class="updates-empty">No events yet.</p>
+          {% endif %}
+        </div>
 
-              <a class="updates-more" href="#events-overview">All events</a>
-            </section>
-          </div>
-    const filterButtons = Array.from(document.querySelectorAll('.announcements-filters .filter-btn'));
-    const rows = Array.from(document.querySelectorAll('.announcements-list .announcement-row'));
+        <a class="updates-more" href="#events-overview">All events</a>
+      </section>
+    </div>
+  </div>
+</main>
