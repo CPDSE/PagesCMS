@@ -2461,6 +2461,135 @@ a { color: inherit; }
   border-color: rgba(60,94,62,0.16);
 }
 
+/* ─── EDUCATIONAL OFFERINGS PAGE ─────────────────────────── */
+.page-body > .offerings-grid {
+  max-width: none;
+}
+
+.offerings-lead {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ink);
+  max-width: 640px;
+  margin-bottom: var(--space-md);
+}
+
+.offerings-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.offering-card {
+  background: var(--offwhite);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.offering-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--green);
+}
+
+.offering-card:hover {
+  box-shadow: 0 6px 24px rgba(60,94,62,0.11);
+  transform: translateY(-2px);
+}
+
+.offering-card__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  background: var(--green-pale);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.offering-card__icon svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.offering-card__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.45rem;
+}
+
+.offering-card__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
+}
+
+.offering-card__desc {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(15,26,20,0.72);
+  margin: 0;
+  flex: 1;
+}
+
+.offering-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(60,94,62,0.3);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.offering-card__link:hover {
+  color: var(--green-mid);
+  border-color: var(--green-mid);
+}
+
+@media (max-width: 900px) {
+  .offerings-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .offerings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ─── POST ────────────────────────────────────────────────── */
 .post-header {
   background: var(--green);
