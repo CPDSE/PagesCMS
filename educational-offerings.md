@@ -2,11 +2,9 @@
 layout: page
 title: Educational Offerings
 hero_label: Education
-description: Overview of CPDSE educational activities, formats, and learning opportunities.
+description: CPDSE develops and supports educational offerings across bachelor, master, PhD, and life-long learning levels.
 permalink: /educational-offerings/
 ---
-
-<p class="offerings-lead">CPDSE develops and supports educational offerings across bachelor, master, PhD, and life-long learning levels.</p>
 
 <ul class="offerings-grid" role="list">
 

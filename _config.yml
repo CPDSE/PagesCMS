@@ -6,6 +6,7 @@ url: "https://cpdse.github.io"
 
 markdown: kramdown
 permalink: /:categories/:title/
+future: true
 
 plugins:
   - jekyll-feed
