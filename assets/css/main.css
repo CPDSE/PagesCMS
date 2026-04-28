@@ -2221,6 +2221,11 @@ a { color: inherit; }
   padding: var(--space-md);
 }
 
+.calendar-event-modal[hidden],
+.calendar-event-modal__link[hidden] {
+  display: none !important;
+}
+
 .calendar-event-modal__backdrop {
   position: absolute;
   inset: 0;
@@ -2370,7 +2375,7 @@ a { color: inherit; }
 }
 .post-header time { color: rgba(249,249,249,0.6); font-size: 0.85rem; margin-top: 0.5rem; display: block; }
 .post-content {
-  max-width: 680px;
+  max-width: 720px;
   margin: var(--space-lg) auto;
   padding: 0 var(--space-md);
 }
