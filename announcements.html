@@ -14,8 +14,8 @@ permalink: /news-events/
 
 <main class="section section-alt">
   <div class="container">
-    {% assign events = site.posts | where_exp: "post", "post.category and post.category | downcase == 'event'" %}
-    {% assign news_posts = site.posts | where_exp: "post", "post.category == nil or post.category | downcase != 'event'" %}
+    {% assign events = site.posts | where: "category", "Event" %}
+    {% assign news_posts = site.posts | where_exp: "post", "post.category != 'Event'" %}
 
     <div class="updates-split">
       <section class="updates-pane updates-announcements" id="news-overview" aria-labelledby="news-overview-title">
