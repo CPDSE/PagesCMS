@@ -2077,7 +2077,7 @@ a { color: inherit; }
 /* ─── ABOUT PAGE ──────────────────────────────────────────── */
 
 .about-dark-section {
-  background: var(--green);
+  background: var(--offwhite);
   position: relative;
   overflow: hidden;
   padding: var(--space-lg) 0;
@@ -2086,8 +2086,7 @@ a { color: inherit; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(249,249,249,0.04) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background: none;
   pointer-events: none;
 }
 .about-vision-mission {
@@ -2105,23 +2104,23 @@ a { color: inherit; }
   display: flex;
   gap: 1.25rem;
   align-items: flex-start;
-  background: rgba(249,249,249,0.07);
-  border: 1px solid rgba(249,249,249,0.15);
+  background: white;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.5rem;
-  transition: border-color 0.25s, background 0.25s;
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
 
 .about-vm-card:hover {
-  background: rgba(249,249,249,0.12);
   border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(60,94,62,0.08);
 }
 
 .about-vm-icon {
   flex-shrink: 0;
   width: 2.75rem;
   height: 2.75rem;
-  color: var(--accent);
+  color: var(--green-mid);
 }
 
 .about-vm-icon svg {
@@ -2141,8 +2140,8 @@ a { color: inherit; }
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--accent);
-  background: var(--green);
+  color: var(--green);
+  background: var(--green-pale);
   display: inline-block;
   padding: 0.2rem 0.55rem;
   border-radius: 2px;
@@ -2151,7 +2150,7 @@ a { color: inherit; }
 .about-vm-text p {
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(249,249,249,0.85);
+  color: var(--ink);
   margin: 0;
 }
 
