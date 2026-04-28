@@ -2192,6 +2192,7 @@ a { color: inherit; }
 }
 
 .events-calendar-panel {
+  position: relative;
   margin-top: 0.5rem;
 }
 
@@ -2213,7 +2214,7 @@ a { color: inherit; }
 }
 
 .calendar-event-modal {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 1200;
   display: grid;
@@ -2230,6 +2231,7 @@ a { color: inherit; }
   position: absolute;
   inset: 0;
   background: rgba(15,26,20,0.48);
+  border-radius: 12px;
   backdrop-filter: blur(3px);
 }
 
@@ -2237,7 +2239,7 @@ a { color: inherit; }
   position: relative;
   z-index: 1;
   width: min(100%, 620px);
-  max-height: min(80vh, 760px);
+  max-height: calc(100% - (2 * var(--space-md)));
   overflow: auto;
   background: linear-gradient(180deg, #fdfcf8 0%, #f4f0e4 100%);
   border: 1px solid rgba(60,94,62,0.18);

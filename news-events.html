@@ -76,6 +76,18 @@ permalink: /news-events/
         <div class="events-calendar-panel" id="events-calendar-panel" hidden>
           <div id="events-calendar" class="events-calendar" aria-live="polite"></div>
           <p class="events-calendar-note" id="events-calendar-note" hidden>Calendar feed could not be loaded live, so the view is showing locally available event entries.</p>
+          <div class="calendar-event-modal" id="calendar-event-modal" hidden>
+            <div class="calendar-event-modal__backdrop" data-calendar-modal-close></div>
+            <div class="calendar-event-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="calendar-event-modal-title">
+              <button class="calendar-event-modal__close" type="button" id="calendar-event-modal-close" aria-label="Close event details">&times;</button>
+              <p class="calendar-event-modal__eyebrow">Event details</p>
+              <h3 class="calendar-event-modal__title" id="calendar-event-modal-title"></h3>
+              <p class="calendar-event-modal__time" id="calendar-event-modal-time"></p>
+              <p class="calendar-event-modal__location" id="calendar-event-modal-location" hidden></p>
+              <div class="calendar-event-modal__description" id="calendar-event-modal-description"></div>
+              <a class="updates-action-btn updates-action-btn-download calendar-event-modal__link" id="calendar-event-modal-link" href="#" hidden>Open event page</a>
+            </div>
+          </div>
         </div>
         </div>
 
@@ -93,19 +105,6 @@ permalink: /news-events/
     </div>
   </div>
 </main>
-
-<div class="calendar-event-modal" id="calendar-event-modal" hidden>
-  <div class="calendar-event-modal__backdrop" data-calendar-modal-close></div>
-  <div class="calendar-event-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="calendar-event-modal-title">
-    <button class="calendar-event-modal__close" type="button" id="calendar-event-modal-close" aria-label="Close event details">&times;</button>
-    <p class="calendar-event-modal__eyebrow">Event details</p>
-    <h3 class="calendar-event-modal__title" id="calendar-event-modal-title"></h3>
-    <p class="calendar-event-modal__time" id="calendar-event-modal-time"></p>
-    <p class="calendar-event-modal__location" id="calendar-event-modal-location" hidden></p>
-    <div class="calendar-event-modal__description" id="calendar-event-modal-description"></div>
-    <a class="updates-action-btn updates-action-btn-download calendar-event-modal__link" id="calendar-event-modal-link" href="#" hidden>Open event page</a>
-  </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
