@@ -212,6 +212,26 @@ permalink: /news-events/
       return compareDate < now;
     }
 
+    function applyListPastVisibility() {
+      if (!eventsCalendar || !eventsCalendar.view || eventsCalendar.view.type.indexOf('list') !== 0) {
+        return;
+      }
+
+      eventsCalendar.getEvents().forEach(function (event) {
+        var eventEl = eventsCalendar.el.querySelector('[data-event-id="' + event.id + '"]');
+
+        if (!eventEl) {
+          return;
+        }
+
+        if (isPastEvent(event)) {
+          eventEl.classList.add('calendar-list-event-hidden');
+        } else {
+          eventEl.classList.remove('calendar-list-event-hidden');
+        }
+      });
+    }
+
     function initCalendar(eventsData) {
       var calendarEl = document.getElementById('events-calendar');
 
@@ -238,16 +258,12 @@ permalink: /news-events/
 
           return null;
         },
-        eventClassNames: function (arg) {
-          if (arg.view && arg.view.type && arg.view.type.indexOf('list') === 0 && isPastEvent(arg.event)) {
-            return ['calendar-list-event-hidden'];
-          }
-
-          return [];
-        },
         eventClick: function (info) {
           info.jsEvent.preventDefault();
           openEventModal(info.event);
+        },
+        datesSet: function () {
+          requestAnimationFrame(applyListPastVisibility);
         },
         buttonText: {
           today: 'Today',
