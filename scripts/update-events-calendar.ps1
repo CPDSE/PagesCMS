@@ -15,7 +15,12 @@ if (-not (Test-Path $outputDir)) {
   New-Item -Path $outputDir -ItemType Directory -Force | Out-Null
 }
 
-$tempFile = Join-Path $env:TEMP ("events-calendar-" + [Guid]::NewGuid().ToString('N') + '.ics')
+$tempDir = [System.IO.Path]::GetTempPath()
+if ([string]::IsNullOrWhiteSpace($tempDir)) {
+  throw 'Could not determine a temporary directory on this runner.'
+}
+
+$tempFile = Join-Path $tempDir ("events-calendar-" + [Guid]::NewGuid().ToString('N') + '.ics')
 
 try {
   Invoke-WebRequest -Uri $calendarUrl -OutFile $tempFile -UseBasicParsing
