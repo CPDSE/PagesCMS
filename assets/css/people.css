@@ -20,40 +20,44 @@
   --shadow-card: 0 10px 30px rgba(60, 94, 62, 0.10), inset 0 0 0 1px rgba(214, 193, 124, 0.25);
 }
 
-/* Full-bleed sections that escape both .page-body's 1200px container AND
-   its 720px > * clamp. Same trick the existing .people-directory uses. */
-.page-body > .cpdse-people,
-.cpdse-people > .cpdse-eco,
-.cpdse-people > .cpdse-dir {
+/* Override the `.page-body > * { max-width: 720px }` clamp so the people
+   page can use the full container width. We do NOT use a 100vw full-bleed
+   trick — that creates a horizontal scrollbar at narrower viewports
+   because 100vw includes the scrollbar, which then shifts the whole
+   page-body to the left. Instead we let the section backgrounds extend
+   into the .page-body's padding via negative margin-inline, so the
+   coloured bands cover the full container width without escaping it. */
+.page-body > .cpdse-people {
   max-width: none;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
+  margin: 0;
 }
 
 /* Tighten the spacing around the page so sections butt up against
    the site nav/hero/footer instead of floating in white margin. */
-.page-body > .cpdse-people:first-child {
+.page-body > .cpdse-people {
   margin-top: calc(-1 * var(--space-lg));
-}
-.page-body > .cpdse-people:last-child {
   margin-bottom: calc(-1 * var(--space-lg));
 }
 
-/* Section bands — alternate ivory / soft white to match the site's
-   "About" page rhythm. */
-.cpdse-eco {
-  background: var(--ivory);
-  padding: var(--space-lg) var(--space-md);
-}
+/* Coloured section bands — alternate ivory / soft white to match the
+   site's About-page rhythm. The negative margin-inline pulls the bg
+   into .page-body's 32px padding so the band covers the container's
+   full width; padding-inline pushes the inner content back to 32px. */
+.cpdse-eco,
 .cpdse-dir {
-  background: var(--soft);
-  padding: var(--space-lg) var(--space-md);
+  margin-inline: calc(-1 * var(--space-md));
+  padding-block: var(--space-lg);
+  padding-inline: var(--space-md);
 }
+.cpdse-eco { background: var(--ivory); }
+.cpdse-dir { background: var(--soft); }
 
-/* Inner containers re-use the site's max width so content aligns with
-   the rest of the site. */
+/* Inner containers re-use the parent width and center any narrower
+   max-width inside. */
 .cpdse-eco__inner,
 .cpdse-dir__inner {
+  width: 100%;
   max-width: var(--max-w, 1200px);
   margin: 0 auto;
 }
@@ -84,7 +88,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
   max-width: 540px;
-  margin: 0 0 var(--space-md);
+  margin: 0 auto var(--space-md);   /* horizontally centred above the viz */
 }
 .cpdse-rings__tile {
   padding: 0.85rem 1rem;
@@ -434,7 +438,9 @@
 
 .dir__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* 220px min keeps 3 columns visible down to ~880px viewport and 4
+     columns at typical desktop widths (≥1200px). */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1rem;
 }
 
