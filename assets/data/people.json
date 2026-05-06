@@ -1,0 +1,859 @@
+[
+  {
+    "id": "morten-lindow",
+    "name": "Morten Lindow",
+    "ring": 0,
+    "role": "Center lead",
+    "isLead": false,
+    "title": "Professor, Center lead",
+    "university": "KU",
+    "department": "ILF",
+    "email": "morten.lindow@sund.ku.dk",
+    "research": "Drug discovery, RNA therapeutics, bioinformatics, pharma strategy",
+    "circles": [
+      "Mission",
+      "Education",
+      "Data Science Facility",
+      "Community & Org",
+      "Outreach & Communication"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-7866-0071",
+      "website": "https://mortenlindow.github.io/"
+    },
+    "skills": "Building and catalyzing the evolution of CPDSE. Oligonucleotide and RNA therapeutics",
+    "avatarLocal": "basecamp/morten-lindow.jpg"
+  },
+  {
+    "id": "arnault-quentin-vermillet",
+    "name": "Arnault-Quentin Vermillet",
+    "ring": 0,
+    "role": "Full-time core",
+    "isLead": false,
+    "title": "Data Science Specialist",
+    "university": "KU",
+    "department": "ILF",
+    "email": "arnault@sund.ku.dk",
+    "research": "Computational modelling of behaviour, Bayesian inference & statistical methods, NLP, epistemology",
+    "circles": [
+      "Research",
+      "Education",
+      "Data Science Facility"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0009-0003-1227-4199"
+    },
+    "skills": "Statistical programming, experimental design, teaching computational skills",
+    "avatarLocal": "portraits/arnault-quentin-vermillet.jpg"
+  },
+  {
+    "id": "jacob-fredegaard-hansen",
+    "name": "Jacob Fredegaard Hansen",
+    "ring": 0,
+    "role": "Full-time core",
+    "isLead": false,
+    "title": "Data Science Specialist",
+    "university": "KU",
+    "department": "ILF",
+    "email": "jacob.f.hansen@sund.ku.dk",
+    "research": "AI in science, HPC, cloud computing, computational protein and drug design and discovery",
+    "circles": [
+      "Data Science Facility",
+      "Community & Org",
+      "Outreach & Communication"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0009-0002-4458-3263"
+    },
+    "skills": "R, UCloud, Python, Git",
+    "avatarLocal": "basecamp/jacob-fredegaard-hansen.jpg"
+  },
+  {
+    "id": "jeppe-hartmann",
+    "name": "Jeppe Hartmann",
+    "ring": 0,
+    "role": "Full-time core",
+    "isLead": false,
+    "title": "Project Coordinator / Special Consultant",
+    "university": "KU",
+    "department": "ILF",
+    "email": "jeppe.hartmann@sund.ku.dk",
+    "research": "Center coordinator, PA to Center Leader, Circle Link for Community & Organization",
+    "circles": [
+      "Mission",
+      "Community & Org",
+      "Outreach & Communication"
+    ],
+    "links": {},
+    "skills": "Project management, SurveyXact, Basecamp Police",
+    "avatarLocal": "basecamp/jeppe-hartmann.jpg"
+  },
+  {
+    "id": "kasper-harpsoe",
+    "name": "Kasper Harpsøe",
+    "ring": 0,
+    "role": "Bridge · DSF manager",
+    "isLead": false,
+    "title": "Data and Computing Facility Manager / Research Consultant",
+    "university": "KU",
+    "department": "ILF",
+    "email": "kasper.harpsoe@sund.ku.dk",
+    "research": "Molecular modelling / computational chemistry, GPCRs, Cys-loop receptors",
+    "circles": [
+      "Education",
+      "Data Science Facility"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-9326-9644"
+    },
+    "skills": "HPC/Linux system admin, PharmaSchool teaching and org, Python",
+    "avatarLocal": "basecamp/kasper-harpsoe.jpg"
+  },
+  {
+    "id": "lykke-pedersen",
+    "name": "Lykke Pedersen",
+    "ring": 0,
+    "role": "Full-time core",
+    "isLead": false,
+    "title": "Data Science Specialist",
+    "university": "KU",
+    "department": "IF",
+    "email": "lykke.p@sund.ku.dk",
+    "research": "Oligonucleotides, data science, ML/AI",
+    "circles": [
+      "Education",
+      "Community & Org"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-8935-415X"
+    },
+    "skills": "R, Git, Python, project management, self-organizing teams, Omics data",
+    "avatarLocal": "basecamp/lykke-pedersen.jpg"
+  },
+  {
+    "id": "sarah-mittenentzwei",
+    "name": "Sarah Mittenentzwei",
+    "ring": 0,
+    "role": "Full-time core",
+    "isLead": false,
+    "title": "Data Science Specialist",
+    "university": "SDU",
+    "department": "IST",
+    "email": "mittenentzwei@health.sdu.dk",
+    "research": "Data visualization & communication, interdisciplinary settings, project management",
+    "circles": [
+      "Education",
+      "Data Science Facility",
+      "Community & Org",
+      "Outreach & Communication"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0003-4124-3132"
+    },
+    "skills": "Python, R, Git, data visualization",
+    "avatarLocal": "basecamp/sarah-mittenentzwei.jpg"
+  },
+  {
+    "id": "sebastian-jakobsen",
+    "name": "Sebastian Jakobsen",
+    "ring": 0,
+    "role": "Full-time core",
+    "isLead": false,
+    "title": "Pharmaceutical Data Science Officer",
+    "university": "SDU",
+    "department": "",
+    "email": "seja@sdu.dk",
+    "research": "Data science in pharmacy, drug discovery, ADME, membrane transporters",
+    "circles": [
+      "Education"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0001-8341-4564"
+    },
+    "skills": "Pharmacy syllabus, pharmaceutical science, some coding (Python, R)",
+    "avatarLocal": "basecamp/sebastian-jakobsen.jpg"
+  },
+  {
+    "id": "casper-steinmann",
+    "name": "Casper Steinmann",
+    "ring": 1,
+    "role": "Active",
+    "isLead": false,
+    "title": "",
+    "university": "SDU",
+    "department": "FKF",
+    "email": "steinmann@sdu.dk",
+    "research": "",
+    "circles": [],
+    "links": {}
+  },
+  {
+    "id": "finn-kollerup",
+    "name": "Finn Kollerup",
+    "ring": 1,
+    "role": "Active",
+    "isLead": false,
+    "title": "Special Consultant",
+    "university": "KU",
+    "department": "ILF",
+    "email": "finn.kollerup@sund.ku.dk",
+    "research": "Innovation management, vibe coding",
+    "circles": [
+      "Community & Org"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-1949-5360"
+    },
+    "skills": "Innovation processes, AI activation, design sprints, organisational development",
+    "avatarLocal": "basecamp/finn-kollerup.jpg"
+  },
+  {
+    "id": "jane-knochel",
+    "name": "Jane Knöchel",
+    "ring": 1,
+    "role": "Active",
+    "isLead": false,
+    "title": "Tenure-track Assistant Professor",
+    "university": "KU",
+    "department": "ILF",
+    "email": "jane.knoechel@sund.ku.dk",
+    "research": "Method development for mathematical modelling, AI-enabled pharmacokinetic and pharmacodynamic modelling",
+    "circles": [
+      "Research",
+      "Outreach & Communication"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0001-9839-2433"
+    },
+    "skills": "Strategic thinker, life-long learner and empathy",
+    "avatarLocal": "basecamp/jane-knochel.jpg"
+  },
+  {
+    "id": "karlis-berzins",
+    "name": "Karlis Berzins",
+    "ring": 1,
+    "role": "Active",
+    "isLead": false,
+    "title": "TT Assistant Professor",
+    "university": "KU",
+    "department": "IF",
+    "email": "karlis.berzins@sund.ku.dk",
+    "research": "Laser spectroscopy, solid-state physical chemistry, machine learning",
+    "circles": [
+      "Research",
+      "Education",
+      "Data Science Facility"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0001-6545-5522"
+    },
+    "skills": "Python, Matlab, vector-based visualization tools (e.g. inkscape), periodic DFT",
+    "avatarLocal": "basecamp/karlis-berzins.jpg"
+  },
+  {
+    "id": "lucy-rebecca-davies",
+    "name": "Lucy Rebecca Davies",
+    "ring": 1,
+    "role": "Active",
+    "isLead": false,
+    "title": "Project Manager",
+    "university": "SDU",
+    "department": "",
+    "email": "lucyd@sdu.dk",
+    "research": "Centre coordinator for SDU; background in evolutionary biology and computational biomedicine",
+    "circles": [
+      "Mission",
+      "Education",
+      "Community & Org"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-7795-5038"
+    },
+    "skills": "Project management, research translation, interdisciplinary coordination",
+    "avatarLocal": "portraits/lucy-rebecca-davies.jpg"
+  },
+  {
+    "id": "adrienne-traxler",
+    "name": "Adrienne Traxler",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Associate Professor",
+    "university": "KU",
+    "department": "IND",
+    "email": "atraxler@ind.ku.dk",
+    "research": "Physics/science education research",
+    "circles": [
+      "Education"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0003-2725-0686"
+    },
+    "skills": "Physics didactics, network analysis, R",
+    "avatarLocal": "basecamp/adrienne-traxler.jpg"
+  },
+  {
+    "id": "albert-kooistra",
+    "name": "Albert Kooistra",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Associate Professor",
+    "university": "KU",
+    "department": "ILF",
+    "email": "albert.kooistra@sund.ku.dk",
+    "research": "Computational drug design, cheminformatics, structural bioinformatics, proteochemometrics",
+    "circles": [
+      "Education"
+    ],
+    "links": {},
+    "avatarLocal": "basecamp/albert-kooistra.jpg"
+  },
+  {
+    "id": "aleksander-scharff",
+    "name": "Aleksander Scharff",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "",
+    "department": "",
+    "email": "",
+    "research": "",
+    "circles": [
+      "Research"
+    ],
+    "links": {},
+    "needsConfirmation": true
+  },
+  {
+    "id": "alexander-s-hauser",
+    "name": "Alexander S. Hauser",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Associate Professor",
+    "university": "KU",
+    "department": "ILF",
+    "email": "alexander.hauser@sund.ku.dk",
+    "research": "Pharmacogenomics, big biobanks, peptide discovery, GPCRs, data integration",
+    "circles": [
+      "Outreach & Communication"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0003-1098-6419"
+    },
+    "skills": "Research leadership, teaching, Python",
+    "avatarLocal": "basecamp/alexander-s-hauser.jpg"
+  },
+  {
+    "id": "anders-o-madsen",
+    "name": "Anders Ø. Madsen",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Associate Professor",
+    "university": "KU",
+    "department": "IF",
+    "email": "a.madsen@sund.ku.dk",
+    "research": "Crystallography. X-ray and electron diffraction. Atomistic simulations. Machine learning. Data mining.",
+    "circles": [
+      "Research",
+      "Outreach & Communication"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0001-5422-8076"
+    },
+    "skills": "Modelling of solid-state molecular systems, crystal structure determination",
+    "avatarLocal": "basecamp/anders-o-madsen.jpg"
+  },
+  {
+    "id": "anton-pottegard",
+    "name": "Anton Pottegård",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Professor; Head of Studies for Pharmacy, SDU",
+    "university": "SDU",
+    "department": "IST",
+    "email": "apottegaard@health.sdu.dk",
+    "research": "Clinical pharmacology, pharmacy and environmental medicine; pharmacoepidemiology; transparency and reproducibility; data-driven healthcare management",
+    "circles": [
+      "Mission"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0001-9314-5679"
+    },
+    "skills": "Knows very little — but knows a lot of people who know a lot",
+    "avatarLocal": "basecamp/anton-pottegard.jpg"
+  },
+  {
+    "id": "christian-schonbeck",
+    "name": "Christian Schönbeck",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Teaching Associate Professor",
+    "university": "KU",
+    "department": "IF",
+    "email": "christian.schonbeck@sund.ku.dk",
+    "research": "Molecular interactions in aqueous solutions",
+    "circles": [
+      "Education"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0003-4299-3744"
+    },
+    "skills": "Physical chemistry, mathematical modeling",
+    "avatarLocal": "basecamp/christian-schonbeck.jpg"
+  },
+  {
+    "id": "delaram-rajabi-mikalsen",
+    "name": "Delaram Rajabi Mikalsen",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "",
+    "department": "",
+    "email": "",
+    "research": "",
+    "circles": [
+      "Research"
+    ],
+    "links": {},
+    "needsConfirmation": true
+  },
+  {
+    "id": "diana-merkureva",
+    "name": "Diana Merkureva",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "",
+    "department": "",
+    "email": "",
+    "research": "",
+    "circles": [
+      "Research"
+    ],
+    "links": {},
+    "needsConfirmation": true
+  },
+  {
+    "id": "emma-bjork",
+    "name": "Emma Bjørk",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Vice head of pharmacy education at SDU",
+    "university": "SDU",
+    "department": "IST",
+    "email": "ebjoerk@health.sdu.dk",
+    "research": "Clinical pharmacology, pharmacy and environmental medicine; medication use at care homes; deprescribing",
+    "circles": [
+      "Community & Org"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0001-6794-1479"
+    },
+    "skills": "Teaching students, systematic reviews, REDCap databases",
+    "avatarLocal": "basecamp/emma-bjork.jpg"
+  },
+  {
+    "id": "frederik-v-christiansen",
+    "name": "Frederik V. Christiansen",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Associate Professor",
+    "university": "KU",
+    "department": "IND",
+    "email": "fchristiansen@ind.ku.dk",
+    "research": "Higher Education Research in Science and Health Sciences",
+    "circles": [
+      "Education",
+      "Data Science Facility"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-6743-9881"
+    },
+    "skills": "Teaching development in HE, university pedagogy",
+    "avatarLocal": "portraits/frederik-v-christiansen.jpg"
+  },
+  {
+    "id": "hendra-agustian",
+    "name": "Hendra Agustian",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "KU",
+    "department": "IND",
+    "email": "hendra.agustian@ind.ku.dk",
+    "research": "Chemistry education, laboratory pedagogy, neurodiversity research",
+    "circles": [
+      "Education"
+    ],
+    "links": {},
+    "avatarLocal": "basecamp/hendra-agustian.jpg"
+  },
+  {
+    "id": "icaro-ariel-simon",
+    "name": "Icaro Ariel Simon",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Postdoctoral Researcher",
+    "university": "KU",
+    "department": "ILF",
+    "email": "icaro.simon@sund.ku.dk",
+    "research": "Molecular modeling, computational chemistry, drug design & discovery, psychedelics, neuropharmacology, GPCRs",
+    "circles": [
+      "Education"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0003-4550-4248"
+    },
+    "skills": "Computational simulations, FEP, Python, teaching, supervision, scientific writing",
+    "avatarLocal": "basecamp/icaro-ariel-simon.jpg"
+  },
+  {
+    "id": "jacob-kongsted",
+    "name": "Jacob Kongsted",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Professor & Deputy Head of Department",
+    "university": "SDU",
+    "department": "FKF",
+    "email": "kongsted@sdu.dk",
+    "research": "Computational and quantum chemistry",
+    "circles": [
+      "Mission",
+      "Research"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-7725-2164"
+    },
+    "skills": "Leadership and management, theory and method development, general programming",
+    "avatarLocal": "portraits/jacob-kongsted.jpg"
+  },
+  {
+    "id": "jakob-sture-madsen",
+    "name": "Jakob Sture Madsen",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "KU",
+    "department": "ILF",
+    "email": "jsmadsen@sund.ku.dk",
+    "research": "Bread and butter data science and machine learning",
+    "circles": [
+      "Education"
+    ],
+    "links": {}
+  },
+  {
+    "id": "jonas-verhellen",
+    "name": "Jonas Verhellen",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Postdoctoral Researcher",
+    "university": "KU",
+    "department": "ILF",
+    "email": "jonas.verhellen@sund.ku.dk",
+    "research": "Algorithm design, pharmaceutical data science, neuroscience, novel modalities",
+    "circles": [
+      "Community & Org"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-7465-7641"
+    },
+    "skills": "Pharmaceutical data science, algorithm development, Git, Python, teaching",
+    "avatarLocal": "basecamp/jonas-verhellen.jpg"
+  },
+  {
+    "id": "judith-kuntsche",
+    "name": "Judith Kuntsche",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "SDU",
+    "department": "FKF",
+    "email": "kuntsche@sdu.dk",
+    "research": "Mechanistic modeling, drug delivery, physical pharmacy",
+    "circles": [
+      "Education"
+    ],
+    "links": {}
+  },
+  {
+    "id": "lotte-stig-norgaard",
+    "name": "Lotte Stig Nørgaard",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Professor, Head of Social and Clinical Pharmacy",
+    "university": "KU",
+    "department": "IF",
+    "email": "lotte.norgaard@sund.ku.dk",
+    "research": "Patients and pharmacists; qualitative research; theory application; patient perspective on medicine use; pharmacy and its role, staff, technology (incl AI) and cooperation",
+    "circles": [
+      "Research",
+      "Outreach & Communication"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-3490-0475"
+    },
+    "avatarLocal": "basecamp/lotte-stig-norgaard.jpg"
+  },
+  {
+    "id": "marco-polimeni",
+    "name": "Marco Polimeni",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "KU",
+    "department": "IF",
+    "email": "marco.polimeni@sund.ku.dk",
+    "research": "Molecular dynamics",
+    "circles": [
+      "Education",
+      "Data Science Facility"
+    ],
+    "links": {},
+    "avatarLocal": "basecamp/marco-polimeni.jpg"
+  },
+  {
+    "id": "marin-matic",
+    "name": "Marin Matic",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Postdoc",
+    "university": "KU",
+    "department": "ILF",
+    "email": "marin.matic@sund.ku.dk",
+    "research": "Pharmacogenomics, peptide discovery, GPCRs, AI in drug discovery",
+    "circles": [
+      "Research",
+      "Data Science Facility"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0003-1449-8797"
+    },
+    "skills": "Python, R, deep-learning methods, structural bioinformatics, omics data analysis",
+    "avatarLocal": "basecamp/marin-matic.jpg"
+  },
+  {
+    "id": "maurizio-sessa",
+    "name": "Maurizio Sessa",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "KU",
+    "department": "ILF",
+    "email": "maurizio.sessa@sund.ku.dk",
+    "research": "Pharmaco-vigilance/-epidemiology, clinical epidemiology",
+    "circles": [
+      "Research"
+    ],
+    "links": {}
+  },
+  {
+    "id": "morten-misfeldt",
+    "name": "Morten Misfeldt",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "KU",
+    "department": "IND",
+    "email": "misfeldt@ind.ku.dk",
+    "research": "",
+    "circles": [
+      "Education",
+      "Data Science Facility"
+    ],
+    "links": {},
+    "avatarLocal": "basecamp/morten-misfeldt.jpg"
+  },
+  {
+    "id": "nadia-andersen",
+    "name": "Nadia Andersen",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Educational assistant professor",
+    "university": "SDU",
+    "department": "FKF",
+    "email": "ngb@sdu.dk",
+    "research": "No research; teaching in core pharmaceutical courses",
+    "circles": [
+      "Education"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-5910-1776"
+    },
+    "skills": "Teaching and supervising students, curriculum and course design, pedagogy",
+    "avatarLocal": "basecamp/nadia-andersen.jpg"
+  },
+  {
+    "id": "niels-skotte",
+    "name": "Niels Skotte",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "KU",
+    "department": "ILF",
+    "email": "niels.skotte@sund.ku.dk",
+    "research": "Proteomics, biomarker discovery for clinical trials, drug target discovery, personalized medicine",
+    "circles": [
+      "Education"
+    ],
+    "links": {},
+    "avatarLocal": "basecamp/niels-skotte.jpg"
+  },
+  {
+    "id": "noemie-roland",
+    "name": "Noémie Roland",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Assistant Professor",
+    "university": "SDU",
+    "department": "IST",
+    "email": "Noerol@health.sdu.dk",
+    "research": "Women's Health; pharmacoepi; CPPEM, SDU",
+    "circles": [
+      "Research"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-8079-4263"
+    },
+    "skills": "Register-based studies, RWE, drug utilization & risk studies, teaching, ethics",
+    "avatarLocal": "portraits/noemie-roland.jpg"
+  },
+  {
+    "id": "philipp-hans",
+    "name": "Philipp Hans",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "PostDoc in pharmaceutical crystallography",
+    "university": "KU",
+    "department": "IF",
+    "email": "philipp.hans@sund.ku.dk",
+    "research": "Crystallography, deep learning, curve fitting, software development, thin films",
+    "circles": [
+      "Research",
+      "Education"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0002-3505-9884"
+    },
+    "skills": "Python, Git, Rust, chemistry, crystallography",
+    "avatarLocal": "basecamp/philipp-hans.jpg"
+  },
+  {
+    "id": "rene-holm",
+    "name": "René Holm",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "SDU",
+    "department": "FKF",
+    "email": "reho@sdu.dk",
+    "research": "Mechanistic models, drug delivery, physical pharmacy",
+    "circles": [
+      "Research"
+    ],
+    "links": {},
+    "avatarLocal": "basecamp/rene-holm.jpg"
+  },
+  {
+    "id": "stefan-sturup",
+    "name": "Stefan Stürup",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "KU",
+    "department": "IF",
+    "email": "stefan.sturup@sund.ku.dk",
+    "research": "Analytical chemistry, statistics",
+    "circles": [
+      "Education",
+      "Community & Org"
+    ],
+    "links": {},
+    "avatarLocal": "basecamp/stefan-sturup.jpg"
+  },
+  {
+    "id": "stine-marie-jensen",
+    "name": "Stine Marie Jensen",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "PhD Student",
+    "university": "KU",
+    "department": "IF",
+    "email": "hcm833@alumni.ku.dk",
+    "research": "Pharmaceutical Data Science Education",
+    "circles": [
+      "Education"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0009-0004-4605-9080"
+    },
+    "skills": "Data science elements at PharmaSchool & the student perspective",
+    "avatarLocal": "basecamp/stine-marie-jensen.jpg"
+  },
+  {
+    "id": "tommy-n-johansen",
+    "name": "Tommy N. Johansen",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "",
+    "university": "KU",
+    "department": "ILF",
+    "email": "tnj@sund.ku.dk",
+    "research": "Medicinal chemistry; Structure-based drug desing",
+    "circles": [
+      "Mission",
+      "Education"
+    ],
+    "links": {},
+    "avatarLocal": "basecamp/tommy-n-johansen.jpg"
+  },
+  {
+    "id": "trine-m-lund",
+    "name": "Trine M. Lund",
+    "ring": 2,
+    "role": "Contributor",
+    "isLead": false,
+    "title": "Associate Professor",
+    "university": "KU",
+    "department": "ILF",
+    "email": "trine.lund@sund.ku.dk",
+    "research": "Pharmacokinetics and dynamics; population PKPD modelling",
+    "circles": [
+      "Research"
+    ],
+    "links": {
+      "orcid": "https://orcid.org/0000-0001-8598-2880"
+    },
+    "skills": "Research leadership, teaching and tacit knowledge about Pharma School",
+    "avatarLocal": "basecamp/trine-m-lund.jpg"
+  }
+]
