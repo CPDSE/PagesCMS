@@ -20,6 +20,17 @@
   --shadow-card: 0 10px 30px rgba(60, 94, 62, 0.10), inset 0 0 0 1px rgba(214, 193, 124, 0.25);
 }
 
+/* The section backgrounds below break out to the full viewport width with
+   `width: 100vw`. Since 100vw includes the vertical scrollbar, this would
+   otherwise trigger a horizontal scrollbar — clip horizontal overflow at
+   the root to prevent that. `overflow-x: clip` is preferred over
+   `overflow-x: hidden` because it doesn't establish a scroll container,
+   so the sticky site nav still works correctly. */
+html { overflow-x: clip; }
+@supports not (overflow-x: clip) {
+  html { overflow-x: hidden; }
+}
+
 /* Override the `.page-body > * { max-width: 720px }` clamp so the people
    page can use the full container width. We do NOT use a 100vw full-bleed
    trick — that creates a horizontal scrollbar at narrower viewports
@@ -41,12 +52,13 @@
 }
 
 /* Coloured section bands — alternate ivory / soft white to match the
-   site's About-page rhythm. The negative margin-inline pulls the bg
-   into .page-body's 32px padding so the band covers the container's
-   full width; padding-inline pushes the inner content back to 32px. */
+   site's About-page rhythm. They break out to the full viewport width
+   so the bg colour spans edge-to-edge, with `overflow-x: clip` on
+   `html` (above) preventing the scrollbar gotcha. */
 .cpdse-eco,
 .cpdse-dir {
-  margin-inline: calc(-1 * var(--space-md));
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   padding-block: var(--space-lg);
   padding-inline: var(--space-md);
 }
@@ -85,9 +97,9 @@
 /* ── Ring tile counts (above the radial viz) ─────────────── */
 .cpdse-rings {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
-  max-width: 540px;
+  max-width: 460px;
   margin: 0 auto var(--space-md);   /* horizontally centred above the viz */
 }
 .cpdse-rings__tile {
@@ -509,6 +521,6 @@
 /* ── Responsive (narrow viewports) ───────────────────── */
 @media (max-width: 640px) {
   .cpdse-eco, .cpdse-dir { padding: var(--space-md) var(--space-sm); }
-  .cpdse-rings { grid-template-columns: 1fr; }
+  .cpdse-rings { grid-template-columns: 1fr; max-width: none; }
   .eco-viz { height: 560px; }
 }

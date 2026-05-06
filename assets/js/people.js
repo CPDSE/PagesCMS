@@ -91,25 +91,24 @@
     return `<span class="eco-node__inner" style="width:${sizePx}px;height:${sizePx}px;">${fallback}</span>`;
   };
 
-  /* ---------- Render: ring tiles in hero ---------- */
+  /* ---------- Render: ring tiles in hero ----------
+     Two groups: "CPDSE staff" (rings 0 + 1 — allocated staff + researchers
+     with formal time on the centre) and "Season participants" (ring 2 —
+     the broader community of affiliated researchers and contributors who
+     drive or co-drive deliverables this season). */
   const renderRingTiles = (people) => {
     if (!ringsMount) return;
     const named = people.filter(p => !p.placeholder);
-    const r0 = named.filter(p => p.ring === 0).length;
-    const r1 = named.filter(p => p.ring === 1).length;
-    const r2 = named.filter(p => p.ring === 2).length;
+    const staff = named.filter(p => p.ring === 0 || p.ring === 1).length;
+    const participants = named.filter(p => p.ring === 2).length;
     ringsMount.innerHTML = `
       <div class="cpdse-rings__tile">
-        <p class="cpdse-rings__tile-label">Full-time core</p>
-        <p class="cpdse-rings__tile-count">${r0}</p>
+        <p class="cpdse-rings__tile-label">CPDSE staff</p>
+        <p class="cpdse-rings__tile-count">${staff}</p>
       </div>
       <div class="cpdse-rings__tile">
-        <p class="cpdse-rings__tile-label">Active (10–50%)</p>
-        <p class="cpdse-rings__tile-count">${r1}</p>
-      </div>
-      <div class="cpdse-rings__tile">
-        <p class="cpdse-rings__tile-label">Contributors</p>
-        <p class="cpdse-rings__tile-count">${r2}</p>
+        <p class="cpdse-rings__tile-label">Season participants</p>
+        <p class="cpdse-rings__tile-count">${participants}</p>
       </div>`;
   };
 
@@ -205,7 +204,14 @@
 
     const circleOpts = ['All', ...Array.from(allCircles).sort()];
     const uniOpts = ['All', 'KU', 'SDU'];
-    const layerOpts = [{ v: 'All', l: 'All' }, { v: '0', l: 'Full-time core' }, { v: '1', l: 'Active' }, { v: '2', l: 'Contributors' }];
+    // Rings 0 and 1 collapse into a single "CPDSE staff" group (allocated
+    // staff + researchers); ring 2 is "Season participants" (broader
+    // community driving deliverables this season).
+    const layerOpts = [
+      { v: 'All',    l: 'All' },
+      { v: 'staff',        l: 'CPDSE staff' },
+      { v: 'participants', l: 'Season participants' },
+    ];
 
     dirFilters.innerHTML = `
       <label class="dir__filter">
@@ -273,11 +279,18 @@
       return tokens.every(tok => new RegExp(`\\b${escapeRegex(tok)}`, 'i').test(haystack));
     };
 
+    const matchLayer = (p, ring) => {
+      if (ring === 'All') return true;
+      if (ring === 'staff')        return p.ring === 0 || p.ring === 1;
+      if (ring === 'participants') return p.ring === 2;
+      return true;
+    };
+
     const render = () => {
       const visible = named.filter(p => {
         if (state.circle !== 'All' && !(p.circles || []).includes(state.circle)) return false;
         if (state.uni !== 'All' && !(p.university || '').includes(state.uni)) return false;
-        if (state.ring !== 'All' && p.ring !== Number(state.ring)) return false;
+        if (!matchLayer(p, state.ring)) return false;
         if (!matchQuery(p, state.q)) return false;
         return true;
       });
