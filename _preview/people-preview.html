@@ -5,31 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CPDSE — People (preview)</title>
 
-  <!-- Mimic the Jekyll site's base CSS tokens -->
+  <!-- Real site CSS (so the preview shows real .page-hero, .page-body, nav widths) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/people.css">
+
   <style>
-    :root {
-      --ink: #0f1a14;
-      --paper: #F9F9F9;
-      --offwhite: #F9F9F9;
-      --green: #3C5E3E;
-      --green-mid: #2d7a52;
-      --green-pale: #e8f0eb;
-      --accent: #D6C17C;
-      --muted: #8a9490;
-      --border: #d4cfc4;
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body: Verdana, system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', 'Consolas', 'Menlo', monospace;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: var(--font-body);
-      background: var(--paper);
-      color: var(--ink);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
     .preview-banner {
       background: var(--green);
       color: var(--accent);
@@ -40,60 +21,60 @@
       padding: 0.5rem 1rem;
       text-align: center;
       border-bottom: 2px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
-    /* Replicates `relative_url` filter for `assets/...` paths in the preview */
+    /* In real site, .page-hero slides under the sticky nav with margin-top: -60px.
+       In this nav-less preview, neutralise that so the hero doesn't get clipped. */
+    .page-hero { margin-top: 0 !important; }
   </style>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="../assets/css/people.css">
 </head>
 <body>
-  <div class="preview-banner">Standalone preview · jekyll templating not active · cpdse-website-new/people.md</div>
+  <div class="preview-banner">Standalone preview · cpdse-website-new/people.md</div>
 
-  <div id="cpdse-people" class="cpdse-people" data-baseurl="..">
+  <!-- Site-hero (mocks _layouts/page.html) -->
+  <header class="page-hero">
+    <div class="container">
+      <span class="hero-label">About CPDSE</span>
+      <h1>A small dedicated core. A large community of contribution.</h1>
+      <p>Much of CPDSE’s energy is volunteered — that shapes everything about how we build community, not as a flaw but as a feature. Click any avatar to see their role, circles, research focus and links.</p>
+    </div>
+  </header>
 
-    <!-- Hero -->
-    <section class="cpdse-hero">
-      <div class="cpdse-hero__inner">
-        <p class="cpdse-hero__eyebrow reveal">The CPDSE ecosystem</p>
-        <h1 class="cpdse-hero__title reveal">
-          A small dedicated <em>core</em>.<br>
-          A large community of <em>contribution</em>.
-        </h1>
-        <p class="cpdse-hero__lede reveal">
-          Much of CPDSE’s energy is volunteered — that shapes everything about how we build community,
-          not as a flaw but as a feature. Click any avatar to see their role, circles, research focus, and links.
-        </p>
-        <div id="cpdse-rings" class="cpdse-rings reveal" aria-label="People by involvement layer"></div>
-      </div>
-    </section>
+  <!-- Site-body (mocks _layouts/page.html .page-body) -->
+  <main class="page-body">
 
-    <!-- Radial viz -->
-    <section class="cpdse-section cpdse-section--ivory">
-      <div class="cpdse-section__inner">
-        <div id="eco-viz" class="eco-viz" aria-label="People in CPDSE — radial visualisation"></div>
-        <p class="eco-legend">
-          Hover any avatar to preview, click to open details.
-        </p>
-      </div>
-    </section>
+    <div id="cpdse-people" class="cpdse-people" data-baseurl="..">
 
-    <!-- Directory -->
-    <section class="cpdse-section cpdse-section--soft">
-      <div class="cpdse-section__inner dir">
-        <p class="cpdse-section__eyebrow reveal">The directory</p>
-        <h2 class="cpdse-section__title reveal">
-          <span id="dir-count">—</span> people.
-        </h2>
-        <div id="dir-filters" class="dir__filters reveal" role="group" aria-label="Filter people"></div>
-        <div id="dir-grid" class="dir__grid" aria-live="polite"></div>
-      </div>
-    </section>
+      <!-- Radial ecosystem viz (full-bleed) -->
+      <section class="cpdse-eco">
+        <div class="cpdse-eco__inner">
+          <div id="cpdse-rings" class="cpdse-rings reveal" aria-label="People by involvement layer"></div>
+          <div id="eco-viz" class="eco-viz" aria-label="People in CPDSE — radial visualisation"></div>
+          <p class="eco-legend">Hover any avatar to preview, click to open details.</p>
+        </div>
+      </section>
 
-    <div id="eco-drawer" class="eco-drawer" aria-hidden="true"></div>
-  </div>
+      <!-- Directory (full-bleed) -->
+      <section class="cpdse-dir">
+        <div class="cpdse-dir__inner dir">
+          <p class="cpdse-section__eyebrow reveal">The directory</p>
+          <h2 class="cpdse-section__title reveal">
+            <span id="dir-count">—</span> people.
+          </h2>
+          <div id="dir-filters" class="dir__filters reveal" role="group" aria-label="Filter people"></div>
+          <div id="dir-grid" class="dir__grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- Drawer -->
+      <div id="eco-drawer" class="eco-drawer" aria-hidden="true"></div>
+    </div>
+
+  </main>
 
   <script>
-    // Override DATA_URL for preview (Jekyll's site.baseurl is empty here)
     document.documentElement.dataset.baseurl = '..';
   </script>
   <script src="../assets/js/people.js"></script>

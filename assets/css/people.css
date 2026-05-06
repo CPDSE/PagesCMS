@@ -1,7 +1,13 @@
 /* CPDSE — People page (radial ecosystem viz + filterable directory)
-   ----------------------------------------------------------------- */
+   ----------------------------------------------------------------------
+   Designed to slot into the existing Jekyll site:
+   - Site-wide :root tokens are reused (var(--green), var(--accent),
+     var(--paper), var(--ink), var(--font-display), var(--space-md), …).
+   - The page banner is rendered by _layouts/page.html (.page-hero).
+   - Sections below break out of .page-body's 720px child constraint with
+     the same `width: 100vw; margin-left: calc(50% - 50vw)` pattern that
+     .people-directory in main.css already uses.                            */
 
-/* ── Local tokens (extend the site's existing :root tokens) ── */
 .cpdse-people {
   --gold:        var(--accent, #D6C17C);
   --gold-soft:   #E4D7A1;
@@ -10,110 +16,49 @@
   --mint:        #A9BBAA;
   --soft:        var(--paper, #F9F9F9);
   --forest:      var(--green, #3C5E3E);
-  --ink:         var(--ink, #0f1a14);
-  --shadow-card: 0 10px 30px rgba(60, 94, 62, 0.10), inset 0 0 0 1px rgba(214, 193, 124, 0.25);
   --transition:  cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-card: 0 10px 30px rgba(60, 94, 62, 0.10), inset 0 0 0 1px rgba(214, 193, 124, 0.25);
 }
 
-/* ── Hero ─────────────────────────────────────────────── */
-.cpdse-hero {
-  position: relative;
-  background: var(--forest);
-  color: var(--ivory);
-  padding: 5rem 1.5rem 6rem;
-  overflow: hidden;
-  isolation: isolate;
-}
-.cpdse-hero::before {
-  content: "";
-  position: absolute;
-  right: -180px;
-  top: -180px;
-  width: 560px;
-  height: 560px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(214,193,124,0.32), transparent 70%);
-  filter: blur(60px);
-  z-index: -1;
-  animation: hero-blob 18s ease-in-out infinite;
-}
-@keyframes hero-blob {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(30px, -20px) scale(1.05); }
-  66%  { transform: translate(-20px, 25px) scale(0.97); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-.cpdse-hero__inner { max-width: 1200px; margin: 0 auto; }
-.cpdse-hero__eyebrow {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.78rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin: 0 0 1.5rem;
-}
-.cpdse-hero__title {
-  font-family: var(--font-display, 'DM Serif Display', serif);
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-weight: 400;
-  margin: 0 0 1.5rem;
-  color: var(--ivory);
-  max-width: 26ch;
-}
-.cpdse-hero__title em { font-style: italic; color: var(--gold); }
-.cpdse-hero__lede {
-  max-width: 60ch;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--gold-soft);
-  margin: 0 0 2.5rem;
+/* Full-bleed sections that escape both .page-body's 1200px container AND
+   its 720px > * clamp. Same trick the existing .people-directory uses. */
+.page-body > .cpdse-people,
+.cpdse-people > .cpdse-eco,
+.cpdse-people > .cpdse-dir {
+  max-width: none;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
 }
 
-/* Ring tile counts */
-.cpdse-rings {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  max-width: 540px;
+/* Tighten the spacing around the page so sections butt up against
+   the site nav/hero/footer instead of floating in white margin. */
+.page-body > .cpdse-people:first-child {
+  margin-top: calc(-1 * var(--space-lg));
 }
-.cpdse-rings__tile {
-  padding: 0.85rem 1rem;
-  border-radius: 12px;
-  background: rgba(214, 193, 124, 0.10);
-  border: 1px solid rgba(214, 193, 124, 0.35);
-}
-.cpdse-rings__tile-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin: 0 0 0.25rem;
-}
-.cpdse-rings__tile-count {
-  font-family: var(--font-display);
-  font-size: 1.85rem;
-  line-height: 1;
-  color: var(--ivory);
-  font-weight: 400;
-}
-.cpdse-rings__tile-sub {
-  font-size: 0.7rem;
-  color: var(--gold-soft);
-  opacity: 0.7;
-  margin: 0.2rem 0 0;
+.page-body > .cpdse-people:last-child {
+  margin-bottom: calc(-1 * var(--space-lg));
 }
 
-/* ── Section wrappers ─────────────────────────────────── */
-.cpdse-section {
-  padding: 4rem 1.5rem 5rem;
+/* Section bands — alternate ivory / soft white to match the site's
+   "About" page rhythm. */
+.cpdse-eco {
+  background: var(--ivory);
+  padding: var(--space-lg) var(--space-md);
 }
-.cpdse-section--ivory { background: var(--ivory); }
-.cpdse-section--soft { background: var(--soft); }
-.cpdse-section__inner { max-width: 1200px; margin: 0 auto; }
+.cpdse-dir {
+  background: var(--soft);
+  padding: var(--space-lg) var(--space-md);
+}
 
+/* Inner containers re-use the site's max width so content aligns with
+   the rest of the site. */
+.cpdse-eco__inner,
+.cpdse-dir__inner {
+  max-width: var(--max-w, 1200px);
+  margin: 0 auto;
+}
+
+/* Eyebrow + section title (used above the directory) */
 .cpdse-section__eyebrow {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -124,7 +69,7 @@
 }
 .cpdse-section__title {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -133,13 +78,49 @@
   max-width: 24ch;
 }
 
-/* ── Radial ecosystem viz ─────────────────────────────── */
+/* ── Ring tile counts (above the radial viz) ─────────────── */
+.cpdse-rings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  max-width: 540px;
+  margin: 0 0 var(--space-md);
+}
+.cpdse-rings__tile {
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: rgba(60, 94, 62, 0.04);
+  border: 1px solid rgba(60, 94, 62, 0.18);
+}
+.cpdse-rings__tile-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin: 0 0 0.25rem;
+}
+.cpdse-rings__tile-count {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  line-height: 1;
+  color: var(--forest);
+  font-weight: 400;
+}
+.cpdse-rings__tile-sub {
+  font-size: 0.7rem;
+  color: var(--sage);
+  opacity: 0.7;
+  margin: 0.2rem 0 0;
+}
+
+/* ── Radial ecosystem viz ─────────────────────────────────── */
 .eco-viz {
   position: relative;
   width: 100%;
   height: 720px;
   max-width: 880px;
-  margin: 2rem auto 0;
+  margin: 1rem auto 0;
 }
 .eco-viz__svg {
   position: absolute;
@@ -225,7 +206,6 @@
   letter-spacing: 0.03em;
 }
 
-/* placeholder cohort pill (gold "+8 PhDs", "MSc", etc.) */
 .eco-node--placeholder .eco-node__inner {
   background: var(--gold);
   color: var(--forest);
@@ -254,7 +234,6 @@
   box-shadow: 0 8px 24px rgba(60, 94, 62, 0.4);
   opacity: 0;
   transition: opacity 200ms ease;
-  /* keep the pill from running off the edges on narrow screens */
   max-width: calc(100% - 2rem);
   white-space: nowrap;
   overflow: hidden;
@@ -265,13 +244,13 @@
 .eco-tooltip__sub { opacity: 0.8; margin-left: 0.4rem; }
 
 .eco-legend {
-  margin-top: 1rem;
+  margin: 1rem auto 0;
   text-align: center;
   font-size: 0.78rem;
   color: var(--ink);
-  opacity: 0.65;
+  opacity: 0.6;
+  max-width: 480px;
 }
-.eco-legend strong { color: var(--gold); font-weight: 700; }
 
 /* ── Drawer (click-to-open person details) ────────────── */
 .eco-drawer {
@@ -348,9 +327,7 @@
 .eco-drawer__title { font-size: 0.92rem; margin: 0 0 0.15rem; color: var(--ink); }
 .eco-drawer__affiliation { font-size: 0.8rem; opacity: 0.7; margin: 0; }
 
-.eco-drawer__field {
-  margin-top: 1.1rem;
-}
+.eco-drawer__field { margin-top: 1.1rem; }
 .eco-drawer__field-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -375,11 +352,7 @@
   box-shadow: inset 0 0 0 1px var(--gold);
 }
 
-.eco-drawer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+.eco-drawer__links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .eco-drawer__link {
   display: inline-flex;
   align-items: center;
@@ -407,25 +380,20 @@
   letter-spacing: -0.02em;
 }
 
-.eco-drawer__deliv {
-  margin-top: 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.7;
-}
-
 /* ── Directory ─────────────────────────────────────────── */
-.dir {
-  margin-top: 2rem;
-}
+.dir { margin-top: 1rem; }
 .dir__filters {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin: 1.5rem 0 2rem;
+  margin: 1.25rem 0 1.75rem;
   align-items: center;
+  padding: 1rem 1.1rem;
+  background: linear-gradient(180deg, rgba(249,249,249,0.96), rgba(232,240,235,0.92));
+  border: 1px solid rgba(60,94,62,0.2);
+  border-top: 3px solid rgba(60,94,62,0.6);
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(15,26,20,0.07);
 }
 .dir__filter {
   display: inline-flex;
@@ -444,7 +412,7 @@
   font-size: 0.85rem;
   padding: 0.4rem 0.85rem;
   border-radius: 9999px;
-  background: var(--ivory);
+  background: var(--soft);
   color: var(--ink);
   border: 0;
   box-shadow: inset 0 0 0 1px var(--gold);
@@ -455,12 +423,12 @@
   font-size: 0.85rem;
   padding: 0.4rem 0.85rem;
   border-radius: 9999px;
-  background: var(--ivory);
+  background: var(--soft);
   color: var(--ink);
   border: 0;
   box-shadow: inset 0 0 0 1px var(--gold);
   outline: none;
-  min-width: 180px;
+  min-width: 200px;
 }
 .dir__filter-search::placeholder { color: var(--ink); opacity: 0.5; }
 
@@ -506,14 +474,6 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.dir__card-deliv {
-  margin-top: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
 
 .dir__empty {
   text-align: center;
@@ -532,11 +492,17 @@
 
 /* ── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .cpdse-hero::before,
   .eco-node__inner,
   .eco-drawer__backdrop,
   .eco-drawer__card,
   .reveal { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
   .eco-node__inner { opacity: 1; transform: none; }
+}
+
+/* ── Responsive (narrow viewports) ───────────────────── */
+@media (max-width: 640px) {
+  .cpdse-eco, .cpdse-dir { padding: var(--space-md) var(--space-sm); }
+  .cpdse-rings { grid-template-columns: 1fr; }
+  .eco-viz { height: 560px; }
 }
