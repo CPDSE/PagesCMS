@@ -28,9 +28,18 @@ const MIME = {
   '.txt':  'text/plain; charset=utf-8',
 };
 
+/* Map nice URLs to mocked preview pages so we can navigate between them. */
+const ROUTES = {
+  '/':         '/_preview/people-preview.html',
+  '/people':   '/_preview/people-preview.html',
+  '/people/':  '/_preview/people-preview.html',
+  '/publications':  '/_preview/publications-preview.html',
+  '/publications/': '/_preview/publications-preview.html',
+};
+
 const server = http.createServer((req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
-  if (urlPath === '/') urlPath = '/_preview/people-preview.html';
+  if (urlPath in ROUTES) urlPath = ROUTES[urlPath];
 
   const filePath = path.join(ROOT, urlPath);
   if (!filePath.startsWith(ROOT)) { res.writeHead(403); res.end('Forbidden'); return; }

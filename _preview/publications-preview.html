@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-baseurl="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPDSE — Publications (preview)</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/people.css">
+  <link rel="stylesheet" href="../assets/css/publications.css">
+
+  <style>
+    .preview-banner {
+      background: var(--green); color: var(--accent);
+      font-family: var(--font-mono); font-size: 0.7rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      padding: 0.5rem 1rem; text-align: center;
+      border-bottom: 2px solid var(--accent);
+      position: sticky; top: 0; z-index: 999;
+    }
+    .page-hero { margin-top: 0 !important; }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">Standalone preview · cpdse-website-new/research/publications.md</div>
+
+  <header class="page-hero">
+    <div class="container">
+      <span class="hero-label">Research</span>
+      <h1>Publications</h1>
+      <p>Explore the research happening across CPDSE — recent and most-cited papers by people in the centre, organised by author and research area. A starting point for discovering collaborations, supervisors, and lines of work to build on.</p>
+    </div>
+  </header>
+
+  <main class="page-body">
+    <div id="cpdse-pubs" class="cpdse-pubs" data-baseurl="..">
+
+      <section class="cpdse-pubs__band cpdse-pubs__band--stats">
+        <div class="cpdse-pubs__inner">
+          <div id="pubs-stats" class="cpdse-pubs__stats reveal" aria-label="Publication overview"></div>
+          <p id="pubs-data-note" class="cpdse-pubs__note reveal"></p>
+        </div>
+      </section>
+
+      <section class="cpdse-pubs__band cpdse-pubs__band--ivory">
+        <div class="cpdse-pubs__inner">
+          <p class="cpdse-pubs__eyebrow reveal">Research areas</p>
+          <h2 class="cpdse-pubs__title reveal">What we work on.</h2>
+          <p class="cpdse-pubs__lede reveal">Topics across CPDSE publications, sized by how often they appear. Click any topic to see the papers behind it.</p>
+          <div id="pubs-topics" class="cpdse-pubs__topics reveal" role="group" aria-label="Filter by topic"></div>
+        </div>
+      </section>
+
+      <section class="cpdse-pubs__band">
+        <div class="cpdse-pubs__inner">
+          <p class="cpdse-pubs__eyebrow reveal">Researchers</p>
+          <h2 class="cpdse-pubs__title reveal"><span id="pubs-author-count">—</span> people, sorted by output.</h2>
+          <p class="cpdse-pubs__lede reveal">Click any researcher to see their work. Looking to start a project? These are the people inside CPDSE you could reach out to.</p>
+          <div id="pubs-authors" class="cpdse-pubs__authors reveal" role="group" aria-label="Filter by author"></div>
+        </div>
+      </section>
+
+      <section class="cpdse-pubs__band cpdse-pubs__band--ivory">
+        <div class="cpdse-pubs__inner">
+          <p class="cpdse-pubs__eyebrow reveal">The directory</p>
+          <h2 class="cpdse-pubs__title reveal"><span id="pubs-count">—</span> papers in this view.</h2>
+
+          <div id="pubs-active-filters" class="cpdse-pubs__active-filters" aria-live="polite"></div>
+
+          <div id="pubs-filters" class="cpdse-pubs__filters reveal" role="group" aria-label="Search and filter publications"></div>
+
+          <div id="pubs-grid" class="cpdse-pubs__grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    document.documentElement.dataset.baseurl = '..';
+  </script>
+  <script src="../assets/js/publications.js"></script>
+</body>
+</html>
