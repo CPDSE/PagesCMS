@@ -1,0 +1,194 @@
+# ConvergenceTalks at CPDSE — talk archive and schedule.
+# Past talks: status: past. Upcoming with confirmed speaker: status: upcoming.
+# Open future slots (no confirmed speaker): status: open.
+# Tags are used for the topic chip cloud on /news-events/. Keep tag spellings
+# consistent — they are matched as strings to compute counts.
+# country: ISO 3166-1 alpha-2 code, derived from the institution's home country
+# (used to build the "Institutions" stat subtitle automatically).
+
+past:
+  - date: 2025-12-19
+    speakers: Marcel Reimann & Jeppe Nygård Samuelsen
+    affiliation: Department of Drug Design & Pharmacology, UCPH
+    country: DK
+    title: "Project FOREVER: Building the Framework for Responsible Data Collection"
+    tags: [Data infrastructure & open science]
+    internal: true
+
+  - date: 2025-12-05
+    speakers: Jan H. Jensen
+    affiliation: Department of Chemistry, UCPH
+    country: DK
+    title: "Predicting Hits with ML and Limited Data: 3 New Tricks"
+    tags: [AI & ML, Drug & peptide design]
+    internal: true
+
+  - date: 2025-11-28
+    speakers: Jacob F. Hansen, Lykke Pedersen & Sarah Mittenentzwei
+    affiliation: CPDSE — UCPH and SDU
+    country: DK
+    title: Meet the new Data Specialists
+    tags: [Data infrastructure & open science]
+    internal: true
+    cpdse: true
+
+  - date: 2025-10-31
+    speakers: Disa Tehler
+    affiliation: Abzu.ai
+    country: DK
+    title: Designing siRNA with explainable AI
+    tags: [AI & ML, Drug & peptide design]
+    internal: false
+
+  - date: 2025-10-17
+    speakers: Kosio Beshkov
+    affiliation: Department of Physics, University of Oslo
+    country: "NO"
+    title: Applications of Topology in neural and data science
+    tags: [Computational & biophysics]
+    internal: false
+
+  - date: 2025-10-10
+    speakers: Henrike Zschach
+    affiliation: KU IT Datalab, UCPH
+    country: DK
+    title: KU IT Datalab meets CPDSE / IF / ILF
+    tags: [Data infrastructure & open science]
+    internal: true
+
+  - date: 2025-10-03
+    speakers: Abbas K. Rizi
+    affiliation: DTU & Copenhagen Center for Social Data Science
+    country: DK
+    title: Social & Spatial Landscape of COVID-19 Immunity in Denmark
+    tags: [Clinical & epidemiology]
+    internal: false
+
+  - date: 2025-08-29
+    speakers: Jesper Ryge
+    affiliation: Merck KGaA
+    country: DE
+    title: "Navigating the Neuroimmune Nexus: Computational Strategies for Target Discovery and Prioritization in Neurodegenerative Disorders"
+    tags: [Drug & peptide design, Clinical & epidemiology]
+    internal: false
+
+  - date: 2025-07-17
+    speakers: Haiping Lu
+    affiliation: School of Computer Science, University of Sheffield
+    country: UK
+    title: Deploying Multimodal AI comes with its own sets of challenges and big opportunities
+    tags: [AI & ML]
+    internal: false
+
+  - date: 2025-06-27
+    speakers: Long Nguyen
+    affiliation: Department of Public Health, UCPH
+    country: DK
+    title: From clinical epidemiology to public engagement
+    tags: [Clinical & epidemiology]
+    internal: true
+
+  - date: 2025-06-20
+    speakers: Tove Holm-Larsen
+    affiliation: Silvi · Ghent University
+    country: BE
+    title: How to integrate AI in science without losing the science part
+    tags: [AI & ML]
+    internal: false
+
+  - date: 2025-06-19
+    speakers: Martin Ibsen & Ulla Bomhøj
+    affiliation: COBL, UCPH
+    country: DK
+    title: Rammerne for gAI i undervisningen på KU
+    tags: [Education & AI in teaching]
+    internal: true
+
+  - date: 2025-05-22
+    speakers: Casper Steinmann
+    affiliation: CPDSE, SDU
+    country: DK
+    title: Flipped Classrooms and Mild Academic Chaos
+    tags: [Education & AI in teaching]
+    internal: true
+    cpdse: true
+
+  - date: 2025-04-24
+    speakers: Lauritz Falkow Brorsen
+    affiliation: Department of Pharmacy, UCPH
+    country: DK
+    title: Real-Time Guidance for Skin Cancer Surgery with Mass Spectrometry and Machine Learning
+    tags: [AI & ML, Computational & biophysics]
+    internal: true
+
+  - date: 2025-04-10
+    speakers: Mikkel Marfelt
+    affiliation: ChatTutor
+    country: DK
+    title: "Teaching with AI in Higher Education: Health and Medical Sciences Examples"
+    tags: [Education & AI in teaching]
+    internal: false
+
+  - date: 2025-03-27
+    speakers: Octav Caldararu & Rasmus Leth
+    affiliation: Zealand Pharma
+    country: DK
+    title: Computer-based peptide design at Zealand Pharma
+    tags: [Drug & peptide design]
+    internal: false
+
+  - date: 2025-03-13
+    speakers: Jan Gorodkin
+    affiliation: Department of Veterinary and Animal Sciences, UCPH
+    country: DK
+    title: Computational strategies for assessing the off-target potential of siRNAs and CRISPR gRNAs
+    tags: [Drug & peptide design]
+    internal: true
+
+  - date: 2025-02-27
+    speakers: Andreas H. Laustsen-Kiel
+    affiliation: Section for Biologics Engineering, DTU Bioengineering
+    country: DK
+    title: From snakebite antivenoms to oncology biologics
+    tags: [Drug & peptide design]
+    internal: false
+
+  - date: 2025-02-20
+    speakers: Jane Knöchel
+    affiliation: CPDSE, UCPH
+    country: DK
+    title: "From Complex Biology to Clinical Decisions: Integrating Mechanistic Models, Omics Insights, and MIDD"
+    tags: [Clinical & epidemiology, Computational & biophysics]
+    internal: true
+    cpdse: true
+
+  - date: 2025-01-30
+    speakers: Lars Rønn Olsen
+    affiliation: Department of Immunology and Microbiology, UCPH
+    country: DK
+    title: The role of alternative splicing in targeting, response, and relapse
+    tags: [Clinical & epidemiology]
+    internal: true
+
+  - date: 2025-01-16
+    speakers: Serge Belongie
+    affiliation: Pioneer Centre for AI, UCPH
+    country: DK
+    title: Meet Serge Belongie
+    tags: [AI & ML]
+    internal: true
+
+upcoming:
+  - date: 2026-11-20
+    speakers: Lena Friberg
+    affiliation: TBA
+    country: TBA
+    title: TBA
+
+open_slots:
+  - 2026-08-28
+  - 2026-09-25
+  - 2026-10-09
+  - 2026-10-23
+  - 2026-11-06
+  - 2026-12-18

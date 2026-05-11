@@ -5,6 +5,7 @@ permalink: /news-events/
 ---
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css">
+<link rel="stylesheet" href="{{ '/assets/css/convtalks.css' | relative_url }}">
 
 <header class="page-hero">
   <div class="container">
@@ -75,6 +76,127 @@ permalink: /news-events/
     </div>
   </div>
 </main>
+
+{% assign talks_past = site.data.convergence_talks.past %}
+{% assign talks_upcoming = site.data.convergence_talks.upcoming %}
+{% assign open_slots = site.data.convergence_talks.open_slots %}
+{% assign topic_names = "AI & ML,Drug & peptide design,Clinical & epidemiology,Data infrastructure & open science,Education & AI in teaching,Computational & biophysics" | split: "," %}
+{% assign total_talks = talks_past | size %}
+{% assign affiliations_total = talks_past | map: "affiliation" | uniq | size %}
+{% assign external_total = talks_past | where: "internal", false | size %}
+{% assign country_codes = talks_past | map: "country" | uniq | compact | sort %}
+{% assign country_list = country_codes | join: ", " %}
+
+<section class="section convtalks" id="convergencetalks" aria-labelledby="convtalks-title">
+  <div class="container">
+    <div class="convtalks__intro fade-in">
+      <span class="hero-label">ConvergenceTalks</span>
+      <h2 id="convtalks-title">Friday talks where pharma meets data science.</h2>
+      <p class="convtalks__lede">A bi-weekly 30-minute talk series — Fridays at 9:00&ndash;9:30 — bringing researchers, clinicians, and industry voices together around the intersection of pharmaceutical science and data science. Free to attend, in person or online.</p>
+    </div>
+
+    <div class="convtalks-stats fade-in" aria-label="ConvergenceTalks at a glance">
+      <div class="convtalks-stat">
+        <span class="stat-number" data-count="{{ total_talks }}">{{ total_talks }}</span>
+        <span class="stat-label">Talks delivered</span>
+        <p class="stat-sub">since Jan 2025</p>
+      </div>
+      <div class="convtalks-stat">
+        <span class="stat-number" data-count="25">25</span>
+        <span class="stat-label">Speakers featured</span>
+        <p class="stat-sub">incl. co-presenters</p>
+      </div>
+      <div class="convtalks-stat">
+        <span class="stat-number" data-count="{{ affiliations_total }}">{{ affiliations_total }}</span>
+        <span class="stat-label">Institutions</span>
+        <p class="stat-sub">{{ country_list }}</p>
+      </div>
+      <div class="convtalks-stat">
+        <span class="stat-number" data-count="{{ external_total }}">{{ external_total }}</span>
+        <span class="stat-label">External speakers</span>
+        <p class="stat-sub">outside UCPH</p>
+      </div>
+    </div>
+
+    <div class="convtalks__topics-band fade-in">
+      <p class="convtalks__eyebrow">Topics across the series</p>
+      <div class="convtalks__topics" role="group" aria-label="Topics covered">
+        {% for topic in topic_names %}
+        {% assign topic_clean = topic | strip %}
+        {% assign topic_count = talks_past | where_exp: "talk", "talk.tags contains topic_clean" | size %}
+        <span class="convtalks__topic">{{ topic_clean }} <span class="convtalks__topic-count">{{ topic_count }}</span></span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="convtalks-grid fade-in">
+      <div class="convtalks__panel convtalks__upcoming">
+        <p class="convtalks__eyebrow">Next up</p>
+        <h3>Upcoming talks</h3>
+        {% if talks_upcoming and talks_upcoming.size > 0 %}
+        <ul class="convtalks__list">
+          {% for talk in talks_upcoming %}
+          <li class="convtalks__entry">
+            <time class="convtalks__date" datetime="{{ talk.date | date: '%Y-%m-%d' }}">{{ talk.date | date: "%b %-d, %Y" }}</time>
+            <div class="convtalks__body">
+              {% if talk.title == 'TBA' or talk.title == nil or talk.title == '' %}
+              <p class="convtalks__title">{{ talk.speakers }}</p>
+              <p class="convtalks__meta"><em>Title to be announced</em>{% if talk.affiliation and talk.affiliation != 'TBA' %} · <span class="convtalks__aff">{{ talk.affiliation }}</span>{% endif %}</p>
+              {% else %}
+              <p class="convtalks__title">{{ talk.title }}</p>
+              <p class="convtalks__meta"><span class="convtalks__speaker">{{ talk.speakers }}</span>{% if talk.affiliation and talk.affiliation != 'TBA' %} · <span class="convtalks__aff">{{ talk.affiliation }}</span>{% endif %}</p>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No upcoming talks confirmed yet — check back soon.</p>
+        {% endif %}
+      </div>
+
+      <div class="convtalks__panel convtalks__cta" aria-labelledby="convtalks-cta-title">
+        <p class="convtalks__eyebrow">Speak at a future Friday</p>
+        <h3 id="convtalks-cta-title">Want to give a talk?</h3>
+        <p>We're always looking for speakers — academic, clinical, or industry — whose work sits somewhere on the pharma &times; data-science axis. Reach out and we'll find a date that works.</p>
+        <a class="convtalks__cta-btn" href="mailto:jeppe.hartmann@sund.ku.dk?subject=ConvergenceTalk%20speaker%20proposal">Email Jeppe Hartmann</a>
+        {% if open_slots and open_slots.size > 0 %}
+        <p class="convtalks__open-label">Available speaking slots</p>
+        <ul class="convtalks__open-list">
+          {% for slot in open_slots %}
+          <li><time datetime="{{ slot | date: '%Y-%m-%d' }}">{{ slot | date: "%a · %b %-d, %Y" }}</time></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="convtalks__past fade-in">
+      <p class="convtalks__eyebrow">The archive</p>
+      <h3>Previous talks</h3>
+      <ol class="convtalks__past-list" id="convtalks-past-list" data-initial="6">
+        {% for talk in talks_past %}
+        <li class="convtalks__entry{% if forloop.index > 6 %} is-hidden{% endif %}">
+          <time class="convtalks__date" datetime="{{ talk.date | date: '%Y-%m-%d' }}">{{ talk.date | date: "%b %-d, %Y" }}</time>
+          <div class="convtalks__body">
+            <p class="convtalks__title">{{ talk.title }}</p>
+            <p class="convtalks__meta"><span class="convtalks__speaker">{{ talk.speakers }}</span> · <span class="convtalks__aff">{{ talk.affiliation }}</span></p>
+            {% if talk.tags and talk.tags.size > 0 %}
+            <div class="convtalks__chips">
+              {% if talk.cpdse %}<span class="convtalks__chip convtalks__chip--cpdse">CPDSE</span>{% endif %}
+              {% for tag in talk.tags %}<span class="convtalks__chip">{{ tag }}</span>{% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+      {% if total_talks > 6 %}
+      <button type="button" class="convtalks__past-more" id="convtalks-past-more" aria-controls="convtalks-past-list">Show all {{ total_talks }} talks</button>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
@@ -559,6 +681,16 @@ permalink: /news-events/
 
     setupPager('news', '.updates-list-news .updates-item');
     loadCalendar();
+
+    var pastList = document.getElementById('convtalks-past-list');
+    var pastMore = document.getElementById('convtalks-past-more');
+    if (pastList && pastMore) {
+      pastMore.addEventListener('click', function () {
+        var hidden = pastList.querySelectorAll('.convtalks__entry.is-hidden');
+        hidden.forEach(function (el) { el.classList.remove('is-hidden'); });
+        pastMore.hidden = true;
+      });
+    }
 
     if (eventModal) {
       eventModal.addEventListener('click', function (event) {
