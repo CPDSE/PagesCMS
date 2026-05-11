@@ -5,8 +5,79 @@
 # consistent — they are matched as strings to compute counts.
 # country: ISO 3166-1 alpha-2 code, derived from the institution's home country
 # (used to build the "Institutions" stat subtitle automatically).
+#
+# Source: CPDSE Talk Longlist.xlsx, sheets "Talks given 2025" (all entries in
+# this list are 2025 talks; the 2026-dated rows in the sheet were typos) and
+# "Calendar" (all entries are 2026 talks).
 
 past:
+  # Spring 2026 (from the "Calendar" sheet)
+  - date: 2026-04-24
+    speakers: Lauritz Falkow Brorsen
+    affiliation: Department of Pharmacy, UCPH
+    country: DK
+    title: Real-Time Guidance for Skin Cancer Surgery with Mass Spectrometry and Machine Learning
+    tags: [AI & ML, Computational & biophysics]
+    internal: true
+
+  - date: 2026-04-10
+    speakers: Mikkel Marfelt
+    affiliation: ChatTutor
+    country: DK
+    title: "Teaching with AI in Higher Education: Health and Medical Sciences Examples"
+    tags: [Education & AI in teaching]
+    internal: false
+
+  - date: 2026-03-27
+    speakers: Octav Caldararu & Rasmus Leth
+    affiliation: Zealand Pharma
+    country: DK
+    title: Computer-based peptide design at Zealand Pharma
+    tags: [Drug & peptide design]
+    internal: false
+
+  - date: 2026-03-13
+    speakers: Jan Gorodkin
+    affiliation: Department of Veterinary and Animal Sciences, UCPH
+    country: DK
+    title: Computational strategies for assessing the off-target potential of siRNAs and CRISPR gRNAs
+    tags: [Drug & peptide design]
+    internal: true
+
+  - date: 2026-02-27
+    speakers: Andreas H. Laustsen-Kiel
+    affiliation: Section for Biologics Engineering, DTU Bioengineering
+    country: DK
+    title: From snakebite antivenoms to oncology biologics
+    tags: [Drug & peptide design]
+    internal: false
+
+  - date: 2026-02-20
+    speakers: Jane Knöchel
+    affiliation: CPDSE, UCPH
+    country: DK
+    title: "From Complex Biology to Clinical Decisions: Integrating Mechanistic Models, Omics Insights, and MIDD"
+    tags: [Clinical & epidemiology, Computational & biophysics]
+    internal: true
+    cpdse: true
+
+  - date: 2026-01-30
+    speakers: Lars Rønn Olsen
+    affiliation: Department of Immunology and Microbiology, UCPH
+    country: DK
+    title: The role of alternative splicing in targeting, response, and relapse
+    tags: [Clinical & epidemiology]
+    internal: true
+
+  - date: 2026-01-16
+    speakers: Serge Belongie
+    affiliation: Pioneer Centre for AI, UCPH
+    country: DK
+    title: Meet Serge Belongie
+    tags: [AI & ML]
+    internal: true
+
+  # 2025 (from the "Talks given 2025" sheet)
   - date: 2025-12-19
     speakers: Marcel Reimann & Jeppe Nygård Samuelsen
     affiliation: Department of Drug Design & Pharmacology, UCPH
@@ -96,95 +167,27 @@ past:
     tags: [AI & ML]
     internal: false
 
-  - date: 2025-06-19
-    speakers: Martin Ibsen & Ulla Bomhøj
-    affiliation: COBL, UCPH
-    country: DK
-    title: Rammerne for gAI i undervisningen på KU
-    tags: [Education & AI in teaching]
-    internal: true
-
-  - date: 2025-05-22
+# Confirmed upcoming talks (after 2026-05-11). Order: soonest first.
+upcoming:
+  - date: 2026-05-22
     speakers: Casper Steinmann
     affiliation: CPDSE, SDU
     country: DK
     title: Flipped Classrooms and Mild Academic Chaos
-    tags: [Education & AI in teaching]
-    internal: true
-    cpdse: true
 
-  - date: 2025-04-24
-    speakers: Lauritz Falkow Brorsen
-    affiliation: Department of Pharmacy, UCPH
+  - date: 2026-06-19
+    speakers: Martin Ibsen & Ulla Bomhøj
+    affiliation: COBL, UCPH
     country: DK
-    title: Real-Time Guidance for Skin Cancer Surgery with Mass Spectrometry and Machine Learning
-    tags: [AI & ML, Computational & biophysics]
-    internal: true
+    title: Rammerne for gAI i undervisningen på KU
 
-  - date: 2025-04-10
-    speakers: Mikkel Marfelt
-    affiliation: ChatTutor
-    country: DK
-    title: "Teaching with AI in Higher Education: Health and Medical Sciences Examples"
-    tags: [Education & AI in teaching]
-    internal: false
-
-  - date: 2025-03-27
-    speakers: Octav Caldararu & Rasmus Leth
-    affiliation: Zealand Pharma
-    country: DK
-    title: Computer-based peptide design at Zealand Pharma
-    tags: [Drug & peptide design]
-    internal: false
-
-  - date: 2025-03-13
-    speakers: Jan Gorodkin
-    affiliation: Department of Veterinary and Animal Sciences, UCPH
-    country: DK
-    title: Computational strategies for assessing the off-target potential of siRNAs and CRISPR gRNAs
-    tags: [Drug & peptide design]
-    internal: true
-
-  - date: 2025-02-27
-    speakers: Andreas H. Laustsen-Kiel
-    affiliation: Section for Biologics Engineering, DTU Bioengineering
-    country: DK
-    title: From snakebite antivenoms to oncology biologics
-    tags: [Drug & peptide design]
-    internal: false
-
-  - date: 2025-02-20
-    speakers: Jane Knöchel
-    affiliation: CPDSE, UCPH
-    country: DK
-    title: "From Complex Biology to Clinical Decisions: Integrating Mechanistic Models, Omics Insights, and MIDD"
-    tags: [Clinical & epidemiology, Computational & biophysics]
-    internal: true
-    cpdse: true
-
-  - date: 2025-01-30
-    speakers: Lars Rønn Olsen
-    affiliation: Department of Immunology and Microbiology, UCPH
-    country: DK
-    title: The role of alternative splicing in targeting, response, and relapse
-    tags: [Clinical & epidemiology]
-    internal: true
-
-  - date: 2025-01-16
-    speakers: Serge Belongie
-    affiliation: Pioneer Centre for AI, UCPH
-    country: DK
-    title: Meet Serge Belongie
-    tags: [AI & ML]
-    internal: true
-
-upcoming:
   - date: 2026-11-20
     speakers: Lena Friberg
     affiliation: TBA
     country: TBA
     title: TBA
 
+# Open Friday slots in 2026 with no confirmed speaker yet.
 open_slots:
   - 2026-08-28
   - 2026-09-25
