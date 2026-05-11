@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-baseurl="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPDSE — Learning resources (preview)</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/learning-resources.css">
+
+  <style>
+    .preview-banner {
+      background: var(--green); color: var(--accent);
+      font-family: var(--font-mono); font-size: 0.7rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      padding: 0.5rem 1rem; text-align: center;
+      border-bottom: 2px solid var(--accent);
+      position: sticky; top: 0; z-index: 999;
+    }
+    .page-hero { margin-top: 0 !important; }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">Standalone preview · cpdse-website-new/education/learning-resources.md</div>
+
+  <header class="page-hero">
+    <div class="container">
+      <span class="hero-label">Education</span>
+      <h1>Learning resources</h1>
+      <p>A curated library of online materials for learning pharmaceutical data science — Python, R, Git, Galaxy, cheminformatics, pharmacometrics — sorted by what to do when. Mostly free; certificate-bearing programmes are clearly marked.</p>
+    </div>
+  </header>
+
+  <main class="page-body">
+    <div id="cpdse-learn" class="cpdse-learn" data-baseurl="..">
+
+      <section class="cpdse-learn__band cpdse-learn__band--stats">
+        <div class="cpdse-learn__inner">
+          <div id="learn-stats" class="cpdse-learn__stats reveal" aria-label="Library overview"></div>
+          <p id="learn-data-note" class="cpdse-learn__note reveal"></p>
+        </div>
+      </section>
+
+      <section class="cpdse-learn__band cpdse-learn__band--ivory">
+        <div class="cpdse-learn__inner">
+          <p class="cpdse-learn__eyebrow reveal">Starter paths</p>
+          <h2 class="cpdse-learn__title reveal">Where to begin.</h2>
+          <p class="cpdse-learn__lede reveal">
+            Three suggested progressions for pharma people picking up data science. Pick the one that matches your goal —
+            you can jump between paths once you've found your footing.
+          </p>
+          <div id="learn-paths" class="cpdse-learn__paths reveal"></div>
+        </div>
+      </section>
+
+      <section class="cpdse-learn__band">
+        <div class="cpdse-learn__inner">
+          <p class="cpdse-learn__eyebrow reveal">The library</p>
+          <h2 class="cpdse-learn__title reveal"><span id="learn-count">—</span> resources, organised by topic.</h2>
+          <p class="cpdse-learn__lede reveal">
+            Filter by language, level, or whether you want a certificate. Click any card to open the resource in a new tab.
+          </p>
+          <div id="learn-filters" class="cpdse-learn__filters reveal" role="group" aria-label="Filter resources"></div>
+          <div id="learn-active" class="cpdse-learn__active" aria-live="polite"></div>
+          <div id="learn-categories" class="cpdse-learn__categories" aria-live="polite"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    document.documentElement.dataset.baseurl = '..';
+  </script>
+  <script src="../assets/js/learning-resources.js"></script>
+</body>
+</html>

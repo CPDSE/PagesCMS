@@ -1,0 +1,767 @@
+{
+  "_meta": {
+    "lastReviewed": "2026-05-08",
+    "purpose": "Curated learning library for pharmaceutical data science. Resources are hand-picked for people with a pharma/life-science background who are learning data science. Confidence is high for the listed URLs at the time of review. If a link breaks, please update via PR."
+  },
+
+  "starterPaths": [
+    {
+      "id": "pharma-to-python",
+      "title": "Pharma → Python in 8 weeks",
+      "blurb": "If you've never written code and want a working data-science toolkit. Pick this if your interest is registry/clinical data, ML, or general scripting.",
+      "steps": [
+        { "n": 1, "label": "Python basics",         "ref": "py-for-everybody",       "weeks": 3 },
+        { "n": 2, "label": "Pandas + plotting",     "ref": "uw-pandas-tutorial",     "weeks": 2 },
+        { "n": 3, "label": "Reproducible workflow", "ref": "happy-git-with-r",       "weeks": 1, "note": "Use the Git lessons; ignore R-specific bits." },
+        { "n": 4, "label": "Domain track",          "ref": "deepchem-tutorials",     "weeks": 2, "note": "Or Galaxy / Bioconductor depending on your area." }
+      ]
+    },
+    {
+      "id": "pharma-to-r",
+      "title": "Pharma → R for stats and pharmacometrics",
+      "blurb": "If you'll mostly work with clinical/registry data, biostats, or pharmacometrics. R is dominant in those communities.",
+      "steps": [
+        { "n": 1, "label": "R + tidyverse",       "ref": "r-for-data-science",      "weeks": 3 },
+        { "n": 2, "label": "Statistics intuition","ref": "statquest",               "weeks": "ongoing", "note": "Watch alongside the next two steps." },
+        { "n": 3, "label": "Statistical Learning","ref": "islr",                    "weeks": 4 },
+        { "n": 4, "label": "Reproducible workflow","ref": "happy-git-with-r",       "weeks": 1 }
+      ]
+    },
+    {
+      "id": "teacher-track",
+      "title": "Teacher track — building a pharma-DS module",
+      "blurb": "If you teach pharmacy and want to add data-science elements to a course. Focus on FAIR materials you can reuse.",
+      "steps": [
+        { "n": 1, "label": "Open course design",  "ref": "the-turing-way",         "weeks": "browse" },
+        { "n": 2, "label": "Datasets to teach with","ref": "galaxy-training-network","weeks": "browse" },
+        { "n": 3, "label": "Cheminformatics demos","ref": "teachopencadd",          "weeks": "browse" },
+        { "n": 4, "label": "Notebook publishing", "ref": "github-skills",          "weeks": 1 }
+      ]
+    }
+  ],
+
+  "categories": [
+    {
+      "id": "foundations-programming",
+      "title": "Programming foundations",
+      "blurb": "Start here if you've never written code. Pick Python or R based on what your colleagues use."
+    },
+    {
+      "id": "stats",
+      "title": "Statistics & data analysis",
+      "blurb": "Build statistical intuition before reaching for ML. Pharmacy curricula typically cover the basics; these go deeper."
+    },
+    {
+      "id": "reproducibility",
+      "title": "Reproducibility & workflow",
+      "blurb": "Git, notebooks, FAIR data. The infrastructure that turns one-off scripts into shareable science."
+    },
+    {
+      "id": "bioinformatics",
+      "title": "Bioinformatics & Galaxy",
+      "blurb": "For omics, sequencing, registry/structured biological data. Galaxy is point-and-click, the rest are programmatic."
+    },
+    {
+      "id": "cheminformatics",
+      "title": "Cheminformatics & drug discovery",
+      "blurb": "Working with molecules, structures, properties, and target prediction in code."
+    },
+    {
+      "id": "ml-ai",
+      "title": "Machine learning & AI for healthcare",
+      "blurb": "From classical ML (scikit-learn) through deep learning, with a focus on healthcare applications and responsible practice."
+    },
+    {
+      "id": "pharmacometrics",
+      "title": "Pharmacometrics & PKPD",
+      "blurb": "Population pharmacokinetic / pharmacodynamic modelling. The dialect of clinical pharmacology and dose-finding."
+    },
+    {
+      "id": "visualisation",
+      "title": "Data visualisation",
+      "blurb": "Charts that read well in papers, posters, and dashboards. Books and reference sites, mostly free."
+    },
+    {
+      "id": "regulatory-ethics",
+      "title": "Regulatory, ethics & data governance",
+      "blurb": "GxP, GDPR/HIPAA, fairness, validation. Necessary context for anyone building tools that touch patients."
+    }
+  ],
+
+  "resources": [
+    {
+      "id": "py-for-everybody",
+      "category": "foundations-programming",
+      "title": "Python for Everybody",
+      "provider": "University of Michigan · Charles Severance",
+      "url": "https://www.py4e.com/",
+      "format": "Interactive book + videos",
+      "level": "Beginner",
+      "language": "Python",
+      "time": "~30 hours",
+      "free": true,
+      "certificate": { "available": true, "where": "Coursera", "free": false },
+      "blurb": "The single best on-ramp from no programming to working Python — kind, paced, with auto-graded exercises. Free at py4e.com; same content also available as a paid Coursera Specialization with a certificate."
+    },
+    {
+      "id": "whirlwind-python",
+      "category": "foundations-programming",
+      "title": "A Whirlwind Tour of Python",
+      "provider": "Jake VanderPlas",
+      "url": "https://jakevdp.github.io/WhirlwindTourOfPython/",
+      "format": "Free book / Jupyter notebooks",
+      "level": "Beginner",
+      "language": "Python",
+      "time": "~6 hours",
+      "free": true,
+      "blurb": "A fast, focused intro for people who already program in some other language and just want the Python they need to read scientific code."
+    },
+    {
+      "id": "real-python",
+      "category": "foundations-programming",
+      "title": "Real Python (selected free tutorials)",
+      "provider": "Real Python",
+      "url": "https://realpython.com/tutorials/all/",
+      "format": "Mixed (free + paid)",
+      "level": "Beginner → Advanced",
+      "language": "Python",
+      "time": "Ad hoc",
+      "free": true,
+      "blurb": "Topical, readable Python tutorials. The free articles alone cover most of what you need; the paid track adds video courses."
+    },
+    {
+      "id": "r-for-data-science",
+      "category": "foundations-programming",
+      "title": "R for Data Science (2nd ed.)",
+      "provider": "Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund",
+      "url": "https://r4ds.hadley.nz/",
+      "format": "Free book",
+      "level": "Beginner",
+      "language": "R",
+      "time": "~40 hours",
+      "free": true,
+      "blurb": "The canonical free R + tidyverse book. Best starting point for R if you'll do data wrangling, biostats, or pharmacometrics."
+    },
+    {
+      "id": "swirl",
+      "category": "foundations-programming",
+      "title": "swirl — Learn R, in R",
+      "provider": "swirlstats",
+      "url": "https://swirlstats.com/",
+      "format": "Interactive (R package)",
+      "level": "Beginner",
+      "language": "R",
+      "time": "~15 hours",
+      "free": true,
+      "blurb": "Teaches R inside the R console with hands-on prompts. Pair it with R for Data Science when you want practice rather than reading."
+    },
+    {
+      "id": "posit-recipes",
+      "category": "foundations-programming",
+      "title": "Posit (RStudio) Cheatsheets & Recipes",
+      "provider": "Posit",
+      "url": "https://posit.co/resources/cheatsheets/",
+      "format": "Reference sheets",
+      "level": "All",
+      "language": "R",
+      "time": "Reference",
+      "free": true,
+      "blurb": "One-page printable cheatsheets for ggplot2, dplyr, tidyr, lubridate, and the rest of the tidyverse. The fastest reference once you know the basics."
+    },
+
+    {
+      "id": "statquest",
+      "category": "stats",
+      "title": "StatQuest with Josh Starmer",
+      "provider": "Josh Starmer · YouTube",
+      "url": "https://www.youtube.com/@statquest",
+      "format": "YouTube channel",
+      "level": "Beginner → Intermediate",
+      "language": "Theory",
+      "time": "5–25 min per topic",
+      "free": true,
+      "blurb": "Visual, intuition-first explanations of every statistical and ML concept you're likely to meet — bias-variance, regularisation, PCA, ROC curves, transformers. The friendliest single resource for self-study stats."
+    },
+    {
+      "id": "islr",
+      "category": "stats",
+      "title": "Introduction to Statistical Learning (ISLR)",
+      "provider": "James, Witten, Hastie, Tibshirani",
+      "url": "https://www.statlearning.com/",
+      "format": "Free book + R + Python labs",
+      "level": "Intermediate",
+      "language": "Both",
+      "time": "~80 hours",
+      "free": true,
+      "blurb": "The most-used graduate-level intro to statistical learning. Free PDF, with separate R and Python lab books that walk through the methods on real data."
+    },
+    {
+      "id": "statistical-rethinking",
+      "category": "stats",
+      "title": "Statistical Rethinking",
+      "provider": "Richard McElreath",
+      "url": "https://github.com/rmcelreath/stat_rethinking_2024",
+      "format": "Free YouTube lectures + book code",
+      "level": "Intermediate",
+      "language": "R",
+      "time": "~120 hours",
+      "free": true,
+      "blurb": "A complete Bayesian-stats course. The book is paid but the full lecture series, code, and homework are free. The clearest treatment of causal inference + multilevel models you'll find at this level."
+    },
+    {
+      "id": "modern-statistics-r",
+      "category": "stats",
+      "title": "Modern Statistics with R",
+      "provider": "Måns Thulin",
+      "url": "https://www.modernstatisticswithr.com/",
+      "format": "Free book",
+      "level": "Intermediate",
+      "language": "R",
+      "time": "~60 hours",
+      "free": true,
+      "blurb": "Practical, applied stats with tidyverse syntax. Covers regression, mixed models, survival analysis, and Bayesian methods."
+    },
+    {
+      "id": "3blue1brown",
+      "category": "stats",
+      "title": "3Blue1Brown — Essence of Linear Algebra / Calculus / Probability",
+      "provider": "Grant Sanderson · YouTube",
+      "url": "https://www.3blue1brown.com/",
+      "format": "YouTube series",
+      "level": "All",
+      "language": "Theory",
+      "time": "~10 hours per series",
+      "free": true,
+      "blurb": "Animated math explainers with unmatched visual intuition. The 'Essence of' series is the recommended primer before any ML course."
+    },
+
+    {
+      "id": "pro-git",
+      "category": "reproducibility",
+      "title": "Pro Git",
+      "provider": "Scott Chacon & Ben Straub",
+      "url": "https://git-scm.com/book",
+      "format": "Free book",
+      "level": "Beginner → Advanced",
+      "language": "Git",
+      "time": "~10 hours",
+      "free": true,
+      "blurb": "The official Git book. Free, comprehensive, and stays current with the tool itself."
+    },
+    {
+      "id": "github-skills",
+      "category": "reproducibility",
+      "title": "GitHub Skills",
+      "provider": "GitHub",
+      "url": "https://skills.github.com/",
+      "format": "Interactive courses",
+      "level": "Beginner → Intermediate",
+      "language": "Git",
+      "time": "~1 hour per skill",
+      "free": true,
+      "blurb": "Hands-on Git/GitHub exercises run inside real repositories. The fastest way to learn pull requests, code review, and Actions without setting anything up."
+    },
+    {
+      "id": "happy-git-with-r",
+      "category": "reproducibility",
+      "title": "Happy Git and GitHub for the useR",
+      "provider": "Jenny Bryan, the STAT 545 TAs, Jim Hester",
+      "url": "https://happygitwithr.com/",
+      "format": "Free book",
+      "level": "Beginner",
+      "language": "Git",
+      "time": "~6 hours",
+      "free": true,
+      "blurb": "Best-in-class onboarding to Git for researchers, especially those using R. Sets up the toolchain step-by-step and explains 'why' not just 'how'."
+    },
+    {
+      "id": "the-turing-way",
+      "category": "reproducibility",
+      "title": "The Turing Way",
+      "provider": "The Turing Way community",
+      "url": "https://book.the-turing-way.org/",
+      "format": "Open handbook",
+      "level": "All",
+      "language": "Theory",
+      "time": "Browse / read by chapter",
+      "free": true,
+      "blurb": "An open handbook on reproducible, ethical, collaborative data science. Use it as a reference for project structure, FAIR data, and open research practice."
+    },
+    {
+      "id": "software-carpentry",
+      "category": "reproducibility",
+      "title": "Software & Data Carpentry lessons",
+      "provider": "The Carpentries",
+      "url": "https://software-carpentry.org/lessons/",
+      "format": "Open lesson library",
+      "level": "Beginner",
+      "language": "Mixed",
+      "time": "~4 hours per lesson",
+      "free": true,
+      "blurb": "Volunteer-maintained workshop materials covering shell, Git, Python/R, and SQL for researchers. Excellent self-study and even better as the basis for an in-house workshop."
+    },
+
+    {
+      "id": "galaxy-training-network",
+      "category": "bioinformatics",
+      "title": "Galaxy Training Network",
+      "provider": "Galaxy Project · GTN",
+      "url": "https://training.galaxyproject.org/",
+      "format": "Hands-on tutorials",
+      "level": "Beginner → Advanced",
+      "language": "Galaxy / point-and-click",
+      "time": "~1–4 hours per tutorial",
+      "free": true,
+      "blurb": "Hundreds of GUI-driven, runnable tutorials covering RNA-seq, variant calling, proteomics, single-cell, machine learning, and more. The fastest path into bioinformatics for non-coders."
+    },
+    {
+      "id": "bioconductor",
+      "category": "bioinformatics",
+      "title": "Bioconductor — Course Materials",
+      "provider": "Bioconductor",
+      "url": "https://bioconductor.org/help/course-materials/",
+      "format": "Course archive",
+      "level": "Intermediate",
+      "language": "R",
+      "time": "Varies",
+      "free": true,
+      "blurb": "Annual workshops and labs from the R/Bioconductor ecosystem. Authoritative for omics analysis in R."
+    },
+    {
+      "id": "rosalind",
+      "category": "bioinformatics",
+      "title": "Rosalind — Bioinformatics problems",
+      "provider": "Rosalind",
+      "url": "https://rosalind.info/problems/locations/",
+      "format": "Problem set",
+      "level": "Beginner → Advanced",
+      "language": "Python",
+      "time": "Self-paced",
+      "free": true,
+      "blurb": "Project-Euler-style bioinformatics challenges. Great for building Python fluency on biological data without committing to a long course."
+    },
+    {
+      "id": "biopython",
+      "category": "bioinformatics",
+      "title": "Biopython Tutorial & Cookbook",
+      "provider": "Biopython",
+      "url": "https://biopython.org/DIST/docs/tutorial/Tutorial.html",
+      "format": "Tutorial / cookbook",
+      "level": "Beginner → Intermediate",
+      "language": "Python",
+      "time": "~10 hours",
+      "free": true,
+      "blurb": "Working with sequences, alignments, structures, and biological databases in Python. Complements Galaxy when you need scripted control."
+    },
+
+    {
+      "id": "rdkit-cookbook",
+      "category": "cheminformatics",
+      "title": "RDKit Cookbook",
+      "provider": "RDKit",
+      "url": "https://www.rdkit.org/docs/Cookbook.html",
+      "format": "Cookbook",
+      "level": "Intermediate",
+      "language": "Python",
+      "time": "Reference",
+      "free": true,
+      "blurb": "Code recipes for the standard cheminformatics toolkit — SMILES parsing, fingerprints, similarity, structure search, descriptors, conformers."
+    },
+    {
+      "id": "teachopencadd",
+      "category": "cheminformatics",
+      "title": "TeachOpenCADD",
+      "provider": "Volkamer Lab",
+      "url": "https://projects.volkamerlab.org/teachopencadd/",
+      "format": "Open teaching platform",
+      "level": "Intermediate",
+      "language": "Python",
+      "time": "~30 hours full course",
+      "free": true,
+      "blurb": "A complete computer-aided drug design course as Jupyter notebooks. Covers ligand-based + structure-based design, ADMET, and ML for drug discovery — all reusable as teaching material."
+    },
+    {
+      "id": "deepchem-tutorials",
+      "category": "cheminformatics",
+      "title": "DeepChem Tutorials",
+      "provider": "DeepChem",
+      "url": "https://deepchem.io/tutorials/",
+      "format": "Notebook tutorials",
+      "level": "Intermediate → Advanced",
+      "language": "Python",
+      "time": "~20 hours",
+      "free": true,
+      "blurb": "Step-by-step notebooks for ML on molecules — featurisation, regression, classification, generative models. Pairs cheminformatics with deep learning."
+    },
+
+    {
+      "id": "fastai",
+      "category": "ml-ai",
+      "title": "Practical Deep Learning for Coders",
+      "provider": "fast.ai · Jeremy Howard, Rachel Thomas",
+      "url": "https://course.fast.ai/",
+      "format": "Free video course + book",
+      "level": "Intermediate",
+      "language": "Python",
+      "time": "~70 hours",
+      "free": true,
+      "blurb": "Top-down deep learning course that has you training real models in week 1 and explaining them in week 7. The 'Deep Learning for Coders' book that accompanies it is also free as Jupyter notebooks."
+    },
+    {
+      "id": "huggingface-course",
+      "category": "ml-ai",
+      "title": "Hugging Face NLP / LLM Course",
+      "provider": "Hugging Face",
+      "url": "https://huggingface.co/learn",
+      "format": "Free course",
+      "level": "Intermediate",
+      "language": "Python",
+      "time": "~30 hours",
+      "free": true,
+      "blurb": "End-to-end course on transformers, fine-tuning, datasets, and evaluation. The standard introduction to modern NLP/LLM tooling."
+    },
+    {
+      "id": "made-with-ml",
+      "category": "ml-ai",
+      "title": "Made With ML",
+      "provider": "Goku Mohandas",
+      "url": "https://madewithml.com/",
+      "format": "Free course",
+      "level": "Intermediate",
+      "language": "Python",
+      "time": "~50 hours",
+      "free": true,
+      "blurb": "Goes beyond model training into MLOps — testing, CI/CD, monitoring, and shipping ML systems responsibly. Useful when you need a model to actually run somewhere."
+    },
+    {
+      "id": "deeplearning-ai-ml-spec",
+      "category": "ml-ai",
+      "title": "Machine Learning Specialization",
+      "provider": "DeepLearning.AI · Stanford · Coursera",
+      "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+      "format": "Coursera specialization",
+      "level": "Beginner → Intermediate",
+      "language": "Python",
+      "time": "~95 hours",
+      "free": false,
+      "certificate": { "available": true, "where": "Coursera (Stanford / DeepLearning.AI)", "free": false },
+      "blurb": "Andrew Ng's reboot of the classic Coursera ML course. Audit free; pay (~£40/month) for graded assignments and a certificate."
+    },
+    {
+      "id": "deeplearning-ai-medicine",
+      "category": "ml-ai",
+      "title": "AI for Medicine Specialization",
+      "provider": "DeepLearning.AI · Coursera",
+      "url": "https://www.coursera.org/specializations/ai-for-medicine",
+      "format": "Coursera specialization (3 courses)",
+      "level": "Intermediate",
+      "language": "Python",
+      "time": "~80 hours",
+      "free": false,
+      "certificate": { "available": true, "where": "Coursera (DeepLearning.AI)", "free": false },
+      "blurb": "Three courses on diagnosis, prognosis, and treatment with ML — covers medical image segmentation, survival analysis, and causal inference for medicine. Closest 'pharma-flavoured' specialization at this level."
+    },
+
+    {
+      "id": "mrgsolve",
+      "category": "pharmacometrics",
+      "title": "mrgsolve — User Guide & Vignettes",
+      "provider": "Metrum Research Group",
+      "url": "https://mrgsolve.org/",
+      "format": "Open documentation",
+      "level": "Intermediate",
+      "language": "R",
+      "time": "Reference",
+      "free": true,
+      "blurb": "Open R package for population PK/PD simulation. Vignettes are the de-facto introduction to model-based simulation in R."
+    },
+    {
+      "id": "pmx-open-courseware",
+      "category": "pharmacometrics",
+      "title": "Open pharmacometrics teaching materials (Bauer / Mould lectures, NMUsersGroup archives)",
+      "provider": "Various (NONMEM/PsN/community)",
+      "url": "https://www.iconplc.com/innovation/nonmem/",
+      "format": "Mixed (lecture notes, NMUsers archive, vendor docs)",
+      "level": "Intermediate → Advanced",
+      "language": "NONMEM",
+      "time": "Reference",
+      "free": true,
+      "blurb": "There is no single canonical open pharmacometrics course. The community lives in NMUsers archives, vendor tutorial decks (ICON/NONMEM, Lixoft/Monolix), and conference workshops. Treat this as an entry point — ask a CPDSE pharmacometrician for a curated path."
+    },
+    {
+      "id": "pharmacometrics-coursera",
+      "category": "pharmacometrics",
+      "title": "Pharmacometrics — Coursera (University of Cape Town)",
+      "provider": "University of Cape Town · Coursera",
+      "url": "https://www.coursera.org/learn/pharmacometrics",
+      "format": "Coursera course",
+      "level": "Intermediate",
+      "language": "Theory + NONMEM",
+      "time": "~25 hours",
+      "free": false,
+      "certificate": { "available": true, "where": "Coursera", "free": false },
+      "blurb": "One of the few formal MOOCs on pharmacometrics. Audit-free or pay for a certificate."
+    },
+
+    {
+      "id": "fundamentals-of-dataviz",
+      "category": "visualisation",
+      "title": "Fundamentals of Data Visualization",
+      "provider": "Claus O. Wilke",
+      "url": "https://clauswilke.com/dataviz/",
+      "format": "Free book",
+      "level": "All",
+      "language": "Theory",
+      "time": "~10 hours",
+      "free": true,
+      "blurb": "Principles-first guide to making honest, readable charts. Tool-agnostic; the principles port to ggplot2, Plotly, matplotlib alike."
+    },
+    {
+      "id": "ggplot2-book",
+      "category": "visualisation",
+      "title": "ggplot2: Elegant Graphics for Data Analysis (3rd ed.)",
+      "provider": "Hadley Wickham, Danielle Navarro, Thomas Lin Pedersen",
+      "url": "https://ggplot2-book.org/",
+      "format": "Free book",
+      "level": "Beginner → Intermediate",
+      "language": "R",
+      "time": "~25 hours",
+      "free": true,
+      "blurb": "The reference book for ggplot2. Goes deep on the grammar of graphics and the customisation patterns you need for publication-quality figures."
+    },
+    {
+      "id": "uw-pandas-tutorial",
+      "category": "visualisation",
+      "title": "Python Data Science Handbook",
+      "provider": "Jake VanderPlas",
+      "url": "https://jakevdp.github.io/PythonDataScienceHandbook/",
+      "format": "Free book / Jupyter notebooks",
+      "level": "Beginner → Intermediate",
+      "language": "Python",
+      "time": "~40 hours",
+      "free": true,
+      "blurb": "NumPy, pandas, matplotlib, seaborn, and scikit-learn — the canonical reference for the core scientific-Python stack."
+    },
+    {
+      "id": "datawrapper-academy",
+      "category": "visualisation",
+      "title": "Datawrapper Academy",
+      "provider": "Datawrapper",
+      "url": "https://academy.datawrapper.de/",
+      "format": "Tutorials + reference",
+      "level": "All",
+      "language": "Other",
+      "time": "Browse",
+      "free": true,
+      "blurb": "Tool-agnostic chart-design articles by Lisa Charlotte Muth. Excellent treatment of how to choose a chart type and label it well."
+    },
+
+    {
+      "id": "harvardx-data-science",
+      "category": "ml-ai",
+      "title": "HarvardX Data Science Professional Certificate",
+      "provider": "Harvard · edX (Rafael Irizarry)",
+      "url": "https://www.edx.org/professional-certificate/harvardx-data-science",
+      "format": "edX professional certificate (9 courses)",
+      "level": "Beginner → Intermediate",
+      "language": "R",
+      "time": "~150 hours",
+      "free": true,
+      "certificate": { "available": true, "where": "edX (Harvard)", "free": false },
+      "blurb": "Audit each course for free; pay for the certificate. Covers R, viz, probability, inference, ML, and a capstone. The most-recommended single learning path for stats + ML in R."
+    },
+    {
+      "id": "mitx-stats-microm",
+      "category": "stats",
+      "title": "MITx MicroMasters in Statistics & Data Science",
+      "provider": "MIT · edX",
+      "url": "https://www.edx.org/micromasters/mitx-statistics-and-data-science",
+      "format": "edX MicroMasters (4–5 courses)",
+      "level": "Intermediate → Advanced",
+      "language": "Python",
+      "time": "~12 months part-time",
+      "free": true,
+      "certificate": { "available": true, "where": "edX (MIT)", "free": false },
+      "blurb": "Rigorous graduate-level treatment of probability, stats, ML, and capstone. Audit free; verified track requires payment per course. Stackable into MIT degrees."
+    },
+    {
+      "id": "stanford-statistical-learning",
+      "category": "stats",
+      "title": "Statistical Learning with R / Python",
+      "provider": "Stanford Online · Hastie & Tibshirani",
+      "url": "https://www.edx.org/learn/statistics/stanford-university-statistical-learning",
+      "format": "edX course (mirrors ISLR book)",
+      "level": "Intermediate",
+      "language": "Both",
+      "time": "~50 hours",
+      "free": true,
+      "certificate": { "available": true, "where": "edX (Stanford)", "free": false },
+      "blurb": "The video lectures companion to the ISLR book, taught by the authors. Audit free or pay for the verified certificate."
+    },
+    {
+      "id": "stanford-ai-healthcare",
+      "category": "ml-ai",
+      "title": "AI in Healthcare Specialization",
+      "provider": "Stanford · Coursera",
+      "url": "https://www.coursera.org/specializations/ai-healthcare",
+      "format": "Coursera specialization (5 courses)",
+      "level": "Intermediate",
+      "language": "Python",
+      "time": "~110 hours",
+      "free": false,
+      "certificate": { "available": true, "where": "Coursera (Stanford)", "free": false },
+      "blurb": "Stanford School of Medicine's overview of AI in healthcare — from data fundamentals through evaluation and ethics. Most pharma-relevant of the Stanford Coursera offerings."
+    },
+    {
+      "id": "jhu-data-science",
+      "category": "foundations-programming",
+      "title": "Data Science Specialization",
+      "provider": "Johns Hopkins · Coursera",
+      "url": "https://www.coursera.org/specializations/jhu-data-science",
+      "format": "Coursera specialization (10 courses)",
+      "level": "Beginner → Intermediate",
+      "language": "R",
+      "time": "~120 hours",
+      "free": false,
+      "certificate": { "available": true, "where": "Coursera (Johns Hopkins)", "free": false },
+      "blurb": "Long-running R-based specialisation that covers tooling, EDA, regression models, ML, and a capstone. Stackable; audit-free per course."
+    },
+    {
+      "id": "jhu-genomics-data",
+      "category": "bioinformatics",
+      "title": "Genomic Data Science Specialization",
+      "provider": "Johns Hopkins · Coursera",
+      "url": "https://www.coursera.org/specializations/genomic-data-science",
+      "format": "Coursera specialization (8 courses)",
+      "level": "Intermediate",
+      "language": "Python + Galaxy + R",
+      "time": "~80 hours",
+      "free": false,
+      "certificate": { "available": true, "where": "Coursera (Johns Hopkins)", "free": false },
+      "blurb": "Covers Galaxy, Bioconductor, Python for genomics, statistics, and a capstone. Strong applied bioinformatics path."
+    },
+    {
+      "id": "imperial-mml",
+      "category": "stats",
+      "title": "Mathematics for Machine Learning Specialization",
+      "provider": "Imperial College London · Coursera",
+      "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+      "format": "Coursera specialization (3 courses)",
+      "level": "Intermediate",
+      "language": "Python + theory",
+      "time": "~50 hours",
+      "free": false,
+      "certificate": { "available": true, "where": "Coursera (Imperial)", "free": false },
+      "blurb": "Linear algebra, multivariate calculus, and PCA, framed for ML. Bridge between 3Blue1Brown intuition and reading actual ML papers."
+    },
+    {
+      "id": "michigan-applied-ds-python",
+      "category": "foundations-programming",
+      "title": "Applied Data Science with Python Specialization",
+      "provider": "University of Michigan · Coursera",
+      "url": "https://www.coursera.org/specializations/data-science-python",
+      "format": "Coursera specialization (5 courses)",
+      "level": "Intermediate",
+      "language": "Python",
+      "time": "~80 hours",
+      "free": false,
+      "certificate": { "available": true, "where": "Coursera (UMich)", "free": false },
+      "blurb": "Pandas, plotting, ML with scikit-learn, text analysis, network analysis. Practical, applied; assumes you know basic Python (do Python for Everybody first)."
+    },
+
+    {
+      "id": "microsoft-learn-ml",
+      "category": "ml-ai",
+      "title": "Microsoft Learn — Machine Learning paths",
+      "provider": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/training/browse/?expanded=data-and-ai&roles=data-scientist",
+      "format": "Free modules + Microsoft credentials",
+      "level": "Beginner → Intermediate",
+      "language": "Python",
+      "time": "~10–80 hours per path",
+      "free": true,
+      "certificate": { "available": true, "where": "Microsoft Learn (badges + paid Microsoft certifications)", "free": true },
+      "blurb": "Free, hands-on learning paths with optional paid Microsoft Certified credentials at the end (Azure Data Scientist Associate is the relevant one). Useful if your org uses Azure."
+    },
+
+    {
+      "id": "fda-data-science",
+      "category": "regulatory-ethics",
+      "title": "FDA — Real-World Evidence Program",
+      "provider": "U.S. Food & Drug Administration",
+      "url": "https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence",
+      "format": "Reference / guidance",
+      "level": "All",
+      "language": "Theory",
+      "time": "Browse",
+      "free": true,
+      "blurb": "Primary-source FDA guidance on RWE / RWD methodology. The framework most pharma data work eventually has to align to."
+    },
+    {
+      "id": "ema-bigdata",
+      "category": "regulatory-ethics",
+      "title": "EMA — Big Data and Artificial Intelligence",
+      "provider": "European Medicines Agency",
+      "url": "https://www.ema.europa.eu/en/about-us/how-we-work/big-data",
+      "format": "Reference / guidance",
+      "level": "All",
+      "language": "Theory",
+      "time": "Browse",
+      "free": true,
+      "blurb": "EMA's published reflection papers and the EMA-FDA joint AI principles. The European counterpart to FDA RWE guidance."
+    },
+    {
+      "id": "fairsharing",
+      "category": "regulatory-ethics",
+      "title": "FAIRsharing — Standards, Databases, Policies",
+      "provider": "FAIRsharing.org",
+      "url": "https://fairsharing.org/",
+      "format": "Curated registry",
+      "level": "All",
+      "language": "Theory",
+      "time": "Browse",
+      "free": true,
+      "blurb": "Find the right metadata standard, database, or policy for your data. Essential for FAIR-compliant data sharing in life science."
+    },
+    {
+      "id": "gdpr-compliance",
+      "category": "regulatory-ethics",
+      "title": "GDPR for researchers — UCPH guidance",
+      "provider": "University of Copenhagen",
+      "url": "https://informationssikkerhed.ku.dk/english/gdpr/",
+      "format": "Institutional guidance",
+      "level": "All",
+      "language": "Theory",
+      "time": "Browse",
+      "free": true,
+      "blurb": "UCPH's research-facing GDPR pages — DPA templates, data classifications, what to do with patient data. Start here when a project will touch personal data."
+    },
+
+    {
+      "id": "kaggle-learn",
+      "category": "ml-ai",
+      "title": "Kaggle Learn",
+      "provider": "Kaggle (Google)",
+      "url": "https://www.kaggle.com/learn",
+      "format": "Short interactive courses",
+      "level": "Beginner",
+      "language": "Python",
+      "time": "~3–4 hours per course",
+      "free": true,
+      "blurb": "Bite-sized free courses on pandas, ML, computer vision, time series, geospatial. Best as a refresher between bigger commitments."
+    },
+    {
+      "id": "openml",
+      "category": "ml-ai",
+      "title": "OpenML — open ML data + benchmarks",
+      "provider": "OpenML",
+      "url": "https://www.openml.org/",
+      "format": "Datasets + benchmarks",
+      "level": "All",
+      "language": "Mixed",
+      "time": "Reference",
+      "free": true,
+      "blurb": "Open repository of curated ML datasets and benchmark results. Useful when you need a teaching dataset that's not the same iris/MNIST as everyone else."
+    }
+  ]
+}
