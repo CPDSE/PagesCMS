@@ -4,7 +4,6 @@ title: News & Events
 permalink: /news-events/
 ---
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css">
 <link rel="stylesheet" href="{{ '/assets/css/convtalks.css' | relative_url }}">
 
 <header class="page-hero">
@@ -377,8 +376,6 @@ permalink: /news-events/
           if (arg.view && arg.view.type && arg.view.type.indexOf('list') === 0) {
             return buildListEventContent(arg);
           }
-
-          return null;
         },
         eventClick: function (info) {
           info.jsEvent.preventDefault();
