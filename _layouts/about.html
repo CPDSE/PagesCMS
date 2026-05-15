@@ -1,0 +1,53 @@
+---
+layout: default
+---
+
+<header class="page-hero">
+  <div class="container">
+    {% if page.hero_label %}<span class="hero-label">{{ page.hero_label }}</span>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+  </div>
+</header>
+
+<main class="page-body">
+  <section class="about-dark-section">
+  <div class="about-vision-mission">
+    {% for card in page.vision_mission %}
+    {% capture icon_path %}icons/{{ card.icon }}.svg{% endcapture %}
+    <div class="about-vm-card">
+      <div class="about-vm-icon" aria-hidden="true">
+        {% include {{ icon_path }} %}
+      </div>
+      <div class="about-vm-text">
+        <span class="about-vm-label">{{ card.label }}</span>
+        <p>{{ card.text }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  </section>
+
+  <section class="about-activities section-circles">
+    <div class="about-activities-inner">
+      <div class="about-activities-header">
+        <span class="hero-label">What we do</span>
+        <h2>Our activities</h2>
+      </div>
+      <ul class="about-activities-list">
+        {% for activity in page.activities %}
+        {% capture icon_path %}icons/{{ activity.icon }}.svg{% endcapture %}
+        <li class="about-activity">
+          <div class="about-activity-icon" aria-hidden="true">
+            {% include {{ icon_path }} %}
+          </div>
+          <div>
+            <strong>{{ activity.name }}</strong>
+            <p>{{ activity.description }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+</main>

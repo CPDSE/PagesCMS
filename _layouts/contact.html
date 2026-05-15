@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<header class="page-hero">
+  <div class="container">
+    {% if page.hero_label %}<span class="hero-label">{{ page.hero_label }}</span>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+  </div>
+</header>
+
+<main class="page-body">
+  <div class="contact-layout">
+    <section class="contact-card contact-card--mail">
+      <p class="contact-card__label">Write us</p>
+      <p class="contact-card__mail"><a href="mailto:{{ page.email }}">{{ page.email }}</a></p>
+    </section>
+
+    <section class="contact-card">
+      <p class="contact-card__label">{{ page.delivery_address.label }}</p>
+      <address class="contact-address">
+        {% for line in page.delivery_address.lines %}{{ line }}<br>{% endfor %}
+      </address>
+      <p class="contact-attn">{{ page.delivery_address.attention }}</p>
+    </section>
+
+    <section class="contact-card">
+      <p class="contact-card__label">Visiting addresses</p>
+      <div class="contact-visit-grid">
+        {% for addr in page.visiting_addresses %}
+        <article class="contact-visit-item">
+          <h3>{{ addr.name }}</h3>
+          <address class="contact-address">
+            {% for line in addr.lines %}{{ line }}{% if addr.link and forloop.first %} (<a href="{{ addr.link.url }}" target="_blank" rel="noopener">{{ addr.link.text }}</a>){% endif %}<br>{% endfor %}
+          </address>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</main>
