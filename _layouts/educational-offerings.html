@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<header class="page-hero">
+  <div class="container">
+    {% if page.hero_label %}<span class="hero-label">{{ page.hero_label }}</span>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+  </div>
+</header>
+
+<main class="page-body">
+  <ul class="offerings-grid" role="list">
+    {% for offering in page.offerings %}
+    {% capture icon_path %}icons/{{ offering.icon }}.svg{% endcapture %}
+    <li class="offering-card">
+      <div class="offering-card__icon" aria-hidden="true">
+        {% include {{ icon_path }} %}
+      </div>
+      <span class="offering-card__label">{{ offering.label }}</span>
+      <h2 class="offering-card__title">{{ offering.card_title }}</h2>
+      <p class="offering-card__desc">{{ offering.description }}</p>
+      <a class="offering-card__link" href="{{ offering.link_url }}"{% if offering.external %} target="_blank" rel="noopener"{% endif %}>{{ offering.link_text }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</main>

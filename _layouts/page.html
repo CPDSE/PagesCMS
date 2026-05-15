@@ -12,4 +12,9 @@ layout: default
 
 <main class="page-body">
   {{ content }}
+  {% if page.download_button %}
+  <p>
+    <a class="btn btn-primary" href="{{ page.download_button.file }}" download>{{ page.download_button.text }}</a>
+  </p>
+  {% endif %}
 </main>
